@@ -1,47 +1,36 @@
-To compile file:
+<h3>To compile file:</h3>
 
-in Commando Line in project directory:
+in Commando Line in project directory:<br>
 
-qmake -o Makefile QtApp.pro
-
-then:
-
-make
-
-then:
-
-./myCommunity
-
+<code>qmake -o Makefile QtApp.pro</code>
+then:<br>
+<code>make</code>
+then:<br>
+<code>./myCommunity</code>
 
 --------------------------------------------------
 
 <h3>Um Datein in GitLab zu pushen:</h3>
 
 Immer zuerst pullen:<br>
-
 <code>git pull</code>
 
-Status überprüfen:
+Status überprüfen:<br>
+<code>git status<code>
 
-git status
+Gewünschte Datein hinzufügen:<br>
 
-Gewünschte Datein hinzufügen:
+all Files:<br>
+<code>git add .</code>
 
-all Files:
-
-git add .
-
-oder bestimmtes file:
-
-git add test.pdf
+oder bestimmtes file:<br>
+<code>git add test.pdf</code>
 
 Überprüfen ob die gewünschten Datein bereit zum pushen:<br>
-git status
+<code>git status</code>
 
-ein kleine message über Aufgabe hinterlassen:
+ein kleine message über Aufgabe hinterlassen:<br>
+<code>git commit -m "message"</code>
 
-git commit -m "message"
-
-Endlich: pushen :)
-
-git push
+Endlich: pushen :)<br>
+<code>git push</code>
