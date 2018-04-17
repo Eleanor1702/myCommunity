@@ -15,11 +15,11 @@ then:
 
 --------------------------------------------------
 
-<h2>Um Datein in GitLab zu pushen:</h2>
+<h3>Um Datein in GitLab zu pushen:</h3>
 
 Immer zuerst pullen:<br>
 
-git pull
+<code>git pull</code>
 
 Status überprüfen:
 
