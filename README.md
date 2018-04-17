@@ -3,8 +3,10 @@
 in Commando Line in project directory:<br>
 
 <code>qmake -o Makefile QtApp.pro</code>
+
 then:<br>
 <code>make</code>
+
 then:<br>
 <code>./myCommunity</code>
 
