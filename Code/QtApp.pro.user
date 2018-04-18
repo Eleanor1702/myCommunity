@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< HEAD
 <!-- Written by QtCreator 4.0.2, 2018-04-18T14:43:11. -->
+=======
+<!-- Written by QtCreator 3.5.1, 2018-04-18T13:16:00. -->
+>>>>>>> a2d2ba0db63681eedd0ff8e5c2624258f9113ef4
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -305,9 +309,14 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">QtApp</value>
+<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/stephanie/Studium/Git/myCommunity/Code/QtApp.pro</value>
     <value type="bool" key="QmakeProjectManager.QmakeRunConfiguration.UseLibrarySearchPath">true</value>
+=======
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">QtApp2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/eleanor/Privat/studium/SWP/myCommunityGitlab/myCommunity/Code/QtApp.pro</value>
+>>>>>>> a2d2ba0db63681eedd0ff8e5c2624258f9113ef4
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">QtApp.pro</value>
     <value type="bool" key="Qt4ProjectManager.Qt4RunConfiguration.UseDyldImageSuffix">false</value>
