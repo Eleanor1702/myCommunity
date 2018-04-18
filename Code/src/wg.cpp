@@ -3,7 +3,7 @@
 
 using namespace std;
 
-WG::WG() {};
+WG::WG() {}
 
 void WG::bewohnerErstellen(){
     Bewohner* b1 = new Bewohner();
@@ -27,4 +27,22 @@ void WG::raumErstellen(string art, string name) {
     r1->setArt(art);
     r1->setName(name);
     raumListe.push_back(r1);
+}
+
+void WG::bewohnerLoeschen(Bewohner* bew) {
+    for(vector<Bewohner*>::iterator it = bewohnerListe.begin(); it != bewohnerListe.end(); ++it) {
+        if(bew == *it) {
+            bewohnerListe.erase(it);
+            cout << "Löschen erfolgreich!" << endl;
+        }
+    }
+}
+
+void WG::raumLoeschen(Raum* raum) {
+    for(vector<Raum*>::iterator it = raumListe.begin(); it != raumListe.end(); ++it) {
+        if(raum == *it) {
+            raumListe.erase(it);
+            cout << "Löschen erfolgreich!" << endl;
+        }
+    }
 }

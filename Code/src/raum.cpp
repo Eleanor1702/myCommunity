@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Raum::Raum() {};
+Raum::Raum() {}
 
 void Raum::setArt(string eingabe){
     art = eingabe;
@@ -19,4 +19,11 @@ string Raum::getArt(){
 
 string Raum::getName(){
     return name;
+}
+
+void Raum::nameAendern() {
+    string neu;
+    cout << "Bitte neuen Raumnamen eingeben:" << endl;
+    cin >> neu;
+    setName(neu);
 }

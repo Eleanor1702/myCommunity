@@ -16,6 +16,8 @@ public:
     void setArt(string eingabe);
     string getName();
     string getArt();
+    void nameAendern();
+
 };
 
 #endif // RAUM

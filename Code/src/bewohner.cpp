@@ -20,3 +20,31 @@ string Bewohner::getVorname() {
 int Bewohner::getPasswort() {
     return passwort;
 }
+
+void Bewohner::passwortAendern() {
+    int alt;
+    cout << "Bitte altes Passwort eingeben: " << endl;
+    cin >> alt;
+    if(alt == passwort) {
+        int neu;
+        cout << "Bitte neues Passwort eingeben:" << endl;
+        cin >> neu;
+        setPasswort(neu);
+    }
+    else
+        cout << "Falsches Passwort!" << endl;
+}
+
+void Bewohner::nameAendern() {
+    int pass;
+    cout << "Bitte Passwort eingeben: " << endl;
+    cin >> pass;
+    if(pass == passwort) {
+        string neu;
+        cout << "Bitte neuen Namen eingeben:" << endl;
+        cin >> neu;
+        setVorname(neu);
+    }
+    else
+        cout << "Falsches Passwort!" << endl;
+}

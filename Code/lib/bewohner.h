@@ -16,6 +16,9 @@ public:
     void setVorname(string eingabe);
     int getPasswort();
     string getVorname();
+    void passwortAendern();
+    void nameAendern();
+    friend class WG;
 };
 
 #endif // BEWOHNER
