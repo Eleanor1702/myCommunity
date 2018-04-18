@@ -9,6 +9,7 @@ class Bewohner {
 private:
     int passwort;
     string vorname;
+    int num = 999;
 
 public:
     void setPasswort(int eingabe);
