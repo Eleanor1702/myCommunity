@@ -11,6 +11,7 @@ private:
     string art;
 
 public:
+    Raum();
     void setName(string eingabe);
     void setArt(string eingabe);
     string getName();
