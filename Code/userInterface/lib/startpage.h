@@ -1,5 +1,19 @@
-#ifndef STARTPAGE
-#define STARTPAGE
+#ifndef STARTPAGE_H
+#define STARTPAGE_H
 
-#endif // STARTPAGE
+#include <QApplication>
+#include <QPushButton>
+
+class StartPage{
+private:
+    QWidget interface;
+
+    void setInterfaceDesign();
+
+public:
+    StartPage();
+    void run();
+};
+
+#endif // STARTPAGE_H
 
