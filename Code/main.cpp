@@ -1,26 +1,24 @@
 #include <QApplication>
 #include "lib/mainscreen.h"
-#include "userInterface/lib/startpage.h"
+#include "userInterface/lib/setUpRooms.h"
 #include "lib/wg.h"
 
 int main(int argc, char **argv){
-
+    /*
     WG wg;
 
     wg.bewohnerErstellen();
 
     return 0;
+    */
 
-    /*
     QApplication app (argc, argv);
 
     //MainScreen screen;
-    StartPage mainWindow;
+    SetUpRooms main;
 
-    mainWindow.run();
-
-    //screen.run();
+    main.run();
 
     return app.exec();
-    */
+
 }
