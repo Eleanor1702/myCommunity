@@ -33,7 +33,7 @@ void SetUpRooms::setMainLayoutDesign() {
     zeile2->addWidget(nameEingeben);
     name->setBuddy(nameEingeben);
 
-    QPushButton *hinzufuegen = new QPushButton ("Raum hinzufügen");
+    QPushButton *hinzufuegen = new QPushButton ("Raum hinzufügen", &mainWindow);
     this->zeile3->addWidget(hinzufuegen);
     hinzufuegen->setFixedSize(200, 50);
     hinzufuegen->setStyleSheet("background-color: red");
@@ -42,6 +42,10 @@ void SetUpRooms::setMainLayoutDesign() {
     this->zeile3->addWidget(speichern);
     speichern->setFixedSize(200, 50);
     speichern->setStyleSheet("background-color: green");
+
+    //"Raum hinzufügen" wird angeklickt
+    QObject::connect(hinzufuegen,SIGNAL(clicked()),&mainWindow,SLOT(Button_add_clicked(artWaehlen,nameEingeben)));
+
 }
 
 void SetUpRooms::setMainLabelDesign() {
@@ -57,4 +61,14 @@ void SetUpRooms::run() {
     this->mainWindow.show();
 }
 
+void SetUpRooms::Button_add_clicked(QComboBox* artWaehlen, QLineEdit* nameEingeben){
+    QString hilf = artWaehlen->currentText();
+    string text = hilf.toUtf8().constData();
+
+    hilf = nameEingeben->text();
+    string text2 = hilf.toUtf8().constData();
+    //WG wg;
+    //wg.raumErstellen(text, text2);
+
+}
 

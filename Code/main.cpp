@@ -4,9 +4,9 @@
 #include "lib/wg.h"
 
 int main(int argc, char **argv){
-    /*
-    WG wg;
 
+    WG wg;
+/*
     wg.bewohnerErstellen();
 
     return 0;
