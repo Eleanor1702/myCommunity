@@ -2,9 +2,9 @@
 #include "userInterface/lib/setUpRooms.h"
 
 int main(int argc, char **argv){
-    /*
-    WG wg;
 
+    WG wg;
+/*
     wg.bewohnerErstellen();
 
     return 0;
@@ -12,11 +12,12 @@ int main(int argc, char **argv){
 
     QApplication app (argc, argv);
 
-    //MainScreen screen;
+   // MainScreen screen;
     SetUpRooms main;
 
     main.run();
 
+    //screen.run();
     return app.exec();
 
 }

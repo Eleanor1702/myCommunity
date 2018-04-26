@@ -3,37 +3,39 @@
 
 #include <QApplication>
 #include <QLabel>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QPushButton>
 #include <QScrollArea>
 #include <QWidget>
+#include <QBoxLayout>
+#include <QPushButton>
+#include <QComboBox>
+#include <QLineEdit>
+#include <QStringList>
+#include <QList>
+#include <lib/wg.h>
 
 class SetUpRooms{
 private:
     QWidget mainWindow;
-    QVBoxLayout *mainLayout = new QVBoxLayout(&mainWindow);
-    QLabel *mainLabel = new QLabel(&mainWindow);
     QScrollArea *scrollArea = new QScrollArea(&mainWindow);
     QWidget *scrollWidget = new QWidget(&mainWindow);
-    QVBoxLayout *roomsLayout = new QVBoxLayout (&mainWindow);
-    QLabel *message = new QLabel(&mainWindow);
-    QHBoxLayout *buttonLayout = new QHBoxLayout(&mainWindow);
-    QPushButton *addButton = new QPushButton(&mainWindow);
-
+    QLabel *mainLabel = new QLabel(&mainWindow);
+    QBoxLayout *mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, &mainWindow);
+    QBoxLayout *row1 = new QBoxLayout(QBoxLayout::LeftToRight);
+    QBoxLayout *row2 = new QBoxLayout(QBoxLayout::LeftToRight);
+    QBoxLayout *row3 = new QBoxLayout(QBoxLayout::LeftToRight);
+    QBoxLayout *row4 = new QBoxLayout(QBoxLayout::LeftToRight);
 
     void setMainWindowDesign();
     void setMainLayoutDesign();
     void setMainLabelDesign();
-    void setRoomsLayoutDesign();
-    void setMessageDesign();
-    void setButtonLayoutDesign();
-    void setAddButtonDesign();
+
+
+private slots:
+    void Button_add_clicked(QComboBox*, QLineEdit*);
 
 public:
     SetUpRooms();
     void run();
-    void addButtonClicked();
 };
 
 #endif // SETUPROOMS_H
