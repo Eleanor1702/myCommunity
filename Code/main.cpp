@@ -1,7 +1,5 @@
 #include <QApplication>
-#include "lib/mainscreen.h"
 #include "userInterface/lib/setUpRooms.h"
-#include "lib/wg.h"
 
 int main(int argc, char **argv){
     /*
