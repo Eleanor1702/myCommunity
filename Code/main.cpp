@@ -13,11 +13,10 @@ int main(int argc, char **argv){
     QApplication app (argc, argv);
 
    // MainScreen screen;
-    SetUpRooms main;
+    SetUpRooms setUpRooms;
 
-    main.run();
+    setUpRooms.show();
 
-    //screen.run();
     return app.exec();
 
 }

@@ -1,94 +1,84 @@
 #include "userInterface/lib/setUpRooms.h"
 
-SetUpRooms::SetUpRooms(){}
+
+//calling the constructor, calls the parent constructor too
+//in this case QWidget
+SetUpRooms::SetUpRooms(QWidget *parent) : QWidget(parent){
+
+  //declarations of window contents
+  scrollArea = new QScrollArea(this);
+  scrollWidget = new QWidget(this);
+  mainLabel = new QLabel("Let's add your WG Rooms..");
+  mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, this);
+  mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
+  scrollAreaRow = new QBoxLayout(QBoxLayout::LeftToRight);
+  addRoomsRow = new QBoxLayout(QBoxLayout::LeftToRight);
+  mainButtonsRow = new QBoxLayout(QBoxLayout::LeftToRight);
+  addButton = new QPushButton (QString::fromUtf8("Raum hinzufügen"), this);
+  roomTypeLabel = new QLabel("Art:");
+  chooseRoomTypeCombo = new QComboBox();
+  nameLabel = new QLabel("Name:");
+  giveNameEdit = new QLineEdit();
+  saveButton = new QPushButton ("Speichern");
+
+
+  this->setMainWindowDesign();
+  this->setMainLayoutDesign();
+
+  QObject::connect(addButton,SIGNAL(clicked()),this,SLOT(Button_add_clicked()));
+
+}
 
 void SetUpRooms::setMainWindowDesign() {
-    this->mainWindow.setFixedSize(700, 500);
-    this->mainWindow.setStyleSheet("background-color: white;");
-    this->mainWindow.setWindowTitle("Räume verwalten");
-    mainLayout->addLayout(row1);
-    mainLayout->addLayout(row2);
-    mainLayout->addLayout(row3);
-    mainLayout->addLayout(row4);
-    mainWindow.setLayout(mainLayout);
+    this->setFixedSize(700, 500);
+    this->setStyleSheet("background-color: white;");
+    this->setWindowTitle(QString::fromUtf8("Räume Verwalten"));
+
+    mainLayout->addLayout(mainLabelRow);
+    mainLayout->addLayout(scrollAreaRow);
+    mainLayout->addLayout(addRoomsRow);
+    mainLayout->addLayout(mainButtonsRow);
+    this->setLayout(mainLayout);
 }
 
 void SetUpRooms::setMainLayoutDesign() {
 
-    this->row1->addWidget(this->mainLabel, 0, Qt::AlignTop);
+    this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
+    this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
+                                   "font-weight: bold; margin-top: 5px;");
 
-
+    this->scrollAreaRow->addWidget(scrollArea);
     this->scrollArea->setWidget(this->scrollWidget);
     this->scrollArea->setWidgetResizable(true);
-    this->row2->addWidget(scrollArea);
 
+    this->addRoomsRow->addWidget(roomTypeLabel);
+    this->addRoomsRow->addWidget(chooseRoomTypeCombo);
 
-    QLabel *art = new QLabel();
-    art->setText("Art:");
-    row3->addWidget(art);
-
-    QComboBox *chooseArt = new QComboBox();
-    row3->addWidget(chooseArt);
     QStringList rooms;
-    rooms << "Bad" << "Kueche" << "Wohnzimmer" << "Flur";
-    chooseArt->addItems(rooms);
+    rooms << "Bad" << QString::fromUtf8("Küche") << "Wohnzimmer" << "Flur";
+    chooseRoomTypeCombo->addItems(rooms);
 
-    QLabel *name = new QLabel();
-    name->setText("Name:");
-    row3->addWidget(name);
+    this->addRoomsRow->addWidget(nameLabel);
+    this->addRoomsRow->addWidget(giveNameEdit);
 
-    QLineEdit *giveName = new QLineEdit();
-    row3->addWidget(giveName);
-    name->setBuddy(giveName);
+    this->mainButtonsRow->addWidget(addButton);
+    addButton->setFixedSize(200, 50);
+    addButton->setStyleSheet("background-color: red");
 
-    QPushButton *add = new QPushButton ("Raum hinzufügen", &mainWindow);
-    this->row4->addWidget(add);
-    add->setFixedSize(200, 50);
-    add->setStyleSheet("background-color: red");
-
-    QPushButton *save = new QPushButton ("Speichern");
-    this->row4->addWidget(save);
-    save->setFixedSize(200, 50);
-    save->setStyleSheet("background-color: green");
-
-    //Click on "Raum hinzufügen"
-    QObject::connect(add,SIGNAL(clicked()),&mainWindow,SLOT(Button_add_clicked(chooseArt, giveName)));
-
+    this->mainButtonsRow->addWidget(saveButton);
+    saveButton->setFixedSize(200, 50);
+    saveButton->setStyleSheet("background-color: green");
 }
 
-void SetUpRooms::setMainLabelDesign() {
-    this->mainLabel->setText("Let's add your WG Rooms..");
-    this->mainLabel->setAlignment(Qt::AlignCenter);
-    this->mainLabel->setStyleSheet("font-family: URW Bookman L;"
-                                   "font-size: 30px; font-weight: bold;"
-                                   "margin-top: 20px;");
-}
-
-//scroll area commands under working
-/*void SetUpRooms::setRoomsLayoutDesign() {
-  this->scrollArea->setAlignment(Qt::AlignCenter);
-  this->scrollArea->setFixedHeight(300);
-  this->scrollArea->setFixedWidth(600);
-  this->scrollWidget->setLayout(this->mainLayout);
-  this->scrollArea->setWidget(this->scrollWidget);
-  this->scrollArea->setWidgetResizable(true);
-}
-*/
-void SetUpRooms::run() {
-    this->setMainWindowDesign();
-    this->setMainLayoutDesign();
-    this->setMainLabelDesign();
-    this->mainWindow.show();
-}
-
-void SetUpRooms::Button_add_clicked(QComboBox* artWaehlen, QLineEdit* nameEingeben){
-    QString hilf = artWaehlen->currentText();
+void SetUpRooms::Button_add_clicked(){
+  this->addButton->setText("Clicked");
+   /* QString help = artWaehlen->currentText();
     string text = hilf.toUtf8().constData();
 
     hilf = nameEingeben->text();
     string text2 = hilf.toUtf8().constData();
     //WG wg;
     //wg.raumErstellen(text, text2);
-
+*/
 }
 

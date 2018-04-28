@@ -13,29 +13,41 @@
 #include <QList>
 #include <lib/wg.h>
 
-class SetUpRooms{
+//Inheritance from QWidget allows the class itself to react on events
+//example (Button clicks.. etc)
+class SetUpRooms : public QWidget{
+  //enable creation of slots and signals
+  Q_OBJECT
 private:
-    QWidget mainWindow;
-    QScrollArea *scrollArea = new QScrollArea(&mainWindow);
-    QWidget *scrollWidget = new QWidget(&mainWindow);
-    QLabel *mainLabel = new QLabel(&mainWindow);
-    QBoxLayout *mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, &mainWindow);
-    QBoxLayout *row1 = new QBoxLayout(QBoxLayout::LeftToRight);
-    QBoxLayout *row2 = new QBoxLayout(QBoxLayout::LeftToRight);
-    QBoxLayout *row3 = new QBoxLayout(QBoxLayout::LeftToRight);
-    QBoxLayout *row4 = new QBoxLayout(QBoxLayout::LeftToRight);
+    QScrollArea *scrollArea;
+    QWidget *scrollWidget;
+    QLabel *mainLabel;
+    QBoxLayout *mainLayout;
+    QBoxLayout *mainLabelRow;
+    QBoxLayout *scrollAreaRow;
+    QBoxLayout *addRoomsRow;
+    QBoxLayout *mainButtonsRow;
+    QPushButton *addButton;
+    QLabel *roomTypeLabel;
+    QComboBox *chooseRoomTypeCombo;
+    QLabel *nameLabel;
+    QLineEdit *giveNameEdit;
+    QPushButton *saveButton;
 
     void setMainWindowDesign();
     void setMainLayoutDesign();
-    void setMainLabelDesign();
-
 
 private slots:
-    void Button_add_clicked(QComboBox*, QLineEdit*);
+    void Button_add_clicked();
+
+signals:
+
+public slots:
 
 public:
-    SetUpRooms();
-    void run();
+    //the constructor build the window
+    //the parameter *parent is here to nest widgets in widgets
+    explicit SetUpRooms(QWidget *parent = NULL);
 };
 
 #endif // SETUPROOMS_H
