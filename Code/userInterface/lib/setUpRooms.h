@@ -19,20 +19,24 @@ class SetUpRooms : public QWidget{
   //enable creation of slots and signals
   Q_OBJECT
 private:
-    QScrollArea *scrollArea;
-    QWidget *scrollWidget;
-    QLabel *mainLabel;
-    QBoxLayout *mainLayout;
-    QBoxLayout *mainLabelRow;
-    QBoxLayout *scrollAreaRow;
-    QBoxLayout *addRoomsRow;
-    QBoxLayout *mainButtonsRow;
-    QPushButton *addButton;
-    QLabel *roomTypeLabel;
-    QComboBox *chooseRoomTypeCombo;
-    QLabel *nameLabel;
-    QLineEdit *giveNameEdit;
-    QPushButton *saveButton;
+   QBoxLayout *mainLayout;
+   QBoxLayout *mainLabelRow;
+   QLabel *mainLabel;
+
+   QBoxLayout *scrollAreaRow;
+   QScrollArea *scrollArea;
+   QWidget *scrollWidget;
+   QBoxLayout *scrollLayout;
+
+   QBoxLayout *addRoomsRow;
+
+   QBoxLayout *mainButtonsRow;
+   QLabel *roomTypeLabel;
+   QComboBox *chooseRoomTypeCombo;
+   QLabel *nameLabel;
+   QLineEdit *giveNameEdit;
+   QPushButton *addButton;
+   QPushButton *saveButton;
 
     void setMainWindowDesign();
     void setMainLayoutDesign();

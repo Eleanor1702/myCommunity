@@ -6,25 +6,29 @@
 SetUpRooms::SetUpRooms(QWidget *parent) : QWidget(parent){
 
   //declarations of window contents
-  scrollArea = new QScrollArea(this);
-  scrollWidget = new QWidget(this);
-  mainLabel = new QLabel("Let's add your WG Rooms..");
   mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, this);
   mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
+  mainLabel = new QLabel("Let's add your WG Rooms..");
+
   scrollAreaRow = new QBoxLayout(QBoxLayout::LeftToRight);
+  scrollArea = new QScrollArea(this);
+  scrollWidget = new QWidget(this);
+  scrollLayout = new QBoxLayout(QBoxLayout::TopToBottom, this->scrollWidget);
+
   addRoomsRow = new QBoxLayout(QBoxLayout::LeftToRight);
+
   mainButtonsRow = new QBoxLayout(QBoxLayout::LeftToRight);
-  addButton = new QPushButton (QString::fromUtf8("Raum hinzufügen"), this);
   roomTypeLabel = new QLabel("Art:");
   chooseRoomTypeCombo = new QComboBox();
   nameLabel = new QLabel("Name:");
   giveNameEdit = new QLineEdit();
+  addButton = new QPushButton (QString::fromUtf8("Raum hinzufügen"), this);
   saveButton = new QPushButton ("Speichern");
-
 
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
 
+  //Events
   QObject::connect(addButton,SIGNAL(clicked()),this,SLOT(Button_add_clicked()));
 
 }
@@ -49,7 +53,10 @@ void SetUpRooms::setMainLayoutDesign() {
 
     this->scrollAreaRow->addWidget(scrollArea);
     this->scrollArea->setWidget(this->scrollWidget);
+    this->scrollWidget->setLayout(this->scrollLayout);
+    this->scrollLayout->setAlignment(Qt::AlignTop);
     this->scrollArea->setWidgetResizable(true);
+
 
     this->addRoomsRow->addWidget(roomTypeLabel);
     this->addRoomsRow->addWidget(chooseRoomTypeCombo);
@@ -60,18 +67,55 @@ void SetUpRooms::setMainLayoutDesign() {
 
     this->addRoomsRow->addWidget(nameLabel);
     this->addRoomsRow->addWidget(giveNameEdit);
+    giveNameEdit->setMaxLength(30);
 
     this->mainButtonsRow->addWidget(addButton);
     addButton->setFixedSize(200, 50);
-    addButton->setStyleSheet("background-color: red");
+    addButton->setStyleSheet(".QPushButton{border: 1px solid red; "
+                             "border-radius: 5px; background-color: red; "
+                             "color: white;}");
+
 
     this->mainButtonsRow->addWidget(saveButton);
     saveButton->setFixedSize(200, 50);
-    saveButton->setStyleSheet("background-color: green");
+    saveButton->setStyleSheet(".QPushButton{border: 1px solid green; "
+                              "border-radius: 5px; background-color: green; "
+                              "color: white;}");
+
 }
 
 void SetUpRooms::Button_add_clicked(){
-  this->addButton->setText("Clicked");
+  QString roomType = chooseRoomTypeCombo->currentText();
+  QString roomName = giveNameEdit->text();
+
+  QLabel *room = new QLabel(roomType + " - " + roomName);
+  room->setFixedSize(450, 30);
+  room->setStyleSheet("text-align: center; font-size: 20px;");
+
+  QPushButton *editButton = new QPushButton("Bearbeiten");
+  editButton->setFixedHeight(30);
+  editButton->setStyleSheet(".QPushButton{border: 1px solid #00b8e6;"
+                            "border-radius: 5px; background-color: #00b8e6;"
+                            "color: white;}");
+
+  QPushButton *deleteButton = new QPushButton(QString::fromUtf8("Löschen"));
+  deleteButton->setFixedHeight(30);
+  deleteButton->setStyleSheet(".QPushButton{border: 1px solid red;"
+                              "border-radius: 5px; background-color: red;"
+                              " color: white;}");
+
+  QFrame *newRoom = new QFrame();
+  newRoom->setFixedHeight(50);
+  newRoom->setStyleSheet(".QFrame{border: 1px solid #aaa; border-radius: 5px;}");
+
+  QHBoxLayout *newRoomLayout = new QHBoxLayout();
+  newRoom->setLayout(newRoomLayout);
+  newRoomLayout->addWidget(room);
+  newRoomLayout->addWidget(editButton);
+  newRoomLayout->addWidget(deleteButton);
+
+  this->scrollLayout->addWidget(newRoom);
+
    /* QString help = artWaehlen->currentText();
     string text = hilf.toUtf8().constData();
 
