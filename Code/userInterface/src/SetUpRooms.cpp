@@ -29,7 +29,7 @@ SetUpRooms::SetUpRooms(QWidget *parent) : QWidget(parent){
   this->setMainLayoutDesign();
 
   //Events
-  QObject::connect(addButton,SIGNAL(clicked()),this,SLOT(Button_add_clicked()));
+  QObject::connect(addButton,SIGNAL(clicked()),this,SLOT(addButtonClicked()));
 
 }
 
@@ -60,6 +60,9 @@ void SetUpRooms::setMainLayoutDesign() {
 
     this->addRoomsRow->addWidget(roomTypeLabel);
     this->addRoomsRow->addWidget(chooseRoomTypeCombo);
+    this->chooseRoomTypeCombo->setFixedWidth(120);
+    this->chooseRoomTypeCombo->setStyleSheet("selection-color: white; "
+                                             "selection-background-color: #1aa3ff");
 
     QStringList rooms;
     rooms << "Bad" << QString::fromUtf8("Küche") << "Wohnzimmer" << "Flur";
@@ -67,7 +70,7 @@ void SetUpRooms::setMainLayoutDesign() {
 
     this->addRoomsRow->addWidget(nameLabel);
     this->addRoomsRow->addWidget(giveNameEdit);
-    giveNameEdit->setMaxLength(30);
+    this->giveNameEdit->setMaxLength(18);
 
     this->mainButtonsRow->addWidget(addButton);
     addButton->setFixedSize(200, 50);
@@ -84,37 +87,21 @@ void SetUpRooms::setMainLayoutDesign() {
 
 }
 
-void SetUpRooms::Button_add_clicked(){
+void SetUpRooms::addButtonClicked(){
   QString roomType = chooseRoomTypeCombo->currentText();
+
+  //proceed only with a room name
+
   QString roomName = giveNameEdit->text();
+  if(roomName.size() == 0){
+      return;
+  }
 
-  QLabel *room = new QLabel(roomType + " - " + roomName);
-  room->setFixedSize(450, 30);
-  room->setStyleSheet("text-align: center; font-size: 20px;");
-
-  QPushButton *editButton = new QPushButton("Bearbeiten");
-  editButton->setFixedHeight(30);
-  editButton->setStyleSheet(".QPushButton{border: 1px solid #00b8e6;"
-                            "border-radius: 5px; background-color: #00b8e6;"
-                            "color: white;}");
-
-  QPushButton *deleteButton = new QPushButton(QString::fromUtf8("Löschen"));
-  deleteButton->setFixedHeight(30);
-  deleteButton->setStyleSheet(".QPushButton{border: 1px solid red;"
-                              "border-radius: 5px; background-color: red;"
-                              " color: white;}");
-
-  QFrame *newRoom = new QFrame();
-  newRoom->setFixedHeight(50);
-  newRoom->setStyleSheet(".QFrame{border: 1px solid #aaa; border-radius: 5px;}");
-
-  QHBoxLayout *newRoomLayout = new QHBoxLayout();
-  newRoom->setLayout(newRoomLayout);
-  newRoomLayout->addWidget(room);
-  newRoomLayout->addWidget(editButton);
-  newRoomLayout->addWidget(deleteButton);
+  RoomListItem *newRoom = new RoomListItem(roomType + " - " + roomName);
 
   this->scrollLayout->addWidget(newRoom);
+
+  this->giveNameEdit->clear();
 
    /* QString help = artWaehlen->currentText();
     string text = hilf.toUtf8().constData();
@@ -125,4 +112,3 @@ void SetUpRooms::Button_add_clicked(){
     //wg.raumErstellen(text, text2);
 */
 }
-

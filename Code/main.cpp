@@ -3,7 +3,6 @@
 
 int main(int argc, char **argv){
 
-    WG wg;
 /*
     wg.bewohnerErstellen();
 

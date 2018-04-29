@@ -12,11 +12,13 @@ SOURCES += \
     src/bewohner.cpp \
     src/raum.cpp \
     src/wg.cpp \
-    userInterface/src/SetUpRooms.cpp
+    userInterface/src/SetUpRooms.cpp \
+    userInterface/src/roomlistitem.cpp
 
 HEADERS += \
     lib/mainscreen.h \
     lib/bewohner.h \
     lib/raum.h \
     lib/wg.h \
-    userInterface/lib/setUpRooms.h
+    userInterface/lib/setUpRooms.h \
+    userInterface/lib/roomlistitem.h
