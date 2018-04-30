@@ -93,7 +93,7 @@ void SetUpRooms::addButtonClicked(){
   //proceed only with a room name
 
   QString roomName = giveNameEdit->text();
-  if(roomName.size() == 0){
+  if(roomName.size() == 0 || roomName[0] == ' '){
       return;
   }
 
