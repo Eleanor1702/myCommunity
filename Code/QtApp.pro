@@ -13,12 +13,21 @@ SOURCES += \
     src/raum.cpp \
     src/wg.cpp \
     userInterface/src/SetUpRooms.cpp \
-    userInterface/src/roomlistitem.cpp
+    userInterface/src/SetUpUsers.cpp \
+    userInterface/src/Roomlistitem.cpp \
+    userInterface/src/UserList.cpp \
+    userInterface/src/SignUp.cpp
 
 HEADERS += \
     lib/mainscreen.h \
     lib/bewohner.h \
     lib/raum.h \
     lib/wg.h \
-    userInterface/lib/setUpRooms.h \
-    userInterface/lib/roomlistitem.h
+    userInterface/lib/SetUpUsers.h \
+    userInterface/lib/SetUpRooms.h \
+    userInterface/lib/Roomlistitem.h \
+    userInterface/lib/UserList.h \
+    userInterface/lib/SignUp.h
+
+RESOURCES = media/SignUp.png
+

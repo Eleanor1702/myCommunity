@@ -11,7 +11,8 @@
 #include <QLineEdit>
 #include <QStringList>
 #include <QList>
-#include <userInterface/lib/roomlistitem.h>
+#include <userInterface/lib/Roomlistitem.h>
+#include <userInterface/lib/SetUpUsers.h>
 
 //Inheritance from QWidget allows the class itself to react on events
 //example (Button clicks.. etc)
@@ -43,6 +44,7 @@ private:
 
 private slots:
     void addButtonClicked();
+    void saveButtonClicked();
 
 signals:
 
@@ -50,6 +52,7 @@ public:
     //the constructor build the window
     //the parameter *parent is here to nest widgets in widgets
     explicit SetUpRooms(QWidget *parent = NULL);
+
 
 public slots:
 
