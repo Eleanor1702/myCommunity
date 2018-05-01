@@ -1,5 +1,6 @@
 #include <QApplication>
-#include "userInterface/lib/setUpRooms.h"
+#include "userInterface/lib/SetUpRooms.h"
+
 
 int main(int argc, char **argv){
 
