@@ -1,5 +1,5 @@
 #include <QApplication>
-#include "userInterface/lib/SetUpRooms.h"
+#include "userInterface/lib/SignUp.h"
 
 
 int main(int argc, char **argv){
@@ -13,9 +13,8 @@ int main(int argc, char **argv){
     QApplication app (argc, argv);
 
    // MainScreen screen;
-    SetUpRooms setUpRooms;
-
-    setUpRooms.show();
+    SignUp signup;
+    signup.show();
 
     return app.exec();
 
