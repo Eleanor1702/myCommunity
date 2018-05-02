@@ -2,7 +2,7 @@
 #define CONTROLLER_H
 
 #include "wg.h"
-
+//Soll zwischen GUI und Logik vermitteln
 class controller{
    private:
         WG* wg;

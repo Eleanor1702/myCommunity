@@ -14,7 +14,7 @@ private:
 public:
     WG();
     void raumErstellen(string art, string name);
-    void bewohnerErstellen();
+    void bewohnerErstellen(string name, int password);
     void bewohnerLoeschen(Bewohner* b);
     void raumLoeschen(Raum* r);
     //Bearbeitenfunktion, die passwort und name ändern beinhaltet?

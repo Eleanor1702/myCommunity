@@ -1,6 +1,7 @@
 #ifndef SETUPROOMS_H
 #define SETUPROOMS_H
 
+#include <vector>
 #include <QApplication>
 #include <QLabel>
 #include <QScrollArea>
@@ -13,6 +14,7 @@
 #include <QList>
 #include <userInterface/lib/Roomlistitem.h>
 #include <userInterface/lib/SetUpUsers.h>
+
 
 //Inheritance from QWidget allows the class itself to react on events
 //example (Button clicks.. etc)
@@ -46,15 +48,17 @@ private slots:
     void addButtonClicked();
     void saveButtonClicked();
 
+
 signals:
 
 public:
     //the constructor build the window
     //the parameter *parent is here to nest widgets in widgets
     explicit SetUpRooms(QWidget *parent = NULL);
-
+    std::vector<RoomListItem*> RoomListItemList;
 
 public slots:
+
 
 };
 

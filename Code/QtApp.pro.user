@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<<<<<<< HEAD
-<!-- Written by QtCreator 4.0.2, 2018-05-02T12:43:23. -->
-=======
-<!-- Written by QtCreator 4.6.0, 2018-05-02T11:12:39. -->
->>>>>>> c2f7589d9073466e8495bdec405e0628c4514eb1
+<!-- Written by QtCreator 4.0.2, 2018-05-02T13:59:29. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -314,11 +310,7 @@
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">QtApp.pro</value>
     <value type="bool" key="Qt4ProjectManager.Qt4RunConfiguration.UseDyldImageSuffix">false</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory"></value>
-<<<<<<< HEAD
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory.default">/home/stephanie/Studium/Git/myCommunity/build-QtApp-Desktop_Qt_5_7_0_GCC_64bit-Debug</value>
-=======
-    <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory.default"></value>
->>>>>>> c2f7589d9073466e8495bdec405e0628c4514eb1
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>

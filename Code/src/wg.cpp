@@ -10,7 +10,6 @@ void WG::bewohnerErstellen(string name, int password){
 
     b1->setVorname(name);
     b1->setPasswort(password);
-
     bewohnerListe.push_back(b1);
 }
 
