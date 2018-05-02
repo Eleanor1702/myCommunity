@@ -1,9 +1,8 @@
 /build*
 
-#ignore files:
-
-Doc/DS_Store
-Code/DS_Store
-Code/QtApp.pro.user.*
-Code/QtApp.pro.user
+#ignore all files with
+Doc/.DS_Store
+Code/.DS_Store
+QtApp.pro.user.*
+QtApp.pro.user
 

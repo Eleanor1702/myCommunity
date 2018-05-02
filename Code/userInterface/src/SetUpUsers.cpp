@@ -1,28 +1,27 @@
-#include "userInterface/lib/SetUpRooms.h"
-
+#include "userInterface/lib/SetUpUsers.h"
 
 //calling the constructor, calls the parent constructor too
 //in this case QWidget
-SetUpRooms::SetUpRooms(QWidget *parent) : QWidget(parent){
+SetUpUsers::SetUpUsers(QWidget *parent) : QWidget(parent){
 
   //declarations of window contents
   mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, this);
   mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
-  mainLabel = new QLabel("Let's add your WG Rooms..");
+  mainLabel = new QLabel("Let's add your Residents..");
 
   scrollAreaRow = new QBoxLayout(QBoxLayout::LeftToRight);
   scrollArea = new QScrollArea(this);
   scrollWidget = new QWidget(this);
   scrollLayout = new QBoxLayout(QBoxLayout::TopToBottom, this->scrollWidget);
 
-  addRoomsRow = new QBoxLayout(QBoxLayout::LeftToRight);
+  addUsersRow = new QBoxLayout(QBoxLayout::LeftToRight);
 
   mainButtonsRow = new QBoxLayout(QBoxLayout::LeftToRight);
-  roomTypeLabel = new QLabel("Art:");
-  chooseRoomTypeCombo = new QComboBox();
   nameLabel = new QLabel("Name:");
+  passwordLabel = new QLabel("Passwort:");
   giveNameEdit = new QLineEdit();
-  addButton = new QPushButton (QString::fromUtf8("Raum hinzufügen"), this);
+  givePasswordEdit = new QLineEdit();
+  addButton = new QPushButton (QString::fromUtf8("Bewohner hinzufügen"), this);
   saveButton = new QPushButton ("Speichern");
 
   this->setMainWindowDesign();
@@ -30,23 +29,22 @@ SetUpRooms::SetUpRooms(QWidget *parent) : QWidget(parent){
 
   //Events
   QObject::connect(addButton,SIGNAL(clicked()),this,SLOT(addButtonClicked()));
-  QObject::connect(saveButton,SIGNAL(clicked()),this,SLOT(saveButtonClicked()));
 
 }
 
-void SetUpRooms::setMainWindowDesign() {
+void SetUpUsers::setMainWindowDesign() {
     this->setFixedSize(700, 500);
     this->setStyleSheet("background-color: white;");
-    this->setWindowTitle(QString::fromUtf8("Räume Verwalten"));
+    this->setWindowTitle(QString::fromUtf8("Bewohner Verwalten"));
 
     mainLayout->addLayout(mainLabelRow);
     mainLayout->addLayout(scrollAreaRow);
-    mainLayout->addLayout(addRoomsRow);
+    mainLayout->addLayout(addUsersRow);
     mainLayout->addLayout(mainButtonsRow);
     this->setLayout(mainLayout);
 }
 
-void SetUpRooms::setMainLayoutDesign() {
+void SetUpUsers::setMainLayoutDesign() {
 
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
@@ -59,19 +57,15 @@ void SetUpRooms::setMainLayoutDesign() {
     this->scrollArea->setWidgetResizable(true);
 
 
-    this->addRoomsRow->addWidget(roomTypeLabel);
-    this->addRoomsRow->addWidget(chooseRoomTypeCombo);
-    this->chooseRoomTypeCombo->setFixedWidth(120);
-    this->chooseRoomTypeCombo->setStyleSheet("selection-color: white; "
-                                             "selection-background-color: #1aa3ff");
+    this->addUsersRow->addWidget(nameLabel);
+    this->addUsersRow->addWidget(giveNameEdit);
 
-    QStringList rooms;
-    rooms << "Bad" << QString::fromUtf8("Küche") << "Wohnzimmer" << "Flur";
-    chooseRoomTypeCombo->addItems(rooms);
-
-    this->addRoomsRow->addWidget(nameLabel);
-    this->addRoomsRow->addWidget(giveNameEdit);
+    this->addUsersRow->addWidget(passwordLabel);
+    this->addUsersRow->addWidget(givePasswordEdit);
+    this->givePasswordEdit->setEchoMode(QLineEdit::Password);
     this->giveNameEdit->setMaxLength(18);
+    this->givePasswordEdit->setMaxLength(18);
+
 
     this->mainButtonsRow->addWidget(addButton);
     addButton->setFixedSize(200, 50);
@@ -88,28 +82,24 @@ void SetUpRooms::setMainLayoutDesign() {
 
 }
 
-void SetUpRooms::addButtonClicked(){
-  QString roomType = chooseRoomTypeCombo->currentText();
+ void SetUpUsers::addButtonClicked(){
 
   //proceed only with a room name
 
-  QString roomName = giveNameEdit->text();
-  if(roomName.size() == 0 || roomName[0] == ' '){
+  QString userName = giveNameEdit->text();
+  if(userName.size() == 0 || userName[0] == ' '){
       return;
   }
 
-  RoomListItem *newRoom = new RoomListItem(roomType + " - " + roomName);
+  QString userPassword = givePasswordEdit->text();
+  if(userPassword.size() == 0 || userPassword[0] == ' '){
+      return;
+  }
 
-  this->scrollLayout->addWidget(newRoom);
+  UserList *newUser = new UserList(userName);
+
+  this->scrollLayout->addWidget(newUser);
 
   this->giveNameEdit->clear();
-}
-
-void SetUpRooms::saveButtonClicked(){
-    SetUpUsers *user = new SetUpUsers();
-    user->show();
-    this->hide();
-
-
-
+  this->givePasswordEdit->clear();
 }

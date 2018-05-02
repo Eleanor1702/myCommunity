@@ -1,4 +1,4 @@
-#include "userInterface/lib/roomlistitem.h"
+#include "userInterface/lib/Roomlistitem.h"
 
 RoomListItem::RoomListItem(QString roomName, QWidget *parent) : QFrame(parent){
   this->newRoomLayout = new QHBoxLayout();
@@ -15,7 +15,7 @@ RoomListItem::RoomListItem(QString roomName, QWidget *parent) : QFrame(parent){
 void RoomListItem::setItemStyle() {
   //Frame Design
   this->setFixedHeight(50);
-  this->setStyleSheet(".QFrame{border: 1px solid #aaa; border-radius: 5px;}");
+  this->setStyleSheet("border: 1px solid #aaa; border-radius: 5px;");
 
   //Layout Design
   this->setLayout(this->newRoomLayout);
@@ -24,7 +24,7 @@ void RoomListItem::setItemStyle() {
 
   //Room Design
   this->room->setFixedSize(550, 30);
-  this->room->setStyleSheet("text-align: center; font-size: 20px;");
+  this->room->setStyleSheet("text-align: center; font-size: 20px; border: 0px;");
 
   //Button Design
   this->deleteButton->setFixedHeight(30);
