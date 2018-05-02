@@ -27,7 +27,8 @@ HEADERS += \
     userInterface/lib/SetUpRooms.h \
     userInterface/lib/Roomlistitem.h \
     userInterface/lib/UserList.h \
-    userInterface/lib/SignUp.h
+    userInterface/lib/SignUp.h \
+    lib/controller.h
 
 RESOURCES = media/SignUp.png
 
