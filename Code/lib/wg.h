@@ -5,11 +5,13 @@
 #include <vector>
 #include "bewohner.h"
 #include "raum.h"
+#include "userInterface/lib/guicontroller.h"
 
 class WG {
 private:
     vector<Raum*> raumListe;
     vector<Bewohner*> bewohnerListe;
+    GUIController guic;
 
 public:
     WG();

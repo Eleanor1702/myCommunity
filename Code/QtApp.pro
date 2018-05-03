@@ -16,7 +16,8 @@ SOURCES += \
     userInterface/src/SetUpUsers.cpp \
     userInterface/src/Roomlistitem.cpp \
     userInterface/src/UserList.cpp \
-    userInterface/src/SignUp.cpp
+    userInterface/src/SignUp.cpp \
+    src/controller.cpp
 
 HEADERS += \
     lib/mainscreen.h \

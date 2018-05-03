@@ -6,10 +6,16 @@
 #include "SetUpUsers.h"
 #include "SignUp.h"
 #include "UserList.h"
-#include "lib/controller.h"
 
 class GUIController{
 public:
     GUIController();
+
+private:
+    SetUpRooms setRooms;
+    SetUpUsers setUsers;
+    RoomListItem roomItem;
+    UserList userItem;
+
 };
 #endif // GUICONTROLLER_H
