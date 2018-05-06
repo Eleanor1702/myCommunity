@@ -16,7 +16,10 @@ SOURCES += \
     userInterface/src/SetUpUsers.cpp \
     userInterface/src/Roomlistitem.cpp \
     userInterface/src/UserList.cpp \
-    userInterface/src/SignUp.cpp
+    userInterface/src/SignUp.cpp \
+    userInterface/src/SignIn.cpp \
+    userInterface/src/StartPage.cpp \
+    userInterface/src/GuiController.cpp
 
 HEADERS += \
     lib/mainscreen.h \
@@ -27,7 +30,7 @@ HEADERS += \
     userInterface/lib/SetUpRooms.h \
     userInterface/lib/Roomlistitem.h \
     userInterface/lib/UserList.h \
-    userInterface/lib/SignUp.h
-
-RESOURCES = media/SignUp.png
-
+    userInterface/lib/SignUp.h \
+    userInterface/lib/SignIn.h \
+    userInterface/lib/StartPage.h \
+    userInterface/lib/GuiController.h

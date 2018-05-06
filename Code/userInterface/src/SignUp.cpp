@@ -2,15 +2,17 @@
 
 //calling the constructor, calls the parent constructor too
 //in this case QWidget
-SignUp::SignUp(QWidget *parent) : QWidget(parent){
+SignUp::SignUp(QWidget *parent) : QWidget(parent) {
 
   //declarations of window contents
   mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, this);
   mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
   mainLabel = new QLabel("Willkommen");
 
-  imageRow = new QBoxLayout(QBoxLayout::LeftToRight);
-  image = new QWidget(this);
+  imageRow = new QBoxLayout(QBoxLayout::TopToBottom);
+  pic = new QPixmap("/home/eleanor/Privat/studium/SWP/myCommunityGitlab/myCommunity/Code/media/avatar.png");
+  label = new QLabel(this);
+  scaled = this->pic->scaled(130, 130, Qt::IgnoreAspectRatio, Qt::FastTransformation);
 
   addUsersRow = new QBoxLayout(QBoxLayout::LeftToRight);
   nameLabel = new QLabel("Name:");
@@ -27,7 +29,7 @@ SignUp::SignUp(QWidget *parent) : QWidget(parent){
 
   //Events
  // QObject::connect(saveButton,SIGNAL(clicked()),this,SLOT(saveButtonClicked()));
- // QObject::connect(backButton,SIGNAL(clicked()),this,SLOT(backButtonClicked()));
+ //QObject::connect(backButton,SIGNAL(clicked()),this,SLOT(backButtonClicked()));
 
 }
 
@@ -47,11 +49,12 @@ void SignUp::setMainLayoutDesign() {
 
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
-                                   "font-weight: bold; margin-top: 5px;");
+                                   "font-weight: bold;");
 
-    this->imageRow->addWidget(image);
-    this->image->setGeometry(120,120,500,500);
-    this->image->setStyleSheet("background-image: url(:/media/SignUp.png)");
+    this->imageRow->addWidget(this->label, 0, Qt::AlignCenter);
+
+    this->label->setPixmap(scaled);
+    this->label->setFixedSize(200, 200);
 
     this->addUsersRow->addWidget(nameLabel);
     this->addUsersRow->addWidget(giveNameEdit);
@@ -98,26 +101,13 @@ void SignUp::setMainLayoutDesign() {
   this->giveNameEdit->clear();
   this->givePasswordEdit->clear();
 }
+*/
 
- void SignUp::backButtonClicked(){
+void SignUp::backButtonClicked(){
+  this->hide();
+}
 
-  //proceed only with a room name
-
-  QString userName = giveNameEdit->text();
-  if(userName.size() == 0 || userName[0] == ' '){
-      return;
-  }
-
-  QString userPassword = givePasswordEdit->text();
-  if(userPassword.size() == 0 || userPassword[0] == ' '){
-      return;
-  }
-
-  UserList *newUser = new UserList(userName);
-
-  this->scrollLayout->addWidget(newUser);
-
-  this->giveNameEdit->clear();
-  this->givePasswordEdit->clear();
+/*void SignUp::showWindow() {
+  this->show();
 }
 */

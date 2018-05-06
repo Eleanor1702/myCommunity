@@ -1,5 +1,5 @@
 #include <QApplication>
-#include "userInterface/lib/SignUp.h"
+#include "userInterface/lib/GuiController.h"
 
 
 int main(int argc, char **argv){
@@ -12,9 +12,7 @@ int main(int argc, char **argv){
 
     QApplication app (argc, argv);
 
-   // MainScreen screen;
-    SignUp signup;
-    signup.show();
+    GuiController g;
 
     return app.exec();
 

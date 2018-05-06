@@ -109,7 +109,4 @@ void SetUpRooms::saveButtonClicked(){
     SetUpUsers *user = new SetUpUsers();
     user->show();
     this->hide();
-
-
-
 }
