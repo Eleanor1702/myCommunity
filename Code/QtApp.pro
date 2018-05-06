@@ -8,8 +8,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 SOURCES += \
     main.cpp \
-    src/bewohner.cpp \
-    src/raum.cpp \
     src/wg.cpp \
     src/controller.cpp \
     userInterface/src/SetUpRooms.cpp \
@@ -21,11 +19,10 @@ SOURCES += \
     userInterface/src/GuiController.cpp \
     userInterface/src/HomePage.cpp \
     userInterface/src/RoomListItem.cpp
+    src/room.cpp \
+    src/resident.cpp
 
 HEADERS += \
-    lib/mainscreen.h \
-    lib/bewohner.h \
-    lib/raum.h \
     lib/wg.h \
     lib/controller.h \
     userInterface/lib/SetUpUsers.h \
@@ -37,5 +34,7 @@ HEADERS += \
     userInterface/lib/GuiController.h \
     userInterface/lib/HomePage.h \
     userInterface/lib/RoomListItem.h
+    lib/room.h \
+    lib/resident.h
 
 RESOURCES =

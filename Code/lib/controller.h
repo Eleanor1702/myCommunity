@@ -8,7 +8,11 @@
 class Controller{
    private:
         WG *wg;
+<<<<<<< HEAD
         //GUIController *guic;
+=======
+        GuiController *guic;
+>>>>>>> 85e2b20551bb013ca5174df67a9de20088a76f89
 
    public:
         Controller();

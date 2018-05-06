@@ -5,36 +5,36 @@ using namespace std;
 
 WG::WG() {}
 
-void WG::bewohnerErstellen(string name, int password){
-    Bewohner* b1 = new Bewohner();
+void WG::createResident(string name, int password){
+    Resident* b1 = new Resident();
 
-    b1->setVorname(name);
-    b1->setPasswort(password);
-    bewohnerListe.push_back(b1);
+    b1->setFirstname(name);
+    b1->setPassword(password);
+    Residentlist.push_back(b1);
 }
 
-void WG::raumErstellen(string art, string name) {
+void WG::createRoom(string art, string name) {
 
-    Raum* r1 = new Raum();
+    Room* r1 = new Room();
 
     r1->setArt(art);
     r1->setName(name);
-    raumListe.push_back(r1);
+    Roomlist.push_back(r1);
 }
 
-void WG::bewohnerLoeschen(Bewohner* bew) {
-    for(vector<Bewohner*>::iterator it = bewohnerListe.begin(); it != bewohnerListe.end(); ++it) {
+void WG::deleteResident(Resident* bew) {
+    for(vector<Resident*>::iterator it = Residentlist.begin(); it != Residentlist.end(); ++it) {
         if(bew == *it) {
-            bewohnerListe.erase(it);
+            Residentlist.erase(it);
             cout << "Löschen erfolgreich!" << endl;
         }
     }
 }
 
-void WG::raumLoeschen(Raum* raum) {
-    for(vector<Raum*>::iterator it = raumListe.begin(); it != raumListe.end(); ++it) {
-        if(raum == *it) {
-            raumListe.erase(it);
+void WG::deleteRoom(Room* room) {
+    for(vector<Room*>::iterator it = Roomlist.begin(); it != Roomlist.end(); ++it) {
+        if(room == *it) {
+            Roomlist.erase(it);
             cout << "Löschen erfolgreich!" << endl;
         }
     }

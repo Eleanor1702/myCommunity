@@ -2,7 +2,11 @@
 
 Controller::Controller(){
     wg = new WG;
+<<<<<<< HEAD
     //guic = new GUIController;
+=======
+    //guic = new GuiController;
+>>>>>>> 85e2b20551bb013ca5174df67a9de20088a76f89
 }
 
 
