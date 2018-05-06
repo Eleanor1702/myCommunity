@@ -5,18 +5,11 @@ using namespace std;
 
 WG::WG() {}
 
-void WG::bewohnerErstellen(){
+void WG::bewohnerErstellen(string name, int password){
     Bewohner* b1 = new Bewohner();
-    string name;
-    int pass;
 
-    cout << "Bitte Namen eingeben" << endl;
-    cin >> name;
     b1->setVorname(name);
-
-    cout << "Bitte pass eingeben" << endl;
-    cin >> pass;
-    b1->setPasswort(pass);
+    b1->setPasswort(password);
     bewohnerListe.push_back(b1);
 }
 

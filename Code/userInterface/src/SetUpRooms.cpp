@@ -99,6 +99,7 @@ void SetUpRooms::addButtonClicked(){
   }
 
   RoomListItem *newRoom = new RoomListItem(roomType + " - " + roomName);
+  RoomListItemList.push_back(newRoom);
 
   this->scrollLayout->addWidget(newRoom);
 

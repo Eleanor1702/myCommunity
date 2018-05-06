@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QHBoxLayout>
 
+
 class RoomListItem : public QFrame
 {
   Q_OBJECT

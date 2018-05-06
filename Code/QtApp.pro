@@ -12,6 +12,7 @@ SOURCES += \
     src/bewohner.cpp \
     src/raum.cpp \
     src/wg.cpp \
+    src/controller.cpp \
     userInterface/src/SetUpRooms.cpp \
     userInterface/src/SetUpUsers.cpp \
     userInterface/src/Roomlistitem.cpp \
@@ -26,6 +27,7 @@ HEADERS += \
     lib/bewohner.h \
     lib/raum.h \
     lib/wg.h \
+    lib/controller.h \
     userInterface/lib/SetUpUsers.h \
     userInterface/lib/SetUpRooms.h \
     userInterface/lib/Roomlistitem.h \
@@ -34,3 +36,5 @@ HEADERS += \
     userInterface/lib/SignIn.h \
     userInterface/lib/StartPage.h \
     userInterface/lib/GuiController.h
+
+RESOURCES = media/SignUp.png

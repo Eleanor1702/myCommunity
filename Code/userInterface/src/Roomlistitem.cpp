@@ -9,7 +9,6 @@ RoomListItem::RoomListItem(QString roomName, QWidget *parent) : QFrame(parent){
 
   //events
   QObject::connect(deleteButton,SIGNAL(clicked()),this,SLOT(deleteButtonClicked()));
-
 }
 
 void RoomListItem::setItemStyle() {
