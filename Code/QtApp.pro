@@ -10,6 +10,8 @@ SOURCES += \
     main.cpp \
     src/wg.cpp \
     src/controller.cpp \
+    src/resident.cpp \
+    src/room.cpp \
     userInterface/src/SetUpRooms.cpp \
     userInterface/src/SetUpUsers.cpp \
     userInterface/src/UserList.cpp \
@@ -23,6 +25,9 @@ SOURCES += \
 HEADERS += \
     lib/wg.h \
     lib/controller.h \
+    lib/bewohner.h \
+    lib/resident.h \
+    lib/room.h \
     userInterface/lib/SetUpUsers.h \
     userInterface/lib/SetUpRooms.h \
     userInterface/lib/UserList.h \
