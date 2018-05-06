@@ -19,8 +19,6 @@ SOURCES += \
     userInterface/src/GuiController.cpp \
     userInterface/src/HomePage.cpp \
     userInterface/src/RoomListItem.cpp
-    src/room.cpp \
-    src/resident.cpp \
 
 HEADERS += \
     lib/wg.h \
@@ -34,7 +32,5 @@ HEADERS += \
     userInterface/lib/GuiController.h \
     userInterface/lib/HomePage.h \
     userInterface/lib/RoomListItem.h
-    lib/room.h \
-    lib/resident.h \
 
 RESOURCES =
