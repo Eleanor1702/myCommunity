@@ -20,7 +20,7 @@ SOURCES += \
     userInterface/src/HomePage.cpp \
     userInterface/src/RoomListItem.cpp
     src/room.cpp \
-    src/resident.cpp
+    src/resident.cpp \
 
 HEADERS += \
     lib/wg.h \
@@ -35,6 +35,6 @@ HEADERS += \
     userInterface/lib/HomePage.h \
     userInterface/lib/RoomListItem.h
     lib/room.h \
-    lib/resident.h
+    lib/resident.h \
 
 RESOURCES =
