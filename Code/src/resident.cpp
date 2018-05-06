@@ -1,49 +1,49 @@
-#include "lib/bewohner.h"
+#include "lib/resident.h"
 #include <iostream>
 
 using namespace std;
 
-Bewohner::Bewohner() {}
+Resident::Resident() {}
 
-void Bewohner::setVorname(string eingabe) {
-    vorname = eingabe;
+void Resident::setFirstname(string eingabe) {
+    firstname = eingabe;
 }
 
-void Bewohner::setPasswort(int eingabe) {
-    passwort = eingabe;
+void Resident::setPassword(int eingabe) {
+    password = eingabe;
 }
 
-string Bewohner::getVorname() {
-    return vorname;
+string Resident::getFirstname() {
+    return firstname;
 }
 
-int Bewohner::getPasswort() {
-    return passwort;
+int Resident::getPassword() {
+    return password;
 }
 
-void Bewohner::passwortAendern() {
+void Resident::changePassword() {
     int alt;
     cout << "Bitte altes Passwort eingeben: " << endl;
     cin >> alt;
-    if(alt == passwort) {
+    if(alt == password) {
         int neu;
         cout << "Bitte neues Passwort eingeben:" << endl;
         cin >> neu;
-        setPasswort(neu);
+        setPassword(neu);
     }
     else
         cout << "Falsches Passwort!" << endl;
 }
 
-void Bewohner::nameAendern() {
+void Resident::changeName() {
     int pass;
     cout << "Bitte Passwort eingeben: " << endl;
     cin >> pass;
-    if(pass == passwort) {
+    if(pass == password) {
         string neu;
         cout << "Bitte neuen Namen eingeben:" << endl;
         cin >> neu;
-        setVorname(neu);
+        setFirstname(neu);
     }
     else
         cout << "Falsches Passwort!" << endl;

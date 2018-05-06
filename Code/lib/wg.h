@@ -3,22 +3,22 @@
 
 #include <string>
 #include <vector>
-#include "bewohner.h"
-#include "raum.h"
+#include "resident.h"
+#include "room.h"
 #include "userInterface/lib/guicontroller.h"
 
 class WG {
 private:
-    vector<Raum*> raumListe;
-    vector<Bewohner*> bewohnerListe;
-    GUIController guic;
+    vector<Room*> Roomlist;
+    vector<Resident*> Residentlist;
+    //GUIController guic;
 
 public:
     WG();
-    void raumErstellen(string art, string name);
-    void bewohnerErstellen(string name, int password);
-    void bewohnerLoeschen(Bewohner* b);
-    void raumLoeschen(Raum* r);
+    void createRoom(string art, string name);
+    void createResident(string name, int password);
+    void deleteResident(Resident* b);
+    void deleteRoom(Room* r);
     //Bearbeitenfunktion, die passwort und name ändern beinhaltet?
 };
 

@@ -8,29 +8,31 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 SOURCES += \
     main.cpp \
-    src/mainscreen.cpp \
-    src/bewohner.cpp \
-    src/raum.cpp \
     src/wg.cpp \
+    src/controller.cpp \
     userInterface/src/SetUpRooms.cpp \
     userInterface/src/SetUpUsers.cpp \
     userInterface/src/Roomlistitem.cpp \
     userInterface/src/UserList.cpp \
     userInterface/src/SignUp.cpp \
-    src/controller.cpp
+    userInterface/src/SignIn.cpp \
+    userInterface/src/StartPage.cpp \
+    userInterface/src/GuiController.cpp \
+    src/room.cpp \
+    src/resident.cpp
 
 HEADERS += \
-    lib/mainscreen.h \
-    lib/bewohner.h \
-    lib/raum.h \
     lib/wg.h \
+    lib/controller.h \
     userInterface/lib/SetUpUsers.h \
     userInterface/lib/SetUpRooms.h \
     userInterface/lib/Roomlistitem.h \
     userInterface/lib/UserList.h \
     userInterface/lib/SignUp.h \
-    lib/controller.h \
-    userInterface/lib/guicontroller.h
+    userInterface/lib/SignIn.h \
+    userInterface/lib/StartPage.h \
+    userInterface/lib/GuiController.h \
+    lib/room.h \
+    lib/resident.h
 
 RESOURCES = media/SignUp.png
-

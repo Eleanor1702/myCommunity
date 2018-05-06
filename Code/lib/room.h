@@ -1,17 +1,17 @@
-#ifndef RAUM
-#define RAUM
+#ifndef ROOM_H
+#define ROOM_H
 
 #include <string>
 
 using namespace std;
 
-class Raum {
+class Room {
 private:
     string name;
     string art;
 
 public:
-    Raum();
+    Room();
     void setName(string eingabe);
     void setArt(string eingabe);
     string getName();
@@ -20,5 +20,4 @@ public:
 
 };
 
-#endif // RAUM
-
+#endif // room

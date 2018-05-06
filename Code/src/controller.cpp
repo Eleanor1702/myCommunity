@@ -1,8 +1,8 @@
 #include "lib/controller.h"
 
-Controller::controller(){
+Controller::Controller(){
     wg = new WG;
-    guic = new GUIController;
+    //guic = new GuiController;
 }
 
 
