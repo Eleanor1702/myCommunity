@@ -25,7 +25,6 @@ SOURCES += \
 HEADERS += \
     lib/wg.h \
     lib/controller.h \
-    lib/bewohner.h \
     lib/resident.h \
     lib/room.h \
     userInterface/lib/SetUpUsers.h \
