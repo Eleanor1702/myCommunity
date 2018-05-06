@@ -21,18 +21,21 @@ class SignUp : public QWidget{
 private:
    friend class GuiController;
    QBoxLayout *mainLayout;
+
    QBoxLayout *mainLabelRow;
    QLabel *mainLabel;
 
    QBoxLayout *imageRow;
    QPixmap *pic;
    QPixmap scaled;
-   QLabel *label;
+   QLabel *picLabel;
 
-   QBoxLayout *addUsersRow;
+   QBoxLayout *nameRow;
    QLabel *nameLabel;
-   QLabel *passwordLabel;
    QLineEdit *giveNameEdit;
+
+   QBoxLayout *passwordRow;
+   QLabel *passwordLabel;
    QLineEdit *givePasswordEdit;
 
    QBoxLayout *mainButtonsRow;
@@ -42,23 +45,11 @@ private:
    void setMainWindowDesign();
    void setMainLayoutDesign();
 
-private slots:
-
-    //void saveButtonClicked();
-    void backButtonClicked();
-
-signals:
-
-
 public:
     //the constructor build the window
     //the parameter *parent is here to nest widgets in widgets
     //explicit SignUp(QWidget *parent = NULL);
     explicit SignUp(QWidget *parent = NULL);
-
-    //virtual void showWindow();
-
-public slots:
 
 };
 

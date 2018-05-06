@@ -1,7 +1,7 @@
 #ifndef GUICONTROLLER_H
 #define GUICONTROLLER_H
 
-#include "Roomlistitem.h"
+#include "RoomListItem.h"
 #include "SetUpRooms.h"
 #include "SetUpUsers.h"
 #include "SignUp.h"

@@ -13,8 +13,9 @@ class SignIn : public QWidget {
 private:
    friend class GuiController;
    QBoxLayout *mainLayout;
-   //QBoxLayout *mainLabelRow;
-   //QLabel *mainLabel;
+
+   QBoxLayout *mainLabelRow;
+   QLabel *mainLabel;
 
    QBoxLayout *imageRow;
    QPixmap *pic;
@@ -36,19 +37,10 @@ private:
     void setMainWindowDesign();
     void setMainLayoutDesign();
 
-
-private slots:
-    //void saveButtonClicked();
-    //void backButtonClicked();
-
-signals:
-
 public:
     //the constructor build the window
     //the parameter *parent is here to nest widgets in widgets
     explicit SignIn(QWidget *parent = NULL);
-
-public slots:
 
 };
 #endif // SIGNIN_H

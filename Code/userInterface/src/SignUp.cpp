@@ -6,22 +6,24 @@ SignUp::SignUp(QWidget *parent) : QWidget(parent) {
 
   //declarations of window contents
   mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, this);
+
   mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
-  mainLabel = new QLabel("Willkommen");
+  mainLabel = new QLabel("Registrieren");
 
-  imageRow = new QBoxLayout(QBoxLayout::TopToBottom);
+  imageRow = new QBoxLayout(QBoxLayout::RightToLeft);
   pic = new QPixmap("/home/eleanor/Privat/studium/SWP/myCommunityGitlab/myCommunity/Code/media/avatar.png");
-  label = new QLabel(this);
-  scaled = this->pic->scaled(130, 130, Qt::IgnoreAspectRatio, Qt::FastTransformation);
+  picLabel = new QLabel(this);
 
-  addUsersRow = new QBoxLayout(QBoxLayout::LeftToRight);
+  nameRow = new QBoxLayout(QBoxLayout::LeftToRight);
   nameLabel = new QLabel("Name:");
-  passwordLabel = new QLabel("Passwort:");
   giveNameEdit = new QLineEdit();
+
+  passwordRow = new QBoxLayout(QBoxLayout::LeftToRight);
+  passwordLabel = new QLabel("Passwort:");
   givePasswordEdit = new QLineEdit();
 
   mainButtonsRow = new QBoxLayout(QBoxLayout::LeftToRight);
-  backButton = new QPushButton (QString::fromUtf8("Zurück zum Startbildschirm"), this);
+  backButton = new QPushButton (QString::fromUtf8("Zurück"), this);
   saveButton = new QPushButton ("Speichern");
 
   this->setMainWindowDesign();
@@ -38,10 +40,11 @@ void SignUp::setMainWindowDesign() {
     this->setStyleSheet("background-color: white;");
     this->setWindowTitle(QString::fromUtf8("Registrieren"));
 
-    mainLayout->addLayout(mainLabelRow);
-    mainLayout->addLayout(imageRow);
-    mainLayout->addLayout(addUsersRow);
-    mainLayout->addLayout(mainButtonsRow);
+    this->mainLayout->addLayout(mainLabelRow);
+    this->mainLayout->addLayout(imageRow);
+    this->mainLayout->addLayout(nameRow);
+    this->mainLayout->addLayout(passwordRow);
+    this->mainLayout->addLayout(mainButtonsRow);
     this->setLayout(mainLayout);
 }
 
@@ -49,21 +52,27 @@ void SignUp::setMainLayoutDesign() {
 
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
-                                   "font-weight: bold;");
+                                   "font-weight: bold; margin-top: 30px;");
 
-    this->imageRow->addWidget(this->label, 0, Qt::AlignCenter);
+    this->imageRow->addWidget(this->picLabel, 0, Qt::AlignVCenter);
+    scaled = this->pic->scaled(130, 130, Qt::IgnoreAspectRatio, Qt::FastTransformation);
+    this->picLabel->setPixmap(scaled);
+    this->picLabel->setFixedSize(200, 200);
+    this->picLabel->setAlignment(Qt::AlignCenter);
 
-    this->label->setPixmap(scaled);
-    this->label->setFixedSize(200, 200);
-
-    this->addUsersRow->addWidget(nameLabel);
-    this->addUsersRow->addWidget(giveNameEdit);
+    this->nameRow->addWidget(nameLabel, 4, Qt::AlignRight);
+    this->nameRow->addWidget(giveNameEdit, 11, Qt::AlignLeft);
     this->giveNameEdit->setMaxLength(18);
+    this->giveNameEdit->setFixedWidth(300);
+    this->giveNameEdit->setStyleSheet("margin-left: 10px;");
 
-    this->addUsersRow->addWidget(passwordLabel);
-    this->addUsersRow->addWidget(givePasswordEdit);
+    this->passwordRow->addWidget(passwordLabel, 4, Qt::AlignRight);
+    this->passwordRow->addWidget(givePasswordEdit, 11, Qt::AlignLeft);
     this->givePasswordEdit->setEchoMode(QLineEdit::Password);
     this->givePasswordEdit->setMaxLength(18);
+    this->givePasswordEdit->setFixedWidth(300);
+    this->givePasswordEdit->setStyleSheet("margin-left: 10px; margin-bottom: 50px;");
+    this->passwordLabel->setStyleSheet("margin-bottom: 50px;");
 
     this->mainButtonsRow->addWidget(backButton);
     backButton->setFixedSize(200, 50);
@@ -79,35 +88,3 @@ void SignUp::setMainLayoutDesign() {
                               "color: white;}");
 
 }
-/*
- void SignUp::saveButtonClicked(){
-
-  //proceed only with a room name
-
-  QString userName = giveNameEdit->text();
-  if(userName.size() == 0 || userName[0] == ' '){
-      return;
-  }
-
-  QString userPassword = givePasswordEdit->text();
-  if(userPassword.size() == 0 || userPassword[0] == ' '){
-      return;
-  }
-
-  UserList *newUser = new UserList(userName);
-
-  this->scrollLayout->addWidget(newUser);
-
-  this->giveNameEdit->clear();
-  this->givePasswordEdit->clear();
-}
-*/
-
-void SignUp::backButtonClicked(){
-  this->hide();
-}
-
-/*void SignUp::showWindow() {
-  this->show();
-}
-*/

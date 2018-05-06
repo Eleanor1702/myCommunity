@@ -12,7 +12,7 @@
 #include <QLineEdit>
 #include <QStringList>
 #include <QList>
-#include <userInterface/lib/Roomlistitem.h>
+#include <userInterface/lib/RoomListItem.h>
 #include <userInterface/lib/SetUpUsers.h>
 
 

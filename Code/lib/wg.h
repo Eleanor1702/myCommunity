@@ -11,7 +11,7 @@ class WG {
 private:
     vector<Raum*> raumListe;
     vector<Bewohner*> bewohnerListe;
-    GUIController guic;
+    //GUIController guic;
 
 public:
     WG();

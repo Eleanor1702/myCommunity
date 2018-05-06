@@ -16,10 +16,6 @@ StartPage::StartPage(QWidget *parent) : QWidget(parent) {
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
 
-  //Events
- //QObject::connect(signInButton,SIGNAL(clicked()),this,SLOT(signInButtonClicked()));
- //QObject::connect(signUpButton,SIGNAL(clicked()),this,SLOT(signUpButtonClicked()));
-
 }
 
 void StartPage::setMainWindowDesign() {
@@ -27,8 +23,8 @@ void StartPage::setMainWindowDesign() {
   this->setStyleSheet("background-color: white;");
   this->setWindowTitle(QString::fromUtf8("myCommunity"));
 
-  mainLayout->addLayout(mainLabelRow);
-  mainLayout->addLayout(ButtonsRow);
+  this->mainLayout->addLayout(mainLabelRow);
+  this->mainLayout->addLayout(ButtonsRow);
   this->setLayout(mainLayout);
 }
 
@@ -39,22 +35,18 @@ void StartPage::setMainLayoutDesign() {
                                  "font-weight: bold;");
 
   this->ButtonsRow->addWidget(signUpButton, 0, Qt::AlignCenter);
-  signUpButton->setFixedSize(200, 50);
-  signUpButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
+  this->signUpButton->setFixedSize(200, 50);
+  this->signUpButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                            "border-radius: 5px; background-color: #3399ff; "
                            "color: white;}");
 
 
   this->ButtonsRow->addWidget(signInButton, 0 , Qt::AlignCenter);
-  signInButton->setFixedSize(200, 50);
-  signInButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
+  this->signInButton->setFixedSize(200, 50);
+  this->signInButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
                             "border-radius: 5px; background-color: #00b300; "
                             "color: white;}");
 
-}
-
-void StartPage::openWindow() {
-  this->show();
 }
 
 

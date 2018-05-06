@@ -23,19 +23,10 @@ private:
     void setMainWindowDesign();
     void setMainLayoutDesign();
 
-private slots:
-
-signals:
-
 public:
     //the constructor build the window
     //the parameter *parent is here to nest widgets in widgets
     explicit StartPage(QWidget *parent = NULL);
-    void openWindow();
-
-public slots:
-
-
 };
 
 #endif // STARTPAGE_H

@@ -8,10 +8,10 @@
 class Controller{
    private:
         WG *wg;
-        GUIController *guic;
+        //GUIController *guic;
 
    public:
-        Controller controller();
+        Controller();
         void addRoom(string art, string name);      //Leitet Daten aus Gui an WG weiter, um neuen Raum zu erstellen
         void addUser(string name, int password);    //Leitet Daten aus Gui an WG weiter, um neuen Bewohner zu erstellen
         void deleteRoom();

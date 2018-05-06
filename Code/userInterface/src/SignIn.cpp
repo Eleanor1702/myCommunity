@@ -3,6 +3,9 @@
 SignIn::SignIn(QWidget *parent) : QWidget (parent){
   mainLayout = new QBoxLayout(QBoxLayout::TopToBottom);
 
+  mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
+  mainLabel = new QLabel("Anmelden");
+
   imageRow = new QBoxLayout(QBoxLayout::RightToLeft);
   pic = new QPixmap("/home/eleanor/Privat/studium/SWP/myCommunityGitlab/myCommunity/Code/media/avatar.png");
   picLabel = new QLabel(this);
@@ -16,13 +19,12 @@ SignIn::SignIn(QWidget *parent) : QWidget (parent){
   givePasswordEdit = new QLineEdit();
 
   buttonsRow = new QBoxLayout(QBoxLayout::RightToLeft);
-  backButton = new QPushButton(QString::fromUtf8("zurück"));
-  logInButton = new QPushButton("Log In");
+  backButton = new QPushButton(QString::fromUtf8("Zurück"));
+  logInButton = new QPushButton("Anmelden");
 
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
 
-  //Events
 }
 
 void SignIn::setMainWindowDesign() {
@@ -30,7 +32,7 @@ void SignIn::setMainWindowDesign() {
   this->setStyleSheet("background-color: white;");
   this->setWindowTitle(QString::fromUtf8("Anmelden"));
 
-  //mainLayout->addLayout(this->mainLabelRow);
+  mainLayout->addLayout(this->mainLabelRow);
   mainLayout->addLayout(this->imageRow);
   mainLayout->addLayout(this->nameRow);
   mainLayout->addLayout(this->passwordRow);
@@ -39,9 +41,9 @@ void SignIn::setMainWindowDesign() {
 }
 
 void SignIn::setMainLayoutDesign() {
-  //this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
-  //this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
-  //                               "font-weight: bold;");
+  this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
+  this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
+                                 "font-weight: bold; margin-top: 30px;");
 
   this->imageRow->addWidget(this->picLabel, 0, Qt::AlignVCenter);
   scaled = this->pic->scaled(130, 130, Qt::IgnoreAspectRatio, Qt::FastTransformation);
@@ -49,22 +51,23 @@ void SignIn::setMainLayoutDesign() {
   this->picLabel->setFixedSize(200, 200);
   this->picLabel->setAlignment(Qt::AlignCenter);
 
-  this->nameRow->addWidget(nameLabel, 0 , Qt::AlignCenter);
-  this->nameRow->addWidget(giveNameEdit, 0, Qt::AlignCenter);
+  this->nameRow->addWidget(nameLabel, 4 , Qt::AlignRight);
+  this->nameRow->addWidget(giveNameEdit, 11, Qt::AlignLeft);
   this->giveNameEdit->setMaxLength(18);
   this->giveNameEdit->setFixedWidth(300);
+  //left margin to keep space between label and LineEdit
+  this->giveNameEdit->setStyleSheet("margin-left: 10px;");
 
-  this->passwordRow->addWidget(passwordLabel, 0, Qt::AlignCenter);
-  this->passwordRow->addWidget(givePasswordEdit, 0 , Qt::AlignCenter);
+  this->passwordRow->addWidget(passwordLabel, 4, Qt::AlignRight);
+  this->passwordRow->addWidget(givePasswordEdit, 11 , Qt::AlignLeft);
   this->givePasswordEdit->setEchoMode(QLineEdit::Password);
   this->givePasswordEdit->setMaxLength(4);
   this->givePasswordEdit->setFixedWidth(300);
-
-  this->buttonsRow->addWidget(backButton);
-  backButton->setFixedSize(200, 50);
-  backButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
-                           "border-radius: 5px; background-color: #3399ff; "
-                           "color: white;}");
+  //these Margins are for the design of both label and lineEdit
+  //the bottom margin it to keep space between passwordRow and buttons
+  //left margin to keep space between label and lineEdit
+  this->givePasswordEdit->setStyleSheet("margin-left: 10px; margin-bottom: 50px;");
+  this->passwordLabel->setStyleSheet("margin-bottom: 50px;");
 
 
   this->buttonsRow->addWidget(logInButton);
@@ -72,51 +75,11 @@ void SignIn::setMainLayoutDesign() {
   logInButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
                             "border-radius: 5px; background-color: #00b300; "
                             "color: white;}");
+
+  this->buttonsRow->addWidget(backButton);
+  backButton->setFixedSize(200, 50);
+  backButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
+                           "border-radius: 5px; background-color: #3399ff; "
+                           "color: white;}");
 }
-
-/*
- void SignUp::saveButtonClicked(){
-
-  //proceed only with a room name
-
-  QString userName = giveNameEdit->text();
-  if(userName.size() == 0 || userName[0] == ' '){
-      return;
-  }
-
-  QString userPassword = givePasswordEdit->text();
-  if(userPassword.size() == 0 || userPassword[0] == ' '){
-      return;
-  }
-
-  UserList *newUser = new UserList(userName);
-
-  this->scrollLayout->addWidget(newUser);
-
-  this->giveNameEdit->clear();
-  this->givePasswordEdit->clear();
-}
-
- void SignUp::backButtonClicked(){
-
-  //proceed only with a room name
-
-  QString userName = giveNameEdit->text();
-  if(userName.size() == 0 || userName[0] == ' '){
-      return;
-  }
-
-  QString userPassword = givePasswordEdit->text();
-  if(userPassword.size() == 0 || userPassword[0] == ' '){
-      return;
-  }
-
-  UserList *newUser = new UserList(userName);
-
-  this->scrollLayout->addWidget(newUser);
-
-  this->giveNameEdit->clear();
-  this->givePasswordEdit->clear();
-}
-*/
 
