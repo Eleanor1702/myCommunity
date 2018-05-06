@@ -4,12 +4,6 @@
 
 int main(int argc, char **argv){
 
-/*
-    wg.bewohnerErstellen();
-
-    return 0;
-    */
-
     QApplication app (argc, argv);
 
     GuiController g;
