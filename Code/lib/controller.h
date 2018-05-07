@@ -1,21 +1,22 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include "wg.h"
-#include "userInterface/lib/GuiController.h"
+#include "residentexpert.h"
+#include "roomexpert.h"
 
 //Soll zwischen GUI und Logik vermitteln
 class Controller{
    private:
-        WG *wg;
-        GuiController *guic;
+        ResidentExpert* RsExpert;
+        RoomExpert*  RoExpert;
 
    public:
         Controller();
         void addRoom(string art, string name);      //From Gui to WG (create Rooms)
-        void addUser(string name, int password);    //From Gui to WG (add Users)
-        void deleteRoom();
-        void deleteUser();
+        void addResident(string name, int password);    //From Gui to WG (add Users)
+        void deleteRoom(string name);
+        void deleteResident(string name);
+        void editResident(string username,int newPassword);
 
 };
 
