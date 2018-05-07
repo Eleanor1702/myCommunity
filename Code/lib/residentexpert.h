@@ -2,7 +2,7 @@
 #define RESIDENTEXPERT_H
 #include <vector>
 #include "resident.h"
-
+#include <iostream>
 class ResidentExpert{
     private:
     vector<Resident*> Residentlist;

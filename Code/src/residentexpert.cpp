@@ -8,6 +8,7 @@ void ResidentExpert::createResident(string name, int password){
     re->setFirstname(name);
     re->setPassword(password);
     Residentlist.push_back(re);
+    std::cout << Residentlist[1];
 }
 
 void ResidentExpert::deleteResident(string name){

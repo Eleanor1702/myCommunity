@@ -9,6 +9,9 @@
 #include "userInterface/lib/SignIn.h"
 #include "userInterface/lib/HomePage.h"
 
+#include "lib/controller.h"
+#include <string>
+
 //Inheritance from QWidget ist a must
 //Reason-> this class has slots
 class GuiController : public QWidget{
@@ -19,6 +22,8 @@ private:
   SignUp *up;
   SignIn *in;
   HomePage *home;
+
+  Controller* con;
 
 protected:
 
