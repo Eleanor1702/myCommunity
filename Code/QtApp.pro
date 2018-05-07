@@ -37,4 +37,5 @@ HEADERS += \
     userInterface/lib/HomePage.h \
     userInterface/lib/RoomListItem.h
 
-RESOURCES =
+RESOURCES = \
+    media/application.qrc
