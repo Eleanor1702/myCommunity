@@ -7,7 +7,7 @@ SignIn::SignIn(QWidget *parent) : QWidget (parent){
   mainLabel = new QLabel("Anmelden");
 
   imageRow = new QBoxLayout(QBoxLayout::RightToLeft);
-  pic = new QPixmap("/home/eleanor/Privat/studium/SWP/myCommunityGitlab/myCommunity/Code/media/avatar.png");
+  pic = new QPixmap(":/avatar.png");
   picLabel = new QLabel(this);
 
   nameRow = new QBoxLayout(QBoxLayout::LeftToRight);

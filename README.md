@@ -1,4 +1,4 @@
-<h3>To compile file:</h3>
+<h3>To compile file in Linux/Mac:</h3>
 
 in Commando Line in project directory:<br>
 

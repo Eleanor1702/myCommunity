@@ -39,4 +39,5 @@ HEADERS += \
     lib/roomexpert.h \
     lib/residentexpert.h
 
-RESOURCES =
+RESOURCES = \
+    media/application.qrc
