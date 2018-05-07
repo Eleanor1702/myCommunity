@@ -2,13 +2,13 @@
 #define CONTROLLER_H
 
 #include "wg.h"
-#include "userInterface/lib/guicontroller.h"
+#include "userInterface/lib/GuiController.h"
 
 //Soll zwischen GUI und Logik vermitteln
 class Controller{
    private:
         WG *wg;
-        //GUIController *guic;
+        GuiController *guic;
 
    public:
         Controller();

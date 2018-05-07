@@ -5,7 +5,7 @@
 #include <vector>
 #include "resident.h"
 //#include "room.h"
-#include "userInterface/lib/guicontroller.h"
+#include "userInterface/lib/GuiController.h"
 
 class WG {
 private:

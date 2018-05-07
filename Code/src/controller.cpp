@@ -2,6 +2,7 @@
 
 Controller::Controller(){
     wg = new WG;
+    guic = new GuiController();
 }
 
 void Controller::addRoom(string art, string name){}
