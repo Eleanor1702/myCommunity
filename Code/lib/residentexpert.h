@@ -8,6 +8,7 @@ class ResidentExpert{
     vector<Resident*> Residentlist;
 
     public:
+    ResidentExpert();
     void createResident(string name, int password);
     void deleteResident(string name);
     void editResident(string username, int newPassword);

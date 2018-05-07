@@ -1,4 +1,4 @@
-#inlcude "lib/residentexpert.h"
+#include "lib/residentexpert.h"
 
 ResidentExpert::ResidentExpert(){}
 
@@ -12,15 +12,16 @@ void ResidentExpert::createResident(string name, int password){
 
 void ResidentExpert::deleteResident(string name){
     for(vector<Resident*>::iterator it = Residentlist.begin(); it != Residentlist.end(); ++it) {
-        if(it->getFirstname == name) {
+        if((*it)->getFirstname() == name) {
             Residentlist.erase(it);
         }
+    }
 }
 
 void ResidentExpert::editResident(string username, int newPassword){
     for(vector<Resident*>::iterator it = Residentlist.begin(); it != Residentlist.end(); ++it) {
-        if(it->getFirstname == username) {
-            it->setPassword = newPassword;
+        if((*it)->getFirstname() == username) {
+            (*it)->setPassword(newPassword);
         }
     }
 }
