@@ -29,7 +29,9 @@ void ResidentExpert::editResident(string username, int newPassword){
 
 bool ResidentExpert::verifyLogInData(string username, int password){
   for(vector<Resident*>::iterator it = this->Residentlist.begin(); it != this->Residentlist.end(); ++it) {
-      if((*it)->getFirstname() == username && (*it)->getPassword() == password) {
+      string fn = (*it)->getFirstname();
+      int pw = (*it)->getPassword();
+      if(fn == username && pw == password) {
           return true;
       }
   }

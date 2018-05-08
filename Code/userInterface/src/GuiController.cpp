@@ -61,7 +61,8 @@ void GuiController::logInButtonClicked() {
   std::string name = na.toUtf8().constData();
   int password = pa.toInt();
 
-  if(con->searchResident(name, password)) {
+
+  if((con->searchResident(name, password)) == true) {
       home->show();
       in->hide();
   }
