@@ -48,6 +48,8 @@ void GuiController::speichernButtonClicked() {
   std::string name = na.toUtf8().constData();
   int password = pa.toInt();
 
+  if(!(con->searchNameResident(name))){
+
   con->addResident(name, password);
 
   up->giveNameEdit->clear();
@@ -55,6 +57,7 @@ void GuiController::speichernButtonClicked() {
 
   in->show();
   up->hide();
+  }
 }
 
 void GuiController::logInButtonClicked() {

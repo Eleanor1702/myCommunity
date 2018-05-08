@@ -18,7 +18,7 @@ class Controller{
         void deleteResident(string name);
         void editResident(string username,int newPassword);
         bool searchResident(string username, int password);
-
+        bool searchNameResident(string username);   // Damit Login selbe Namen abfängt
 };
 
 

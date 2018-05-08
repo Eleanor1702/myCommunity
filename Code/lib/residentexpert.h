@@ -16,6 +16,7 @@ private:
     void deleteResident(string name);
     void editResident(string username, int newPassword);
     bool verifyLogInData(string username, int password);
+    bool verifyName(string username);
 
     //Allow COUT
     QTextStream& qStdOut();
