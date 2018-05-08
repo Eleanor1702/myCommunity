@@ -69,7 +69,7 @@ void SignUp::setMainLayoutDesign() {
     this->passwordRow->addWidget(passwordLabel, 4, Qt::AlignRight);
     this->passwordRow->addWidget(givePasswordEdit, 11, Qt::AlignLeft);
     this->givePasswordEdit->setEchoMode(QLineEdit::Password);
-    this->givePasswordEdit->setMaxLength(18);
+    this->givePasswordEdit->setMaxLength(4);
     this->givePasswordEdit->setFixedWidth(300);
     this->givePasswordEdit->setStyleSheet("margin-left: 10px; margin-bottom: 50px;");
     this->passwordLabel->setStyleSheet("margin-bottom: 50px;");
