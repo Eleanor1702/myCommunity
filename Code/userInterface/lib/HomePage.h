@@ -36,6 +36,8 @@ private:
 
   void setMainScreenDesign();
   void setMainLayoutDesign();
+
+private slots:
   void callSettings();
 
 public:

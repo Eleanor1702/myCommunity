@@ -21,7 +21,10 @@ HomePage::HomePage(QWidget *parent) : QWidget(parent) {
 
   this->setMainScreenDesign();
   this->setMainLayoutDesign();
-  this->callSettings();
+
+  //Event
+  QObject::connect(settings,SIGNAL(clicked()),this,SLOT(callSettings()));
+
 }
 
 void HomePage::setMainScreenDesign(){
@@ -43,7 +46,7 @@ void HomePage::setMainLayoutDesign(){
   this->mainLabelRow->addWidget(mainLabel, 4, Qt::AlignCenter);
   this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
                                  "color: #aaa; font-weight: bold; margin-top: 5px;"
-                                 "margin-right: 70px;");
+                                 "margin-right: 20px;");
 
   this->buttonColumn->addWidget(settings, 4, Qt::AlignTop);
   this->buttonColumn->addWidget(shoppingList, 4, Qt::AlignCenter);
