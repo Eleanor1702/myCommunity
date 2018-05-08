@@ -1,12 +1,12 @@
 #include "userInterface/lib/GuiController.h"
 
-
-
 GuiController::GuiController(QWidget *parent) : QWidget(parent) {
   this->main = new StartPage();
   this->up = new SignUp();
   this->in = new SignIn();
   this->home = new HomePage();
+
+  this->con = new Controller();
 
   //Events
   QObject::connect(main->signInButton,SIGNAL(clicked()),this,SLOT(signInButtonClicked()));
@@ -42,9 +42,12 @@ void GuiController::backButtonClicked() {
 void GuiController::speichernButtonClicked() {
   QString na = up->giveNameEdit->text();
   QString pa = up->givePasswordEdit->text();
+
   std::string name = na.toUtf8().constData();
   int password = pa.toInt();
+
   con->addResident(name, password);
+
   in->show();
   up->hide();
 }

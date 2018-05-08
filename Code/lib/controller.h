@@ -7,8 +7,8 @@
 //Soll zwischen GUI und Logik vermitteln
 class Controller{
    private:
-        ResidentExpert* RsExpert;
-        RoomExpert*  RoExpert;
+        ResidentExpert* rsExpert;
+        RoomExpert*  roExpert;
 
    public:
         Controller();
