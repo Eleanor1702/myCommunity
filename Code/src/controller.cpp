@@ -26,3 +26,7 @@ void Controller::deleteResident(string name){
 void Controller::editResident(string username,int newPassword){
     rsExpert->editResident(username, newPassword);
 }
+
+bool Controller::searchResident(string username, int password) {
+  return rsExpert->verifyLogInData(username, password);
+}

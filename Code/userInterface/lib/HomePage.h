@@ -12,6 +12,7 @@ class HomePage : public QWidget {
   //enable creation of slots and signals
   Q_OBJECT
 private:
+  friend class GuiController;
   QBoxLayout *mainLayout;
 
   QBoxLayout *mainLabelRow;

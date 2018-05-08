@@ -34,9 +34,10 @@ public slots:
   //class need to be QWidget to be able to call the actions
   void signUpButtonClicked();
   void signInButtonClicked();
-  void backButtonClicked();
   void speichernButtonClicked();
   void logInButtonClicked();
+  void backButtonClicked();
+  void signOutButtonClicked();
 
 };
 #endif // GUICONTROLLER_H

@@ -17,6 +17,7 @@ class Controller{
         void deleteRoom(string name);
         void deleteResident(string name);
         void editResident(string username,int newPassword);
+        bool searchResident(string username, int password);
 
 };
 

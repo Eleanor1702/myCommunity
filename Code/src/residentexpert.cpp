@@ -1,10 +1,10 @@
 #include "lib/residentexpert.h"
 
-ResidentExpert::ResidentExpert(){}
+ResidentExpert::ResidentExpert(){
+  re = new Resident();
+}
 
 void ResidentExpert::createResident(string name, int password){
-    Resident* re = new Resident();
-
     re->setFirstname(name);
     re->setPassword(password);
     Residentlist.push_back(re);
@@ -25,4 +25,13 @@ void ResidentExpert::editResident(string username, int newPassword){
             (*it)->setPassword(newPassword);
         }
     }
+}
+
+bool ResidentExpert::verifyLogInData(string username, int password){
+  for(vector<Resident*>::iterator it = this->Residentlist.begin(); it != this->Residentlist.end(); ++it) {
+      if((*it)->getFirstname() == username && (*it)->getPassword() == password) {
+          return true;
+      }
+  }
+  return false;
 }

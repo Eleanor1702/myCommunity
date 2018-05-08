@@ -18,6 +18,8 @@ GuiController::GuiController(QWidget *parent) : QWidget(parent) {
   QObject::connect(up->backButton,SIGNAL(clicked()),this,SLOT(backButtonClicked()));
   QObject::connect(up->saveButton,SIGNAL(clicked()),this, SLOT(speichernButtonClicked()));
 
+  QObject::connect(home->logOut,SIGNAL(clicked()),this,SLOT(signOutButtonClicked()));
+
   //show main page
   this->main->show();
 
@@ -53,6 +55,19 @@ void GuiController::speichernButtonClicked() {
 }
 
 void GuiController::logInButtonClicked() {
-  home->show();
-  in->hide();
+  QString na = up->giveNameEdit->text();
+  QString pa = up->givePasswordEdit->text();
+
+  std::string name = na.toUtf8().constData();
+  int password = pa.toInt();
+
+  if(con->searchResident(name, password)) {
+      home->show();
+      in->hide();
+  }
+}
+
+void GuiController::signOutButtonClicked() {
+  main->show();
+  home->hide();
 }
