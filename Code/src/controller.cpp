@@ -5,7 +5,7 @@
 Controller::Controller(){
     rsExpert = new ResidentExpert();
     roExpert = new RoomExpert();
-    }
+}
 
 void Controller::addRoom(string art, string name){
     roExpert->createRoom(name, art);

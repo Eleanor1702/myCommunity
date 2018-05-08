@@ -1,12 +1,14 @@
 #ifndef RESIDENTEXPERT_H
 #define RESIDENTEXPERT_H
+
 #include <vector>
 #include "resident.h"
-#include <iostream>
+#include <QTextStream>
+
 class ResidentExpert{
 private:
     Resident *re;
-    vector<Resident*> Residentlist;
+    std::vector<Resident*> Residentlist;
 
     public:
     ResidentExpert();
@@ -15,6 +17,8 @@ private:
     void editResident(string username, int newPassword);
     bool verifyLogInData(string username, int password);
 
+    //Allow COUT
+    QTextStream& qStdOut();
 };
 
 #endif // RESIDENTEXPERT_H

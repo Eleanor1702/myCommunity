@@ -50,19 +50,25 @@ void GuiController::speichernButtonClicked() {
 
   con->addResident(name, password);
 
+  up->giveNameEdit->clear();
+  up->givePasswordEdit->clear();
+
   in->show();
   up->hide();
 }
 
 void GuiController::logInButtonClicked() {
-  QString na = up->giveNameEdit->text();
-  QString pa = up->givePasswordEdit->text();
+  QString na = in->giveNameEdit->text();
+  QString pa = in->givePasswordEdit->text();
 
   std::string name = na.toUtf8().constData();
   int password = pa.toInt();
 
 
-  if((con->searchResident(name, password)) == true) {
+  if(con->searchResident(name, password)) {
+      in->giveNameEdit->clear();
+      in->givePasswordEdit->clear();
+
       home->show();
       in->hide();
   }
