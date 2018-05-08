@@ -38,6 +38,15 @@ bool ResidentExpert::verifyLogInData(string username, int password){
   return false;
 }
 
+bool ResidentExpert::verifyName(string username){
+  for(std::vector<Resident*>::iterator it = this->Residentlist.begin(); it != this->Residentlist.end(); ++it) {
+      if((*it)->getFirstname() == username) {
+          return true;
+      }
+  }
+  return false;
+}
+
 QTextStream& ResidentExpert::qStdOut() {
   static QTextStream ts( stdout );
   return ts;
