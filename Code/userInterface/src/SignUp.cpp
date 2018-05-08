@@ -29,15 +29,11 @@ SignUp::SignUp(QWidget *parent) : QWidget(parent) {
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
 
-  //Events
- // QObject::connect(saveButton,SIGNAL(clicked()),this,SLOT(saveButtonClicked()));
- //QObject::connect(backButton,SIGNAL(clicked()),this,SLOT(backButtonClicked()));
-
 }
 
 void SignUp::setMainWindowDesign() {
     this->setFixedSize(700, 500);
-    this->setStyleSheet("background-color: white;");
+    this->setStyleSheet("background-color: black;");
     this->setWindowTitle(QString::fromUtf8("Registrieren"));
 
     this->mainLayout->addLayout(mainLabelRow);
@@ -49,10 +45,9 @@ void SignUp::setMainWindowDesign() {
 }
 
 void SignUp::setMainLayoutDesign() {
-
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
-                                   "font-weight: bold; margin-top: 30px;");
+                                   "font-weight: bold; margin-top: 30px; color: #aaa;");
 
     this->imageRow->addWidget(this->picLabel, 0, Qt::AlignVCenter);
     scaled = this->pic->scaled(130, 130, Qt::IgnoreAspectRatio, Qt::FastTransformation);
@@ -64,27 +59,27 @@ void SignUp::setMainLayoutDesign() {
     this->nameRow->addWidget(giveNameEdit, 11, Qt::AlignLeft);
     this->giveNameEdit->setMaxLength(18);
     this->giveNameEdit->setFixedWidth(300);
-    this->giveNameEdit->setStyleSheet("margin-left: 10px;");
+    this->nameLabel->setStyleSheet("color: #aaa; font-weight: bold;");
+    this->giveNameEdit->setStyleSheet("margin-left: 10px; color: white;");
 
     this->passwordRow->addWidget(passwordLabel, 4, Qt::AlignRight);
     this->passwordRow->addWidget(givePasswordEdit, 11, Qt::AlignLeft);
     this->givePasswordEdit->setEchoMode(QLineEdit::Password);
-    this->givePasswordEdit->setMaxLength(18);
+    this->givePasswordEdit->setMaxLength(4);
     this->givePasswordEdit->setFixedWidth(300);
-    this->givePasswordEdit->setStyleSheet("margin-left: 10px; margin-bottom: 50px;");
-    this->passwordLabel->setStyleSheet("margin-bottom: 50px;");
+    this->givePasswordEdit->setStyleSheet("margin-left: 10px; margin-bottom: 50px; color: white;");
+    this->passwordLabel->setStyleSheet("margin-bottom: 50px; color: #aaa; font-weight: bold;");
 
     this->mainButtonsRow->addWidget(backButton);
     backButton->setFixedSize(200, 50);
     backButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                              "border-radius: 5px; background-color: #3399ff; "
-                             "color: white;}");
-
+                             "color: white; font-weight: bold;}");
 
     this->mainButtonsRow->addWidget(saveButton);
     saveButton->setFixedSize(200, 50);
     saveButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
                               "border-radius: 5px; background-color: #00b300; "
-                              "color: white;}");
+                              "color: white; font-weight: bold;}");
 
 }

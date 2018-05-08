@@ -23,15 +23,17 @@ void RoomListItem::setItemStyle() {
 
   //Room Design
   this->room->setFixedSize(550, 30);
-  this->room->setStyleSheet("text-align: center; font-size: 20px; border: 0px;");
+  this->room->setStyleSheet("text-align: center; font-size: 20px; border: 0px; color: #aaa;");
 
   //Button Design
   this->deleteButton->setFixedHeight(30);
   this->deleteButton->setStyleSheet(".QPushButton{border: 1px solid red;"
                                     "border-radius: 5px; background-color: red;"
-                                    " color: white;}");
+                                    " color: white; font-weight: bold;}");
 }
 
 void RoomListItem::deleteButtonClicked() {
+  emit deleteButtonClickedSignal(this->room->text());
   this->close();
 }
+

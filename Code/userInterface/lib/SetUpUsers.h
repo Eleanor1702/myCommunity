@@ -10,8 +10,8 @@
 #include <QLineEdit>
 #include <QStringList>
 #include <QList>
+
 #include <userInterface/lib/UserList.h>
-#include <userInterface/lib/SetUpRooms.h>
 
 //Inheritance from QWidget allows the class itself to react on events
 //example (Button clicks.. etc)
@@ -19,6 +19,10 @@ class SetUpUsers : public QWidget{
   //enable creation of slots and signals
   Q_OBJECT
 private:
+   friend class GuiController;
+
+   UserList *newUser;
+
    QBoxLayout *mainLayout;
    QBoxLayout *mainLabelRow;
    QLabel *mainLabel;
@@ -40,12 +44,6 @@ private:
 
     void setMainWindowDesign();
     void setMainLayoutDesign();
-
-
-private slots:
-    void addButtonClicked();
-
-signals:
 
 public:
     //the constructor build the window

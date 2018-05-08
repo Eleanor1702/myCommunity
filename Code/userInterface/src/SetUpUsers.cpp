@@ -27,14 +27,11 @@ SetUpUsers::SetUpUsers(QWidget *parent) : QWidget(parent){
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
 
-  //Events
-  QObject::connect(addButton,SIGNAL(clicked()),this,SLOT(addButtonClicked()));
-
 }
 
 void SetUpUsers::setMainWindowDesign() {
     this->setFixedSize(700, 500);
-    this->setStyleSheet("background-color: white;");
+    this->setStyleSheet("background-color: black;");
     this->setWindowTitle(QString::fromUtf8("Bewohner Verwalten"));
 
     mainLayout->addLayout(mainLabelRow);
@@ -48,7 +45,7 @@ void SetUpUsers::setMainLayoutDesign() {
 
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
-                                   "font-weight: bold; margin-top: 5px;");
+                                   "font-weight: bold; margin-top: 5px; color: #aaa;");
 
     this->scrollAreaRow->addWidget(scrollArea);
     this->scrollArea->setWidget(this->scrollWidget);
@@ -64,42 +61,24 @@ void SetUpUsers::setMainLayoutDesign() {
     this->addUsersRow->addWidget(givePasswordEdit);
     this->givePasswordEdit->setEchoMode(QLineEdit::Password);
     this->giveNameEdit->setMaxLength(18);
-    this->givePasswordEdit->setMaxLength(18);
+    this->givePasswordEdit->setMaxLength(4);
+    this->nameLabel->setStyleSheet("color: #aaa; font-weight: bold;");
+    this->passwordLabel->setStyleSheet("color: #aaa; font-weight: bold;");
+    this->givePasswordEdit->setStyleSheet("color: white;");
+    this->giveNameEdit->setStyleSheet("color: white;");
 
 
     this->mainButtonsRow->addWidget(addButton);
     addButton->setFixedSize(200, 50);
     addButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                              "border-radius: 5px; background-color: #3399ff; "
-                             "color: white;}");
+                             "color: white; font-weight: bold;}");
 
 
     this->mainButtonsRow->addWidget(saveButton);
     saveButton->setFixedSize(200, 50);
     saveButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
                               "border-radius: 5px; background-color: #00b300; "
-                              "color: white;}");
+                              "color: white; font-weight: bold;}");
 
-}
-
- void SetUpUsers::addButtonClicked(){
-
-  //proceed only with a room name
-
-  QString userName = giveNameEdit->text();
-  if(userName.size() == 0 || userName[0] == ' '){
-      return;
-  }
-
-  QString userPassword = givePasswordEdit->text();
-  if(userPassword.size() == 0 || userPassword[0] == ' '){
-      return;
-  }
-
-  UserList *newUser = new UserList(userName);
-
-  this->scrollLayout->addWidget(newUser);
-
-  this->giveNameEdit->clear();
-  this->givePasswordEdit->clear();
 }

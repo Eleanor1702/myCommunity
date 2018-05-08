@@ -8,7 +8,7 @@ UserList::UserList(QString userName, QWidget *parent) : QFrame(parent){
   setItemStyle();
 
   //events
-  QObject::connect(deleteButton,SIGNAL(clicked()),this,SLOT(deleteButtonClicked()));
+  QObject::connect(deleteButton,SIGNAL(clicked()),this,SLOT(deleteUserButtonClicked()));
 
 }
 
@@ -24,15 +24,17 @@ void UserList::setItemStyle() {
 
   //User Design
   this->user->setFixedSize(550, 30);
-  this->user->setStyleSheet("text-align: center; font-size: 20px; border: 0px;");
+  this->user->setStyleSheet("text-align: center; font-size: 20px; border: 0px; color: #aaa;");
 
   //Button Design
   this->deleteButton->setFixedHeight(30);
   this->deleteButton->setStyleSheet(".QPushButton{border: 1px solid red;"
                                     "border-radius: 5px; background-color: red;"
-                                    " color: white;}");
+                                    " color: white; font-weight: bold;}");
 }
 
-void UserList::deleteButtonClicked() {
+void UserList::deleteUserButtonClicked() {
+  emit deleteUserButtonClickedSignal(this->user->text());
   this->close();
 }
+

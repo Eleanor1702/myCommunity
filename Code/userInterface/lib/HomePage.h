@@ -15,8 +15,17 @@ private:
   friend class GuiController;
   QBoxLayout *mainLayout;
 
+  //contains mainlabel and content of buttons
+  //when clicked
+  QBoxLayout *contentColumn;
+
   QBoxLayout *mainLabelRow;
   QLabel *mainLabel;
+
+  //SettingButton
+  QBoxLayout *settingsButtonLayout;
+  QPushButton *userSettingButton;
+  QPushButton *roomSettingButton;
 
   QBoxLayout *buttonColumn;
   QPushButton *settings;
@@ -27,6 +36,7 @@ private:
 
   void setMainScreenDesign();
   void setMainLayoutDesign();
+  void callSettings();
 
 public:
   HomePage(QWidget *parent = NULL);

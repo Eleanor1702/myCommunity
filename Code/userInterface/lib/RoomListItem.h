@@ -11,6 +11,8 @@ class RoomListItem : public QFrame
 {
   Q_OBJECT
 private:
+  friend class GuiController;
+
   QLabel *room;
   QPushButton *deleteButton;
   QHBoxLayout *newRoomLayout;
@@ -21,6 +23,7 @@ private slots:
   void deleteButtonClicked();
 
 signals:
+  void deleteButtonClickedSignal(QString name);
 
 public:
   //QFrame ist ein QWidget

@@ -24,12 +24,11 @@ SignIn::SignIn(QWidget *parent) : QWidget (parent){
 
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
-
 }
 
 void SignIn::setMainWindowDesign() {
   this->setFixedSize(700, 500);
-  this->setStyleSheet("background-color: white;");
+  this->setStyleSheet("background-color: black;");
   this->setWindowTitle(QString::fromUtf8("Anmelden"));
 
   mainLayout->addLayout(this->mainLabelRow);
@@ -43,7 +42,7 @@ void SignIn::setMainWindowDesign() {
 void SignIn::setMainLayoutDesign() {
   this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
   this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
-                                 "font-weight: bold; margin-top: 30px;");
+                                 "font-weight: bold; margin-top: 30px; color: #aaa;");
 
   this->imageRow->addWidget(this->picLabel, 0, Qt::AlignVCenter);
   scaled = this->pic->scaled(130, 130, Qt::IgnoreAspectRatio, Qt::FastTransformation);
@@ -56,7 +55,8 @@ void SignIn::setMainLayoutDesign() {
   this->giveNameEdit->setMaxLength(18);
   this->giveNameEdit->setFixedWidth(300);
   //left margin to keep space between label and LineEdit
-  this->giveNameEdit->setStyleSheet("margin-left: 10px;");
+  this->giveNameEdit->setStyleSheet("margin-left: 10px; color: white;");
+  this->nameLabel->setStyleSheet("font-weight: bold; color: #aaa;");
 
   this->passwordRow->addWidget(passwordLabel, 4, Qt::AlignRight);
   this->passwordRow->addWidget(givePasswordEdit, 11 , Qt::AlignLeft);
@@ -66,20 +66,20 @@ void SignIn::setMainLayoutDesign() {
   //these Margins are for the design of both label and lineEdit
   //the bottom margin it to keep space between passwordRow and buttons
   //left margin to keep space between label and lineEdit
-  this->givePasswordEdit->setStyleSheet("margin-left: 10px; margin-bottom: 50px;");
-  this->passwordLabel->setStyleSheet("margin-bottom: 50px;");
+  this->givePasswordEdit->setStyleSheet("margin-left: 10px; margin-bottom: 50px; color: white;");
+  this->passwordLabel->setStyleSheet("margin-bottom: 50px; color: #aaa; font-weight: bold;");
 
 
   this->buttonsRow->addWidget(logInButton);
   logInButton->setFixedSize(200, 50);
   logInButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
                             "border-radius: 5px; background-color: #00b300; "
-                            "color: white;}");
+                            "color: white; font-weight: bold;}");
 
   this->buttonsRow->addWidget(backButton);
   backButton->setFixedSize(200, 50);
   backButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                            "border-radius: 5px; background-color: #3399ff; "
-                           "color: white;}");
+                           "color: white; font-weight: bold;}");
 }
 

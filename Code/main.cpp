@@ -6,7 +6,7 @@ int main(int argc, char **argv){
 
     QApplication app (argc, argv);
 
-    GuiController g;
+    GuiController init;
 
     return app.exec();
 

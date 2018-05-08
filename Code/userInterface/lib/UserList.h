@@ -10,16 +10,19 @@ class UserList : public QFrame
 {
   Q_OBJECT
 private:
+  friend class GuiController;
+
   QLabel *user;
   QPushButton *deleteButton;
   QHBoxLayout *newUserLayout;
 
   void setItemStyle();
 
-private slots:
-  void deleteButtonClicked();
-
 signals:
+  void deleteUserButtonClickedSignal(QString name);
+
+private slots:
+  void deleteUserButtonClicked();
 
 public:
   //QFrame ist ein QWidget
