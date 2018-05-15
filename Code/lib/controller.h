@@ -9,9 +9,13 @@ class Controller{
    private:
         ResidentExpert* rsExpert;
         RoomExpert*  roExpert;
+        static Controller* instance;             //Singleton
 
-   public:
+
+
+protected:
         Controller();
+   public:
         void addRoom(string art, string name);      //From Gui to WG (create Rooms)
         void addResident(string name, int password);    //From Gui to WG (add Users)
         void deleteRoom(string name);
@@ -19,6 +23,10 @@ class Controller{
         void editResident(string username,int newPassword);
         bool searchResident(string username, int password);
         bool searchNameResident(string username);   // Damit Login selbe Namen abfängt
+
+        static Controller* getInstance();
+
+
 };
 
 

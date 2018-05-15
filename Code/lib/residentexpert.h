@@ -7,17 +7,21 @@
 
 class ResidentExpert{
 private:
-    Resident *re;
-    std::vector<Resident*> Residentlist;
+    Resident re;
+    std::vector<Resident> Residentlist;
+    static ResidentExpert* instance;
 
-    public:
+protected:
     ResidentExpert();
+public:
+
     void createResident(string name, int password);
     void deleteResident(string name);
     void editResident(string username, int newPassword);
     bool verifyLogInData(string username, int password);
     bool verifyName(string username);
 
+    static ResidentExpert* getInstance();
     //Allow COUT
     QTextStream& qStdOut();
 };

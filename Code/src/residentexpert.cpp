@@ -3,35 +3,36 @@
 #include <iostream>
 
 ResidentExpert::ResidentExpert(){
-  re = new Resident();
 }
 
+ResidentExpert* ResidentExpert::instance = NULL;
+
 void ResidentExpert::createResident(string name, int password){
-    re->setFirstname(name);
-    re->setPassword(password);
+    re.setFirstname(name);
+    re.setPassword(password);
     Residentlist.push_back(re);
     //std::cout << Residentlist[1];
 }
 
 void ResidentExpert::deleteResident(string name){
-    for(vector<Resident*>::iterator it = Residentlist.begin(); it != Residentlist.end(); ++it) {
-        if((*it)->getFirstname() == name) {
+    for(vector<Resident>::iterator it = Residentlist.begin(); it != Residentlist.end(); ++it) {
+        if((it)->getFirstname() == name) {
             Residentlist.erase(it);
         }
     }
 }
 
 void ResidentExpert::editResident(string username, int newPassword){
-    for(vector<Resident*>::iterator it = Residentlist.begin(); it != Residentlist.end(); ++it) {
-        if((*it)->getFirstname() == username) {
-            (*it)->setPassword(newPassword);
+    for(vector<Resident>::iterator it = Residentlist.begin(); it != Residentlist.end(); ++it) {
+        if((it)->getFirstname() == username) {
+            (it)->setPassword(newPassword);
         }
     }
 }
 
 bool ResidentExpert::verifyLogInData(string username, int password){
-  for(std::vector<Resident*>::iterator it = this->Residentlist.begin(); it != this->Residentlist.end(); ++it) {
-      if((*it)->getFirstname() == username && (*it)->getPassword() == password) {
+  for(std::vector<Resident>::iterator it = this->Residentlist.begin(); it != this->Residentlist.end(); ++it) {
+      if((it)->getFirstname() == username && (it)->getPassword() == password) {
           return true;
       }
   }
@@ -39,12 +40,19 @@ bool ResidentExpert::verifyLogInData(string username, int password){
 }
 
 bool ResidentExpert::verifyName(string username){
-  for(std::vector<Resident*>::iterator it = this->Residentlist.begin(); it != this->Residentlist.end(); ++it) {
-      if((*it)->getFirstname() == username) {
+  for(std::vector<Resident>::iterator it = this->Residentlist.begin(); it != this->Residentlist.end(); ++it) {
+      if((it)->getFirstname() == username) {
           return true;
       }
   }
   return false;
+}
+
+ResidentExpert* ResidentExpert::getInstance(){
+    if(instance==NULL){
+        instance = new ResidentExpert();
+        }
+    return instance;
 }
 
 QTextStream& ResidentExpert::qStdOut() {
