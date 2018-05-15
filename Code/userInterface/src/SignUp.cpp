@@ -33,7 +33,7 @@ SignUp::SignUp(QWidget *parent) : QWidget(parent) {
 
 void SignUp::setMainWindowDesign() {
     this->setFixedSize(700, 500);
-    this->setStyleSheet("background-color: black;");
+    this->setStyleSheet("background-color: white;");
     this->setWindowTitle(QString::fromUtf8("Registrieren"));
 
     this->mainLayout->addLayout(mainLabelRow);
@@ -60,14 +60,14 @@ void SignUp::setMainLayoutDesign() {
     this->giveNameEdit->setMaxLength(18);
     this->giveNameEdit->setFixedWidth(300);
     this->nameLabel->setStyleSheet("color: #aaa; font-weight: bold;");
-    this->giveNameEdit->setStyleSheet("margin-left: 10px; color: white;");
+    this->giveNameEdit->setStyleSheet("margin-left: 10px; color: black;");
 
     this->passwordRow->addWidget(passwordLabel, 4, Qt::AlignRight);
     this->passwordRow->addWidget(givePasswordEdit, 11, Qt::AlignLeft);
     this->givePasswordEdit->setEchoMode(QLineEdit::Password);
     this->givePasswordEdit->setMaxLength(4);
     this->givePasswordEdit->setFixedWidth(300);
-    this->givePasswordEdit->setStyleSheet("margin-left: 10px; margin-bottom: 50px; color: white;");
+    this->givePasswordEdit->setStyleSheet("margin-left: 10px; margin-bottom: 50px; color: black;");
     this->passwordLabel->setStyleSheet("margin-bottom: 50px; color: #aaa; font-weight: bold;");
 
     this->mainButtonsRow->addWidget(backButton);

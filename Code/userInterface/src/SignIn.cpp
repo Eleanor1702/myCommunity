@@ -28,7 +28,7 @@ SignIn::SignIn(QWidget *parent) : QWidget (parent){
 
 void SignIn::setMainWindowDesign() {
   this->setFixedSize(700, 500);
-  this->setStyleSheet("background-color: black;");
+  this->setStyleSheet("background-color: white;");
   this->setWindowTitle(QString::fromUtf8("Anmelden"));
 
   mainLayout->addLayout(this->mainLabelRow);
@@ -55,7 +55,7 @@ void SignIn::setMainLayoutDesign() {
   this->giveNameEdit->setMaxLength(18);
   this->giveNameEdit->setFixedWidth(300);
   //left margin to keep space between label and LineEdit
-  this->giveNameEdit->setStyleSheet("margin-left: 10px; color: white;");
+  this->giveNameEdit->setStyleSheet("margin-left: 10px; color: black;");
   this->nameLabel->setStyleSheet("font-weight: bold; color: #aaa;");
 
   this->passwordRow->addWidget(passwordLabel, 4, Qt::AlignRight);
@@ -66,7 +66,7 @@ void SignIn::setMainLayoutDesign() {
   //these Margins are for the design of both label and lineEdit
   //the bottom margin it to keep space between passwordRow and buttons
   //left margin to keep space between label and lineEdit
-  this->givePasswordEdit->setStyleSheet("margin-left: 10px; margin-bottom: 50px; color: white;");
+  this->givePasswordEdit->setStyleSheet("margin-left: 10px; margin-bottom: 50px; color: black;");
   this->passwordLabel->setStyleSheet("margin-bottom: 50px; color: #aaa; font-weight: bold;");
 
 

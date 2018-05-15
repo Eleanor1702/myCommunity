@@ -31,7 +31,7 @@ SetUpRooms::SetUpRooms(QWidget *parent) : QWidget(parent){
 
 void SetUpRooms::setMainWindowDesign() {
     this->setFixedSize(700, 500);
-    this->setStyleSheet("background-color: black;");
+    this->setStyleSheet("background-color: white;");
     this->setWindowTitle(QString::fromUtf8("Räume Verwalten"));
 
     mainLayout->addLayout(mainLabelRow);
@@ -69,7 +69,7 @@ void SetUpRooms::setMainLayoutDesign() {
     this->addRoomsRow->addWidget(giveNameEdit);
     this->giveNameEdit->setMaxLength(18);
     this->nameLabel->setStyleSheet("color: #aaa; font-weight: bold;");
-    this->giveNameEdit->setStyleSheet("color: white;");
+    this->giveNameEdit->setStyleSheet("color: black;");
 
     this->mainButtonsRow->addWidget(addButton);
     addButton->setFixedSize(200, 50);
