@@ -7,8 +7,8 @@
 
 class ResidentExpert{
 private:
-    Resident *re;
-    std::vector<Resident*> Residentlist;
+    Resident re;
+    std::vector<Resident> Residentlist;
 
     public:
     ResidentExpert();

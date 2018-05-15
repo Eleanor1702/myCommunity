@@ -5,7 +5,7 @@
 
 class RoomExpert{
     private:
-    vector<Room*> Roomlist;
+    vector<Room> Roomlist;
 
     public:
     RoomExpert();
