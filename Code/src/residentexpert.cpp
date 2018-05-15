@@ -5,6 +5,8 @@
 ResidentExpert::ResidentExpert(){
 }
 
+ResidentExpert* ResidentExpert::instance = NULL;
+
 void ResidentExpert::createResident(string name, int password){
     re.setFirstname(name);
     re.setPassword(password);
@@ -44,6 +46,13 @@ bool ResidentExpert::verifyName(string username){
       }
   }
   return false;
+}
+
+ResidentExpert* ResidentExpert::getInstance(){
+    if(instance==NULL){
+        instance = new ResidentExpert();
+        }
+    return instance;
 }
 
 QTextStream& ResidentExpert::qStdOut() {

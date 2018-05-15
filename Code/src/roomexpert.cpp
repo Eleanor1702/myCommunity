@@ -2,6 +2,8 @@
 
 RoomExpert::RoomExpert(){}
 
+RoomExpert* RoomExpert::instance = NULL;
+
 void RoomExpert::createRoom(string name, string typ){
      Room ro;
 
@@ -16,4 +18,11 @@ void RoomExpert::deleteRoom(string name){
                 Roomlist.erase(it);
             }
         }
+}
+
+RoomExpert* RoomExpert::getInstance(){
+    if(instance == NULL){
+        instance = new RoomExpert();
+    }
+    return instance;
 }

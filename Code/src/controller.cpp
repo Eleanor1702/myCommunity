@@ -5,8 +5,8 @@
 Controller* Controller::instance = NULL;
 
 Controller::Controller(){
-    rsExpert = new ResidentExpert();
-    roExpert = new RoomExpert();
+    rsExpert->getInstance();
+    roExpert->getInstance();
 }
 
 void Controller::addRoom(string art, string name){
