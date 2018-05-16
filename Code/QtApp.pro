@@ -32,6 +32,7 @@ SOURCES += \
     src/residentexpert.cpp \
     src/event.cpp \
     src/eventexpert.cpp \
+    Database/src/communitydata.cpp
 
 HEADERS += \
     lib/controller.h \

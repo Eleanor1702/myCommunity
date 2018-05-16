@@ -1,9 +1,9 @@
-#include "lib/communitydata.h"
+#include "Database/lib/communitydata.h"
 
 using namespace std;
 using namespace sql;
 
-sql::mysql::MySQL_Driver *driver = NULL;
+CommunityData* CommunityData::instance = NULL;
 
 bool CommunityData::connect() {
     driver = mysql::get_mysql_driver_instance();
@@ -32,7 +32,7 @@ CommunityData::CommunityData() {
     //createRoomTable();
     //createResidentTable();
     //addResident("Noor", 1234);
-    addRoom("Bad", "Bad");
+    //addRoom("Bad1", "Bad");
 
 }
 
@@ -128,3 +128,11 @@ vector<Room> CommunityData::getAllRooms() {
     delete resultSet;
     return list;
 }
+
+CommunityData* CommunityData::getInstance() {
+    if(instance == NULL) {
+        instance = new CommunityData();
+    }
+    return instance;
+}
+

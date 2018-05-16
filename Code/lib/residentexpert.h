@@ -3,12 +3,14 @@
 
 #include <vector>
 #include "resident.h"
+#include "Database/lib/communitydata.h"
 
 class ResidentExpert{
 private:
     static ResidentExpert* instance;
     Resident re;
     std::vector<Resident> Residentlist;
+    CommunityData* data;
 
 protected:
     ResidentExpert();
