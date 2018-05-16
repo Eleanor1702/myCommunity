@@ -68,7 +68,13 @@ void GuiController::backButtonClicked() {
 
 void GuiController::saveButtonClicked() {
   QString na = up->giveNameEdit->text();
+  if(na.size() == 0 || na[0] == ' '){
+      return;
+  }
   QString pa = up->givePasswordEdit->text();
+  if(pa.size() == 0 || pa[0] == ' '){
+      return;
+  }
 
   std::string name = na.toUtf8().constData();
   int password = pa.toInt();
