@@ -1,4 +1,4 @@
-#include "Database/lib/communitydata.h"
+/*#include "Database/lib/communitydata.h"
 
 using namespace std;
 using namespace sql;
@@ -135,5 +135,4 @@ CommunityData* CommunityData::getInstance() {
     }
     return instance;
 }
-
-
+*/
