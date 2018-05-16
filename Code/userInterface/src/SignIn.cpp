@@ -74,9 +74,9 @@ void SignIn::setMainLayoutDesign() {
   this->givePasswordEdit->setStyleSheet("margin-left: 10px; margin-bottom: 0px; color: black;");
   this->passwordLabel->setStyleSheet("margin-top: 0px; margin-bottom: 10px; color: #aaa; font-weight: bold;");
 
-  this->wrongPassRow->addWidget(wrongPassLabel, 0, Qt::AlignCenter);
+  /*this->wrongPassRow->addWidget(wrongPassLabel, 0, Qt::AlignCenter);
   this->wrongPassLabel->setStyleSheet("font-weight: bold; color:red");
-
+*/
   this->buttonsRow->addWidget(logInButton);
   logInButton->setFixedSize(200, 50);
   logInButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
