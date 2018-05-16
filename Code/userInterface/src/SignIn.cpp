@@ -18,6 +18,9 @@ SignIn::SignIn(QWidget *parent) : QWidget (parent){
   passwordLabel = new QLabel("Passwort:");
   givePasswordEdit = new QLineEdit();
 
+  wrongPassRow = new QBoxLayout(QBoxLayout::LeftToRight);
+  wrongPassLabel = new QLabel("Falsches Passwort");
+
   buttonsRow = new QBoxLayout(QBoxLayout::RightToLeft);
   backButton = new QPushButton(QString::fromUtf8("Zurück"));
   logInButton = new QPushButton("Anmelden");
@@ -35,6 +38,7 @@ void SignIn::setMainWindowDesign() {
   mainLayout->addLayout(this->imageRow);
   mainLayout->addLayout(this->nameRow);
   mainLayout->addLayout(this->passwordRow);
+  mainLayout->addLayout(this->wrongPassRow);
   mainLayout->addLayout(this->buttonsRow);
   this->setLayout(mainLayout);
 }
@@ -67,9 +71,11 @@ void SignIn::setMainLayoutDesign() {
   //these Margins are for the design of both label and lineEdit
   //the bottom margin it to keep space between passwordRow and buttons
   //left margin to keep space between label and lineEdit
-  this->givePasswordEdit->setStyleSheet("margin-left: 10px; margin-bottom: 50px; color: black;");
-  this->passwordLabel->setStyleSheet("margin-bottom: 50px; color: #aaa; font-weight: bold;");
+  this->givePasswordEdit->setStyleSheet("margin-left: 10px; margin-bottom: 0px; color: black;");
+  this->passwordLabel->setStyleSheet("margin-top: 0px; margin-bottom: 10px; color: #aaa; font-weight: bold;");
 
+  this->wrongPassRow->addWidget(wrongPassLabel, 0, Qt::AlignCenter);
+  this->wrongPassLabel->setStyleSheet("font-weight: bold; color:red");
 
   this->buttonsRow->addWidget(logInButton);
   logInButton->setFixedSize(200, 50);
