@@ -7,7 +7,6 @@
 
 class ResidentExpert{
 private:
-    Resident re;
     std::vector<Resident> Residentlist;
     static ResidentExpert* instance;
 

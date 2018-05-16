@@ -5,8 +5,8 @@
 Controller* Controller::instance = NULL;
 
 Controller::Controller(){
-    rsExpert->getInstance();
-    roExpert->getInstance();
+   rsExpert = rsExpert->getInstance();
+   roExpert = roExpert->getInstance();
 }
 
 void Controller::addRoom(string art, string name){
@@ -39,8 +39,6 @@ bool Controller::searchNameResident(string username){
 Controller* Controller::getInstance(){
     if(instance == NULL){
         instance = new Controller();
-        //instance->rsExpert = new ResidentExpert();
-        //instance->roExpert = new RoomExpert();
     }
     return instance;
 }

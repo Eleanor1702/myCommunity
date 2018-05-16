@@ -2,16 +2,15 @@
 #include <string>
 #include <iostream>
 
-ResidentExpert::ResidentExpert(){
-}
-
 ResidentExpert* ResidentExpert::instance = NULL;
 
+ResidentExpert::ResidentExpert(){}
+
 void ResidentExpert::createResident(string name, int password){
+    Resident re;
     re.setFirstname(name);
     re.setPassword(password);
     Residentlist.push_back(re);
-    //std::cout << Residentlist[1];
 }
 
 void ResidentExpert::deleteResident(string name){
@@ -49,7 +48,7 @@ bool ResidentExpert::verifyName(string username){
 }
 
 ResidentExpert* ResidentExpert::getInstance(){
-    if(instance==NULL){
+    if(instance == NULL){
         instance = new ResidentExpert();
         }
     return instance;
