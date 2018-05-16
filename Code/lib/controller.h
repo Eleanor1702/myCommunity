@@ -11,8 +11,6 @@ class Controller{
         RoomExpert*  roExpert;
         static Controller* instance;             //Singleton
 
-
-
 protected:
         Controller();
    public:

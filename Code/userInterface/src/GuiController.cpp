@@ -72,22 +72,23 @@ void GuiController::saveButtonClicked() {
       return;
   }
   QString pa = up->givePasswordEdit->text();
-  if(pa.size() == 0 || pa[0] == ' '){
+  if(pa.size() < 4 || pa[0] == ' '){
       return;
   }
 
   std::string name = na.toUtf8().constData();
   int password = pa.toInt();
 
-  if(!(con->searchNameResident(name))){
+  if(na == NULL || pa == NULL || pa.size() != 4){
 
-  con->addResident(name, password);
+  }else if(!(this->con->searchNameResident(name))) {
+      this->con->addResident(name, password);
 
-  up->giveNameEdit->clear();
-  up->givePasswordEdit->clear();
+      up->giveNameEdit->clear();
+      up->givePasswordEdit->clear();
 
-  in->show();
-  up->hide();
+      in->show();
+      up->hide();
   }
 }
 
@@ -106,6 +107,9 @@ void GuiController::logInButtonClicked() {
 
       home->show();
       in->hide();
+  } else {
+      in->wrongPassRow->addWidget(in->wrongPassLabel, 0, Qt::AlignCenter);
+      in->wrongPassLabel->setStyleSheet("font-weight: bold; color:red");
   }
 }
 
@@ -128,7 +132,6 @@ void GuiController::addRoomButtonClicked(){
   QString roomType = rooms->chooseRoomTypeCombo->currentText();
 
   //proceed only with a room name
-
   QString roomName = rooms->giveNameEdit->text();
   if(roomName.size() == 0 || roomName[0] == ' '){
       return;
@@ -137,15 +140,20 @@ void GuiController::addRoomButtonClicked(){
   this->rooms->newRoom = new RoomListItem(roomType + " - " + roomName);
   this->rooms->RoomListItemList.push_back(this->rooms->newRoom);
 
-  this->rooms->scrollLayout->addWidget(this->rooms->newRoom);
+  //here should contect of vector be saved in Databank
 
-  this->rooms->giveNameEdit->clear();
 
+  //if delete Room methode was called
   connect(this->rooms->newRoom, SIGNAL(deleteButtonClickedSignal(QString)), this, SLOT(deleteRoomButtonClicked(QString)));
+
+  //Viewing in Gui
+  this->rooms->scrollLayout->addWidget(this->rooms->newRoom);
+  this->rooms->giveNameEdit->clear();
 }
 
 void GuiController::deleteRoomButtonClicked(QString room) {
-  // do things with room delete signal
+  // delete room from Databank
+
 }
 
 void GuiController::saveUserButtonClicked(){
