@@ -6,30 +6,30 @@ void Event::setDescription(string newDescription){
     description = newDescription;
 }
 
-void Event::setTime(int day, int month, int year, int min, int hour){
-    Event::setDay(day);
-    Event::setMonth(month);
-    Event::setYear(year);
-    Event::setMin(min);
-    Event::setHour(hour);
+void Event::setTime(tm timedate){
+    Event::setDay(timedate);
+    Event::setMonth(timedate);
+    Event::setYear(timedate);
+    Event::setMin(timedate);
+    Event::setHour(timedate);
 }
 
-void Event::setDay(int day){
-    time.tm_mday = day;
+void Event::setDay(tm timedate){
+    time.tm_mday = timedate.tm_mday;
 }
 
-void Event::setMonth(int month){
-    time.tm_mon = month;
+void Event::setMonth(tm timedate){
+    time.tm_mon = timedate.tm_mon;
 }
 
-void Event::setYear(int year){
-    time.tm_year = year;
+void Event::setYear(tm timedate){
+    time.tm_year = timedate.tm_year;
 }
 
-void Event::setMin(int min){
-    time.tm_min = min;
+void Event::setMin(tm timedate){
+    time.tm_min = timedate.tm_min;
 }
 
-void Event::setHour(int hour){
-   time.tm_hour = hour;
+void Event::setHour(tm timedate){
+   time.tm_hour = timedate.tm_hour;
 }

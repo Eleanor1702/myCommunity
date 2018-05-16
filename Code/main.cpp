@@ -1,6 +1,6 @@
 #include <QApplication>
 #include "userInterface/lib/GuiController.h"
-#include "lib/communitydata.h"
+//#include "lib/communitydata.h"
 
 
 int main(int argc, char **argv){
@@ -9,7 +9,7 @@ int main(int argc, char **argv){
 
     GuiController init;
 
-    CommunityData Data;
+    //CommunityData Data;
 
 
     return app.exec();
