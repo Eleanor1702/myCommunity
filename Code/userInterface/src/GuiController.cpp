@@ -72,7 +72,7 @@ void GuiController::saveButtonClicked() {
       return;
   }
   QString pa = up->givePasswordEdit->text();
-  if(pa.size() == 0 || pa[0] == ' '){
+  if(pa.size() < 4 || pa[0] == ' '){
       return;
   }
 
