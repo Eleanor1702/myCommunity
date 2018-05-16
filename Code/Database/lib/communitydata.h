@@ -1,4 +1,4 @@
-/*#ifndef COMMUNITYDATA_H
+#ifndef COMMUNITYDATA_H
 #define COMMUNITYDATA_H
 
 //  sudo apt-get install  libmysqlcppconn-dev
@@ -13,8 +13,8 @@
 #include <cppconn/statement.h>
 #include <mysql_driver.h>
 #include <mysql_connection.h>
-#include "resident.h"
-#include "room.h"
+#include "lib/resident.h"
+#include "lib/room.h"
 
 class CommunityData {
 private:
@@ -39,4 +39,3 @@ public:
 
 #endif // COMMUNITYDATA_H
 
-*/

@@ -2,6 +2,8 @@
 
 
 
+Event::Event() {};
+
 void Event::setDescription(string newDescription){
     description = newDescription;
 }
@@ -32,4 +34,40 @@ void Event::setMin(tm timedate){
 
 void Event::setHour(tm timedate){
    time.tm_hour = timedate.tm_hour;
+}
+void Event::setUser(string newUser){
+    user = newUser;
+}
+
+string Event::getDescription(){
+    return description;
+}
+
+tm Event::getTime(){
+    return time;
+}
+
+
+int Event::getDay(){
+    return (int)time.tm_mday;
+}
+
+int Event::getMonth(){
+    return time.tm_mon;
+}
+
+int Event::getYear(){
+    return time.tm_year;
+}
+
+int Event::getMin(){
+    return time.tm_year;
+}
+
+int Event::getHour(){
+    return time.tm_hour;
+}
+
+string Event::getUser(){
+    return user;
 }

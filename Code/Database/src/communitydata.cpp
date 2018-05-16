@@ -1,4 +1,4 @@
-/*#include "lib/communitydata.h"
+#include "Database/lib/communitydata.h"
 
 using namespace std;
 using namespace sql;
@@ -129,4 +129,4 @@ vector<Room> CommunityData::getAllRooms() {
     return list;
 }
 
-*/
+

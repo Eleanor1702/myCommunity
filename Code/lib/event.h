@@ -16,7 +16,7 @@ private:
 
 public:
     Event();
-
+    //~Event();
 
     void setDescription(string newDescription);
     void setTime(tm timedate);
@@ -28,6 +28,7 @@ public:
     void setUser(string newUser);
 
     string getDescription();
+    tm getTime();
     int getDay();
     int getMonth();
     int getYear();
