@@ -88,5 +88,11 @@ void SignIn::setMainLayoutDesign() {
   backButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                            "border-radius: 5px; background-color: #3399ff; "
                            "color: white; font-weight: bold;}");
+
+  mainLayout->addWidget(wrongPassLabel, 0, Qt::AlignCenter);
+  wrongPassLabel->setStyleSheet("font-weight: bold; color:red");
+  wrongPassLabel->hide();
+
+
 }
 

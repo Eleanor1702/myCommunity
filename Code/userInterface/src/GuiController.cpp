@@ -61,6 +61,8 @@ void GuiController::backButtonClicked() {
   in->giveNameEdit->clear();
   in->givePasswordEdit->clear();
 
+  in->wrongPassLabel->hide();
+
   main->show();
   up->close();
   in->close();
@@ -108,8 +110,7 @@ void GuiController::logInButtonClicked() {
       home->show();
       in->hide();
   } else {
-      in->wrongPassRow->addWidget(in->wrongPassLabel, 0, Qt::AlignCenter);
-      in->wrongPassLabel->setStyleSheet("font-weight: bold; color:red");
+      in->wrongPassLabel->show();
   }
 }
 

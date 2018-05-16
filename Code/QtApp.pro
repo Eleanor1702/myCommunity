@@ -17,8 +17,9 @@ SOURCES += \
     src/room.cpp \
     src/roomexpert.cpp \
     src/residentexpert.cpp \
-    src/communitydata.cpp \
     src/resident.cpp \
+    src/event.cpp \
+    src/eventexpert.cpp \
     userInterface/src/SetUpRooms.cpp \
     userInterface/src/SetUpUsers.cpp \
     userInterface/src/UserList.cpp \
@@ -28,10 +29,6 @@ SOURCES += \
     userInterface/src/HomePage.cpp \
     userInterface/src/RoomListItem.cpp \
     userInterface/src/GuiController.cpp \
-    src/roomexpert.cpp \
-    src/residentexpert.cpp \
-    src/event.cpp \
-    src/eventexpert.cpp \
     Database/src/communitydata.cpp
 
 HEADERS += \
@@ -40,7 +37,8 @@ HEADERS += \
     lib/room.h \
     lib/roomexpert.h \
     lib/residentexpert.h \
-    lib/communitydata.h \
+    lib/event.h \
+    lib/eventexpert.h \
     lib/wg.h \
     userInterface/lib/SetUpUsers.h \
     userInterface/lib/SetUpRooms.h \
@@ -51,11 +49,6 @@ HEADERS += \
     userInterface/lib/GuiController.h \
     userInterface/lib/HomePage.h \
     userInterface/lib/RoomListItem.h \
-    lib/roomexpert.h \
-    lib/residentexpert.h \
-    lib/event.h \
-    lib/eventexpert.h \
-    lib/wg.h \
     Database/lib/communitydata.h
 
 RESOURCES = \

@@ -5,7 +5,7 @@
 ResidentExpert* ResidentExpert::instance = NULL;
 
 ResidentExpert::ResidentExpert(){
-    data = data->getInstance();
+    //data = data->getInstance();
 }
 
 void ResidentExpert::createResident(string name, int password){
@@ -13,7 +13,7 @@ void ResidentExpert::createResident(string name, int password){
     re.setFirstname(name);
     re.setPassword(password);
     Residentlist.push_back(re);
-    data->addResident(name, password);
+    //data->addResident(name, password);
 }
 
 void ResidentExpert::deleteResident(string name){
@@ -22,7 +22,7 @@ void ResidentExpert::deleteResident(string name){
             Residentlist.erase(it);
         }
     }
-    data->deleteResident(name);
+    //data->deleteResident(name);
 }
 
 void ResidentExpert::editResident(string username, int newPassword){
@@ -31,7 +31,7 @@ void ResidentExpert::editResident(string username, int newPassword){
             (it)->setPassword(newPassword);
         }
     }
-    data->updatePassword(username, newPassword);
+    //data->updatePassword(username, newPassword);
 }
 
 bool ResidentExpert::verifyLogInData(string username, int password){
