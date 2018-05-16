@@ -14,17 +14,20 @@ INCLUDEPATH += -I/usr/include -I/usr/local/include -I/usr/local/include/cppconn
 SOURCES += \
     main.cpp \
     src/controller.cpp \
-    src/resident.cpp \
     src/room.cpp \
+    src/roomexpert.cpp \
+    src/residentexpert.cpp \
+    src/communitydata.cpp \
+    src/resident.cpp \
     userInterface/src/SetUpRooms.cpp \
     userInterface/src/SetUpUsers.cpp \
     userInterface/src/UserList.cpp \
     userInterface/src/SignUp.cpp \
     userInterface/src/SignIn.cpp \
     userInterface/src/StartPage.cpp \
-    userInterface/src/GuiController.cpp \
     userInterface/src/HomePage.cpp \
     userInterface/src/RoomListItem.cpp \
+    userInterface/src/GuiController.cpp \
     src/roomexpert.cpp \
     src/residentexpert.cpp \
     src/event.cpp \
@@ -35,6 +38,10 @@ HEADERS += \
     lib/controller.h \
     lib/resident.h \
     lib/room.h \
+    lib/roomexpert.h \
+    lib/residentexpert.h \
+    lib/communitydata.h \
+    lib/wg.h \
     userInterface/lib/SetUpUsers.h \
     userInterface/lib/SetUpRooms.h \
     userInterface/lib/UserList.h \

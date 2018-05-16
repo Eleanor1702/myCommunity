@@ -84,7 +84,7 @@ void HomePage::callSettings() {
   this->contentColumn->addLayout(this->settingsButtonLayout);
   this->settingsButtonLayout->setAlignment(Qt::AlignBottom);
 
-  //this->settingsButtonLayout->addWidget(this->userSettingButton, 4, Qt::AlignCenter);
+  this->settingsButtonLayout->addWidget(this->userSettingButton, 4, Qt::AlignCenter);
   this->settingsButtonLayout->addWidget(this->roomSettingButton, 4, Qt::AlignCenter);
 
   this->userSettingButton->setFixedSize(325, 100);

@@ -1,6 +1,4 @@
 #include "lib/controller.h"
-#include "lib/residentexpert.h"
-#include "lib/roomexpert.h"
 
 Controller* Controller::instance = NULL;
 
