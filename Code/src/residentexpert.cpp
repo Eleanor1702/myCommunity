@@ -4,7 +4,8 @@
 
 ResidentExpert* ResidentExpert::instance = NULL;
 
-ResidentExpert::ResidentExpert(){}
+ResidentExpert::ResidentExpert(){
+}
 
 void ResidentExpert::createResident(string name, int password){
     Resident re;
@@ -52,9 +53,4 @@ ResidentExpert* ResidentExpert::getInstance(){
         instance = new ResidentExpert();
         }
     return instance;
-}
-
-QTextStream& ResidentExpert::qStdOut() {
-  static QTextStream ts( stdout );
-  return ts;
 }
