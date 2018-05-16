@@ -1,4 +1,4 @@
-#ifndef COMMUNITYDATA_H
+/*#ifndef COMMUNITYDATA_H
 #define COMMUNITYDATA_H
 
 #include <vector>
@@ -36,3 +36,4 @@ public:
 };
 
 #endif // COMMUNITYDATA_H
+*/

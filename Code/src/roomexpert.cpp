@@ -1,8 +1,8 @@
 #include "lib/roomexpert.h"
 
-RoomExpert::RoomExpert(){}
-
 RoomExpert* RoomExpert::instance = NULL;
+
+RoomExpert::RoomExpert(){}
 
 void RoomExpert::createRoom(string name, string typ){
      Room ro;

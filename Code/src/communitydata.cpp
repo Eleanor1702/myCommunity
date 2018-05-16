@@ -1,5 +1,6 @@
-#include "lib/communitydata.h"
-/*
+/*#include "lib/communitydata.h"
+
+>>>>>>> def671729601cc0174b4f2ef92e2a4fee24ac99a
 using namespace std;
 using namespace sql;
 
@@ -76,6 +77,7 @@ void CommunityData::deleteResident(string name) {
     delete stmt;
 }
 
+
 void CommunityData::deleteRoom(string name) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("DELETE FROM Rooms WHERE Name = ?");
@@ -119,5 +121,4 @@ vector<Room> CommunityData::getAllRooms() {
     delete resultSet;
     return list;
 }
-
 */
