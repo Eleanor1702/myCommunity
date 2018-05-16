@@ -2,7 +2,9 @@
 
 RoomExpert* RoomExpert::instance = NULL;
 
-RoomExpert::RoomExpert(){}
+RoomExpert::RoomExpert(){
+    data = data->getInstance();
+}
 
 void RoomExpert::createRoom(string name, string typ){
      Room ro;
@@ -10,6 +12,7 @@ void RoomExpert::createRoom(string name, string typ){
      ro.setName(name);
      ro.setArt(typ);
      Roomlist.push_back(ro);
+     data->addRoom(name, typ);
 }
 
 void RoomExpert::deleteRoom(string name){
@@ -18,6 +21,7 @@ void RoomExpert::deleteRoom(string name){
                 Roomlist.erase(it);
             }
         }
+        data->deleteRoom(name);
 }
 
 RoomExpert* RoomExpert::getInstance(){

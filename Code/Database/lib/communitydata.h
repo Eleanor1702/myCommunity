@@ -13,14 +13,18 @@
 #include <cppconn/statement.h>
 #include <mysql_driver.h>
 #include <mysql_connection.h>
-#include "resident.h"
-#include "room.h"
+#include "lib/resident.h"
+#include "lib/room.h"
 
 class CommunityData {
 private:
     sql::mysql::MySQL_Driver *driver;
     sql::Connection* con;
     sql::ConnectOptionsMap connection_properties;
+    static CommunityData* instance;
+
+protected:
+    CommunityData();
 
 public:
     bool connect();
@@ -33,8 +37,10 @@ public:
     void deleteRoom(string);
     vector<Resident> getAllResidents();
     vector<Room> getAllRooms();
-    CommunityData();
     ~CommunityData();
+
+    static CommunityData* getInstance();
+
 };
 
 #endif // COMMUNITYDATA_H
