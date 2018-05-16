@@ -71,15 +71,16 @@ void GuiController::saveButtonClicked() {
   std::string name = na.toUtf8().constData();
   int password = pa.toInt();
 
-  if(!(con->searchNameResident(name))){
+  if(na == NULL || pa == NULL || pa.size() != 4){
 
-  con->addResident(name, password);
+  }else if(!(this->con->searchNameResident(name))) {
+      this->con->addResident(name, password);
 
-  up->giveNameEdit->clear();
-  up->givePasswordEdit->clear();
+      up->giveNameEdit->clear();
+      up->givePasswordEdit->clear();
 
-  in->show();
-  up->hide();
+      in->show();
+      up->hide();
   }
 }
 

@@ -63,6 +63,7 @@ void SignIn::setMainLayoutDesign() {
   this->givePasswordEdit->setEchoMode(QLineEdit::Password);
   this->givePasswordEdit->setMaxLength(4);
   this->givePasswordEdit->setFixedWidth(300);
+  this->givePasswordEdit->setValidator( new QIntValidator(0, 10000, this));
   //these Margins are for the design of both label and lineEdit
   //the bottom margin it to keep space between passwordRow and buttons
   //left margin to keep space between label and lineEdit

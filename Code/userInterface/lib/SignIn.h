@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QIntValidator>
 
 class SignIn : public QWidget {
   //enable creation of slots and signals
