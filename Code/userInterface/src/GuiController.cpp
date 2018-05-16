@@ -1,5 +1,7 @@
 #include "userInterface/lib/GuiController.h"
 
+GuiController* GuiController::instance = NULL;
+
 GuiController::GuiController(QWidget *parent) : QWidget(parent) {
   this->main = new StartPage();
   this->up = new SignUp();
@@ -173,4 +175,11 @@ void GuiController::deleteUserButtonClicked(QString name) {
 void GuiController::saveRoomButtonClicked() {
   this->home->show();
   this->rooms->hide();
+}
+
+GuiController* GuiController::getInstance(QWidget *parent){
+    if(instance == NULL){
+        instance = new GuiController(parent);
+    }
+    return instance;
 }
