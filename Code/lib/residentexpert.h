@@ -10,7 +10,7 @@ private:
     static ResidentExpert* instance;
     Resident re;
     std::vector<Resident> Residentlist;
-    CommunityData* data;
+    //CommunityData* data;
 
 protected:
     ResidentExpert();

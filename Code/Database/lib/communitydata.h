@@ -1,4 +1,4 @@
-#ifndef COMMUNITYDATA_H
+/*#ifndef COMMUNITYDATA_H
 #define COMMUNITYDATA_H
 
 //  sudo apt-get install  libmysqlcppconn-dev
@@ -45,3 +45,4 @@ public:
 
 #endif // COMMUNITYDATA_H
 
+*/
