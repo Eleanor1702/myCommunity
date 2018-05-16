@@ -1,9 +1,9 @@
+
 #include "Database/lib/communitydata.h"
 
 using namespace std;
 using namespace sql;
 
-//sql::mysql::MySQL_Driver *driver = NULL;
 CommunityData* CommunityData::instance = NULL;
 
 bool CommunityData::connect() {
@@ -130,9 +130,11 @@ vector<Room> CommunityData::getAllRooms() {
     return list;
 }
 
+
 CommunityData* CommunityData::getInstance() {
     if(instance == NULL) {
         instance = new CommunityData();
     }
     return instance;
 }
+

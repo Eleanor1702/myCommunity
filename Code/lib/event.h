@@ -19,12 +19,12 @@ public:
 
 
     void setDescription(string newDescription);
-    void setTime(int day, int month, int year, int min, int hour);
-    void setDay(int day);
-    void setMonth(int month);
-    void setYear(int year);
-    void setMin(int min);
-    void setHour(int hour);
+    void setTime(tm timedate);
+    void setDay(tm timedate);
+    void setMonth(tm timedate);
+    void setYear(tm timedate);
+    void setMin(tm timedate);
+    void setHour(tm timedate);
     void setUser(string newUser);
 
     string getDescription();

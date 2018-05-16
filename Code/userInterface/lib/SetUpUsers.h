@@ -32,14 +32,7 @@ private:
    QWidget *scrollWidget;
    QBoxLayout *scrollLayout;
 
-   QBoxLayout *addUsersRow;
-
    QBoxLayout *mainButtonsRow;
-   QLabel *nameLabel;
-   QLabel *passwordLabel;
-   QLineEdit *giveNameEdit;
-   QLineEdit *givePasswordEdit;
-   QPushButton *addButton;
    QPushButton *saveButton;
 
     void setMainWindowDesign();

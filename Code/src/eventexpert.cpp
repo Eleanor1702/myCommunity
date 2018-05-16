@@ -6,15 +6,19 @@ EventExpert::EventExpert(){
 
 }
 
-void EventExpert::createEvent(string name, int time, int date, string user){
+void EventExpert::createEvent(string description,tm timedate, string user){
+    Event ev;
+    ev.Event::setDescription(description);
+    ev.Event::setTime(timedate);
+    ev.Event::setUser(user);
+    Eventlist.push_back(ev);
+}
+
+void EventExpert::deleteEvent(string description, tm timedate, string user){
 
 }
 
-void EventExpert::deleteEvent(string name, int time, int date, string user){
-
-}
-
-void EventExpert::editEvent(string name, int time){
+void EventExpert::editEvent(string description, tm timedate){
 
 }
 
