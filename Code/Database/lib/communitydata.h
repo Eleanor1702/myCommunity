@@ -1,6 +1,8 @@
 /*#ifndef COMMUNITYDATA_H
 #define COMMUNITYDATA_H
 
+//  sudo apt-get install  libmysqlcppconn-dev
+
 #include <vector>
 #include <string>
 #include <cppconn/connection.h>

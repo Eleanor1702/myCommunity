@@ -31,6 +31,8 @@ CommunityData::CommunityData() {
         cout <<"Fehler bei der Verbindung!" << endl;
     //createRoomTable();
     //createResidentTable();
+    //addResident("Noor", 1234);
+    addRoom("Bad", "Bad");
 
 }
 
@@ -58,7 +60,7 @@ void CommunityData::addResident(string name, int password) {
 
 void CommunityData::addRoom(string name, string type) {
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("INSERT INTO Rooms(Name, Art) VALUES(?, ?)");
+    stmt = con->prepareStatement("INSERT INTO Rooms(Name, Type) VALUES(?, ?)");
     stmt->setString(1, name);
     stmt->setString(2, type);
     stmt->execute();
