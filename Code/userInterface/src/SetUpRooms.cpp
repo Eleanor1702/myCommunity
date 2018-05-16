@@ -59,7 +59,7 @@ void SetUpRooms::setMainLayoutDesign() {
     this->chooseRoomTypeCombo->setFixedWidth(120);
     this->roomTypeLabel->setStyleSheet("color: #aaa; font-weight: bold;");
     this->chooseRoomTypeCombo->setStyleSheet("selection-color: white; selection-background-color: #1aa3ff;"
-                                             " color: black; background-color: #ddd;");
+                                             " color: White; background-color: black;");
 
     QStringList rooms;
     rooms << "Bad" << QString::fromUtf8("Küche") << "Wohnzimmer" << "Flur";
