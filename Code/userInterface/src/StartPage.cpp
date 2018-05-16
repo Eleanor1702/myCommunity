@@ -20,7 +20,7 @@ StartPage::StartPage(QWidget *parent) : QWidget(parent) {
 
 void StartPage::setMainWindowDesign() {
   this->setFixedSize(700, 500);
-  this->setStyleSheet("background-color: black;");
+  this->setStyleSheet("background-color: white;");
   this->setWindowTitle(QString::fromUtf8("myCommunity"));
 
   this->mainLayout->addLayout(mainLabelRow);

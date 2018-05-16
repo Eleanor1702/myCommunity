@@ -9,7 +9,7 @@ GuiController::GuiController(QWidget *parent) : QWidget(parent) {
   this->rooms = new SetUpRooms();
   this->users = new SetUpUsers();
 
-  this->con = new Controller();
+  this->con->getInstance();
 
   //Events
   //mainPage Events

@@ -4,14 +4,18 @@
 #include "room.h"
 
 class RoomExpert{
-    private:
-    vector<Room*> Roomlist;
+private:
+    vector<Room> Roomlist;
+    static RoomExpert* instance;
 
-    public:
+protected:
     RoomExpert();
+public:
+
     void createRoom(string name, string typ);
     void deleteRoom(string name);
 
+    static RoomExpert* getInstance();
 
 };
 #endif // ROOMEXPERT_H

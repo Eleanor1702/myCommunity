@@ -21,7 +21,8 @@ SOURCES += \
     userInterface/src/HomePage.cpp \
     userInterface/src/RoomListItem.cpp \
     src/roomexpert.cpp \
-    src/residentexpert.cpp
+    src/residentexpert.cpp \
+    src/communitydata.cpp
 
 HEADERS += \
     lib/controller.h \
@@ -37,7 +38,8 @@ HEADERS += \
     userInterface/lib/HomePage.h \
     userInterface/lib/RoomListItem.h \
     lib/roomexpert.h \
-    lib/residentexpert.h
+    lib/residentexpert.h \
+    lib/communitydata.h
 
 RESOURCES = \
     media/application.qrc

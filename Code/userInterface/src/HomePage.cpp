@@ -29,7 +29,7 @@ HomePage::HomePage(QWidget *parent) : QWidget(parent) {
 
 void HomePage::setMainScreenDesign(){
   this->setFixedSize(800, 600);
-  this->setStyleSheet("background-color: black;");
+  this->setStyleSheet("background-color: white;");
   this->setWindowTitle("Home Page");
 
   this->mainLayout->addLayout(this->buttonColumn);
