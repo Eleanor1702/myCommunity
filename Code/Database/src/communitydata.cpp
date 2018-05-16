@@ -1,4 +1,4 @@
-/*#include "lib/communitydata.h"
+#include "lib/communitydata.h"
 
 using namespace std;
 using namespace sql;
@@ -128,5 +128,3 @@ vector<Room> CommunityData::getAllRooms() {
     delete resultSet;
     return list;
 }
-
-*/
