@@ -31,10 +31,14 @@ private:
 
   Controller* con;
 
+  static GuiController* instance;   //Singleton
+
 protected:
 
+
 public:
-  explicit GuiController(QWidget *parent = NULL);
+ static GuiController* getInstance(QWidget *parent);     //Singleton
+ explicit GuiController(QWidget *parent = NULL);
 
 public slots:
   //class need to be QWidget to be able to call the actions
