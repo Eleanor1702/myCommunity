@@ -2,9 +2,14 @@ CONFIG += qt
 TEMPLATE = app
 TARGET = myCommunity
 
-QT = core gui
+QT += core gui
+QT += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+LIBS += -lGL
+LIBS += -L/usr/lib -L/usr/lib -lmysqlcppconn
+INCLUDEPATH += -I/usr/include -I/usr/local/include -I/usr/local/include/cppconn
 
 SOURCES += \
     main.cpp \

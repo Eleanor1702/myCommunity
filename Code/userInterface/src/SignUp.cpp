@@ -67,8 +67,9 @@ void SignUp::setMainLayoutDesign() {
     this->givePasswordEdit->setEchoMode(QLineEdit::Password);
     this->givePasswordEdit->setMaxLength(4);
     this->givePasswordEdit->setFixedWidth(300);
-    this->givePasswordEdit->setStyleSheet("margin-left: 10px; margin-bottom: 50px; color: black;");
-    this->passwordLabel->setStyleSheet("margin-bottom: 50px; color: #aaa; font-weight: bold;");
+    this->givePasswordEdit->setValidator( new QIntValidator(0, 10000, this));
+    this->givePasswordEdit->setStyleSheet("margin-left: 10px; margin-bottom: 0px; color: black;");
+    this->passwordLabel->setStyleSheet("margin-top: 0px; margin-bottom: 10px; color: #aaa; font-weight: bold;");
 
     this->mainButtonsRow->addWidget(backButton);
     backButton->setFixedSize(200, 50);

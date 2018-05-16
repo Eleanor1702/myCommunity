@@ -1,6 +1,5 @@
-/*#include "lib/communitydata.h"
+#include "lib/communitydata.h"
 
->>>>>>> def671729601cc0174b4f2ef92e2a4fee24ac99a
 using namespace std;
 using namespace sql;
 
@@ -8,10 +7,14 @@ sql::mysql::MySQL_Driver *driver = NULL;
 
 bool CommunityData::connect() {
     driver = mysql::get_mysql_driver_instance();
-    connection_properties["hostName"] = "localhost";
-    connection_properties["userName"] = "root";
-    connection_properties["password"] = "mysql";
-    connection_properties["schema"] = "MyCommunity";
+    SQLString userName = "root";
+    SQLString hostName = "localhost";
+    SQLString password = "mysql";
+    SQLString schema = "MyCommunity";
+    connection_properties["hostName"] = hostName;
+    connection_properties["userName"] = userName;
+    connection_properties["password"] = password;
+    connection_properties["schema"] = schema;
     connection_properties["port"] = 3306;
     if((con = driver->connect(connection_properties)) == NULL) {
         return false;
@@ -24,21 +27,23 @@ CommunityData::~CommunityData() {
 }
 
 CommunityData::CommunityData() {
-
-        connect();
+    if(!connect())
+        cout <<"Fehler bei der Verbindung!" << endl;
+    //createRoomTable();
+    //createResidentTable();
 
 }
 
 void CommunityData::createRoomTable() {
     Statement* stmt;
     stmt = con->createStatement();
-    stmt->execute("CREATE TABLE Rooms(Name VARCHAR(50) PRIMARY KEY, Type VARCHAR");
+    stmt->execute("CREATE TABLE Rooms(Name VARCHAR(50) PRIMARY KEY, Type VARCHAR(20))");
     delete stmt;
 }
 void CommunityData::createResidentTable() {
     Statement* stmt;
     stmt = con->createStatement();
-    stmt->execute("CREATE TABLE Residents(Firstname VARCHAR(50) PRIMARY KEY, Password INT");
+    stmt->execute("CREATE TABLE Residents(Firstname VARCHAR(50) PRIMARY KEY, Password INT)");
     delete stmt;
 }
 
@@ -121,4 +126,4 @@ vector<Room> CommunityData::getAllRooms() {
     delete resultSet;
     return list;
 }
-*/
+
