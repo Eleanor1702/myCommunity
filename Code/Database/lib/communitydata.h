@@ -1,24 +1,26 @@
 /*#ifndef COMMUNITYDATA_H
 #define COMMUNITYDATA_H
 
+//  sudo apt-get install  libmysqlcppconn-dev
+
 #include <vector>
 #include <string>
-//#include <cppconn/connection.h>
-//#include <cppconn/prepared_statement.h>
-//#include <cppconn/driver.h>
-//#include <cppconn/exception.h>
-//#include <cppconn/resultset.h>
-//#include <cppconn/statement.h>
-//#include <mysql_driver.h>
-//#include <mysql_connection.h>
+#include <cppconn/connection.h>
+#include <cppconn/prepared_statement.h>
+#include <cppconn/driver.h>
+#include <cppconn/exception.h>
+#include <cppconn/resultset.h>
+#include <cppconn/statement.h>
+#include <mysql_driver.h>
+#include <mysql_connection.h>
 #include "resident.h"
 #include "room.h"
 
 class CommunityData {
 private:
-    //sql::mysql::MySQL_Driver *driver;
-    //sql::Connection* con;
-    //sql::ConnectOptionsMap connection_properties;
+    sql::mysql::MySQL_Driver *driver;
+    sql::Connection* con;
+    sql::ConnectOptionsMap connection_properties;
 
 public:
     bool connect();
@@ -36,4 +38,5 @@ public:
 };
 
 #endif // COMMUNITYDATA_H
+
 */

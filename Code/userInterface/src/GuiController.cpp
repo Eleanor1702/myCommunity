@@ -107,6 +107,9 @@ void GuiController::logInButtonClicked() {
 
       home->show();
       in->hide();
+  } else {
+      in->wrongPassRow->addWidget(in->wrongPassLabel, 0, Qt::AlignCenter);
+      in->wrongPassLabel->setStyleSheet("font-weight: bold; color:red");
   }
 }
 

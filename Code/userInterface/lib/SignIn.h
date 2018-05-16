@@ -31,6 +31,9 @@ private:
    QLabel *passwordLabel;
    QLineEdit *givePasswordEdit;
 
+   QBoxLayout *wrongPassRow;
+   QLabel *wrongPassLabel;
+
    QBoxLayout *buttonsRow;
    QPushButton *backButton;
    QPushButton *logInButton;
