@@ -3,7 +3,6 @@
 //calling the constructor, calls the parent constructor too
 //in this case QWidget
 SetUpRooms::SetUpRooms(QWidget *parent) : QWidget(parent){
-  //newRoom = new RoomListItem("Hallo");
   //declarations of window contents
   mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, this);
   mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);

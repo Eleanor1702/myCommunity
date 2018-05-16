@@ -129,7 +129,6 @@ void GuiController::addRoomButtonClicked(){
   QString roomType = rooms->chooseRoomTypeCombo->currentText();
 
   //proceed only with a room name
-
   QString roomName = rooms->giveNameEdit->text();
   if(roomName.size() == 0 || roomName[0] == ' '){
       return;
@@ -138,15 +137,20 @@ void GuiController::addRoomButtonClicked(){
   this->rooms->newRoom = new RoomListItem(roomType + " - " + roomName);
   this->rooms->RoomListItemList.push_back(this->rooms->newRoom);
 
-  this->rooms->scrollLayout->addWidget(this->rooms->newRoom);
+  //here should contect of vector be saved in Databank
 
-  this->rooms->giveNameEdit->clear();
 
+  //if delete Room methode was called
   connect(this->rooms->newRoom, SIGNAL(deleteButtonClickedSignal(QString)), this, SLOT(deleteRoomButtonClicked(QString)));
+
+  //Viewing in Gui
+  this->rooms->scrollLayout->addWidget(this->rooms->newRoom);
+  this->rooms->giveNameEdit->clear();
 }
 
 void GuiController::deleteRoomButtonClicked(QString room) {
-  // do things with room delete signal
+  // delete room from Databank
+
 }
 
 void GuiController::saveUserButtonClicked(){
