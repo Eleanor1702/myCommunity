@@ -39,8 +39,8 @@ bool Controller::searchNameResident(string username){
 Controller* Controller::getInstance(){
     if(instance == NULL){
         instance = new Controller();
-        //instance->rsExpert = new ResidentExpert();
-        //instance->roExpert = new RoomExpert();
+        //instance->rsExpert->getInstance();
+        //instance->roExpert->getInstance() ;
     }
     return instance;
 }

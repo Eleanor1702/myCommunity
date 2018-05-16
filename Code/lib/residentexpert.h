@@ -3,16 +3,16 @@
 
 #include <vector>
 #include "resident.h"
-#include <QTextStream>
 
 class ResidentExpert{
 private:
+    static ResidentExpert* instance;
     Resident re;
     std::vector<Resident> Residentlist;
-    static ResidentExpert* instance;
 
 protected:
     ResidentExpert();
+
 public:
 
     void createResident(string name, int password);
@@ -22,8 +22,6 @@ public:
     bool verifyName(string username);
 
     static ResidentExpert* getInstance();
-    //Allow COUT
-    QTextStream& qStdOut();
 };
 
 #endif // RESIDENTEXPERT_H

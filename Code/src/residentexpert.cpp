@@ -2,10 +2,10 @@
 #include <string>
 #include <iostream>
 
+ResidentExpert* ResidentExpert::instance = NULL;
+
 ResidentExpert::ResidentExpert(){
 }
-
-ResidentExpert* ResidentExpert::instance = NULL;
 
 void ResidentExpert::createResident(string name, int password){
     re.setFirstname(name);
@@ -53,9 +53,4 @@ ResidentExpert* ResidentExpert::getInstance(){
         instance = new ResidentExpert();
         }
     return instance;
-}
-
-QTextStream& ResidentExpert::qStdOut() {
-  static QTextStream ts( stdout );
-  return ts;
 }
