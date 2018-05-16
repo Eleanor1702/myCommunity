@@ -36,7 +36,7 @@ GuiController::GuiController(QWidget *parent) : QWidget(parent) {
   QObject::connect(rooms->saveButton,SIGNAL(clicked()),this,SLOT(saveRoomButtonClicked()));
 
   //SetUpUsers Events
-  QObject::connect(users->addButton,SIGNAL(clicked()),this,SLOT(addUserButtonClicked()));
+  //QObject::connect(users->addButton,SIGNAL(clicked()),this,SLOT(addUserButtonClicked()));
   QObject::connect(users->saveButton,SIGNAL(clicked()),this,SLOT(saveUserButtonClicked()));
 
   //show main page
@@ -157,7 +157,7 @@ void GuiController::saveUserButtonClicked(){
     this->home->show();
     this->users->hide();
 }
-
+/*
 void GuiController::addUserButtonClicked() {
   QString userName = users->giveNameEdit->text();
   if(userName.size() == 0 || userName[0] == ' '){
@@ -178,7 +178,7 @@ void GuiController::addUserButtonClicked() {
 
   connect(this->users->newUser,SIGNAL(deleteUserButtonClickedSignal(QString)),this,SLOT(deleteUserButtonClicked(QString)));
 }
-
+*/
 void GuiController::deleteUserButtonClicked(QString name) {
   //do things with user delete signal
 }

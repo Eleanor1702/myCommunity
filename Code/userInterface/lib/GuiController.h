@@ -16,7 +16,7 @@
 #include <string>
 
 //Inheritance from QWidget ist a must
-//Reason-> this class has slots
+//because this class has slots
 class GuiController : public QWidget{
   Q_OBJECT
 
@@ -57,7 +57,6 @@ public slots:
   void deleteRoomButtonClicked(QString room);
   void saveRoomButtonClicked();
 
-  void addUserButtonClicked();
   void deleteUserButtonClicked(QString name);
   void saveUserButtonClicked();
 
