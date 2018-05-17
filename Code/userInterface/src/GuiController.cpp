@@ -157,7 +157,7 @@ void GuiController::addRoomButtonClicked(){
 
 void GuiController::deleteRoomButtonClicked(QString room) {
   // delete room from Databank
-    con->deleteRoom(room.toStdString());
+   con->deleteRoom(room.toStdString());
 }
 
 void GuiController::saveUserButtonClicked(){
@@ -188,6 +188,7 @@ void GuiController::addUserButtonClicked() {
 */
 void GuiController::deleteUserButtonClicked(QString name) {
   //do things with user delete signal
+
 }
 
 void GuiController::saveRoomButtonClicked() {
