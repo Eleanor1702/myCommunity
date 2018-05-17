@@ -21,6 +21,7 @@ string Room::getName(){
     return name;
 }
 
+//Funktion löschen
 void Room::nameAendern() {
     string neu;
     cout << "Bitte neuen Raumnamen eingeben:" << endl;

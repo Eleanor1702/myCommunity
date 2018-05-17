@@ -19,10 +19,10 @@ void RoomExpert::deleteRoom(string name){
         for(vector<Room>::iterator it = Roomlist.begin(); it != Roomlist.end(); ++it) {
             if((it)->getName() == name) {
                 Roomlist.erase(it);
-
+                data->deleteRoom(name);
+                break;
             }
-        }
-        data->deleteRoom(name);
+        }   
 }
 
 RoomExpert* RoomExpert::getInstance(){
