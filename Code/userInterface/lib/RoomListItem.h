@@ -17,6 +17,8 @@ private:
   QPushButton *deleteButton;
   QHBoxLayout *newRoomLayout;
 
+  QString name;
+
   void setItemStyle();
 
 private slots:
@@ -27,7 +29,7 @@ signals:
 
 public:
   //QFrame ist ein QWidget
-  explicit RoomListItem(QString roomName, QWidget *parent = NULL);
+  explicit RoomListItem(QString roomName, QString roomType, QWidget *parent = NULL);
 
 public slots:
 };
