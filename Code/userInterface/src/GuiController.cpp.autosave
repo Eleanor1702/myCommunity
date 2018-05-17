@@ -154,6 +154,7 @@ void GuiController::addRoomButtonClicked(){
 
 void GuiController::deleteRoomButtonClicked(QString room) {
   // delete room from Databank
+    
     con->deleteRoom(room.toStdString());
 }
 
