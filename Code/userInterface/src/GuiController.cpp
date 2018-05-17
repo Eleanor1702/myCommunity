@@ -100,12 +100,15 @@ void GuiController::logInButtonClicked() {
 
   //convert from QString to String
   std::string name = na.toUtf8().constData();
+
   //Convert to int
   int password = pa.toInt();
 
   if(con->searchResident(name, password)) {
       in->giveNameEdit->clear();
       in->givePasswordEdit->clear();
+
+      in->wrongPassLabel->hide();
 
       home->show();
       in->hide();
@@ -138,7 +141,7 @@ void GuiController::addRoomButtonClicked(){
       return;
   }
 
-  this->rooms->newRoom = new RoomListItem(roomType + " - " + roomName);
+  this->rooms->newRoom = new RoomListItem(roomName, roomType);
   this->rooms->RoomListItemList.push_back(this->rooms->newRoom);
 
   //here should contect of vector be saved in Databank

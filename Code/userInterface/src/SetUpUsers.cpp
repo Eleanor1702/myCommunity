@@ -9,7 +9,9 @@ SetUpUsers::SetUpUsers(QWidget *parent) : QWidget(parent){
   mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
   mainLabel = new QLabel("Konfiguriere deine Mitbewohner");
 
-  scrollAreaRow = new QBoxLayout(QBoxLayout::LeftToRight);
+  mainRow = new QBoxLayout(QBoxLayout::LeftToRight, this);
+
+  scrollAreaRow = new QBoxLayout(QBoxLayout::TopToBottom);
   scrollArea = new QScrollArea(this);
   scrollWidget = new QWidget(this);
   scrollLayout = new QBoxLayout(QBoxLayout::TopToBottom, this->scrollWidget);
@@ -28,7 +30,8 @@ void SetUpUsers::setMainWindowDesign() {
     this->setWindowTitle(QString::fromUtf8("Bewohner Verwalten"));
 
     mainLayout->addLayout(mainLabelRow);
-    mainLayout->addLayout(scrollAreaRow);
+    mainLayout->addLayout(mainRow);
+    //mainLayout->addLayout(scrollAreaRow);
     mainLayout->addLayout(mainButtonsRow);
     this->setLayout(mainLayout);
 }
@@ -39,11 +42,15 @@ void SetUpUsers::setMainLayoutDesign() {
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
                                    "font-weight: bold; margin-top: 5px; color: #aaa;");
 
-    this->scrollAreaRow->addWidget(scrollArea);
+    this->mainRow->addLayout(scrollAreaRow);
+    //this->scrollAreaRow->addWidget(scrollArea);
+
+    this->mainRow->addWidget(scrollArea, 0, Qt::AlignRight);
     this->scrollArea->setWidget(this->scrollWidget);
     this->scrollWidget->setLayout(this->scrollLayout);
     this->scrollLayout->setAlignment(Qt::AlignTop);
     this->scrollArea->setWidgetResizable(true);
+    //this->scrollArea->
 
     this->mainButtonsRow->addWidget(saveButton);
     saveButton->setFixedSize(200, 50);

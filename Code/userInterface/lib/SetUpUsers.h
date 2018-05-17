@@ -27,6 +27,8 @@ private:
    QBoxLayout *mainLabelRow;
    QLabel *mainLabel;
 
+   QBoxLayout *mainRow;
+
    QBoxLayout *scrollAreaRow;
    QScrollArea *scrollArea;
    QWidget *scrollWidget;
