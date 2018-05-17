@@ -6,6 +6,7 @@ ResidentExpert* ResidentExpert::instance = NULL;
 
 ResidentExpert::ResidentExpert(){
     data = data->getInstance();
+    Residentlist = data->getAllResidents();
 }
 
 void ResidentExpert::createResident(string name, int password){

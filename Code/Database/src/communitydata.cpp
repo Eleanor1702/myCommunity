@@ -101,8 +101,9 @@ vector<Resident> CommunityData::getAllResidents() {
 
     while(resultSet->next()) {
         Resident res;
+        SQLString psw = "Password";
         res.setFirstname(resultSet->getString("Firstname"));
-        res.setPassword(resultSet->getInt("Passsword"));
+        res.setPassword(resultSet->getInt(psw));
         list.push_back(res);
     }
     resultSet->close();

@@ -4,6 +4,7 @@ RoomExpert* RoomExpert::instance = NULL;
 
 RoomExpert::RoomExpert(){
     data = data->getInstance();
+    Roomlist = data->getAllRooms();
 }
 
 void RoomExpert::createRoom(string name, string typ){
