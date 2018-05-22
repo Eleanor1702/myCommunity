@@ -66,8 +66,10 @@ test {
 
     HEADERS += \
         test/lib/TestRoom.h \
+        test/lib/TestResident.h \
 
     SOURCES += \
         test/main.cpp \
         test/src/TestRoom.cpp \
+        test/src/TestResident.cpp \
 }
