@@ -100,12 +100,15 @@ void GuiController::logInButtonClicked() {
 
   //convert from QString to String
   std::string name = na.toUtf8().constData();
+
   //Convert to int
   int password = pa.toInt();
 
   if(con->searchResident(name, password)) {
       in->giveNameEdit->clear();
       in->givePasswordEdit->clear();
+
+      in->wrongPassLabel->hide();
 
       home->show();
       in->hide();
@@ -127,6 +130,8 @@ void GuiController::userSettingsButtonClicked() {
 void GuiController::roomSettingsButtonClicked() {
   rooms->show();
   home->hide();
+  //Daten aus dem Room vector in Roomexpert über Controller holen & anzeigen
+
 }
 
 void GuiController::addRoomButtonClicked(){
@@ -138,11 +143,11 @@ void GuiController::addRoomButtonClicked(){
       return;
   }
 
-  this->rooms->newRoom = new RoomListItem(roomType + " - " + roomName);
+  this->rooms->newRoom = new RoomListItem(roomName, roomType);
   this->rooms->RoomListItemList.push_back(this->rooms->newRoom);
 
   //here should contect of vector be saved in Databank
-
+    con->addRoom(roomType.toStdString(), roomName.toStdString());
 
   //if delete Room methode was called
   connect(this->rooms->newRoom, SIGNAL(deleteButtonClickedSignal(QString)), this, SLOT(deleteRoomButtonClicked(QString)));
@@ -154,7 +159,7 @@ void GuiController::addRoomButtonClicked(){
 
 void GuiController::deleteRoomButtonClicked(QString room) {
   // delete room from Databank
-
+   con->deleteRoom(room.toStdString());
 }
 
 void GuiController::saveUserButtonClicked(){
@@ -185,6 +190,7 @@ void GuiController::addUserButtonClicked() {
 */
 void GuiController::deleteUserButtonClicked(QString name) {
   //do things with user delete signal
+
 }
 
 void GuiController::saveRoomButtonClicked() {

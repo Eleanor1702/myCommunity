@@ -5,7 +5,8 @@
 ResidentExpert* ResidentExpert::instance = NULL;
 
 ResidentExpert::ResidentExpert(){
-    //data = data->getInstance();
+    data = data->getInstance();
+    Residentlist = data->getAllResidents();
 }
 
 void ResidentExpert::createResident(string name, int password){
@@ -13,25 +14,29 @@ void ResidentExpert::createResident(string name, int password){
     re.setFirstname(name);
     re.setPassword(password);
     Residentlist.push_back(re);
-    //data->addResident(name, password);
+    data->addResident(name, password);
 }
 
 void ResidentExpert::deleteResident(string name){
     for(vector<Resident>::iterator it = Residentlist.begin(); it != Residentlist.end(); ++it) {
         if((it)->getFirstname() == name) {
             Residentlist.erase(it);
+            data->deleteResident(name);
+            break;
         }
     }
-    //data->deleteResident(name);
 }
 
 void ResidentExpert::editResident(string username, int newPassword){
     for(vector<Resident>::iterator it = Residentlist.begin(); it != Residentlist.end(); ++it) {
         if((it)->getFirstname() == username) {
             (it)->setPassword(newPassword);
+            data->updatePassword(username, newPassword);
+            break;
+
         }
     }
-    //data->updatePassword(username, newPassword);
+
 }
 
 bool ResidentExpert::verifyLogInData(string username, int password){

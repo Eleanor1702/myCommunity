@@ -27,6 +27,7 @@ public:
         bool searchResident(string username, int password);
         bool searchNameResident(string username);       // To get the same Name in Login
 
+
         static Controller* getInstance();
 };
 

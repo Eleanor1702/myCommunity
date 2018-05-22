@@ -1,9 +1,10 @@
 #include "userInterface/lib/RoomListItem.h"
 
-RoomListItem::RoomListItem(QString roomName, QWidget *parent) : QFrame(parent){
+RoomListItem::RoomListItem(QString roomName, QString roomType, QWidget *parent) : QFrame(parent){
   this->newRoomLayout = new QHBoxLayout();
-  this->room = new QLabel(roomName);
+  this->room = new QLabel(roomName + " - " + roomType);
   this->deleteButton = new QPushButton(QString::fromUtf8("Löschen"));
+  name = roomName;
 
   setItemStyle();
 
@@ -33,7 +34,7 @@ void RoomListItem::setItemStyle() {
 }
 
 void RoomListItem::deleteButtonClicked() {
-  emit deleteButtonClickedSignal(this->room->text());
+  emit deleteButtonClickedSignal(name);
   this->close();
 }
 
