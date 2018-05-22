@@ -39,7 +39,6 @@ HEADERS += \
     lib/roomexpert.h \
     lib/event.h \
     lib/eventexpert.h \
-    lib/wg.h \
     userInterface/lib/GuiController.h \
     userInterface/lib/HomePage.h \
     userInterface/lib/SetUpRooms.h \
