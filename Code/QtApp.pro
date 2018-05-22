@@ -67,8 +67,16 @@ test {
 
     HEADERS += \
         test/lib/TestRoom.h \
+<<<<<<< HEAD
+=======
+        test/lib/TestResident.h \
+>>>>>>> bda086e93d0dd34653c16004ad3affd2ee321fc5
 
     SOURCES += \
         test/main.cpp \
         test/src/TestRoom.cpp \
+<<<<<<< HEAD
+=======
+        test/src/TestResident.cpp \
+>>>>>>> bda086e93d0dd34653c16004ad3affd2ee321fc5
 }
