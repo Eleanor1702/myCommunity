@@ -71,4 +71,3 @@ test {
         test/main.cpp \
         test/src/TestRoom.cpp \
 }
-
