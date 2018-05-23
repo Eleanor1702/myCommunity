@@ -2,7 +2,7 @@
 
 
 
-Event::Event() {};
+Event::Event() {}
 
 void Event::setDescription(string newDescription){
     description = newDescription;

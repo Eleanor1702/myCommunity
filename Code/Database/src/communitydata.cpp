@@ -155,7 +155,7 @@ vector<Room> CommunityData::getAllRooms() {
      else {
          delete stmt;
          delete resultSet;
-         return true;
+         return false;
      }
  }
 
