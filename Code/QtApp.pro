@@ -58,3 +58,17 @@ RESOURCES = \
 DISTFILES += \
     media/signUp.png
 
+test {
+    message(Test bulid)
+
+    QT += testlib
+    TARGET = myCommunity-test
+    SOURCES -= main.cpp
+
+    HEADERS += \
+        test/lib/TestRoom.h \
+
+    SOURCES += \
+        test/main.cpp
+        test/src/TestRoom.cpp \
+}
