@@ -30,7 +30,11 @@ void Controller::editResident(string username,int newPassword){
 }
 
 bool Controller::searchResident(string username, int password) {
-  return rsExpert->verifyLogInData(username, password);
+  if(rsExpert->verifyLogInData(username, password)) {
+      user = username;
+      return true;
+    }
+  else return false;
 }
 bool Controller::searchNameResident(string username){
     return rsExpert->verifyName(username);
