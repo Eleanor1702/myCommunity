@@ -39,7 +39,6 @@ HEADERS += \
     lib/roomexpert.h \
     lib/event.h \
     lib/eventexpert.h \
-    lib/wg.h \
     userInterface/lib/GuiController.h \
     userInterface/lib/HomePage.h \
     userInterface/lib/SetUpRooms.h \
@@ -68,16 +67,7 @@ test {
 
     HEADERS += \
         test/lib/TestRoom.h \
-<<<<<<< HEAD
-=======
-        test/lib/TestResident.h \
->>>>>>> bda086e93d0dd34653c16004ad3affd2ee321fc5
 
     SOURCES += \
         test/main.cpp \
         test/src/TestRoom.cpp \
-<<<<<<< HEAD
-=======
-        test/src/TestResident.cpp \
->>>>>>> bda086e93d0dd34653c16004ad3affd2ee321fc5
-}
