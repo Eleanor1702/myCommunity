@@ -40,21 +40,29 @@ void ResidentExpert::editResident(string username, int newPassword){
 }
 
 bool ResidentExpert::verifyLogInData(string username, int password){
-  for(std::vector<Resident>::iterator it = this->Residentlist.begin(); it != this->Residentlist.end(); ++it) {
+  /*for(std::vector<Resident>::iterator it = this->Residentlist.begin(); it != this->Residentlist.end(); ++it) {
       if((it)->getFirstname() == username && (it)->getPassword() == password) {
           return true;
       }
   }
-  return false;
+  return false;*/
+    if(data->verifyLogInData(username, password)) {
+            return true;
+    }
+    else return false;
 }
 
 bool ResidentExpert::verifyName(string username){
-  for(std::vector<Resident>::iterator it = this->Residentlist.begin(); it != this->Residentlist.end(); ++it) {
+  /*for(std::vector<Resident>::iterator it = this->Residentlist.begin(); it != this->Residentlist.end(); ++it) {
       if((it)->getFirstname() == username) {
           return true;
       }
   }
-  return false;
+  return false;*/
+    if(data->verifyName(username)) {
+        return true;
+    }
+    else return false;
 }
 
 ResidentExpert* ResidentExpert::getInstance(){
