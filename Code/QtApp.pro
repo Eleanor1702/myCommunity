@@ -59,7 +59,7 @@ DISTFILES += \
     media/signUp.png
 
 test {
-    message(Test build)
+    message(Test bulid)
 
     QT += testlib
     TARGET = myCommunity-test
@@ -69,6 +69,6 @@ test {
         test/lib/TestRoom.h \
 
     SOURCES += \
-        test/main.cpp \
+        test/main.cpp
         test/src/TestRoom.cpp \
 }

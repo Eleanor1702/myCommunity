@@ -1,3 +1,4 @@
+
 #include "lib/controller.h"
 
 Controller* Controller::instance = NULL;

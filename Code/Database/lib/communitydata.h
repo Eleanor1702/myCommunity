@@ -37,6 +37,8 @@ public:
     void deleteRoom(string);
     vector<Resident> getAllResidents();
     vector<Room> getAllRooms();
+    bool verifyLogInData(string, int);
+    bool verifyName(string);
     ~CommunityData();
 
     static CommunityData* getInstance();
