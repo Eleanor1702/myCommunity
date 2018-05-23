@@ -7,9 +7,9 @@ CommunityData* CommunityData::instance = NULL;
 
 bool CommunityData::connect() {
     driver = mysql::get_mysql_driver_instance();
-    SQLString userName = "user";
+    SQLString userName = "root";
     SQLString hostName = "localhost";
-    SQLString password = "mycommunity";
+    SQLString password = "mysql";
     SQLString schema = "MyCommunity";
     connection_properties["hostName"] = hostName;
     connection_properties["userName"] = userName;
@@ -29,9 +29,8 @@ CommunityData::~CommunityData() {
 CommunityData::CommunityData() {
     if(!connect())
         cout <<"Fehler bei der Verbindung!" << endl;
-    //createRoomTable();
-    //createResidentTable();
-
+   // createRoomTable();
+   // createResidentTable();
 
 }
 
@@ -105,6 +104,8 @@ vector<Resident> CommunityData::getAllResidents() {
         res.setPassword(resultSet->getInt(psw));
         list.push_back(res);
     }
+    resultSet->close();
+    stmt->close();
     delete stmt;
     delete resultSet;
     return list;
@@ -120,44 +121,12 @@ vector<Room> CommunityData::getAllRooms() {
       ro.setArt(resultSet->getString("Type"));
       list.push_back(ro);
     }
+    resultSet->close();
+    stmt->close();
     delete stmt;
     delete resultSet;
     return list;
 }
- bool CommunityData::verifyLogInData(string username, int password) {
-     PreparedStatement* stmt = con->prepareStatement("SELECT * FROM Residents WHERE Firstname = ? AND Password = ?");
-     ResultSet* resultSet = NULL;
-     stmt->setString(1, username);
-     stmt->setInt(2, password);
-     resultSet = stmt->executeQuery();
-     if(resultSet->next()){
-         delete stmt;
-         delete resultSet;
-         return true;
-
-     }
-     else {
-         delete stmt;
-         delete resultSet;
-         return false;
-     }
- }
- bool CommunityData::verifyName(string username) {
-     PreparedStatement* stmt = con->prepareStatement("SELECT * FROM Residents WHERE Firstname = ?");
-     ResultSet* resultSet = NULL;
-     stmt->setString(1, username);
-     resultSet = stmt->executeQuery();
-     if(resultSet->next() ){
-         delete stmt;
-         delete resultSet;
-         return true;
-     }
-     else {
-         delete stmt;
-         delete resultSet;
-         return true;
-     }
- }
 
 CommunityData* CommunityData::getInstance() {
     if(instance == NULL) {
@@ -165,4 +134,3 @@ CommunityData* CommunityData::getInstance() {
     }
     return instance;
 }
-
