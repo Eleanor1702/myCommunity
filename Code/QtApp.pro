@@ -39,6 +39,7 @@ HEADERS += \
     lib/roomexpert.h \
     lib/event.h \
     lib/eventexpert.h \
+    lib/wg.h \
     userInterface/lib/GuiController.h \
     userInterface/lib/HomePage.h \
     userInterface/lib/SetUpRooms.h \
@@ -49,7 +50,6 @@ HEADERS += \
     userInterface/lib/UserList.h \
     userInterface/lib/RoomListItem.h \
     Database/lib/communitydata.h \
-    lib/cleaningexpert.h
 
 RESOURCES = \
     media/application.qrc \
@@ -57,17 +57,3 @@ RESOURCES = \
 
 DISTFILES += \
     media/signUp.png
-
-test {
-    message(Test build)
-
-    QT += testlib
-    TARGET = myCommunity-test
-    SOURCES -= main.cpp
-
-    HEADERS += \
-        test/lib/TestRoom.h \
-
-    SOURCES += \
-        test/main.cpp \
-        test/src/TestRoom.cpp \
