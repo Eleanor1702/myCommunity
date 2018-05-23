@@ -50,6 +50,7 @@ HEADERS += \
     userInterface/lib/UserList.h \
     userInterface/lib/RoomListItem.h \
     Database/lib/communitydata.h \
+    lib/cleaningexpert.h
 
 RESOURCES = \
     media/application.qrc \
