@@ -29,10 +29,8 @@ CommunityData::~CommunityData() {
 CommunityData::CommunityData() {
     if(!connect())
         cout <<"Fehler bei der Verbindung!" << endl;
-    //createRoomTable();
-    //createResidentTable();
-    //addResident("Noor", 1234);
-    //addRoom("Bad1", "Bad");
+   // createRoomTable();
+   // createResidentTable();
 
 }
 

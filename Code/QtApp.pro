@@ -71,4 +71,4 @@ test {
     SOURCES += \
         test/main.cpp \
         test/src/TestRoom.cpp \
-
+}
