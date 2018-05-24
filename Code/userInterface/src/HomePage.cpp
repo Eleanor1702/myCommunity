@@ -14,7 +14,7 @@ HomePage::HomePage(QWidget *parent) : QWidget(parent) {
 
   this->buttonColumn = new QBoxLayout(QBoxLayout::TopToBottom);
   this->settings = new QPushButton("WG \n Einstellungen");
-  this->calendar = new QPushButton ("Kalender");
+  this->calendarButton = new QPushButton ("Kalender");
   this->shoppingList = new QPushButton("Einkaufsliste");
   this->cleanPlan = new QPushButton("Putzplan");
   this->saveFormat = new QPushButton("Export");
@@ -50,7 +50,7 @@ void HomePage::setMainLayoutDesign(){
                                  "margin-right: 20px;");
 
   this->buttonColumn->addWidget(settings, 4, Qt::AlignTop);
-  this->buttonColumn->addWidget(calendar, 4, Qt::AlignCenter);
+  this->buttonColumn->addWidget(calendarButton, 4, Qt::AlignCenter);
   this->buttonColumn->addWidget(shoppingList, 4, Qt::AlignCenter);
   this->buttonColumn->addWidget(cleanPlan, 4, Qt::AlignCenter);
   this->buttonColumn->addWidget(saveFormat, 4, Qt::AlignCenter);
@@ -61,8 +61,8 @@ void HomePage::setMainLayoutDesign(){
                                 "border-radius: 5px; background-color: #3399ff; "
                                 "color: white; font-weight: bold;}");
 
-  this->calendar->setFixedSize(90, 90);
-  this->calendar->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
+  this->calendarButton->setFixedSize(90, 90);
+  this->calendarButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                                 "border-radius: 5px; background-color: #3399ff; "
                                 "color: white; font-weight: bold;}");
 

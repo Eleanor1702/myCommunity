@@ -11,6 +11,8 @@ GuiController::GuiController(QWidget *parent) : QWidget(parent) {
   this->rooms = new SetUpRooms();
   this->users = new SetUpUsers();
 
+  this->events = new EventPage();
+
   con = this->con->getInstance();
 
   //Events
@@ -30,6 +32,7 @@ GuiController::GuiController(QWidget *parent) : QWidget(parent) {
   QObject::connect(home->userSettingButton,SIGNAL(clicked()),this,SLOT(userSettingsButtonClicked()));
   QObject::connect(home->roomSettingButton,SIGNAL(clicked()),this,SLOT(roomSettingsButtonClicked()));
   QObject::connect(home->logOut,SIGNAL(clicked()),this,SLOT(signOutButtonClicked()));
+  QObject::connect(home->calendarButton,SIGNAL(clicked()),this,SLOT(calendarButtonClicked()));
 
   //SetUpRoomsEvents
   QObject::connect(rooms->addButton,SIGNAL(clicked()),this,SLOT(addRoomButtonClicked()));
@@ -38,6 +41,9 @@ GuiController::GuiController(QWidget *parent) : QWidget(parent) {
   //SetUpUsers Events
   //QObject::connect(users->addButton,SIGNAL(clicked()),this,SLOT(addUserButtonClicked()));
   QObject::connect(users->saveButton,SIGNAL(clicked()),this,SLOT(saveUserButtonClicked()));
+
+  //EventPage Events
+  QObject::connect(events->saveEventButton,SIGNAL(clicked()),this,SLOT(saveEventButtonClicked()));
 
   //show main page
   this->main->show();
@@ -127,6 +133,11 @@ void GuiController::userSettingsButtonClicked() {
   home->hide();
 }
 
+void GuiController::calendarButtonClicked() {
+    events->show();
+    home->hide();
+}
+
 void GuiController::roomSettingsButtonClicked() {
   rooms->show();
   home->hide();
@@ -198,9 +209,17 @@ void GuiController::saveRoomButtonClicked() {
   this->rooms->hide();
 }
 
+
+//EventPage Events
+void GuiController::saveEventButtonClicked() {
+    this->home->show();
+    this->events->hide();
+}
+
 GuiController* GuiController::getInstance(QWidget *parent){
     if(instance == NULL){
         instance = new GuiController(parent);
     }
     return instance;
 }
+

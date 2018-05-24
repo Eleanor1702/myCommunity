@@ -38,6 +38,7 @@ SOURCES += \
     userInterface/src/UserList.cpp \
     userInterface/src/RoomListItem.cpp \
     Database/src/communitydata.cpp \
+    userInterface/src/eventpage.cpp
 
 HEADERS += \
     lib/controller.h \
@@ -58,6 +59,7 @@ HEADERS += \
     userInterface/lib/UserList.h \
     userInterface/lib/RoomListItem.h \
     Database/lib/communitydata.h \
+    userInterface/lib/eventpage.h
 
 RESOURCES = \
     media/application.qrc \
