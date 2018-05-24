@@ -34,6 +34,9 @@ private:
   QPushButton *saveFormat;
   QPushButton *logOut;
 
+  QBoxLayout *calendarButtonLayout;
+  QPushButton *calendarButton;
+
   void setMainScreenDesign();
   void setMainLayoutDesign();
 
