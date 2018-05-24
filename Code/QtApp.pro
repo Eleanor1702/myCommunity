@@ -7,9 +7,17 @@ QT += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-LIBS += -lGL
-LIBS += -L/usr/lib -L/usr/lib -lmysqlcppconn
-INCLUDEPATH += -I/usr/include -I/usr/local/include -I/usr/local/include/cppconn
+unix:!macx {
+    LIBS += -lGL
+    LIBS += -L/usr/lib -L/usr/lib -lmysqlcppconn
+    INCLUDEPATH += -I/usr/include -I/usr/local/include -I/usr/local/include/cppconn
+}
+
+macx: {
+    LIBS += -framework OpenGL -L/usr/local/opt/mysql-connector-c++/lib -lmysqlcppconn
+    INCLUDEPATH += /usr/local/opt/mysql-connector-c++/lib
+    INCLUDEPATH += /usr/local/opt/mysql-connector-c++/include/cppconn /usr/local/opt/boost/include /usr/local/opt/mysql-connector-c++/include
+}
 
 SOURCES += \
     main.cpp \
@@ -53,10 +61,10 @@ HEADERS += \
 
 RESOURCES = \
     media/application.qrc \
-    media/avatar.qrc
+    media/avatar.qrc \
 
 DISTFILES += \
-    media/signUp.png
+    media/signUp.png \
 
 test {
     message(Test bulid)
@@ -67,8 +75,14 @@ test {
 
     HEADERS += \
         test/lib/TestRoom.h \
+        test/lib/TestResident.h \
+        test/lib/TestRoomExpert.h \
+
 
     SOURCES += \
-        test/main.cpp
+        test/main.cpp \
         test/src/TestRoom.cpp \
+        test/src/TestResident.cpp \
+        test/src/TestRoomExpert.cpp \
+
 }

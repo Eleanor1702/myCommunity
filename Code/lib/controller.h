@@ -16,6 +16,8 @@ private:
 
         static Controller* instance;                    //Singleton
 
+        string user;                                    //aktueller User, der angemeldet ist
+
 protected:
         Controller();
 public:
