@@ -16,6 +16,9 @@ public:
 
     void createRoom(string name, string typ);
     void deleteRoom(string name);
+    int GetSizeAndUpdate();
+    string RoomGetterName(int i);
+    string RoomGetterArt(int i);
 
     static RoomExpert* getInstance();
 

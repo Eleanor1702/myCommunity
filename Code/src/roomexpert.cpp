@@ -25,6 +25,17 @@ void RoomExpert::deleteRoom(string name){
             }
         }   
 }
+int RoomExpert::GetSizeAndUpdate() {
+    Roomlist = data->getAllRooms(); //nochmal zur Sicherheit akuellen Daten aus DB holen
+    return Roomlist.size();
+}
+
+string RoomExpert::RoomGetterName(int i) {
+    return Roomlist[i].getName();
+}
+string RoomExpert::RoomGetterArt(int i) {
+    return Roomlist[i].getArt();
+}
 
 RoomExpert* RoomExpert::getInstance(){
     if(instance == NULL){

@@ -29,6 +29,9 @@ public:
         bool searchResident(string username, int password);
         bool searchNameResident(string username);       // To get the same Name in Login
 
+        int GetSizeAndUpdate();
+        string RoomGetterName(int i);
+        string RoomGetterArt(int i);
 
         static Controller* getInstance();
 };
