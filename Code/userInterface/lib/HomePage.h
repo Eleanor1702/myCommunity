@@ -29,6 +29,7 @@ private:
 
   QBoxLayout *buttonColumn;
   QPushButton *settings;
+  QPushButton *calendar;
   QPushButton *shoppingList;
   QPushButton *cleanPlan;
   QPushButton *saveFormat;
