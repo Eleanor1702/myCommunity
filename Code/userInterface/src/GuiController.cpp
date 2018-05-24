@@ -141,8 +141,16 @@ void GuiController::calendarButtonClicked() {
 void GuiController::roomSettingsButtonClicked() {
   rooms->show();
   home->hide();
-  //Daten aus dem Room vector in Roomexpert über Controller holen & anzeigen
-
+  //Daten aus dem Room vector in Roomexpert über Controller holen & anzeigen ->function
+  int size = con->GetSizeAndUpdate();
+  for(int i = 0; i < size; i++) {
+     QString roomName = QString::fromStdString(con->RoomGetterName(i));
+     QString roomType= QString::fromStdString(con->RoomGetterArt(i));
+     this->rooms->newRoom = new RoomListItem(roomName, roomType);
+     this->rooms->RoomListItemList.push_back(this->rooms->newRoom);
+     this->rooms->scrollLayout->addWidget(this->rooms->newRoom);
+     connect(this->rooms->newRoom, SIGNAL(deleteButtonClickedSignal(QString)), this, SLOT(deleteRoomButtonClicked(QString)));
+  }
 }
 
 void GuiController::addRoomButtonClicked(){
@@ -157,11 +165,11 @@ void GuiController::addRoomButtonClicked(){
   this->rooms->newRoom = new RoomListItem(roomName, roomType);
   this->rooms->RoomListItemList.push_back(this->rooms->newRoom);
 
-  //here should contect of vector be saved in Databank
-    con->addRoom(roomType.toStdString(), roomName.toStdString());
-
   //if delete Room methode was called
   connect(this->rooms->newRoom, SIGNAL(deleteButtonClickedSignal(QString)), this, SLOT(deleteRoomButtonClicked(QString)));
+
+  //here should contect of vector be saved in Databank
+    con->addRoom(roomType.toStdString(), roomName.toStdString());
 
   //Viewing in Gui
   this->rooms->scrollLayout->addWidget(this->rooms->newRoom);
@@ -176,6 +184,7 @@ void GuiController::deleteRoomButtonClicked(QString room) {
 void GuiController::saveUserButtonClicked(){
     this->home->show();
     this->users->hide();
+
 }
 /*
 void GuiController::addUserButtonClicked() {
@@ -207,6 +216,11 @@ void GuiController::deleteUserButtonClicked(QString name) {
 void GuiController::saveRoomButtonClicked() {
   this->home->show();
   this->rooms->hide();
+
+  this->rooms->RoomListItemList.clear();
+  //Remove all rooms from GUI by iterating over RoomListItemList (and using removeWidget?)
+
+
 }
 
 

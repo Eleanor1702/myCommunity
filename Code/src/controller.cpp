@@ -45,4 +45,13 @@ Controller* Controller::getInstance(){
     }
     return instance;
 }
+int Controller::GetSizeAndUpdate() {
+    return roExpert->GetSizeAndUpdate();
+}
 
+string Controller::RoomGetterName(int i) {
+    return roExpert->RoomGetterName(i);
+}
+string Controller::RoomGetterArt(int i) {
+    return roExpert->RoomGetterArt(i);
+}
