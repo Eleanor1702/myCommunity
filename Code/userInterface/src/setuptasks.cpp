@@ -34,7 +34,7 @@ SetUpTasks::SetUpTasks(QWidget *parent) : QWidget(parent){
 void SetUpTasks::setMainWindowDesign() {
     this->setFixedSize(800, 600);
     this->setStyleSheet("background-color: white;");
-    this->setWindowTitle(QString::fromUtf8("Räume Verwalten"));
+    this->setWindowTitle(QString::fromUtf8("Aufgaben Verwalten"));
 
     mainLayout->addLayout(mainLabelRow);
     mainLayout->addLayout(scrollAreaRow);
