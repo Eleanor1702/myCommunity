@@ -11,6 +11,7 @@
 #include "userInterface/lib/SetUpRooms.h"
 #include "userInterface/lib/SetUpUsers.h"
 #include "userInterface/lib/eventpage.h"
+#include "userInterface/lib/setuptasks.h"
 
 #include "lib/controller.h"
 
@@ -32,6 +33,8 @@ private:
 
   EventPage *events;
 
+  SetUpTasks *task;
+
   Controller* con;
 
   static GuiController* instance;   //Singleton
@@ -46,6 +49,7 @@ public:
 public slots:
   //class need to be QWidget to be able to call the actions
   void calendarButtonClicked();
+  void cleanPlanButtonClicked();
 
   void signUpButtonClicked();
   void signInButtonClicked();
@@ -66,6 +70,11 @@ public slots:
   void saveUserButtonClicked();
 
   void saveEventButtonClicked();
+
+
+  void saveTaskButtonClicked();
+  //void deleteTaskButtonClicked();
+  void addTaskButtonClicked();
 
 };
 #endif // GUICONTROLLER_H
