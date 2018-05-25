@@ -10,9 +10,6 @@
 #include "userInterface/lib/HomePage.h"
 #include "userInterface/lib/SetUpRooms.h"
 #include "userInterface/lib/SetUpUsers.h"
-#include "userInterface/lib/eventpage.h"
-#include "userInterface/lib/setuptasks.h"
-#include "userInterface/lib/cleaningpage.h"
 
 #include "lib/controller.h"
 
@@ -32,62 +29,35 @@ private:
   SetUpRooms *rooms;
   SetUpUsers *users;
 
-  EventPage *events;
-
-  CleaningPage *clean;
-  SetUpTasks *task;
-
   Controller* con;
 
   static GuiController* instance;   //Singleton
 
-public:
- static GuiController* getInstance(QWidget *parent);     //Singleton
- explicit GuiController(QWidget *parent = NULL);
-
 public slots:
   //class need to be QWidget to be able to call the actions
+  void signUpButtonClicked();
+  void signInButtonClicked();
 
-  //StartPage Slots
-  void callSignUp();
-  void callSignIn();
+  void saveButtonClicked();
+  void logInButtonClicked();
+  void backButtonClicked();
 
-  //SignUp Slots
-  void saveClicked();
+  void userSettingsButtonClicked();
+  void roomSettingsButtonClicked();
+  void signOutButtonClicked();
 
-  //SignIn Slots
-  void logInClicked();
-
-  //SignUp & SignIn Slots
-  void callStartPage();
-
-  //HomePage Slots
-  void roomSettingClicked();
-  void userSettingClicked();
-  void calendarClicked();
-  void cleanPlanButtonClicked();
-  void logOutClicked();
-
-  //SetUpRooms Slots
   void addRoomButtonClicked();
-  void roomDeleted(QString room);
+  void deleteRoomButtonClicked(QString room);
   void saveRoomButtonClicked();
 
-  //SetUpUsers Slots:
-  //void deleteUserButtonClicked(QString name);
-  //void saveUserButtonClicked();
+  void deleteUserButtonClicked(QString name);
+  void saveUserButtonClicked();
 
-  //Events Slots
-  void saveEventButtonClicked();
+public:
+  static GuiController* getInstance(QWidget *parent);     //Singleton
+  explicit GuiController(QWidget *parent = NULL);
 
-  //Putzplan
-  void setupTaskButtonClicked();
-  //void createPlanButtonClicked();
-  void backToHomeButtonClicked();
-
-  void saveTaskButtonClicked();
-  //void deleteTaskButtonClicked();
-  void addTaskButtonClicked();
-
+  void dataBankRoomUpdate(std::vector<std::string> nameVector, std::vector<std::string> artVector, int size);
+  void clearScrollLayout();
 };
 #endif // GUICONTROLLER_H

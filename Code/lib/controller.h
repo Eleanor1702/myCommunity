@@ -4,7 +4,6 @@
 #include "residentexpert.h"
 #include "roomexpert.h"
 #include "eventexpert.h"
-#include "taskexpert.h"
 
 //Connector between GUI and Logic
 class Controller{
@@ -14,7 +13,6 @@ private:
         ResidentExpert* rsExpert;
         RoomExpert*  roExpert;
         EventExpert* evExpert;
-        TaskExpert* taExpert;
 
         static Controller* instance;                    //Singleton
 
@@ -31,9 +29,9 @@ public:
         bool searchResident(string username, int password);
         bool searchNameResident(string username);       // To get the same Name in Login
 
-        int GetSizeAndUpdate();
-        string RoomGetterName(int i);
-        string RoomGetterArt(int i);
+        std::vector<std::string>getRoomNames();
+        std::vector<std::string>getRoomArts();
+        int getSize();
 
         static Controller* getInstance();
 };

@@ -40,6 +40,18 @@ bool Controller::searchNameResident(string username){
     return rsExpert->verifyName(username);
 }
 
+std::vector<std::string> Controller::getRoomNames() {
+  return roExpert->roomNameGetter();
+}
+
+std::vector<std::string> Controller::getRoomArts() {
+  return roExpert->roomArtGetter();
+}
+
+int Controller::getSize() {
+  return roExpert->Roomlist.size();
+}
+
 Controller* Controller::getInstance(){
     if(instance == NULL){
         instance = new Controller();
