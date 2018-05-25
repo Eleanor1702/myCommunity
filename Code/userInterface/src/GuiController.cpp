@@ -243,14 +243,18 @@ void GuiController::setupTaskButtonClicked(){
 
 void GuiController::backToHomeButtonClicked(){
     this->home->show();
-    this->task->hide();
+    this->clean->hide();
 }
 
 //SetUpTask Events
 void GuiController::addTaskButtonClicked(){
     QString taskFrequency = task->chooseTaskFrequencyCombo->currentText();
-    QString taskName = task->giveNameEdit->text();
     QString taskRoom = task->chooseTaskRoomCombo->currentText();
+    //proceed only with a task name
+    QString taskName = task->giveNameEdit->text();
+    if(taskName.size() == 0 || taskName[0] == ' '){
+        return;
+    }
 
     this->task->newTask = new TaskListItem(taskName, taskRoom, taskFrequency);
     this->task->TaskListItemList.push_back(this->task->newTask);
