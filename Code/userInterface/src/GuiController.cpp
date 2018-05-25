@@ -13,6 +13,8 @@ GuiController::GuiController(QWidget *parent) : QWidget(parent) {
 
   this->events = new EventPage();
 
+  this->task = new SetUpTasks();
+
   con = this->con->getInstance();
 
   //Events
@@ -34,6 +36,8 @@ GuiController::GuiController(QWidget *parent) : QWidget(parent) {
   QObject::connect(home->logOut,SIGNAL(clicked()),this,SLOT(signOutButtonClicked()));
   QObject::connect(home->calendarButton,SIGNAL(clicked()),this,SLOT(calendarButtonClicked()));
 
+  QObject::connect(home->cleanPlan,SIGNAL(clicked()),this,SLOT(cleanPlanButtonClicked()));
+
   //SetUpRoomsEvents
   QObject::connect(rooms->addButton,SIGNAL(clicked()),this,SLOT(addRoomButtonClicked()));
   QObject::connect(rooms->saveButton,SIGNAL(clicked()),this,SLOT(saveRoomButtonClicked()));
@@ -44,6 +48,11 @@ GuiController::GuiController(QWidget *parent) : QWidget(parent) {
 
   //EventPage Events
   QObject::connect(events->saveEventButton,SIGNAL(clicked()),this,SLOT(saveEventButtonClicked()));
+
+  //SetUpTask Events
+
+  QObject::connect(task->addButton,SIGNAL(clicked()),this,SLOT(addTaskButtonClicked()));
+  QObject::connect(task->saveButton,SIGNAL(clicked()),this,SLOT(saveTaskButtonClicked()));
 
   //show main page
   this->main->show();
@@ -138,6 +147,11 @@ void GuiController::calendarButtonClicked() {
     home->hide();
 }
 
+void GuiController::cleanPlanButtonClicked(){
+    task->show();
+    home->hide();
+}
+
 void GuiController::roomSettingsButtonClicked() {
   rooms->show();
   home->hide();
@@ -229,6 +243,41 @@ void GuiController::saveEventButtonClicked() {
     this->home->show();
     this->events->hide();
 }
+
+
+//SetUpTask Events
+void GuiController::addTaskButtonClicked(){
+    QString taskFrequency = task->chooseTaskFrequencyCombo->currentText();
+    QString taskName = task->giveNameEdit->text();
+    QString taskRoom = task->chooseTaskRoomCombo->currentText();
+
+    this->task->newTask = new TaskListItem(taskName, taskRoom, taskFrequency);
+    this->task->TaskListItemList.push_back(this->task->newTask);
+
+    //Datenbank
+    //con->addTask(taskFrequency.toStdString(), taskRoom.toStdString(), taskName.toStdString());
+
+    //deleteButton
+    connect(this->task->newTask, SIGNAL(deleteButtonClickedSignal(QString)),this,SLOT(deleteTaskButtonClicked(QString)));
+
+    //Viewing in Gui
+    this->task->scrollLayout->addWidget(this->task->newTask);
+    this->task->giveNameEdit->clear();
+}
+
+
+void GuiController::saveTaskButtonClicked(){
+    this->home->show();
+    this->task->hide();
+}
+
+
+/* //delete from Database
+void GuiController::deleteTaskButtonClicked(){
+    con->deleteTask(task->toStdString());
+}
+*/
+
 
 GuiController* GuiController::getInstance(QWidget *parent){
     if(instance == NULL){
