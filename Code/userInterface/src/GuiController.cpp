@@ -159,16 +159,8 @@ void GuiController::cleanPlanButtonClicked(){
 void GuiController::roomSettingsButtonClicked() {
   rooms->show();
   home->hide();
-  //Daten aus dem Room vector in Roomexpert über Controller holen & anzeigen ->function
-  int size = con->GetSizeAndUpdate();
-  for(int i = 0; i < size; i++) {
-     QString roomName = QString::fromStdString(con->RoomGetterName(i));
-     QString roomType= QString::fromStdString(con->RoomGetterArt(i));
-     this->rooms->newRoom = new RoomListItem(roomName, roomType);
-     this->rooms->RoomListItemList.push_back(this->rooms->newRoom);
-     this->rooms->scrollLayout->addWidget(this->rooms->newRoom);
-     connect(this->rooms->newRoom, SIGNAL(deleteButtonClickedSignal(QString)), this, SLOT(deleteRoomButtonClicked(QString)));
-  }
+  //Daten aus dem Room vector in Roomexpert über Controller holen & anzeigen
+
 }
 
 void GuiController::addRoomButtonClicked(){
@@ -183,11 +175,11 @@ void GuiController::addRoomButtonClicked(){
   this->rooms->newRoom = new RoomListItem(roomName, roomType);
   this->rooms->RoomListItemList.push_back(this->rooms->newRoom);
 
-  //if delete Room methode was called
-  connect(this->rooms->newRoom, SIGNAL(deleteButtonClickedSignal(QString)), this, SLOT(deleteRoomButtonClicked(QString)));
-
   //here should contect of vector be saved in Databank
     con->addRoom(roomType.toStdString(), roomName.toStdString());
+
+  //if delete Room methode was called
+  connect(this->rooms->newRoom, SIGNAL(deleteButtonClickedSignal(QString)), this, SLOT(deleteRoomButtonClicked(QString)));
 
   //Viewing in Gui
   this->rooms->scrollLayout->addWidget(this->rooms->newRoom);
@@ -202,7 +194,6 @@ void GuiController::deleteRoomButtonClicked(QString room) {
 void GuiController::saveUserButtonClicked(){
     this->home->show();
     this->users->hide();
-
 }
 /*
 void GuiController::addUserButtonClicked() {
@@ -234,11 +225,6 @@ void GuiController::deleteUserButtonClicked(QString name) {
 void GuiController::saveRoomButtonClicked() {
   this->home->show();
   this->rooms->hide();
-
-  this->rooms->RoomListItemList.clear();
-  //Remove all rooms from GUI by iterating over RoomListItemList (and using removeWidget?)
-
-
 }
 
 
@@ -257,18 +243,14 @@ void GuiController::setupTaskButtonClicked(){
 
 void GuiController::backToHomeButtonClicked(){
     this->home->show();
-    this->clean->hide();
+    this->task->hide();
 }
 
 //SetUpTask Events
 void GuiController::addTaskButtonClicked(){
     QString taskFrequency = task->chooseTaskFrequencyCombo->currentText();
-    QString taskRoom = task->chooseTaskRoomCombo->currentText();
-    //proceed only with a task name
     QString taskName = task->giveNameEdit->text();
-    if(taskName.size() == 0 || taskName[0] == ' '){
-        return;
-    }
+    QString taskRoom = task->chooseTaskRoomCombo->currentText();
 
     this->task->newTask = new TaskListItem(taskName, taskRoom, taskFrequency);
     this->task->TaskListItemList.push_back(this->task->newTask);
@@ -304,4 +286,3 @@ GuiController* GuiController::getInstance(QWidget *parent){
     }
     return instance;
 }
-
