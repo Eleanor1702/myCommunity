@@ -9,7 +9,7 @@ RoomListItem::RoomListItem(QString roomName, QString roomType, QWidget *parent) 
   setItemStyle();
 
   //events
-  QObject::connect(deleteButton,SIGNAL(clicked()),this,SLOT(deleteButtonClicked()));
+  QObject::connect(deleteButton,SIGNAL(clicked()),this,SLOT(deleteRoom()));
 }
 
 void RoomListItem::setItemStyle() {
@@ -33,8 +33,8 @@ void RoomListItem::setItemStyle() {
                                     " color: white; font-weight: bold;}");
 }
 
-void RoomListItem::deleteButtonClicked() {
-  emit deleteButtonClickedSignal(name);
+void RoomListItem::deleteRoom() {
+  emit deleteButtonSignal(this->name);
   this->close();
 }
 

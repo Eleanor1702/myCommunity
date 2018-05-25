@@ -21,7 +21,6 @@ SetUpUsers::SetUpUsers(QWidget *parent) : QWidget(parent){
 
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
-
 }
 
 void SetUpUsers::setMainWindowDesign() {

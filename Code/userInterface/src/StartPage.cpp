@@ -15,7 +15,6 @@ StartPage::StartPage(QWidget *parent) : QWidget(parent) {
 
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
-
 }
 
 void StartPage::setMainWindowDesign() {

@@ -84,3 +84,32 @@ void SignUp::setMainLayoutDesign() {
                               "color: white; font-weight: bold;}");
 
 }
+
+void SignUp::clearContent() {
+    this->giveNameEdit->clear();
+    this->givePasswordEdit->clear();
+}
+
+std::string SignUp::getUserName() {
+    QString name = this->giveNameEdit->text();
+
+    if(name.size() == 0 || name[0] == ' ') {
+        return "Error";
+    }
+
+    std::string strName = name.toUtf8().constData();
+
+    return strName;
+}
+
+int SignUp::getUserPassword() {
+    QString password = this->givePasswordEdit->text();
+
+    if(password.size() < 4 || password[0] == ' ') {
+        return 1;
+    }
+
+    int intPassword = password.toInt();
+
+    return intPassword;
+}

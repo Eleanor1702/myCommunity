@@ -22,10 +22,10 @@ private:
   void setItemStyle();
 
 private slots:
-  void deleteButtonClicked();
+  void deleteRoom();
 
 signals:
-  void deleteButtonClickedSignal(QString name);
+  void deleteButtonSignal(QString name);
 
 public:
   //QFrame ist ein QWidget
