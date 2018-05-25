@@ -36,21 +36,32 @@ CommunityData::CommunityData() {
     //stmt->execute("CREATE SCHEMA MyCommunity");
     //createRoomTable();
     //createResidentTable();
+    //createCalendarTable();
 }
 
+//Table for all Rooms
 void CommunityData::createRoomTable() {
     Statement* stmt;
     stmt = con->createStatement();
     stmt->execute("CREATE TABLE Rooms(Name VARCHAR(50) PRIMARY KEY, Type VARCHAR(20))");
     delete stmt;
 }
+//Table for all Residents
 void CommunityData::createResidentTable() {
     Statement* stmt;
     stmt = con->createStatement();
     stmt->execute("CREATE TABLE Residents(Firstname VARCHAR(50) PRIMARY KEY, Password INT)");
     delete stmt;
 }
-
+//Table for Calendar
+void CommunityData::createCalendarTable() {
+    Statement* stmt;
+    stmt = con->createStatement();
+    stmt->execute("CREATE TABLE Calendar (Date DATE, Time TIME, Event VARCHAR(50), Resident VARCHAR(50))");
+    delete stmt;
+}
+//get all events from calendar of a user-> use views
+//insert a new resident identified by his name and his password
 void CommunityData::addResident(string name, int password) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("INSERT INTO Residents(Firstname, Password) VALUES(?, ?)");
@@ -60,6 +71,7 @@ void CommunityData::addResident(string name, int password) {
     delete stmt;
 }
 
+//add a new room identifies by a room type and a name
 void CommunityData::addRoom(string name, string type) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("INSERT INTO Rooms(Name, Type) VALUES(?, ?)");
@@ -69,6 +81,11 @@ void CommunityData::addRoom(string name, string type) {
     delete stmt;
 }
 
+//add a new calendar event for a user
+
+
+
+//set a new password for a resident
 void CommunityData::updatePassword(string username, int newPassword) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("UPDATE Residents SET Password = ? WHERE Firstname = ?");
@@ -78,7 +95,12 @@ void CommunityData::updatePassword(string username, int newPassword) {
     delete stmt;
 }
 
-//D.R.Y anwenden?
+//change time or description of an event
+
+
+
+//use D.R.Y?
+//delete a resident
 void CommunityData::deleteResident(string name) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("DELETE FROM Residents WHERE Firstname = ?");
@@ -87,6 +109,7 @@ void CommunityData::deleteResident(string name) {
     delete stmt;
 }
 
+//delete a room
 void CommunityData::deleteRoom(string name) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("DELETE FROM Rooms WHERE Name = ?");
@@ -95,6 +118,11 @@ void CommunityData::deleteRoom(string name) {
     delete stmt;
 }
 
+//delete a calendar event
+
+
+
+//get all residents from database
 vector<Resident> CommunityData::getAllResidents() {
     vector<Resident> list;
     PreparedStatement* stmt = con->prepareStatement("SELECT * FROM Residents");
@@ -113,6 +141,7 @@ vector<Resident> CommunityData::getAllResidents() {
     return list;
 }
 
+//get all rooms from database
 vector<Room> CommunityData::getAllRooms() {
     vector<Room> list;
     PreparedStatement* stmt = con->prepareStatement("SELECT * FROM Rooms");
@@ -129,6 +158,11 @@ vector<Room> CommunityData::getAllRooms() {
     return list;
 }
 
+//get all events from calendar of a user-> use views
+
+
+
+//verifying the log in data by username and password
  bool CommunityData::verifyLogInData(string username, int password) {
      PreparedStatement* stmt = con->prepareStatement("SELECT * FROM Residents WHERE Firstname = ? AND Password = ?");
      ResultSet* resultSet = NULL;
@@ -148,6 +182,7 @@ vector<Room> CommunityData::getAllRooms() {
      }
  }
 
+ //verify if resident with this name exists
  bool CommunityData::verifyName(string username) {
      PreparedStatement* stmt = con->prepareStatement("SELECT * FROM Residents WHERE Firstname = ?");
      ResultSet* resultSet = NULL;
@@ -165,6 +200,7 @@ vector<Room> CommunityData::getAllRooms() {
      }
  }
 
+ //return an instance of community data and assure that only one instance exists
 CommunityData* CommunityData::getInstance() {
     if(instance == NULL) {
         instance = new CommunityData();

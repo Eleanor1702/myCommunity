@@ -30,6 +30,7 @@ public:
     bool connect();
     void createRoomTable();
     void createResidentTable();
+    void createCalendarTable();
     void addResident(string, int);
     void addRoom(string, string);
     void updatePassword(string, int);
