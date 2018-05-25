@@ -16,7 +16,7 @@ public:
 
     void createTask(string name, tm timedate, string user, string room, int frequency);             // time und date als t_time
     void deleteTask(string name, tm timedate, string user);
-    void editTask(string name, tm timedate);       //nur die zeit darf verändert werden
+    void editTask(string name, tm timedate, int frequency);       //nur die zeit darf verändert werden
 
     static TaskExpert* getInstance();
 };

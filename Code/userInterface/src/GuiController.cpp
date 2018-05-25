@@ -145,13 +145,6 @@ void GuiController::logOutClicked() {
     home->hide();
 }
 
-void GuiController::roomSettingsButtonClicked() {
-  rooms->show();
-  home->hide();
-  //Daten aus dem Room vector in Roomexpert über Controller holen & anzeigen
-
-}
-
 //SetUpRooms Events
 void GuiController::addRoomButtonClicked(){
     if(rooms->getRoomNameInput() == "Error") {

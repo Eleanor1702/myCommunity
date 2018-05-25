@@ -17,7 +17,7 @@ void TaskExpert::createTask(string name,tm timedate, string user, string room, i
     Tasklist.push_back(ta);
 }
 
-void TaskExpert::deleteTask(string Name, tm timedate, string user){
+void TaskExpert::deleteTask(string name, tm timedate, string user){
     for(vector<Task>::iterator it = Tasklist.begin(); it != Tasklist.end(); ++it) {
         if((it)->getName() == name && (it)->getUser() == user
                 && (it)->getDay() == timedate.tm_mday && (it)->getMonth() == timedate.tm_mon && (it)->getYear() == timedate.tm_year

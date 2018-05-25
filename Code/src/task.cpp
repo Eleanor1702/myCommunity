@@ -50,7 +50,7 @@ void Task::setFrequency(int newFrequency){
 
 
 string Task::getName(){
-    return Name;
+    return name;
 }
 
 tm Task::getTime(){
