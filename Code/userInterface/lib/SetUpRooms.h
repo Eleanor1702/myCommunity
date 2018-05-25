@@ -53,8 +53,9 @@ public:
     explicit SetUpRooms(QWidget *parent = NULL);
     std::vector<RoomListItem*> RoomListItemList;
 
-public slots:
-
+    std::string getRoomTypeInput();
+    std::string getRoomNameInput();
+    void updateContent();
 };
 
 #endif // SETUPROOMS_H

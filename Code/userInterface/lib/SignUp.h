@@ -51,6 +51,10 @@ public:
     //explicit SignUp(QWidget *parent = NULL);
     explicit SignUp(QWidget *parent = NULL);
 
+   void clearContent();
+   std::string getUserName();
+   int getUserPassword();
+
 };
 
 #endif // SIGNUP_H

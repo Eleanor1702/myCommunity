@@ -84,3 +84,33 @@ void SetUpRooms::setMainLayoutDesign() {
                               "color: white; font-weight: bold;}");
 
 }
+
+std::string SetUpRooms::getRoomTypeInput() {
+    return this->chooseRoomTypeCombo->currentText().toStdString();
+}
+
+std::string SetUpRooms::getRoomNameInput() {
+    //proceed only with a room name
+    if(this->giveNameEdit->text().size() == 0 || this->giveNameEdit->text()[0] == ' '){
+        return "Error";
+    }
+
+    return this->giveNameEdit->text().toStdString();
+}
+
+void SetUpRooms::updateContent() {
+    //This section can be exchanged with data recall from databank
+    //-----------------------------------------------------------
+    QString roomType = this->chooseRoomTypeCombo->currentText();
+
+    QString roomName = this->giveNameEdit->text();
+    //-----------------------------------------------------------
+    newRoom = new RoomListItem(roomType, roomName);
+    this->RoomListItemList.push_back(this->newRoom);
+
+    for(int i = 0; i < this->RoomListItemList.size(); i++) {
+        this->scrollLayout->addWidget(this->RoomListItemList[i]);
+    }
+
+    this->giveNameEdit->clear();
+}
