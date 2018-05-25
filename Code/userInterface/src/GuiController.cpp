@@ -13,6 +13,7 @@ GuiController::GuiController(QWidget *parent) : QWidget(parent) {
 
   this->events = new EventPage();
 
+  this->clean = new CleaningPage();
   this->task = new SetUpTasks();
 
   con = this->con->getInstance();
@@ -49,8 +50,11 @@ GuiController::GuiController(QWidget *parent) : QWidget(parent) {
   //EventPage Events
   QObject::connect(events->saveEventButton,SIGNAL(clicked()),this,SLOT(saveEventButtonClicked()));
 
-  //SetUpTask Events
+  //CleaningPage Events
+  QObject::connect(clean->setuptaskButton, SIGNAL(clicked()),this,SLOT(setupTaskButtonClicked()));
+  QObject::connect(clean->backButton,SIGNAL(clicked()),this,SLOT(backToHomeButtonClicked()));
 
+  //SetUpTask Events
   QObject::connect(task->addButton,SIGNAL(clicked()),this,SLOT(addTaskButtonClicked()));
   QObject::connect(task->saveButton,SIGNAL(clicked()),this,SLOT(saveTaskButtonClicked()));
 
@@ -148,7 +152,7 @@ void GuiController::calendarButtonClicked() {
 }
 
 void GuiController::cleanPlanButtonClicked(){
-    task->show();
+    clean->show();
     home->hide();
 }
 
@@ -230,6 +234,17 @@ void GuiController::saveEventButtonClicked() {
     this->events->hide();
 }
 
+//CleaningPage Events
+
+void GuiController::setupTaskButtonClicked(){
+    this->task->show();
+    this->clean->hide();
+}
+
+void GuiController::backToHomeButtonClicked(){
+    this->home->show();
+    this->task->hide();
+}
 
 //SetUpTask Events
 void GuiController::addTaskButtonClicked(){
@@ -253,7 +268,7 @@ void GuiController::addTaskButtonClicked(){
 
 
 void GuiController::saveTaskButtonClicked(){
-    this->home->show();
+    this->clean->show();
     this->task->hide();
 }
 

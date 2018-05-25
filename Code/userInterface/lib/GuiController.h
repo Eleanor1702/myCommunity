@@ -12,6 +12,7 @@
 #include "userInterface/lib/SetUpUsers.h"
 #include "userInterface/lib/eventpage.h"
 #include "userInterface/lib/setuptasks.h"
+#include "userInterface/lib/cleaningpage.h"
 
 #include "lib/controller.h"
 
@@ -33,6 +34,7 @@ private:
 
   EventPage *events;
 
+  CleaningPage *clean;
   SetUpTasks *task;
 
   Controller* con;
@@ -71,6 +73,10 @@ public slots:
 
   void saveEventButtonClicked();
 
+  //Putzplan
+  void setupTaskButtonClicked();
+  //void createPlanButtonClicked();
+  void backToHomeButtonClicked();
 
   void saveTaskButtonClicked();
   //void deleteTaskButtonClicked();
