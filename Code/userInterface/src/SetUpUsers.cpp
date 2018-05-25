@@ -25,7 +25,7 @@ SetUpUsers::SetUpUsers(QWidget *parent) : QWidget(parent){
 }
 
 void SetUpUsers::setMainWindowDesign() {
-    this->setFixedSize(700, 500);
+    this->setFixedSize(800, 600);
     this->setStyleSheet("background-color: white;");
     this->setWindowTitle(QString::fromUtf8("Bewohner Verwalten"));
 
