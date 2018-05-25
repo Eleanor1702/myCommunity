@@ -96,3 +96,25 @@ void SignIn::setMainLayoutDesign() {
 
 }
 
+void SignIn::clearContent() {
+    this->giveNameEdit->clear();
+    this->givePasswordEdit->clear();
+    this->wrongPassLabel->hide();
+}
+
+std::string SignIn::getUserName() {
+    QString name = this->giveNameEdit->text();
+
+    std::string strName = name.toUtf8().constData();
+
+    return strName;
+}
+
+int SignIn::getUserPassword() {
+    QString password = this->givePasswordEdit->text();
+
+    int intPassword = password.toInt();
+
+    return intPassword;
+}
+

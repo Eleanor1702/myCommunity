@@ -1,26 +1,29 @@
-#include "userInterface/lib/SetUpRooms.h"
+#include "userInterface/lib/setuptasks.h"
+
 
 //calling the constructor, calls the parent constructor too
 //in this case QWidget
-SetUpRooms::SetUpRooms(QWidget *parent) : QWidget(parent){
+SetUpTasks::SetUpTasks(QWidget *parent) : QWidget(parent){
   //declarations of window contents
   mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, this);
   mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
-  mainLabel = new QLabel("Let's add your WG Rooms..");
+  mainLabel = new QLabel("Aufgaben hinzufügen..");
 
   scrollAreaRow = new QBoxLayout(QBoxLayout::LeftToRight);
   scrollArea = new QScrollArea(this);
   scrollWidget = new QWidget(this);
   scrollLayout = new QBoxLayout(QBoxLayout::TopToBottom, this->scrollWidget);
 
-  addRoomsRow = new QBoxLayout(QBoxLayout::LeftToRight);
+  addTasksRow = new QBoxLayout(QBoxLayout::LeftToRight);
 
   mainButtonsRow = new QBoxLayout(QBoxLayout::LeftToRight);
-  roomTypeLabel = new QLabel("Art:");
-  chooseRoomTypeCombo = new QComboBox();
+  TaskFrequencyLabel = new QLabel("Häufigkeit:");
+  chooseTaskFrequencyCombo = new QComboBox();
+  TaskRoomLabel = new QLabel ("Raum:");
+  chooseTaskRoomCombo = new QComboBox();
   nameLabel = new QLabel("Name:");
   giveNameEdit = new QLineEdit();
-  addButton = new QPushButton (QString::fromUtf8("Raum hinzufügen"), this);
+  addButton = new QPushButton (QString::fromUtf8("Aufgabe hinzufügen"), this);
   saveButton = new QPushButton ("Speichern");
 
   this->setMainWindowDesign();
@@ -28,19 +31,19 @@ SetUpRooms::SetUpRooms(QWidget *parent) : QWidget(parent){
 
 }
 
-void SetUpRooms::setMainWindowDesign() {
+void SetUpTasks::setMainWindowDesign() {
     this->setFixedSize(800, 600);
     this->setStyleSheet("background-color: white;");
-    this->setWindowTitle(QString::fromUtf8("Räume Verwalten"));
+    this->setWindowTitle(QString::fromUtf8("Aufgaben Verwalten"));
 
     mainLayout->addLayout(mainLabelRow);
     mainLayout->addLayout(scrollAreaRow);
-    mainLayout->addLayout(addRoomsRow);
+    mainLayout->addLayout(addTasksRow);
     mainLayout->addLayout(mainButtonsRow);
     this->setLayout(mainLayout);
 }
 
-void SetUpRooms::setMainLayoutDesign() {
+void SetUpTasks::setMainLayoutDesign() {
 
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
@@ -53,19 +56,31 @@ void SetUpRooms::setMainLayoutDesign() {
     this->scrollArea->setWidgetResizable(true);
 
 
-    this->addRoomsRow->addWidget(roomTypeLabel);
-    this->addRoomsRow->addWidget(chooseRoomTypeCombo);
-    this->chooseRoomTypeCombo->setFixedWidth(120);
-    this->roomTypeLabel->setStyleSheet("color: #aaa; font-weight: bold;");
-    this->chooseRoomTypeCombo->setStyleSheet("selection-color: white; selection-background-color: #1aa3ff;"
+    this->addTasksRow->addWidget(TaskFrequencyLabel);
+    this->addTasksRow->addWidget(chooseTaskFrequencyCombo);
+    this->chooseTaskFrequencyCombo->setFixedWidth(120);
+    this->TaskFrequencyLabel->setStyleSheet("color: #aaa; font-weight: bold;");
+    this->chooseTaskFrequencyCombo->setStyleSheet("selection-color: white; selection-background-color: #1aa3ff;"
                                              " color: black; background-color: White;");
 
-    QStringList rooms;
-    rooms << "Bad" << QString::fromUtf8("Küche") << "Wohnzimmer" << "Flur";
-    chooseRoomTypeCombo->addItems(rooms);
+    QStringList frequency;
+    frequency << QString::fromUtf8("jede Woche") << QString::fromUtf8("jede 2. Woche") << "jede 3. Woche" << "jeden Monat" << "nach Bedarf";
+    chooseTaskFrequencyCombo->addItems(frequency);
 
-    this->addRoomsRow->addWidget(nameLabel);
-    this->addRoomsRow->addWidget(giveNameEdit);
+    this->addTasksRow->addWidget(TaskRoomLabel);
+    this->addTasksRow->addWidget(chooseTaskRoomCombo);
+    this->chooseTaskRoomCombo->setFixedWidth(120);
+    this->TaskRoomLabel->setStyleSheet("color: #aaa; font-weight: bold;");
+    this->chooseTaskRoomCombo->setStyleSheet("selection-color: white; selection-background-color: #1aa3ff;"
+                                             "color: black; background-color: white;");
+
+    //Muss Liste der Räume aus Datenbank holen!
+    QStringList rooms;
+    rooms << "Bad" << "Küche";
+    chooseTaskRoomCombo->addItems(rooms);
+
+    this->addTasksRow->addWidget(nameLabel);
+    this->addTasksRow->addWidget(giveNameEdit);
     this->giveNameEdit->setMaxLength(18);
     this->nameLabel->setStyleSheet("color: #aaa; font-weight: bold;");
     this->giveNameEdit->setStyleSheet("color: black;");
@@ -83,34 +98,4 @@ void SetUpRooms::setMainLayoutDesign() {
                               "border-radius: 5px; background-color: #00b300; "
                               "color: white; font-weight: bold;}");
 
-}
-
-std::string SetUpRooms::getRoomTypeInput() {
-    return this->chooseRoomTypeCombo->currentText().toStdString();
-}
-
-std::string SetUpRooms::getRoomNameInput() {
-    //proceed only with a room name
-    if(this->giveNameEdit->text().size() == 0 || this->giveNameEdit->text()[0] == ' '){
-        return "Error";
-    }
-
-    return this->giveNameEdit->text().toStdString();
-}
-
-void SetUpRooms::updateContent() {
-    //This section can be exchanged with data recall from databank
-    //-----------------------------------------------------------
-    QString roomType = this->chooseRoomTypeCombo->currentText();
-
-    QString roomName = this->giveNameEdit->text();
-    //-----------------------------------------------------------
-    newRoom = new RoomListItem(roomType, roomName);
-    this->RoomListItemList.push_back(this->newRoom);
-
-    for(int i = 0; i < this->RoomListItemList.size(); i++) {
-        this->scrollLayout->addWidget(this->RoomListItemList[i]);
-    }
-
-    this->giveNameEdit->clear();
 }
