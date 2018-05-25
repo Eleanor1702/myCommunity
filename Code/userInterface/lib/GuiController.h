@@ -11,6 +11,8 @@
 #include "userInterface/lib/SetUpRooms.h"
 #include "userInterface/lib/SetUpUsers.h"
 #include "userInterface/lib/eventpage.h"
+#include "userInterface/lib/setuptasks.h"
+#include "userInterface/lib/cleaningpage.h"
 
 #include "lib/controller.h"
 
@@ -31,6 +33,9 @@ private:
   SetUpUsers *users;
 
   EventPage *events;
+
+  CleaningPage *clean;
+  SetUpTasks *task;
 
   Controller* con;
 
@@ -60,6 +65,7 @@ public slots:
   void roomSettingClicked();
   void userSettingClicked();
   void calendarClicked();
+  void cleanPlanButtonClicked();
   void logOutClicked();
 
   //SetUpRooms Slots
@@ -73,6 +79,15 @@ public slots:
 
   //Events Slots
   void saveEventButtonClicked();
+
+  //Putzplan
+  void setupTaskButtonClicked();
+  //void createPlanButtonClicked();
+  void backToHomeButtonClicked();
+
+  void saveTaskButtonClicked();
+  //void deleteTaskButtonClicked();
+  void addTaskButtonClicked();
 
 };
 #endif // GUICONTROLLER_H

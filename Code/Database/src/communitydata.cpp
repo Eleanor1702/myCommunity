@@ -29,6 +29,7 @@ CommunityData::~CommunityData() {
 CommunityData::CommunityData() {
     if(!connect())
         cout <<"Fehler bei der Verbindung!" << endl;
+
     //nur einmal ausführen
 
     //Statement* stmt;
@@ -36,6 +37,7 @@ CommunityData::CommunityData() {
     //stmt->execute("CREATE SCHEMA MyCommunity");
     //createRoomTable();
     //createResidentTable();
+
 }
 
 void CommunityData::createRoomTable() {

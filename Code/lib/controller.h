@@ -4,6 +4,7 @@
 #include "residentexpert.h"
 #include "roomexpert.h"
 #include "eventexpert.h"
+#include "taskexpert.h"
 
 //Connector between GUI and Logic
 class Controller{
@@ -13,6 +14,7 @@ private:
         ResidentExpert* rsExpert;
         RoomExpert*  roExpert;
         EventExpert* evExpert;
+        TaskExpert* taExpert;
 
         static Controller* instance;                    //Singleton
 
