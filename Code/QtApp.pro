@@ -38,6 +38,12 @@ SOURCES += \
     userInterface/src/UserList.cpp \
     userInterface/src/RoomListItem.cpp \
     Database/src/communitydata.cpp \
+    userInterface/src/eventpage.cpp \
+    userInterface/src/setuptasks.cpp \
+    userInterface/src/tasklistitem.cpp \
+    userInterface/src/cleaningpage.cpp \
+    src/task.cpp \
+    src/taskexpert.cpp
 
 HEADERS += \
     lib/controller.h \
@@ -57,7 +63,13 @@ HEADERS += \
     userInterface/lib/UserList.h \
     userInterface/lib/RoomListItem.h \
     Database/lib/communitydata.h \
-    lib/cleaningexpert.h
+    userInterface/lib/eventpage.h \
+    userInterface/lib/setuptasks.h \
+    userInterface/lib/tasklistitem.h \
+    userInterface/lib/cleaningpage.h \
+    lib/taskexpert.h \
+    lib/task.h
+
 
 RESOURCES = \
     media/application.qrc \
