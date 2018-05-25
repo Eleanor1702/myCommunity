@@ -40,7 +40,8 @@ SOURCES += \
     Database/src/communitydata.cpp \
     userInterface/src/eventpage.cpp \
     userInterface/src/setuptasks.cpp \
-    userInterface/src/tasklistitem.cpp
+    userInterface/src/tasklistitem.cpp \
+    userInterface/src/cleaningpage.cpp
 
 HEADERS += \
     lib/controller.h \
@@ -63,7 +64,8 @@ HEADERS += \
     Database/lib/communitydata.h \
     userInterface/lib/eventpage.h \
     userInterface/lib/setuptasks.h \
-    userInterface/lib/tasklistitem.h
+    userInterface/lib/tasklistitem.h \
+    userInterface/lib/cleaningpage.h
 
 RESOURCES = \
     media/application.qrc \
