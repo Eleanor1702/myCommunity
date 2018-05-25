@@ -32,9 +32,9 @@ CommunityData::CommunityData() {
     //nur einmal ausführen
    /* Statement* stmt;
     stmt = con->createStatement();
-    stmt->execute("CREATE SCHEMA MyCommunity");
-    createRoomTable();
-    createResidentTable(); */
+    stmt->execute("CREATE SCHEMA MyCommunity");*/
+    //createRoomTable();
+    //createResidentTable();
 
 
 }

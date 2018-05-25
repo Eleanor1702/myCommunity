@@ -33,13 +33,6 @@ private:
 
   static GuiController* instance;   //Singleton
 
-protected:
-
-
-public:
- static GuiController* getInstance(QWidget *parent);     //Singleton
- explicit GuiController(QWidget *parent = NULL);
-
 public slots:
   //class need to be QWidget to be able to call the actions
   void signUpButtonClicked();
@@ -60,5 +53,11 @@ public slots:
   void deleteUserButtonClicked(QString name);
   void saveUserButtonClicked();
 
+public:
+  static GuiController* getInstance(QWidget *parent);     //Singleton
+  explicit GuiController(QWidget *parent = NULL);
+
+  void dataBankRoomUpdate(std::vector<std::string> nameVector, std::vector<std::string> artVector, int size);
+  void clearScrollLayout();
 };
 #endif // GUICONTROLLER_H

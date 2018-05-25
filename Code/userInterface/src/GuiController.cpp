@@ -130,8 +130,23 @@ void GuiController::userSettingsButtonClicked() {
 void GuiController::roomSettingsButtonClicked() {
   rooms->show();
   home->hide();
-  //Daten aus dem Room vector in Roomexpert über Controller holen & anzeigen
 
+  //Data from DB (Data update)
+  dataBankRoomUpdate(con->getRoomNames(), con->getRoomArts(), con->getSize());
+}
+
+void GuiController::dataBankRoomUpdate(std::vector<std::string> nameVector, std::vector<std::string> artVector, int size) {
+  for(int i = 0; i < size; i++) {
+      this->rooms->newRoom = new RoomListItem(QString::fromStdString(nameVector[i]), QString::fromStdString(artVector[i]));
+      this->rooms->RoomListItemList.push_back(rooms->newRoom);
+      this->rooms->scrollLayout->addWidget(this->rooms->newRoom);
+  }
+}
+
+void GuiController::clearScrollLayout() {
+  for(int i = 0; i < this->rooms->RoomListItemList.size(); i++) {
+    this->rooms->scrollLayout->removeWidget(this->rooms->RoomListItemList[i]);
+  }
 }
 
 void GuiController::addRoomButtonClicked(){
@@ -146,20 +161,36 @@ void GuiController::addRoomButtonClicked(){
   this->rooms->newRoom = new RoomListItem(roomName, roomType);
   this->rooms->RoomListItemList.push_back(this->rooms->newRoom);
 
-  //here should contect of vector be saved in Databank
-    con->addRoom(roomType.toStdString(), roomName.toStdString());
+  //here should content of vector be saved in Databank
+  con->addRoom(roomType.toStdString(), roomName.toStdString());
 
-  //if delete Room methode was called
+  //clear Rooms in Gui...
+  clearScrollLayout();
+
+  //Rooms getter von DB to Gui
+  dataBankRoomUpdate(con->getRoomNames(), con->getRoomArts(), con->getSize());
+
+  //if delete Room methode was called   //Bug
   connect(this->rooms->newRoom, SIGNAL(deleteButtonClickedSignal(QString)), this, SLOT(deleteRoomButtonClicked(QString)));
 
-  //Viewing in Gui
-  this->rooms->scrollLayout->addWidget(this->rooms->newRoom);
+  //clear Input
   this->rooms->giveNameEdit->clear();
 }
 
 void GuiController::deleteRoomButtonClicked(QString room) {
   // delete room from Databank
    con->deleteRoom(room.toStdString());
+   //clear ScrollLayout data
+   clearScrollLayout();
+   //update data
+   dataBankRoomUpdate(con->getRoomNames(), con->getRoomArts(), con->getSize());
+}
+
+void GuiController::saveRoomButtonClicked() {
+  this->home->show();
+  this->rooms->hide();
+
+  clearScrollLayout();
 }
 
 void GuiController::saveUserButtonClicked(){
@@ -191,11 +222,6 @@ void GuiController::addUserButtonClicked() {
 void GuiController::deleteUserButtonClicked(QString name) {
   //do things with user delete signal
 
-}
-
-void GuiController::saveRoomButtonClicked() {
-  this->home->show();
-  this->rooms->hide();
 }
 
 GuiController* GuiController::getInstance(QWidget *parent){

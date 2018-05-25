@@ -26,6 +26,7 @@ SetUpRooms::SetUpRooms(QWidget *parent) : QWidget(parent){
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
 
+
 }
 
 void SetUpRooms::setMainWindowDesign() {

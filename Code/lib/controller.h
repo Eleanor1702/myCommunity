@@ -29,6 +29,9 @@ public:
         bool searchResident(string username, int password);
         bool searchNameResident(string username);       // To get the same Name in Login
 
+        std::vector<std::string>getRoomNames();
+        std::vector<std::string>getRoomArts();
+        int getSize();
 
         static Controller* getInstance();
 };
