@@ -135,8 +135,7 @@ void GuiController::calendarClicked() {
     home->hide();
 }
 
-<<<<<<< HEAD
-void GuiController::roomSettingsButtonClicked() {
+/*void GuiController::roomSettingsButtonClicked() {
   rooms->show();
   home->hide();
   //Daten aus dem Room vector in Roomexpert über Controller holen & anzeigen ->function
@@ -149,7 +148,7 @@ void GuiController::roomSettingsButtonClicked() {
      this->rooms->scrollLayout->addWidget(this->rooms->newRoom);
      connect(this->rooms->newRoom, SIGNAL(deleteButtonClickedSignal(QString)), this, SLOT(deleteRoomButtonClicked(QString)));
   }
-=======
+}*/
 void GuiController::cleanPlanButtonClicked(){
     clean->show();
     home->hide();
@@ -158,15 +157,13 @@ void GuiController::cleanPlanButtonClicked(){
 void GuiController::logOutClicked() {
     main->show();
     home->hide();
->>>>>>> ddeca0516158147bd6f6e752e3869b831c0962fa
 }
 
 //SetUpRooms Events
 void GuiController::addRoomButtonClicked(){
-<<<<<<< HEAD
+
   QString roomType = rooms->chooseRoomTypeCombo->currentText();
 
-  //proceed only with a room name
   QString roomName = rooms->giveNameEdit->text();
   if(roomName.size() == 0 || roomName[0] == ' '){
       return;
@@ -184,7 +181,6 @@ void GuiController::addRoomButtonClicked(){
   //Viewing in Gui
   this->rooms->scrollLayout->addWidget(this->rooms->newRoom);
   this->rooms->giveNameEdit->clear();
-=======
     if(rooms->getRoomNameInput() == "Error") {
         //warning Label message, maybe?
         return;
@@ -194,7 +190,6 @@ void GuiController::addRoomButtonClicked(){
     }
 
     this->rooms->updateContent();
->>>>>>> ddeca0516158147bd6f6e752e3869b831c0962fa
 }
 
 void GuiController::roomDeleted(QString room) {
@@ -202,16 +197,13 @@ void GuiController::roomDeleted(QString room) {
     con->deleteRoom(room.toStdString());
 }
 
-<<<<<<< HEAD
 void GuiController::saveUserButtonClicked(){
     this->home->show();
     this->users->hide();
-
-=======
+}
 void GuiController::saveRoomButtonClicked() {
   home->show();
   rooms->hide();
->>>>>>> ddeca0516158147bd6f6e752e3869b831c0962fa
 }
 
 //SetUpUser Events
@@ -242,7 +234,6 @@ void GuiController::deleteUserButtonClicked(QString name) {
 
 }
 
-<<<<<<< HEAD
 void GuiController::saveRoomButtonClicked() {
   this->home->show();
   this->rooms->hide();
@@ -253,12 +244,10 @@ void GuiController::saveRoomButtonClicked() {
 
 }
 
-=======
 void GuiController::saveUserButtonClicked(){
     home->show();
     users->hide();
 }*/
->>>>>>> ddeca0516158147bd6f6e752e3869b831c0962fa
 
 //EventPage Events
 void GuiController::saveEventButtonClicked() {

@@ -75,7 +75,7 @@ public slots:
 
   //SetUpUsers Slots:
   //void deleteUserButtonClicked(QString name);
-  //void saveUserButtonClicked();
+  void saveUserButtonClicked();
 
   //Events Slots
   void saveEventButtonClicked();
