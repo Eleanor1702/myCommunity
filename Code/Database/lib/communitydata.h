@@ -15,6 +15,8 @@
 #include <mysql_connection.h>
 #include "lib/resident.h"
 #include "lib/room.h"
+#include "lib/event.h"
+#include <time.h>
 
 class CommunityData {
 private:
@@ -31,13 +33,33 @@ public:
     void createRoomTable();
     void createResidentTable();
     void createCalendarTable();
-    void addResident(string, int);
-    void addRoom(string, string);
-    void updatePassword(string, int);
-    void deleteResident(string);
-    void deleteRoom(string);
+    //void createEventUserView(string user);
+    void createEventCommunityView();
+    void createCleaningTable();
+    void createTaskTable();
+
+    void addResident(string name, int password);
+    void addRoom(string , string);
+    void addEvent(tm timedate, string description, string user);
+    void addTask(string taskname, string frequency);
+    void addToCleaningplan(string task, string resident, string week);
+
+    void updatePassword(string user, int password);
+    void updateEvent(Event ev, tm timedate,string description);
+
+    void deleteResident(string name);
+    void deleteRoom(string name);
+    void deleteEvent(tm timedate, string description, string user);
+    void deleteTask(string taskname);
+    //deleteCleaningplan()
+
     vector<Resident> getAllResidents();
     vector<Room> getAllRooms();
+    vector<Event> getAllEventsOfUser(string user);
+    vector<Event> getAllCommunityEvents();
+    //vector<Task> getAllTasks();
+    // getCleaningPlan()
+
     bool verifyLogInData(string, int);
     bool verifyName(string);
     ~CommunityData();

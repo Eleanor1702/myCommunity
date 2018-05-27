@@ -21,11 +21,12 @@ bool CommunityData::connect() {
     }
     else return true;
 }
-//Konstruktor und Destruktor!
+//Destructor
 CommunityData::~CommunityData() {
     delete con;
 }
 
+//Constructor
 CommunityData::CommunityData() {
     if(!connect())
         cout <<"Fehler bei der Verbindung!" << endl;
@@ -34,34 +35,60 @@ CommunityData::CommunityData() {
 
     //Statement* stmt;
     //stmt = con->createStatement();
-    //stmt->execute("CREATE SCHEMA MyCommunity");
-    //createRoomTable();
-    //createResidentTable();
-    //createCalendarTable();
+    //stmt->execute("CREATE DATABASE IF NOT EXISTS MyCommunity");
+    createRoomTable();
+    createResidentTable();
+    createCalendarTable();
+    //createEventCommunityView();
+    createCleaningTable();
+    createTaskTable();
 }
 
 //Table for all Rooms
 void CommunityData::createRoomTable() {
     Statement* stmt;
     stmt = con->createStatement();
-    stmt->execute("CREATE TABLE Rooms(Name VARCHAR(50) PRIMARY KEY, Type VARCHAR(20))");
+    stmt->execute("CREATE TABLE IF NOT EXISTS Rooms(Name VARCHAR(50) PRIMARY KEY, Type VARCHAR(20))");
     delete stmt;
 }
 //Table for all Residents
 void CommunityData::createResidentTable() {
     Statement* stmt;
     stmt = con->createStatement();
-    stmt->execute("CREATE TABLE Residents(Firstname VARCHAR(50) PRIMARY KEY, Password INT)");
+    stmt->execute("CREATE TABLE IF NOT EXISTS Residents(Firstname VARCHAR(50) PRIMARY KEY, Password INT)");
     delete stmt;
 }
 //Table for Calendar
 void CommunityData::createCalendarTable() {
     Statement* stmt;
     stmt = con->createStatement();
-    stmt->execute("CREATE TABLE Calendar (Date DATE, Time TIME, Event VARCHAR(50), Resident VARCHAR(50))");
+    stmt->execute("CREATE TABLE IF NOT EXISTS Calendar (Datetime DATETIME, Event VARCHAR(50), User VARCHAR(50))");
     delete stmt;
 }
-//get all events from calendar of a user-> use views
+
+//create a View to get only community events
+void CommunityData::createEventCommunityView() {
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("CREATE OR REPLACE VIEW CommunityEvent AS SELECT * FROM Calendar WHERE Username = 'community'");
+    stmt->execute();
+    delete stmt;
+}
+
+//Table to store cleaning plan
+void CommunityData::createCleaningTable(){
+    Statement* stmt;
+    stmt = con->createStatement();
+    stmt->execute("CREATE TABLE IF NOT EXISTS Cleaning (Task VARCHAR(50), Resident VARCHAR(50), Week DATE)");
+}
+
+//Table to store cleaning Tasks
+void CommunityData::createTaskTable(){
+    Statement* stmt;
+    stmt = con->createStatement();
+    stmt->execute("CREATE TABLE IF NOT EXISTS Tasks (Name VARCHAR(50) PRIMARY KEY, FREQUENCY VARCHAR(50))");
+    delete stmt;
+}
+
 //insert a new resident identified by his name and his password
 void CommunityData::addResident(string name, int password) {
     PreparedStatement* stmt;
@@ -83,8 +110,37 @@ void CommunityData::addRoom(string name, string type) {
 }
 
 //add a new calendar event for a user
+void CommunityData::addEvent(tm timedate, string description, string user) {
+    PreparedStatement* stmt;
+    //Convert tm type to SQL String
+    SQLString td = "2018-05-01";
+    stmt = con->prepareStatement("INSERT INTO Calendar(Datetime, Event, User) VALUES(?, ?, ?)");
+    stmt->setDateTime(1, td);
+    stmt->setString(2, description);
+    stmt->setString(3, user);
+    stmt->execute();
+    delete stmt;
+}
 
+//add a new cleaning task
+void CommunityData::addTask(string taskname, string frequency){
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("INSERT INTO Tasks(Name, Frequency) VALUES(?, ?)");
+    stmt->setString(1, taskname);
+    stmt->setString(2, frequency);
+    stmt->execute();
+    delete stmt;
+}
 
+void CommunityData::addToCleaningplan(string task, string resident, string week){
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("INSERT INTO Cleaning(Task, Resident, Week) VALUES(?, ?, ?)");
+    stmt->setString(1, task);
+    stmt->setString(2, resident);
+    stmt->setDateTime(3, week);
+    stmt->execute();
+    delete stmt;
+}
 
 //set a new password for a resident
 void CommunityData::updatePassword(string username, int newPassword) {
@@ -97,10 +153,27 @@ void CommunityData::updatePassword(string username, int newPassword) {
 }
 
 //change time or description of an event
+void CommunityData::updateEvent(Event ev, tm newtimedate, string newdescription) {
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("UPDATE Calendar SET Datetime = ? WHERE Datetime = ? AND EVENT = ? AND User = ? ");
+    //stmt->setDateTime(1, newtimedate);
+    //stmt->setDateTime(2, ev.getTime());
+    stmt->setString(3, ev.getDescription());
+    stmt->setString(4, ev.getUser());
+    stmt->execute();
+    stmt->close();
+
+    stmt = con->prepareStatement("UPDATE Calendar SET Description = ? WHERE Datetime = ? AND EVENT = ? AND User = ? ");
+    stmt->setString(1, newdescription);
+    //stmt->setDateTime(2, ev.getTime());
+    stmt->setString(3, ev.getDescription());
+    stmt->setString(4, ev.getUser());
+    stmt->execute();
+    delete stmt;
+
+}
 
 
-
-//use D.R.Y?
 //delete a resident
 void CommunityData::deleteResident(string name) {
     PreparedStatement* stmt;
@@ -120,8 +193,28 @@ void CommunityData::deleteRoom(string name) {
 }
 
 //delete a calendar event
+void CommunityData::deleteEvent(tm timedate, string description, string user) {
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("DELETE FROM Calendar WHERE Datetime = ? AND Event = ? AND User = ?");
+    //Convert timedate to SQLString or DATETIME type
 
 
+
+    //stmt->setDateTime(1,timedate);
+    stmt->setString(2, description);
+    stmt->setString(3, user);
+    stmt->execute();
+    delete stmt;
+};
+
+//delete a cleaning task from database
+void CommunityData::deleteTask(string taskname){
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("DELETE FROM Tasks WHERE Name = ? ");
+    stmt->setString(1, taskname);
+    stmt->execute();
+    delete stmt;
+}
 
 //get all residents from database
 vector<Resident> CommunityData::getAllResidents() {
@@ -159,9 +252,49 @@ vector<Room> CommunityData::getAllRooms() {
     return list;
 }
 
-//get all events from calendar of a user-> use views
+//get all events from calendar of a user
+vector<Event> CommunityData::getAllEventsOfUser(string user) {
+    vector<Event> list;
+    PreparedStatement* stmt;
+    ResultSet* resultSet = NULL;
+    stmt = con->prepareStatement("SELECT * FROM Calendar WHERE Username = ?");
+    stmt->setString(1, user);
+    resultSet = stmt->executeQuery();
+    while(resultSet->next()) {
+        Event ev;
+        ev.setDescription(resultSet->getString("Event"));
+        ev.setUser(user);
+        //Convert datetime / SQLString to tm type
 
 
+        //ev.setTime(timedate);
+        list.push_back(ev);
+    }
+    delete stmt;
+    delete resultSet;
+    return list;
+}
+//get all Community Events
+vector<Event> CommunityData::getAllCommunityEvents() {
+    vector<Event> list;
+    ResultSet* resultSet = NULL;
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("SELECT * FROM CommunityEvent");
+    resultSet = stmt->executeQuery();
+    while(resultSet->next()) {
+        Event ev;
+        ev.setDescription(resultSet->getString("Event"));
+        ev.setUser("community");
+        //Convert datetime / SQLString to tm type
+
+
+        //ev.setTime(timedate);
+        list.push_back(ev);
+    }
+    delete stmt;
+    delete resultSet;
+    return list;
+}
 
 //verifying the log in data by username and password
  bool CommunityData::verifyLogInData(string username, int password) {
