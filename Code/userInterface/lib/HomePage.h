@@ -40,10 +40,16 @@ private:
   void setMainScreenDesign();
   void setMainLayoutDesign();
 
-private slots:
-  void callSettings();
-
 public:
   HomePage(QWidget *parent = NULL);
+
+private slots:
+  void settingsCalled();
+  void roomSettingCalled();
+  void userSettingCalled();
+
+signals:
+  void roomSettingsCallSignal();
+  void userSettingsCallSignal();
 };
 #endif // HOMEPAGE_H

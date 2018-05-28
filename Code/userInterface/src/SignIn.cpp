@@ -27,6 +27,9 @@ SignIn::SignIn(QWidget *parent) : QWidget (parent){
 
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
+
+  QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(startPageCalled()));
+  QObject::connect(logInButton, SIGNAL(clicked()), this, SLOT(userLogedIn()));
 }
 
 void SignIn::setMainWindowDesign() {
@@ -118,3 +121,12 @@ int SignIn::getUserPassword() {
     return intPassword;
 }
 
+void SignIn::startPageCalled() {
+    emit startPageCallSignal();
+    clearContent();
+}
+
+void SignIn::userLogedIn() {
+    emit userLogInSignal(getUserName(), getUserPassword());
+    clearContent();
+}

@@ -24,8 +24,9 @@ HomePage::HomePage(QWidget *parent) : QWidget(parent) {
   this->setMainLayoutDesign();
 
   //Event
-  QObject::connect(settings,SIGNAL(clicked()),this,SLOT(callSettings()));
-
+  QObject::connect(settings,SIGNAL(clicked()), this, SLOT(settingsCalled()));
+  QObject::connect(roomSettingButton, SIGNAL(clicked()), this, SLOT(roomSettingCalled()));
+  QObject::connect(userSettingButton, SIGNAL(clicked()), this, SLOT(userSettingCalled()));
 }
 
 void HomePage::setMainScreenDesign(){
@@ -87,7 +88,7 @@ void HomePage::setMainLayoutDesign(){
                                 "color: white; font-weight: bold;}");
 }
 
-void HomePage::callSettings() {
+void HomePage::settingsCalled() {
   this->contentColumn->addLayout(this->settingsButtonLayout);
   this->settingsButtonLayout->setAlignment(Qt::AlignBottom);
 
@@ -104,4 +105,12 @@ void HomePage::callSettings() {
                                 "border-radius: 5px; background-color: #3399ff; "
                                 "color: white; font-weight: bold; margin-left: 10px;}");
 
+}
+
+void HomePage::roomSettingCalled() {
+  emit roomSettingsCallSignal();
+}
+
+void HomePage::userSettingCalled() {
+  emit userSettingsCallSignal();
 }

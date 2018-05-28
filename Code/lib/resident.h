@@ -3,13 +3,11 @@
 
 #include <string>
 
-using namespace std;
-
 class Resident {
 
 private:
     int password;
-    string firstname;
+    std::string firstname;
 
 public:
     friend class WG;
@@ -17,10 +15,10 @@ public:
     Resident();
 
     void setPassword(int eingabe);
-    void setFirstname(string eingabe);
+    void setFirstname(std::string eingabe);
 
     int getPassword();
-    string getFirstname();
+    std::string getFirstname();
 
     void changePassword();  //not tested (should be changed)
     void changeName();    //not tested (should be changed)

@@ -34,7 +34,6 @@ void RoomListItem::setItemStyle() {
 }
 
 void RoomListItem::deleteRoom() {
-  emit deleteButtonSignal(this->name);
+  emit deleteRoomSignal(name);
   this->close();
 }
-

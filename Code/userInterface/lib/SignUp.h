@@ -55,6 +55,13 @@ public:
    std::string getUserName();
    int getUserPassword();
 
+private slots:
+   void startPageCalled();
+   void saveClicked();
+
+signals:
+   void startPageCallSignal();
+   void newUserSignUpSignal(std::string name, int password);
 };
 
 #endif // SIGNUP_H

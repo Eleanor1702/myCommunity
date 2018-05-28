@@ -45,7 +45,7 @@ public:
  static GuiController* getInstance(QWidget *parent);     //Singleton
  explicit GuiController(QWidget *parent = NULL);
 
-public slots:
+private slots:
   //class need to be QWidget to be able to call the actions
 
   //StartPage Slots
@@ -54,28 +54,32 @@ public slots:
 
   //SignUp Slots
   void saveClicked();
+  void signUpNewUser(std::string name, int password);
 
   //SignIn Slots
   void logInClicked();
+  void lognInUser(std::string name, int password);
 
   //SignUp & SignIn Slots
   void callStartPage();
 
   //HomePage Slots
-  void roomSettingClicked();
-  void userSettingClicked();
+  void callRoomSettings();
+  void callUserSettings();
   void calendarClicked();
   void cleanPlanButtonClicked();
   void logOutClicked();
 
   //SetUpRooms Slots
-  void addRoomButtonClicked();
+  void newRoomSet();
   void roomDeleted(QString room);
-  void saveRoomButtonClicked();
 
   //SetUpUsers Slots:
-  //void deleteUserButtonClicked(QString name);
-  void saveUserButtonClicked();
+  void newUserSet();
+  void userDeleted(QString name);
+
+  //SetUpRooms & SetUpUsers Slots:
+  void callHomePage();
 
   //Events Slots
   void saveEventButtonClicked();
@@ -89,5 +93,8 @@ public slots:
   //void deleteTaskButtonClicked();
   void addTaskButtonClicked();
 
+public:
+  static GuiController* getInstance(QWidget *parent);     //Singleton
+  explicit GuiController(QWidget *parent = NULL);
 };
 #endif // GUICONTROLLER_H

@@ -4,21 +4,19 @@
 #include <string>
 #include <time.h>
 
-using namespace std;
-
 class Event{
 
 private:
-    string description;
+    std::string description;
     tm time;
-    string user;
+    std::string user;
 
 
 public:
     Event();
     //~Event();
 
-    void setDescription(string newDescription);
+    void setDescription(std::string newDescription);
     void setTime(tm timedate);
     void setDay(tm timedate);
     void setMonth(tm timedate);
@@ -34,7 +32,7 @@ public:
     int getYear();
     int getMin();
     int getHour();
-    string getUser();
+    std::string getUser();
 
 };
 

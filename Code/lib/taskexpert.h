@@ -14,9 +14,9 @@ protected:
 
 public:
 
-    void createTask(string name, tm timedate, string user, string room, int frequency);             // time und date als t_time
-    void deleteTask(string name, tm timedate, string user);
-    void editTask(string name, tm timedate, int frequency);       //nur die zeit darf verändert werden
+    void createTask(std::string name, tm timedate, std::string user, std::string room, int frequency);             // time und date als t_time
+    void deleteTask(std::string name, tm timedate, std::string user);
+    void editTask(std::string name, tm timedate, int frequency);       //nur die zeit darf verändert werden
 
     static TaskExpert* getInstance();
 };

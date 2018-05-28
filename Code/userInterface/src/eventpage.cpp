@@ -1,8 +1,7 @@
 #include "userInterface/lib/eventpage.h"
 #include <QtWidgets>
 
-EventPage::EventPage(QWidget *parent) : QWidget(parent)
-{
+EventPage::EventPage(QWidget *parent) : QWidget(parent) {
     mainLayout = new QBoxLayout(QBoxLayout::TopToBottom);
 
     mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
@@ -19,6 +18,7 @@ EventPage::EventPage(QWidget *parent) : QWidget(parent)
     this->setMainWindowDesign();
     this->setMainLayoutDesign();
 }
+
 void EventPage::setMainWindowDesign() {
     this->setFixedSize(800, 600);
     this->setStyleSheet("background-color: white");
@@ -32,7 +32,7 @@ void EventPage::setMainWindowDesign() {
     this->setLayout(mainLayout);
 }
 
-void EventPage::setMainLayoutDesign(){
+void EventPage::setMainLayoutDesign() {
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
                                    "font-weight: bold; margin-top: 30px; color: #aaa;");
@@ -53,8 +53,4 @@ void EventPage::setMainLayoutDesign(){
     this->saveEventButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
                                     "border-radius: 5px; background-color: #00b300; "
                                     "color: white; font-weight: bold;}");
-
-
 }
-
-

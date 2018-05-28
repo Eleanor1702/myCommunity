@@ -90,11 +90,9 @@ test {
         test/lib/TestResident.h \
         test/lib/TestRoomExpert.h \
 
-
     SOURCES += \
         test/main.cpp \
         test/src/TestRoom.cpp \
         test/src/TestResident.cpp \
         test/src/TestRoomExpert.cpp \
-
 }

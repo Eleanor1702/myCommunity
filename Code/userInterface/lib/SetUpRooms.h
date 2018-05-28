@@ -55,8 +55,14 @@ public:
 
     std::string getRoomTypeInput();
     std::string getRoomNameInput();
-    void updateContent();
-};
+    void show(std::vector<std::string> nameVec, std::vector<std::string> typeVec, int size);
+
+public slots:
+    void setNewRoomCalled();
+    void homePageCalled();
+
+signals:
+    void setNewRoomSignal();
+    void homePageCallSignal();
 
 #endif // SETUPROOMS_H
-

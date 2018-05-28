@@ -9,17 +9,17 @@ class RoomExpert{
 private:
     friend class Controller;
 
-    vector<Room> Roomlist;
+    std::vector<Room> Roomlist;
     static RoomExpert* instance;
 
-    CommunityData* data;
+    //CommunityData* data;
 
 protected:
     RoomExpert();
 public:
 
-    void createRoom(string name, string typ);
-    void deleteRoom(string name);
+    void createRoom(std::string name, std::string typ);
+    void deleteRoom(std::string name);
     std::vector<std::string> roomNameGetter();
     std::vector<std::string> roomArtGetter();
 
