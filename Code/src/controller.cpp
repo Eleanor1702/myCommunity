@@ -6,6 +6,7 @@ Controller::Controller(){
    rsExpert = rsExpert->getInstance();
    roExpert = roExpert->getInstance();
    evExpert = evExpert->getInstance();
+   taExpert = taExpert->getInstance();
 }
 
 void Controller::addRoom(string art, string name){

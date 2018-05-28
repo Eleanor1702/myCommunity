@@ -46,5 +46,16 @@ public:
     //the parameter *parent is here to nest widgets in widgets
     explicit SignIn(QWidget *parent = NULL);
 
+    void clearContent();
+    std::string getUserName();
+    int getUserPassword();
+
+private slots:
+    void startPageCalled();
+    void userLogedIn();
+
+signals:
+    void startPageCallSignal();
+    void userLogInSignal(std::string name, int password);
 };
 #endif // SIGNIN_H

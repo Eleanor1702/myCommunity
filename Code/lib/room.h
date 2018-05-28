@@ -3,19 +3,17 @@
 
 #include <string>
 
-using namespace std;
-
 class Room {
 private:
-    string name;
-    string art;
+    std::string name;
+    std::string art;
 
 public:
     Room();
-    void setName(string eingabe);
-    void setArt(string eingabe);
-    string getName();
-    string getArt();
+    void setName(std::string eingabe);
+    void setArt(std::string eingabe);
+    std::string getName();
+    std::string getArt();
 
 };
 

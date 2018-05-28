@@ -29,13 +29,13 @@ CommunityData::~CommunityData() {
 CommunityData::CommunityData() {
     if(!connect())
         cout <<"Fehler bei der Verbindung!" << endl;
+
     //nur einmal ausführen
-   /* Statement* stmt;
-    stmt = con->createStatement();
-    stmt->execute("CREATE SCHEMA MyCommunity");*/
+    //Statement* stmt;
+    //stmt = con->createStatement();
+    //stmt->execute("CREATE SCHEMA MyCommunity");
     //createRoomTable();
     //createResidentTable();
-
 
 }
 
@@ -78,6 +78,7 @@ void CommunityData::updatePassword(string username, int newPassword) {
     stmt->execute();
     delete stmt;
 }
+
 //D.R.Y anwenden?
 void CommunityData::deleteResident(string name) {
     PreparedStatement* stmt;
@@ -86,7 +87,6 @@ void CommunityData::deleteResident(string name) {
     stmt->execute();
     delete stmt;
 }
-
 
 void CommunityData::deleteRoom(string name) {
     PreparedStatement* stmt;
@@ -113,6 +113,7 @@ vector<Resident> CommunityData::getAllResidents() {
     delete resultSet;
     return list;
 }
+
 vector<Room> CommunityData::getAllRooms() {
     vector<Room> list;
     PreparedStatement* stmt = con->prepareStatement("SELECT * FROM Rooms");
@@ -128,6 +129,7 @@ vector<Room> CommunityData::getAllRooms() {
     delete resultSet;
     return list;
 }
+
  bool CommunityData::verifyLogInData(string username, int password) {
      PreparedStatement* stmt = con->prepareStatement("SELECT * FROM Residents WHERE Firstname = ? AND Password = ?");
      ResultSet* resultSet = NULL;
@@ -146,6 +148,7 @@ vector<Room> CommunityData::getAllRooms() {
          return false;
      }
  }
+
  bool CommunityData::verifyName(string username) {
      PreparedStatement* stmt = con->prepareStatement("SELECT * FROM Residents WHERE Firstname = ?");
      ResultSet* resultSet = NULL;
@@ -169,4 +172,3 @@ CommunityData* CommunityData::getInstance() {
     }
     return instance;
 }
-

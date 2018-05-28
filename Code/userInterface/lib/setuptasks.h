@@ -1,5 +1,5 @@
-#ifndef SETUPROOMS_H
-#define SETUPROOMS_H
+#ifndef SETUPTASKS_H
+#define SETUPTASKS_H
 
 #include <vector>
 #include <QApplication>
@@ -13,17 +13,19 @@
 #include <QStringList>
 #include <QList>
 
-#include <userInterface/lib/RoomListItem.h>
+#include "tasklistitem.h"
+
+
 
 //Inheritance from QWidget allows the class itself to react on events
 //example (Button clicks.. etc)
-class SetUpRooms : public QWidget{
+class SetUpTasks : public QWidget{
   //enable creation of slots and signals
   Q_OBJECT
 private:
    friend class GuiController;
 
-   RoomListItem *newRoom;
+   TaskListItem *newTask;
 
    QBoxLayout *mainLayout;
    QBoxLayout *mainLabelRow;
@@ -34,11 +36,13 @@ private:
    QWidget *scrollWidget;
    QBoxLayout *scrollLayout;
 
-   QBoxLayout *addRoomsRow;
+   QBoxLayout *addTasksRow; //geänderter Name
 
    QBoxLayout *mainButtonsRow;
-   QLabel *roomTypeLabel;
-   QComboBox *chooseRoomTypeCombo;
+   QLabel *TaskFrequencyLabel; //geänderterName
+   QComboBox *chooseTaskFrequencyCombo; //geänderter Name
+   QLabel *TaskRoomLabel;
+   QComboBox *chooseTaskRoomCombo;
    QLabel *nameLabel;
    QLineEdit *giveNameEdit;
    QPushButton *addButton;
@@ -50,20 +54,11 @@ private:
 public:
     //the constructor build the window
     //the parameter *parent is here to nest widgets in widgets
-    explicit SetUpRooms(QWidget *parent = NULL);
-    std::vector<RoomListItem*> RoomListItemList;
-
-    std::string getRoomTypeInput();
-    std::string getRoomNameInput();
-    void show(std::vector<std::string> nameVec, std::vector<std::string> typeVec, int size);
+    explicit SetUpTasks(QWidget *parent = NULL);  //geänderter Name
+    std::vector<TaskListItem*> TaskListItemList;
 
 public slots:
-    void setNewRoomCalled();
-    void homePageCalled();
 
-signals:
-    void setNewRoomSignal();
-    void homePageCallSignal();
+};
 
-#endif // SETUPROOMS_H
-
+#endif // SETUPTASKS_H

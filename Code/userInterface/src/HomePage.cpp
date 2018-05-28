@@ -14,6 +14,7 @@ HomePage::HomePage(QWidget *parent) : QWidget(parent) {
 
   this->buttonColumn = new QBoxLayout(QBoxLayout::TopToBottom);
   this->settings = new QPushButton("WG \n Einstellungen");
+  this->calendarButton = new QPushButton ("Kalender");
   this->shoppingList = new QPushButton("Einkaufsliste");
   this->cleanPlan = new QPushButton("Putzplan");
   this->saveFormat = new QPushButton("Export");
@@ -23,8 +24,9 @@ HomePage::HomePage(QWidget *parent) : QWidget(parent) {
   this->setMainLayoutDesign();
 
   //Event
-  QObject::connect(settings,SIGNAL(clicked()),this,SLOT(callSettings()));
-
+  QObject::connect(settings,SIGNAL(clicked()), this, SLOT(settingsCalled()));
+  QObject::connect(roomSettingButton, SIGNAL(clicked()), this, SLOT(roomSettingCalled()));
+  QObject::connect(userSettingButton, SIGNAL(clicked()), this, SLOT(userSettingCalled()));
 }
 
 void HomePage::setMainScreenDesign(){
@@ -49,38 +51,44 @@ void HomePage::setMainLayoutDesign(){
                                  "margin-right: 20px;");
 
   this->buttonColumn->addWidget(settings, 4, Qt::AlignTop);
+  this->buttonColumn->addWidget(calendarButton, 4, Qt::AlignCenter);
   this->buttonColumn->addWidget(shoppingList, 4, Qt::AlignCenter);
   this->buttonColumn->addWidget(cleanPlan, 4, Qt::AlignCenter);
   this->buttonColumn->addWidget(saveFormat, 4, Qt::AlignCenter);
   this->buttonColumn->addWidget(logOut, 4, Qt::AlignBottom);
 
-  this->settings->setFixedSize(100, 100);
+  this->settings->setFixedSize(90, 90);
   this->settings->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                                 "border-radius: 5px; background-color: #3399ff; "
                                 "color: white; font-weight: bold;}");
 
-  this->shoppingList->setFixedSize(100, 100);
+  this->calendarButton->setFixedSize(90, 90);
+  this->calendarButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
+                                "border-radius: 5px; background-color: #3399ff; "
+                                "color: white; font-weight: bold;}");
+
+  this->shoppingList->setFixedSize(90, 90);
   this->shoppingList->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                                 "border-radius: 5px; background-color: #3399ff; "
                                 "color: white; font-weight: bold;}");
 
-  this->cleanPlan->setFixedSize(100, 100);
+  this->cleanPlan->setFixedSize(90, 90);
   this->cleanPlan->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                                 "border-radius: 5px; background-color: #3399ff; "
                                 "color: white; font-weight: bold;}");
 
-  this->saveFormat->setFixedSize(100, 100);
+  this->saveFormat->setFixedSize(90, 90);
   this->saveFormat->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                                 "border-radius: 5px; background-color: #3399ff; "
                                 "color: white; font-weight: bold;}");
 
-  this->logOut->setFixedSize(100, 100);
+  this->logOut->setFixedSize(90, 90);
   this->logOut->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                                 "border-radius: 5px; background-color: #3399ff; "
                                 "color: white; font-weight: bold;}");
 }
 
-void HomePage::callSettings() {
+void HomePage::settingsCalled() {
   this->contentColumn->addLayout(this->settingsButtonLayout);
   this->settingsButtonLayout->setAlignment(Qt::AlignBottom);
 
@@ -97,4 +105,12 @@ void HomePage::callSettings() {
                                 "border-radius: 5px; background-color: #3399ff; "
                                 "color: white; font-weight: bold; margin-left: 10px;}");
 
+}
+
+void HomePage::roomSettingCalled() {
+  emit roomSettingsCallSignal();
+}
+
+void HomePage::userSettingCalled() {
+  emit userSettingsCallSignal();
 }

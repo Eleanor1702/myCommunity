@@ -8,6 +8,5 @@ int main(int argc, char **argv){
     GuiController init;
 
     return app.exec();
-
 }
 

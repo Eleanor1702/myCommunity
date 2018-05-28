@@ -1,10 +1,11 @@
-#ifndef COMMUNITYDATA_H
+/*#ifndef COMMUNITYDATA_H
 #define COMMUNITYDATA_H
 
 //  sudo apt-get install  libmysqlcppconn-dev
 
 #include <vector>
 #include <string>
+
 #include <cppconn/connection.h>
 #include <cppconn/prepared_statement.h>
 #include <cppconn/driver.h>
@@ -13,6 +14,7 @@
 #include <cppconn/statement.h>
 #include <mysql_driver.h>
 #include <mysql_connection.h>
+
 #include "lib/resident.h"
 #include "lib/room.h"
 
@@ -30,20 +32,19 @@ public:
     bool connect();
     void createRoomTable();
     void createResidentTable();
-    void addResident(string, int);
-    void addRoom(string, string);
-    void updatePassword(string, int);
-    void deleteResident(string);
-    void deleteRoom(string);
+    void addResident(std::string, int);
+    void addRoom(std::string, std::string);
+    void updatePassword(std::string, int);
+    void deleteResident(std::string);
+    void deleteRoom(std::string);
     vector<Resident> getAllResidents();
     vector<Room> getAllRooms();
-    bool verifyLogInData(string, int);
-    bool verifyName(string);
+    bool verifyLogInData(std::string, int);
+    bool verifyName(std::string);
     ~CommunityData();
 
     static CommunityData* getInstance();
 
 };
 
-#endif // COMMUNITYDATA_H
-
+#endif // COMMUNITYDATA_H*/

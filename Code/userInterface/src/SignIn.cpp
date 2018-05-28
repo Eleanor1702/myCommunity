@@ -27,6 +27,9 @@ SignIn::SignIn(QWidget *parent) : QWidget (parent){
 
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
+
+  QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(startPageCalled()));
+  QObject::connect(logInButton, SIGNAL(clicked()), this, SLOT(userLogedIn()));
 }
 
 void SignIn::setMainWindowDesign() {
@@ -96,3 +99,34 @@ void SignIn::setMainLayoutDesign() {
 
 }
 
+void SignIn::clearContent() {
+    this->giveNameEdit->clear();
+    this->givePasswordEdit->clear();
+    this->wrongPassLabel->hide();
+}
+
+std::string SignIn::getUserName() {
+    QString name = this->giveNameEdit->text();
+
+    std::string strName = name.toUtf8().constData();
+
+    return strName;
+}
+
+int SignIn::getUserPassword() {
+    QString password = this->givePasswordEdit->text();
+
+    int intPassword = password.toInt();
+
+    return intPassword;
+}
+
+void SignIn::startPageCalled() {
+    emit startPageCallSignal();
+    clearContent();
+}
+
+void SignIn::userLogedIn() {
+    emit userLogInSignal(getUserName(), getUserPassword());
+    clearContent();
+}
