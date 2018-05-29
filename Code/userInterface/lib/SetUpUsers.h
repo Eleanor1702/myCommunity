@@ -1,12 +1,14 @@
 #ifndef SETUPUSERS_H
 #define SETUPUSERS_H
 
+#include <vector>
 #include <QApplication>
 #include <QLabel>
 #include <QScrollArea>
 #include <QWidget>
 #include <QBoxLayout>
 #include <QPushButton>
+#include <QComboBox>
 #include <QLineEdit>
 #include <QStringList>
 #include <QList>
@@ -27,29 +29,32 @@ private:
    QBoxLayout *mainLabelRow;
    QLabel *mainLabel;
 
-   QBoxLayout *mainRow;
-
    QBoxLayout *scrollAreaRow;
    QScrollArea *scrollArea;
    QWidget *scrollWidget;
    QBoxLayout *scrollLayout;
 
+   QBoxLayout *addUserRow;
+
    QBoxLayout *mainButtonsRow;
-   QPushButton *saveButton;
+   QPushButton *backButton;
 
     void setMainWindowDesign();
     void setMainLayoutDesign();
+
+private slots:
+    void homePageCalled();
+
+signals:
+    void newUserSignUpSignal(std::string name, int password);
+    void homePageCallSignal();
 
 public:
     //the constructor build the window
     //the parameter *parent is here to nest widgets in widgets
     explicit SetUpUsers(QWidget *parent = NULL);
-
-public slots:
-
-signals:
-    void newUserSignUpSignal(std::string name, int password);
-
+    std::vector<UserList*> UserLList;
 };
+
 
 #endif // SETUPUSERS_H

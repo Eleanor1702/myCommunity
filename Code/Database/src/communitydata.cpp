@@ -34,12 +34,12 @@ CommunityData::CommunityData() {
     //Statement* stmt;
     //stmt = con->createStatement();
     //stmt->execute("CREATE DATABASE IF NOT EXISTS MyCommunity");
-    createRoomTable();
-    createResidentTable();
-    createCalendarTable();
+    //createRoomTable();
+    //createResidentTable();
+    //createCalendarTable();
     //createEventCommunityView();
-    createCleaningTable();
-    createTaskTable();
+    //createCleaningTable();
+    //createTaskTable();
 }
 
 //Table for all Rooms

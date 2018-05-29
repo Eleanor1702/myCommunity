@@ -69,6 +69,7 @@ public slots:
   //SetUpUsers Slots:
   void newUserSet();
   void userDeleted(QString name);
+  //void deleteUserButtonClicked(QString name);
 
   //Back To HomePage Slot:
   void callHomePage();

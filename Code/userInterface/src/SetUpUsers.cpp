@@ -3,24 +3,25 @@
 //calling the constructor, calls the parent constructor too
 //in this case QWidget
 SetUpUsers::SetUpUsers(QWidget *parent) : QWidget(parent){
-
   //declarations of window contents
   mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, this);
   mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
-  mainLabel = new QLabel("Konfiguriere deine Mitbewohner");
+  mainLabel = new QLabel("WG Bewohner");
 
-  mainRow = new QBoxLayout(QBoxLayout::LeftToRight, this);
-
-  scrollAreaRow = new QBoxLayout(QBoxLayout::TopToBottom);
+  scrollAreaRow = new QBoxLayout(QBoxLayout::LeftToRight);
   scrollArea = new QScrollArea(this);
   scrollWidget = new QWidget(this);
   scrollLayout = new QBoxLayout(QBoxLayout::TopToBottom, this->scrollWidget);
 
+  addUserRow = new QBoxLayout(QBoxLayout::LeftToRight);
+
   mainButtonsRow = new QBoxLayout(QBoxLayout::LeftToRight);
-  saveButton = new QPushButton ("Speichern");
+  backButton = new QPushButton ("Zurück zum Hauptmenü");
 
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
+
+  QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(homePageCalled()));
 }
 
 void SetUpUsers::setMainWindowDesign() {
@@ -29,8 +30,8 @@ void SetUpUsers::setMainWindowDesign() {
     this->setWindowTitle(QString::fromUtf8("Bewohner Verwalten"));
 
     mainLayout->addLayout(mainLabelRow);
-    mainLayout->addLayout(mainRow);
-    //mainLayout->addLayout(scrollAreaRow);
+    mainLayout->addLayout(scrollAreaRow);
+    mainLayout->addLayout(addUserRow);
     mainLayout->addLayout(mainButtonsRow);
     this->setLayout(mainLayout);
 }
@@ -41,20 +42,21 @@ void SetUpUsers::setMainLayoutDesign() {
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
                                    "font-weight: bold; margin-top: 5px; color: #aaa;");
 
-    this->mainRow->addLayout(scrollAreaRow);
-    //this->scrollAreaRow->addWidget(scrollArea);
-
-    this->mainRow->addWidget(scrollArea, 0, Qt::AlignRight);
+    this->scrollAreaRow->addWidget(scrollArea);
     this->scrollArea->setWidget(this->scrollWidget);
     this->scrollWidget->setLayout(this->scrollLayout);
     this->scrollLayout->setAlignment(Qt::AlignTop);
     this->scrollArea->setWidgetResizable(true);
-    //this->scrollArea->
 
-    this->mainButtonsRow->addWidget(saveButton);
-    saveButton->setFixedSize(200, 50);
-    saveButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
+
+    this->mainButtonsRow->addWidget(backButton);
+    backButton->setFixedSize(200, 50);
+    backButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
                               "border-radius: 5px; background-color: #00b300; "
                               "color: white; font-weight: bold;}");
 
+}
+
+void SetUpUsers::homePageCalled() {
+  emit homePageCallSignal();
 }

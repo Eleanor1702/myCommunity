@@ -49,6 +49,7 @@ GuiController::GuiController() : QWidget() {
 
     //SetUpUsers Events
     //QObject::connect(users->addButton,SIGNAL(clicked()),this,SLOT(addUserButtonClicked()));
+    connect(users, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
 
     //EventPage Events
     connect(events, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));

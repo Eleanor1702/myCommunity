@@ -14,10 +14,9 @@ protected:
     EventExpert();
 
 public:
-
-    void createEvent(std::string description, tm timedate, std::string user);             // time und date als t_time
-    void deleteEvent(std::string description, tm timedate, std::string user);
-    void editEvent(std::string description, tm timedate);       //nur die zeit darf verändert werden
+    void createEvent(std::string description, std::string timedate, std::string user);             // time und date als t_time
+    void deleteEvent(std::string description, std::string timedate, std::string user);
+    void editEvent(std::string description, std::string timedate);       //nur die zeit darf verändert werden
 
     static EventExpert* getInstance();
 };
