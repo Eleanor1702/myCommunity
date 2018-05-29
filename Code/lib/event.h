@@ -8,7 +8,9 @@ class Event{
 
 private:
     std::string description;
-    tm time;
+    //tm time;
+    std::string date;
+    std::string time;
     std::string user;
 
 public:
@@ -16,22 +18,32 @@ public:
     //~Event();
 
     void setDescription(std::string newDescription);
-    void setTime(tm timedate);
+   /* void setTime(tm timedate);
     void setDay(tm timedate);
     void setMonth(tm timedate);
     void setYear(tm timedate);
     void setMin(tm timedate);
     void setHour(tm timedate);
+    */
     void setUser(std::string newUser);
 
+    void setTime(std::string time);
+    void setDate(std::string date);
+    void setDatetime(std::string datetime);
+
     std::string getDescription();
-    tm getTime();
+
+    /*tm getTime();
     int getDay();
     int getMonth();
     int getYear();
     int getMin();
     int getHour();
+    */
+
     std::string getUser();
+    std::string getTime();
+    std::string getDate();
 };
 
 #endif // EVENT_H

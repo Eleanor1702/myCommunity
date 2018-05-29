@@ -42,15 +42,18 @@ private:
     void setMainWindowDesign();
     void setMainLayoutDesign();
 
+private slots:
+    void homePageCalled();
+
+signals:
+    void newUserSignUpSignal(std::string name, int password);
+    void homePageCallSignal();
+
 public:
     //the constructor build the window
     //the parameter *parent is here to nest widgets in widgets
     explicit SetUpUsers(QWidget *parent = NULL);
     std::vector<UserList*> UserLList;
-
-signals:
-    void newUserSignUpSignal(std::string name, int password);
-
 };
 
 
