@@ -2,7 +2,9 @@
 
 EventExpert* EventExpert::instance = NULL;
 
-EventExpert::EventExpert(){}
+EventExpert::EventExpert(){
+    data = data->getInstance();
+}
 
 EventExpert* EventExpert::getInstance(){
     if(instance == NULL){
@@ -18,6 +20,7 @@ void EventExpert::createEvent(std::string description, std::string datetime, std
     ev.Event::setDatetime(datetime);
     ev.Event::setUser(user);
     Eventlist.push_back(ev);
+    data->addEvent(ev);
 }
 
 /*void EventExpert::deleteEvent(string description, tm datetime, string user){

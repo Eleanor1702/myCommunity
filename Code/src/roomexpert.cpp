@@ -13,7 +13,7 @@ void RoomExpert::createRoom(std::string name, std::string typ){
      ro.setName(name);
      ro.setArt(typ);
      Roomlist.push_back(ro);
-     data->addRoom(name, typ);
+     data->addRoom(ro);
 }
 
 void RoomExpert::deleteRoom(std::string name){

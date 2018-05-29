@@ -98,3 +98,9 @@ std::string Event::getDate(){
     return date;
 }
 
+std::string Event::getDatetime(){
+    std::string datetime;
+    datetime = getDate() + getTime();
+    return datetime;
+}
+

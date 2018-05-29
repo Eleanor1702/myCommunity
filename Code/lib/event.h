@@ -44,6 +44,7 @@ public:
     std::string getUser();
     std::string getTime();
     std::string getDate();
+    std::string getDatetime();
 };
 
 #endif // EVENT_H
