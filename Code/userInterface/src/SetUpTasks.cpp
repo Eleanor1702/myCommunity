@@ -118,13 +118,15 @@ std::string SetUpTasks::getTaskNameInput() {
 }
 
 void SetUpTasks::appear(std::vector<std::string> nameVec, std::vector<std::string> roomVec, std::vector<std::string> frequencyVec, int size) {
-    for(int i = 0; i < TaskListItemList.size(); i++) {
+    this->show();
+
+    for(auto i = 0; i < TaskListItemList.size(); i++) {
         scrollLayout->removeWidget(TaskListItemList[i]);
     }
 
     TaskListItemList.clear();
 
-    for(int i = 0; i < size; i++) {
+    for(auto i = 0; i < size; i++) {
         newTask = new TaskListItem(QString::fromStdString(nameVec[i]), QString::fromStdString(roomVec[i]), QString::fromStdString(frequencyVec[i]));
 
         // so every TaskListItem is connected..

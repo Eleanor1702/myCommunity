@@ -34,12 +34,13 @@ CommunityData::CommunityData() {
     //Statement* stmt;
     //stmt = con->createStatement();
     //stmt->execute("CREATE DATABASE IF NOT EXISTS MyCommunity");
-    //createRoomTable();
-    //createResidentTable();
-    //createCalendarTable();
+    createRoomTable();
+    createResidentTable();
+    createCalendarTable();
     //createEventCommunityView();
-    //createCleaningTable();
-    //createTaskTable();
+    createCleaningTable();
+    createTaskTable();
+    //createShoppinglistTable();
 }
 
 //Table for all Rooms
@@ -83,9 +84,11 @@ void CommunityData::createCleaningTable(){
 void CommunityData::createTaskTable(){
     Statement* stmt;
     stmt = con->createStatement();
-    stmt->execute("CREATE TABLE IF NOT EXISTS Tasks (Name VARCHAR(50) PRIMARY KEY, FREQUENCY VARCHAR(50))");
+    stmt->execute("CREATE TABLE IF NOT EXISTS Tasks (Name VARCHAR(50) PRIMARY KEY, Room VARCHAR(50), Frequency VARCHAR(50))");
     delete stmt;
 }
+
+//create Table for Shopping list
 
 //insert a new resident identified by his name and his password
 void CommunityData::addResident(std::string name, int password) {
@@ -108,12 +111,11 @@ void CommunityData::addRoom(std::string name, std::string type) {
 }
 
 //add a new calendar event for a user
-void CommunityData::addEvent(tm timedate, std::string description, std::string user) {
+
+void CommunityData::addEvent(std::string timedate, std::string description, std::string user) {
     PreparedStatement* stmt;
-    //Convert tm type to SQL String
-    SQLString td = "2018-05-01";
     stmt = con->prepareStatement("INSERT INTO Calendar(Datetime, Event, User) VALUES(?, ?, ?)");
-    stmt->setDateTime(1, td);
+    stmt->setDateTime(1, timedate);
     stmt->setString(2, description);
     stmt->setString(3, user);
     stmt->execute();
@@ -121,11 +123,13 @@ void CommunityData::addEvent(tm timedate, std::string description, std::string u
 }
 
 //add a new cleaning task
-void CommunityData::addTask(std::string taskname, std::string frequency){
+void CommunityData::addTask(std::string taskname,std::string room, std::string frequency){
+
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("INSERT INTO Tasks(Name, Frequency) VALUES(?, ?)");
+    stmt = con->prepareStatement("INSERT INTO Tasks(Name, Room, Frequency) VALUES(?, ?)");
     stmt->setString(1, taskname);
-    stmt->setString(2, frequency);
+    stmt->setString(2, room);
+    stmt->setString(3, frequency);
     stmt->execute();
     delete stmt;
 }
@@ -151,11 +155,11 @@ void CommunityData::updatePassword(std::string username, int newPassword) {
 }
 
 //change time or description of an event
-void CommunityData::updateEvent(Event ev, tm newtimedate, std::string newdescription) {
+void CommunityData::updateEvent(Event ev, std::string newtimedate, std::string newdescription) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("UPDATE Calendar SET Datetime = ? WHERE Datetime = ? AND EVENT = ? AND User = ? ");
-    //stmt->setDateTime(1, newtimedate);
-    //stmt->setDateTime(2, ev.getTime());
+    stmt->setDateTime(1, newtimedate);
+    stmt->setDateTime(2, ev.getTime());
     stmt->setString(3, ev.getDescription());
     stmt->setString(4, ev.getUser());
     stmt->execute();
@@ -163,7 +167,7 @@ void CommunityData::updateEvent(Event ev, tm newtimedate, std::string newdescrip
 
     stmt = con->prepareStatement("UPDATE Calendar SET Description = ? WHERE Datetime = ? AND EVENT = ? AND User = ? ");
     stmt->setString(1, newdescription);
-    //stmt->setDateTime(2, ev.getTime());
+    stmt->setDateTime(2, ev.getTime());
     stmt->setString(3, ev.getDescription());
     stmt->setString(4, ev.getUser());
     stmt->execute();
@@ -171,13 +175,14 @@ void CommunityData::updateEvent(Event ev, tm newtimedate, std::string newdescrip
 
 }
 
-
 //delete a resident
 void CommunityData::deleteResident(std::string name) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("DELETE FROM Residents WHERE Firstname = ?");
     stmt->setString(1, name);
     stmt->execute();
+    deleteCalendar(name); //delete calendar of deleted resident
+    deleteResidentCleaningplan(name); //delete his cleaning tasks
     delete stmt;
 }
 
@@ -187,18 +192,16 @@ void CommunityData::deleteRoom(std::string name) {
     stmt = con->prepareStatement("DELETE FROM Rooms WHERE Name = ?");
     stmt->setString(1, name);
     stmt->execute();
+    deleteTaskByRoom(name); //delete tasks
+    deleteRoomCleaningplan(name); //and update cleaningplan
     delete stmt;
 }
 
 //delete a calendar event
-void CommunityData::deleteEvent(tm timedate, std::string description, std::string user) {
+void CommunityData::deleteEvent(std::string timedate, std::string description, std::string user) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("DELETE FROM Calendar WHERE Datetime = ? AND Event = ? AND User = ?");
-    //Convert timedate to SQLString or DATETIME type
-
-
-
-    //stmt->setDateTime(1,timedate);
+    stmt->setDateTime(1,timedate);
     stmt->setString(2, description);
     stmt->setString(3, user);
     stmt->execute();
@@ -206,10 +209,56 @@ void CommunityData::deleteEvent(tm timedate, std::string description, std::strin
 }
 
 //delete a cleaning task from database
-void CommunityData::deleteTask(std::string taskname){
+void CommunityData::deleteTaskByName(std::string taskname){
     PreparedStatement* stmt;
     stmt = con->prepareStatement("DELETE FROM Tasks WHERE Name = ? ");
     stmt->setString(1, taskname);
+    stmt->execute();
+    delete stmt;
+}
+
+//delete all tasks of a room
+void CommunityData::deleteTaskByRoom(std::string room){
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("DELETE FROM Tasks WHERE Room = ?");
+    stmt->setString(1, room);
+    stmt->execute();
+    delete stmt;
+}
+
+//delete the whole calendar of an user
+void CommunityData::deleteCalendar(std::string user) {
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("DELETE FROM Calendar WHERE User = ?");
+    stmt->setString(1, user);
+    stmt->execute();
+    delete stmt;
+}
+
+//update clenaingplan by task
+void CommunityData::deleteTaskCleaningplan(std::string task){
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("DELETE FROM Cleaning WHERE Task = ?");
+    stmt->setString(1, task);
+    stmt->execute();
+    delete stmt;
+
+}
+
+//update cleaningplan by resident
+void CommunityData::deleteResidentCleaningplan(std::string resident){
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("DELETE FROM Cleaning WHERE Resident = ?");
+    stmt->setString(1, resident);
+    stmt->execute();
+    delete stmt;
+}
+
+//update cleaningplan by room
+void CommunityData::deleteRoomCleaningplan(std::string room){
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("DELETE FROM Cleaning WHERE Room = ?");
+    stmt->setString(1, room);
     stmt->execute();
     delete stmt;
 }
@@ -262,10 +311,7 @@ std::vector<Event> CommunityData::getAllEventsOfUser(std::string user) {
         Event ev;
         ev.setDescription(resultSet->getString("Event"));
         ev.setUser(user);
-        //Convert datetime / SQLString to tm type
-
-
-        //ev.setTime(timedate);
+        ev.setDatetime(resultSet->getString("Datetime"));
         list.push_back(ev);
     }
     delete stmt;
@@ -283,10 +329,7 @@ std::vector<Event> CommunityData::getAllCommunityEvents() {
         Event ev;
         ev.setDescription(resultSet->getString("Event"));
         ev.setUser("community");
-        //Convert datetime / SQLString to tm type
-
-
-        //ev.setTime(timedate);
+        ev.setDatetime(resultSet->getString("Datetime"));
         list.push_back(ev);
     }
     delete stmt;
