@@ -118,9 +118,7 @@ std::string SetUpTasks::getTaskNameInput() {
 }
 
 void SetUpTasks::appear(std::vector<std::string> nameVec, std::vector<std::string> roomVec, std::vector<std::string> frequencyVec, int size) {
-    this->show();
-
-    for(unsigned int i = 0; i < TaskListItemList.size(); i++) {
+    for(int i = 0; i < TaskListItemList.size(); i++) {
         scrollLayout->removeWidget(TaskListItemList[i]);
     }
 
@@ -137,6 +135,8 @@ void SetUpTasks::appear(std::vector<std::string> nameVec, std::vector<std::strin
     }
 
     giveNameEdit->clear();
+
+    this->show();
 }
 
 
