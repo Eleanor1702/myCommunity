@@ -22,7 +22,7 @@ SetUpRooms::SetUpRooms(QWidget *parent) : QWidget(parent){
   nameLabel = new QLabel("Name:");
   giveNameEdit = new QLineEdit();
   addButton = new QPushButton (QString::fromUtf8("Raum hinzufügen"), this);
-  saveButton = new QPushButton ("Speichern");
+  saveButton = new QPushButton ("Zurück zum Hauptmenü");
 
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
