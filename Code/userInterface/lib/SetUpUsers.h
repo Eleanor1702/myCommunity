@@ -48,6 +48,9 @@ public:
     explicit SetUpUsers(QWidget *parent = NULL);
     std::vector<UserList*> UserLList;
 
+signals:
+    void newUserSignUpSignal(std::string name, int password);
+
 };
 
 

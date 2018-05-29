@@ -2,67 +2,68 @@
 
 GuiController* GuiController::instance = NULL;
 
-GuiController::GuiController(QWidget *parent) : QWidget(parent) {
-  this->main = new StartPage();
-  this->up = new SignUp();
-  this->in = new SignIn();
+GuiController* GuiController::getInstance(){
+    if(instance == NULL){
+        instance = new GuiController();
+    }
+    return instance;
+}
 
-  this->home = new HomePage();
-  this->rooms = new SetUpRooms();
-  this->users = new SetUpUsers();
+GuiController::GuiController() : QWidget() {
+    this->main = new StartPage();
+    this->up = new SignUp();
+    this->in = new SignIn();
 
-  this->events = new EventPage();
+    this->home = new HomePage();
+    this->rooms = new SetUpRooms();
+    this->users = new SetUpUsers();
+    this->events = new EventPage();
+    this->clean = new CleaningPage();
+    this->task = new SetUpTasks();
 
-  this->clean = new CleaningPage();
-  this->task = new SetUpTasks();
+    con = this->con->getInstance();
 
-  con = this->con->getInstance();
+    //StartPage Events
+    connect(main, SIGNAL(signUpCallSignal()), this, SLOT(callSignUp()));
+    connect(main, SIGNAL(signInCallSignal()), this, SLOT(callSignIn()));
 
-  //Events
-  //StartPage Events
-  QObject::connect(main->signUpButton,SIGNAL(clicked()),this,SLOT(callSignUp()));
-  QObject::connect(main->signInButton,SIGNAL(clicked()),this,SLOT(callSignIn()));
+    //SignUp Events
+    connect(up, SIGNAL(startPageCallSignal()), this, SLOT(callStartPage()));
+    connect(up, SIGNAL(newUserSignUpSignal(std::string,int)),this, SLOT(signUpNewUser(std::string,int)));
 
-  //SignUp Events
-  QObject::connect(up->backButton,SIGNAL(clicked()),this,SLOT(callStartPage()));
-  QObject::connect(up->saveButton,SIGNAL(clicked()),this, SLOT(saveClicked()));
+    //SignIn Events
+    connect(in, SIGNAL(startPageCallSignal()), this, SLOT(callStartPage()));
+    connect(in, SIGNAL(userLogInSignal(std::string,int)), this, SLOT(logInUser(std::string, int)));
 
-  //SignIn Events
-  QObject::connect(in->backButton,SIGNAL(clicked()),this,SLOT(callStartPage()));
-  QObject::connect(in->logInButton,SIGNAL(clicked()),this,SLOT(logInClicked()));
+    //HomePage Events
+    connect(home, SIGNAL(roomSettingsCallSignal()), this, SLOT(callRoomSettings()));
+    connect(home, SIGNAL(userSettingsCallSignal()), this, SLOT(callUserSettings()));
+    connect(home, SIGNAL(calendarCallSignal()), this, SLOT(callCalendar()));
+    connect(home, SIGNAL(cleanPlanCallSignal()), this, SLOT(callCleanPlan()));
+    connect(home, SIGNAL(logOutCallSignal()), this, SLOT(callLogOut()));
 
-  //HomePage Events
-  QObject::connect(home->roomSettingButton,SIGNAL(clicked()),this,SLOT(roomSettingClicked()));
-  QObject::connect(home->userSettingButton,SIGNAL(clicked()),this,SLOT(userSettingClicked()));
-  QObject::connect(home->logOut,SIGNAL(clicked()),this,SLOT(logOutClicked()));
-  QObject::connect(home->calendarButton,SIGNAL(clicked()),this,SLOT(calendarClicked()));
+    //SetUpRoomsEvents
+    connect(rooms, SIGNAL(setNewRoomSignal()), this, SLOT(newRoomSet()));
+    connect(rooms, SIGNAL(deleteRoomSignal(QString)), this, SLOT(roomDeleted(QString)));
+    connect(rooms, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
 
-  QObject::connect(home->cleanPlan,SIGNAL(clicked()),this,SLOT(cleanPlanButtonClicked()));
+    //SetUpUsers Events
+    //QObject::connect(users->addButton,SIGNAL(clicked()),this,SLOT(addUserButtonClicked()));
 
-  //SetUpRoomsEvents
-  QObject::connect(rooms->addButton,SIGNAL(clicked()),this,SLOT(addRoomButtonClicked()));
-  QObject::connect(rooms->saveButton,SIGNAL(clicked()),this,SLOT(saveRoomButtonClicked()));
-  //if Room is deleted
-  connect(rooms->newRoom, SIGNAL(deleteButtonSignal(QString)), this, SLOT(roomDeleted(QString)));
+    //EventPage Events
+    connect(events, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
 
-  //SetUpUsers Events
-  //QObject::connect(users->addButton,SIGNAL(clicked()),this,SLOT(addUserButtonClicked()));
-  QObject::connect(users->backButton,SIGNAL(clicked()),this,SLOT(backButtonClicked()));
+    //CleaningPage Events
+    connect(clean, SIGNAL(taskCallSignal()), this, SLOT(callTask()));
+    connect(clean, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
 
-  //EventPage Events
-  QObject::connect(events->saveEventButton,SIGNAL(clicked()),this,SLOT(saveEventButtonClicked()));
+    //SetUpTask Events
+    connect(task, SIGNAL(newTaskSignal()), this, SLOT(newTaskSet()));
+    connect(task, SIGNAL(deleteTaskSignal(QString)), this, SLOT(taskDeleted(QString)));
+    connect(task, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
 
-  //CleaningPage Events
-  QObject::connect(clean->setuptaskButton, SIGNAL(clicked()),this,SLOT(setupTaskButtonClicked()));
-  QObject::connect(clean->backButton,SIGNAL(clicked()),this,SLOT(backToHomeButtonClicked()));
-
-  //SetUpTask Events
-  QObject::connect(task->addButton,SIGNAL(clicked()),this,SLOT(addTaskButtonClicked()));
-  QObject::connect(task->saveButton,SIGNAL(clicked()),this,SLOT(saveTaskButtonClicked()));
-
-  //show main page
-  this->main->show();
-
+    //show main page
+    this->main->show();
 }
 
 //StartPage Events
@@ -71,243 +72,143 @@ void GuiController::callSignUp(){
     main->hide();
 }
 
+//SignUp Event
+void GuiController::signUpNewUser(std::string name, int password) {
+    if( !(con->searchNameResident(name)) ) {
+        con->addResident(name, password);
+
+        in->show();
+        up->hide();
+    }
+}
+
 void GuiController::callSignIn(){
     in->show();
     main->hide();
 }
 
-//SignUp & SignIn Event
-void GuiController::callStartPage() {
-    up->clearContent();
-    in->clearContent();
-
-    main->show();
-    up->close();
-    in->close();
-}
-
-//SignUp Event
-void GuiController::saveClicked() {
-    //whether Input of name or password is acceptable
-    if(up->getUserName() == "Error" || up->getUserPassword() == 1) {
-        //Error message, maybe?
-        return;
-    }else{
-        if(! (con->searchNameResident(up->getUserName())) ) {
-            con->addResident(up->getUserName(), up->getUserPassword());
-
-            up->clearContent();
-
-            in->show();
-            up->hide();
-        }
-    }
-}
-
 //SignIn Event
-void GuiController::logInClicked() {
-    if(con->searchResident(in->getUserName(), in->getUserPassword())) {
-        in->clearContent();
-
+void GuiController::logInUser(std::string name, int password) {
+    if(con->searchResident(name, password)) {
         home->show();
         in->hide();
-    } else {
-        in->clearContent();
     }
+}
+
+//SignUp & SignIn Event
+void GuiController::callStartPage() {
+    main->show();
+    in->hide();
+    up->hide();
 }
 
 //HomePage Events
-void GuiController::roomSettingClicked() {
-    rooms->show();
-    home->hide();
-
-    //Update Data from DataBank
-
-}
-
-void GuiController::userSettingClicked() {
-    users->show();
-    home->hide();
-}
-
-void GuiController::calendarClicked() {
-    events->show();
-    home->hide();
-}
-
-/*void GuiController::roomSettingsButtonClicked() {
-  rooms->show();
-  home->hide();
-  //Daten aus dem Room vector in Roomexpert über Controller holen & anzeigen ->function
-  int size = con->GetSizeAndUpdate();
-  for(int i = 0; i < size; i++) {
-     QString roomName = QString::fromStdString(con->RoomGetterName(i));
-     QString roomType= QString::fromStdString(con->RoomGetterArt(i));
-     this->rooms->newRoom = new RoomListItem(roomName, roomType);
-     this->rooms->RoomListItemList.push_back(this->rooms->newRoom);
-     this->rooms->scrollLayout->addWidget(this->rooms->newRoom);
-     connect(this->rooms->newRoom, SIGNAL(deleteButtonClickedSignal(QString)), this, SLOT(deleteRoomButtonClicked(QString)));
-  }
-}*/
-void GuiController::cleanPlanButtonClicked(){
-    clean->show();
-    home->hide();
-}
-
-void GuiController::logOutClicked() {
-    main->show();
+void GuiController::callRoomSettings() {
+    //Show SetUpRooms and update room List
+    rooms->appear(con->getRoomNames(), con->getRoomArts(), con->getSize());
     home->hide();
 }
 
 //SetUpRooms Events
-void GuiController::addRoomButtonClicked(){
-
-  QString roomType = rooms->chooseRoomTypeCombo->currentText();
-
-  QString roomName = rooms->giveNameEdit->text();
-  if(roomName.size() == 0 || roomName[0] == ' '){
-      return;
-  }
-
-  this->rooms->newRoom = new RoomListItem(roomName, roomType);
-  this->rooms->RoomListItemList.push_back(this->rooms->newRoom);
-
-  //if delete Room methode was called
-  connect(this->rooms->newRoom, SIGNAL(deleteButtonClickedSignal(QString)), this, SLOT(deleteRoomButtonClicked(QString)));
-
-  //here should contect of vector be saved in Databank
-    con->addRoom(roomType.toStdString(), roomName.toStdString());
-
-  //Viewing in Gui
-  this->rooms->scrollLayout->addWidget(this->rooms->newRoom);
-  this->rooms->giveNameEdit->clear();
+void GuiController::newRoomSet() {
     if(rooms->getRoomNameInput() == "Error") {
-        //warning Label message, maybe?
+        //Exception
         return;
     }else{
         //databank connection
         con->addRoom(rooms->getRoomTypeInput(), rooms->getRoomNameInput());
     }
 
-    this->rooms->updateContent();
+    //update room list in Gui
+    rooms->appear(con->getRoomNames(), con->getRoomArts(), con->getSize());
 }
 
 void GuiController::roomDeleted(QString room) {
     // delete room from Databank
     con->deleteRoom(room.toStdString());
+
+    rooms->appear(con->getRoomNames(), con->getRoomArts(), con->getSize());
 }
 
-void GuiController::backButtonClicked(){
-    this->home->show();
-    this->users->hide();
-}
-void GuiController::saveRoomButtonClicked() {
-  home->show();
-  rooms->hide();
+void GuiController::callUserSettings() {
+    users->show();
+    home->hide();
 }
 
 //SetUpUser Events
-/*
-void GuiController::addUserButtonClicked() {
-  QString userName = users->giveNameEdit->text();
-  if(userName.size() == 0 || userName[0] == ' '){
-      return;
-  }
-
-  QString userPassword = users->givePasswordEdit->text();
-  if(userPassword.size() == 0 || userPassword[0] == ' '){
-      return;
-  }
-
-  this->users->newUser = new UserList(userName);
-
-  this->users->scrollLayout->addWidget(users->newUser);
-
-  this->users->giveNameEdit->clear();
-  this->users->givePasswordEdit->clear();
-
-  connect(this->users->newUser,SIGNAL(deleteUserButtonClickedSignal(QString)),this,SLOT(deleteUserButtonClicked(QString)));
-}
-
-void GuiController::deleteUserButtonClicked(QString name) {
-  //do things with user delete signal
-
-}
-
-void GuiController::saveRoomButtonClicked() {
-  this->home->show();
-  this->rooms->hide();
-
-  this->rooms->RoomListItemList.clear();
-  //Remove all rooms from GUI by iterating over RoomListItemList (and using removeWidget?)
-
-
-}
-
-void GuiController::backButtonClicked(){
-    home->show();
-    users->hide();
-}*/
-
-//EventPage Events
-void GuiController::saveEventButtonClicked() {
-    home->show();
-    events->hide();
-}
-
-//CleaningPage Events
-
-void GuiController::setupTaskButtonClicked(){
-    this->task->show();
-    this->clean->hide();
-}
-
-void GuiController::backToHomeButtonClicked(){
-    this->home->show();
-    this->clean->hide();
-}
-
-//SetUpTask Events
-void GuiController::addTaskButtonClicked(){
-    QString taskFrequency = task->chooseTaskFrequencyCombo->currentText();
-    QString taskRoom = task->chooseTaskRoomCombo->currentText();
-    //proceed only with a task name
-    QString taskName = task->giveNameEdit->text();
-    if(taskName.size() == 0 || taskName[0] == ' '){
+void GuiController::newUserSet() {
+    /*QString userName = users->giveNameEdit->text();
+    if(userName.size() == 0 || userName[0] == ' '){
         return;
     }
 
-    this->task->newTask = new TaskListItem(taskName, taskRoom, taskFrequency);
-    this->task->TaskListItemList.push_back(this->task->newTask);
-
-    //Datenbank
-    //con->addTask(taskFrequency.toStdString(), taskRoom.toStdString(), taskName.toStdString());
-
-    //deleteButton
-    connect(this->task->newTask, SIGNAL(deleteButtonClickedSignal(QString)),this,SLOT(deleteTaskButtonClicked(QString)));
-
-    //Viewing in Gui
-    this->task->scrollLayout->addWidget(this->task->newTask);
-    this->task->giveNameEdit->clear();
-}
-
-
-void GuiController::saveTaskButtonClicked(){
-    this->clean->show();
-    this->task->hide();
-}
-
-
-/* //delete from Database
-void GuiController::deleteTaskButtonClicked(){
-    con->deleteTask(task->toStdString());
-}
-*/
-
-
-GuiController* GuiController::getInstance(QWidget *parent){
-    if(instance == NULL){
-        instance = new GuiController(parent);
+    QString userPassword = users->givePasswordEdit->text();
+    if(userPassword.size() == 0 || userPassword[0] == ' '){
+        return;
     }
-    return instance;
+
+    this->users->newUser = new UserList(userName);
+
+    this->users->scrollLayout->addWidget(users->newUser);
+
+    this->users->giveNameEdit->clear();
+    this->users->givePasswordEdit->clear();
+
+    connect(this->users->newUser,SIGNAL(deleteUserButtonClickedSignal(QString)),this,SLOT(deleteUserButtonClicked(QString)));*/
+}
+
+void GuiController::userDeleted(QString name) {
+    //do things with user delete signal
+}
+
+//All back Events to HomePage
+void GuiController::callHomePage() {
+    home->show();
+    task->hide();
+    clean->hide();
+    events->hide();
+    rooms->hide();
+    users->hide();
+}
+
+void GuiController::callCalendar() {
+    events->show();
+    home->hide();
+}
+
+void GuiController::callCleanPlan(){
+    clean->show();
+    home->hide();
+}
+
+//CleaningPage Events
+void GuiController::callTask(){
+    task->show();
+    clean->hide();
+}
+
+void GuiController::callLogOut() {
+    main->show();
+    home->hide();
+}
+
+//SetUpTask Events
+void GuiController::newTaskSet(){
+  if(task->getTaskNameInput() == "Error") {
+      //Exception
+      return;
+  }else{
+      //databank connection
+      //con->addTask(task->getTaskNameInput(), task->getSelectedRoomTask(), task->getSelectedTaskFrequency());
+  }
+
+  //update task list in Gui
+  //task->appear(con->getTaskName(), con->getRoomTask(), con->getTaskFrequency(), con->getSize());
+}
+
+void GuiController::taskDeleted(QString task){
+    // delete task from Databank
+    //con->deleteTask(task.toStdString());
+
+    //task->appear(con->getTaskName(), con->getRoomTask(), con->getTaskFrequency(), con->getSize());
 }

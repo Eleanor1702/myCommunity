@@ -3,7 +3,7 @@
 //calling the constructor, calls the parent constructor too
 //in this case QWidget
 
-SetUpRooms::SetUpRooms(QWidget *parent) : QWidget(parent){
+SetUpRooms::SetUpRooms(QWidget *parent) : QWidget(parent) {
   //declarations of window contents
   mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, this);
   mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
@@ -101,7 +101,7 @@ std::string SetUpRooms::getRoomNameInput() {
     return this->giveNameEdit->text().toStdString();
 }
 
-void SetUpRooms::show(std::vector<std::string> nameVec, std::vector<std::string> typeVec, int size) {
+void SetUpRooms::appear(std::vector<std::string> nameVec, std::vector<std::string> typeVec, int size) {
     this->show();
 
     for(int i = 0; i < RoomListItemList.size(); i++) {
@@ -111,7 +111,11 @@ void SetUpRooms::show(std::vector<std::string> nameVec, std::vector<std::string>
     RoomListItemList.clear();
 
     for(int i = 0; i < size; i++) {
-        newRoom = new RoomListItem(QString::fromStdString(nameVec[i]), QString::fromStdString(artVec[i]));
+        newRoom = new RoomListItem(QString::fromStdString(nameVec[i]), QString::fromStdString(typeVec[i]));
+
+        // so every RoomListItem is connected..
+        connect(newRoom, SIGNAL(deleteRoomSignal(QString)), this, SLOT(deleteRoomCalled(QString)));
+
         RoomListItemList.push_back(newRoom);
         scrollLayout->addWidget(newRoom);
     }
@@ -125,4 +129,8 @@ void SetUpRooms::setNewRoomCalled() {
 
 void SetUpRooms::homePageCalled() {
   emit homePageCallSignal();
+}
+
+void SetUpRooms::deleteRoomCalled(QString name) {
+  emit deleteRoomSignal(name);
 }

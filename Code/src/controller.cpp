@@ -9,34 +9,34 @@ Controller::Controller(){
    taExpert = taExpert->getInstance();
 }
 
-void Controller::addRoom(string art, string name){
+void Controller::addRoom(std::string art, std::string name){
     roExpert->createRoom(name, art);
 }
 
-void Controller::addResident(string name, int password){
+void Controller::addResident(std::string name, int password){
     rsExpert->createResident(name, password);
 }
 
-void Controller::deleteRoom(string name){
+void Controller::deleteRoom(std::string name){
     roExpert->deleteRoom(name);
 }
 
-void Controller::deleteResident(string name){
+void Controller::deleteResident(std::string name){
     rsExpert->deleteResident(name);
 }
 
-void Controller::editResident(string username,int newPassword){
+void Controller::editResident(std::string username,int newPassword){
     rsExpert->editResident(username, newPassword);
 }
 
-bool Controller::searchResident(string username, int password) {
+bool Controller::searchResident(std::string username, int password) {
   if(rsExpert->verifyLogInData(username, password)) {
       user = username;
       return true;
     }
   else return false;
 }
-bool Controller::searchNameResident(string username){
+bool Controller::searchNameResident(std::string username){
     return rsExpert->verifyName(username);
 }
 
@@ -57,14 +57,4 @@ Controller* Controller::getInstance(){
         instance = new Controller();
     }
     return instance;
-}
-int Controller::GetSizeAndUpdate() {
-    return roExpert->GetSizeAndUpdate();
-}
-
-string Controller::RoomGetterName(int i) {
-    return roExpert->RoomGetterName(i);
-}
-string Controller::RoomGetterArt(int i) {
-    return roExpert->RoomGetterArt(i);
 }

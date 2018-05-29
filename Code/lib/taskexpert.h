@@ -21,5 +21,4 @@ public:
     static TaskExpert* getInstance();
 };
 
-
 #endif // TASKEXPERT_H

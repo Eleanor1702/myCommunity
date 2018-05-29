@@ -7,7 +7,7 @@ RoomExpert::RoomExpert(){
     Roomlist = data->getAllRooms();
 }
 
-void RoomExpert::createRoom(string name, string typ){
+void RoomExpert::createRoom(std::string name, std::string typ){
      Room ro;
 
      ro.setName(name);
@@ -16,8 +16,8 @@ void RoomExpert::createRoom(string name, string typ){
      data->addRoom(name, typ);
 }
 
-void RoomExpert::deleteRoom(string name){
-        for(vector<Room>::iterator it = Roomlist.begin(); it != Roomlist.end(); ++it) {
+void RoomExpert::deleteRoom(std::string name){
+        for(std::vector<Room>::iterator it = Roomlist.begin(); it != Roomlist.end(); ++it) {
             if((it)->getName() == name) {
                 Roomlist.erase(it);
                 data->deleteRoom(name);

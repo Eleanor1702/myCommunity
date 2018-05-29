@@ -1,10 +1,7 @@
-/*#ifndef COMMUNITYDATA_H
+#ifndef COMMUNITYDATA_H
 #define COMMUNITYDATA_H
 
 //  sudo apt-get install  libmysqlcppconn-dev
-
-#include <vector>
-#include <string>
 
 #include <cppconn/connection.h>
 #include <cppconn/prepared_statement.h>
@@ -17,6 +14,8 @@
 
 #include "lib/resident.h"
 #include "lib/room.h"
+#include "lib/event.h"
+#include <time.h>
 
 class CommunityData {
 private:
@@ -32,19 +31,40 @@ public:
     bool connect();
     void createRoomTable();
     void createResidentTable();
-    void addResident(std::string, int);
-    void addRoom(std::string, std::string);
-    void updatePassword(std::string, int);
-    void deleteResident(std::string);
-    void deleteRoom(std::string);
-    vector<Resident> getAllResidents();
-    vector<Room> getAllRooms();
+    void createCalendarTable();
+    //void createEventUserView(string user);
+    void createEventCommunityView();
+    void createCleaningTable();
+    void createTaskTable();
+
+    void addResident(std::string name, int password);
+    void addRoom(std::string , std::string);
+    void addEvent(tm timedate, std::string description, std::string user);
+    void addTask(std::string taskname, std::string frequency);
+    void addToCleaningplan(std::string task, std::string resident, std::string week);
+
+    void updatePassword(std::string user, int password);
+    void updateEvent(Event ev, tm timedate, std::string description);
+
+    void deleteResident(std::string name);
+    void deleteRoom(std::string name);
+    void deleteEvent(tm timedate, std::string description, std::string user);
+    void deleteTask(std::string taskname);
+    //deleteCleaningplan()
+
+    std::vector<Resident> getAllResidents();
+    std::vector<Room> getAllRooms();
+    std::vector<Event> getAllEventsOfUser(std::string user);
+    std::vector<Event> getAllCommunityEvents();
+    //vector<Task> getAllTasks();
+    // getCleaningPlan()
+
     bool verifyLogInData(std::string, int);
     bool verifyName(std::string);
+
     ~CommunityData();
 
     static CommunityData* getInstance();
-
 };
 
-#endif // COMMUNITYDATA_H*/
+#endif // COMMUNITYDATA_H

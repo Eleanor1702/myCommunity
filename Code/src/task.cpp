@@ -1,10 +1,8 @@
 #include <lib/task.h>
 
-
-
 Task::Task() {}
 
-void Task::setName(string newName){
+void Task::setName(std::string newName){
     name = newName;
 }
 
@@ -36,11 +34,11 @@ void Task::setHour(tm timedate){
    time.tm_hour = timedate.tm_hour;
 }
 
-void Task::setUser(string newUser){
+void Task::setUser(std::string newUser){
     user = newUser;
 }
 
-void Task::setRoom(string newRoom){
+void Task::setRoom(std::string newRoom){
     room = newRoom;
 }
 
@@ -49,7 +47,7 @@ void Task::setFrequency(int newFrequency){
 }
 
 
-string Task::getName(){
+std::string Task::getName(){
     return name;
 }
 
@@ -78,11 +76,11 @@ int Task::getHour(){
     return time.tm_hour;
 }
 
-string Task::getUser(){
+std::string Task::getUser(){
     return user;
 }
 
-string Task::getRoom(){
+std::string Task::getRoom(){
     return room;
 }
 

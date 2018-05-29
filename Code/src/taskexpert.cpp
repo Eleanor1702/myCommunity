@@ -1,13 +1,10 @@
 #include "lib/taskexpert.h"
 
-
 TaskExpert* TaskExpert::instance = NULL;
 
-TaskExpert::TaskExpert(){
+TaskExpert::TaskExpert(){}
 
-}
-
-void TaskExpert::createTask(string name,tm timedate, string user, string room, int frequency){
+void TaskExpert::createTask(std::string name,tm timedate, std::string user, std::string room, int frequency){
     Task ta;
     ta.Task::setName(name);
     ta.Task::setTime(timedate);
@@ -17,8 +14,8 @@ void TaskExpert::createTask(string name,tm timedate, string user, string room, i
     Tasklist.push_back(ta);
 }
 
-void TaskExpert::deleteTask(string name, tm timedate, string user){
-    for(vector<Task>::iterator it = Tasklist.begin(); it != Tasklist.end(); ++it) {
+void TaskExpert::deleteTask(std::string name, tm timedate, std::string user){
+    for(std::vector<Task>::iterator it = Tasklist.begin(); it != Tasklist.end(); ++it) {
         if((it)->getName() == name && (it)->getUser() == user
                 && (it)->getDay() == timedate.tm_mday && (it)->getMonth() == timedate.tm_mon && (it)->getYear() == timedate.tm_year
                 && (it)->getMin() == timedate.tm_min && (it)->getMin() == timedate.tm_min
@@ -28,8 +25,8 @@ void TaskExpert::deleteTask(string name, tm timedate, string user){
     }
 }
 
-void TaskExpert::editTask(string name, tm timedate, int frequency) {       //Nur Zeit und Häufigkeit sollen veränderbar sein
-    for(vector<Task>::iterator it = Tasklist.begin(); it != Tasklist.end(); ++it) {
+void TaskExpert::editTask(std::string name, tm timedate, int frequency) {       //Nur Zeit und Häufigkeit sollen veränderbar sein
+    for(std::vector<Task>::iterator it = Tasklist.begin(); it != Tasklist.end(); ++it) {
         if((it)->getName() == name) {
             (it)->setTime(timedate);
             (it)->setFrequency(frequency);

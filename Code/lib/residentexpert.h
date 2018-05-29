@@ -2,7 +2,6 @@
 #define RESIDENTEXPERT_H
 
 #include <vector>
-#include <string>
 
 #include "resident.h"
 #include "Database/lib/communitydata.h"
@@ -12,7 +11,7 @@ private:
     static ResidentExpert* instance;
     Resident re;
     std::vector<Resident> Residentlist;
-    //CommunityData* data;
+    CommunityData* data;
 
 protected:
     ResidentExpert();

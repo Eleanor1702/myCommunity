@@ -17,6 +17,8 @@ EventPage::EventPage(QWidget *parent) : QWidget(parent) {
 
     this->setMainWindowDesign();
     this->setMainLayoutDesign();
+
+    QObject::connect(saveEventButton, SIGNAL(clicked()), this, SLOT(homePageCalled()));
 }
 
 void EventPage::setMainWindowDesign() {
@@ -53,4 +55,8 @@ void EventPage::setMainLayoutDesign() {
     this->saveEventButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
                                     "border-radius: 5px; background-color: #00b300; "
                                     "color: white; font-weight: bold;}");
+}
+
+void EventPage::homePageCalled() {
+  emit homePageCallSignal();
 }

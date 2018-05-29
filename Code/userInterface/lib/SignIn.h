@@ -58,4 +58,5 @@ signals:
     void startPageCallSignal();
     void userLogInSignal(std::string name, int password);
 };
+
 #endif // SIGNIN_H

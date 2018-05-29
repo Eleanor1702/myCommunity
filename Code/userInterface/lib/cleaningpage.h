@@ -28,7 +28,14 @@ private:
 
     void setMainWindowDesign();
     void setMainLayoutDesign();
-};
 
+private slots:
+    void taskCalled();
+    void homePageCalled();
+
+signals:
+    void taskCallSignal();
+    void homePageCallSignal();
+};
 
 #endif // CLEANINGPAGE_H

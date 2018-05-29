@@ -7,8 +7,7 @@
 #include <QHBoxLayout>
 
 
-class TaskListItem : public QFrame
-{
+class TaskListItem : public QFrame {
   Q_OBJECT
 private:
   //friend class GuiController;
@@ -22,17 +21,17 @@ private:
   void setItemStyle();
 
 private slots:
-  void deleteButtonClicked();
+  void deleteTask();
 
 signals:
-  void deleteButtonClickedSignal(QString name);
+  void deleteTaskSignal(QString name);
 
 public:
   //QFrame ist ein QWidget
   explicit TaskListItem(QString taskName, QString taskRoom, QString taskFrequency, QWidget *parent = NULL);
 
 public slots:
-};
 
+};
 
 #endif // TASKLISTITEM_H

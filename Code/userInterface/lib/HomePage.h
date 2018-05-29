@@ -29,13 +29,11 @@ private:
 
   QBoxLayout *buttonColumn;
   QPushButton *settings;
+  QPushButton *calendar;
   QPushButton *shoppingList;
   QPushButton *cleanPlan;
   QPushButton *saveFormat;
   QPushButton *logOut;
-
-  QBoxLayout *calendarButtonLayout;
-  QPushButton *calendarButton;
 
   void setMainScreenDesign();
   void setMainLayoutDesign();
@@ -47,9 +45,16 @@ private slots:
   void settingsCalled();
   void roomSettingCalled();
   void userSettingCalled();
+  void calendarCalled();
+  void cleanPlanCalled();
+  void logOutCalled();
 
 signals:
   void roomSettingsCallSignal();
   void userSettingsCallSignal();
+  void calendarCallSignal();
+  void cleanPlanCallSignal();
+  void logOutCallSignal();
+
 };
 #endif // HOMEPAGE_H
