@@ -1,10 +1,8 @@
 #include <lib/event.h>
 
-
-
 Event::Event() {}
 
-void Event::setDescription(string newDescription){
+void Event::setDescription(std::string newDescription){
     description = newDescription;
 }
 
@@ -35,11 +33,11 @@ void Event::setMin(tm timedate){
 void Event::setHour(tm timedate){
    time.tm_hour = timedate.tm_hour;
 }
-void Event::setUser(string newUser){
+void Event::setUser(std::string newUser){
     user = newUser;
 }
 
-string Event::getDescription(){
+std::string Event::getDescription(){
     return description;
 }
 
@@ -68,6 +66,6 @@ int Event::getHour(){
     return time.tm_hour;
 }
 
-string Event::getUser(){
+std::string Event::getUser(){
     return user;
 }

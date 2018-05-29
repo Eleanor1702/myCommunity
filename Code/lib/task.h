@@ -27,13 +27,12 @@ public:
     void setRoom(std::string newRoom);
     void setFrequency(int newFrequency);
 
-    string getName();
+    std::string getName();
     int getDay();
     int getMonth();
-    string getUser();
-    string getRoom();
+    std::string getUser();
+    std::string getRoom();
     int getFrequency();
-
 
     //Methoden die nicht direkt gebraucht werden, da der Putzplan
     //auf wöchentlicher Basis erstellt wird

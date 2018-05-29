@@ -14,7 +14,7 @@
 #include <QList>
 #include <QPixmap>
 
-class SignUp : public QWidget{
+class SignUp : public QWidget {
   //enable creation of slots and signals
   Q_OBJECT
 
@@ -45,6 +45,14 @@ private:
    void setMainWindowDesign();
    void setMainLayoutDesign();
 
+private slots:
+   void startPageCalled();
+   void saveClicked();
+
+signals:
+   void startPageCallSignal();
+   void newUserSignUpSignal(std::string name, int password);
+
 public:
     //the constructor build the window
     //the parameter *parent is here to nest widgets in widgets
@@ -54,14 +62,6 @@ public:
    void clearContent();
    std::string getUserName();
    int getUserPassword();
-
-private slots:
-   void startPageCalled();
-   void saveClicked();
-
-signals:
-   void startPageCallSignal();
-   void newUserSignUpSignal(std::string name, int password);
 };
 
 #endif // SIGNUP_H

@@ -12,7 +12,7 @@ private:
     std::vector<Room> Roomlist;
     static RoomExpert* instance;
 
-    //CommunityData* data;
+    CommunityData* data;
 
 protected:
     RoomExpert();

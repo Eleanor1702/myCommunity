@@ -47,6 +47,9 @@ public:
 
 public slots:
 
+signals:
+    void newUserSignUpSignal(std::string name, int password);
+
 };
 
 #endif // SETUPUSERS_H

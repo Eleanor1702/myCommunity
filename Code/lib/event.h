@@ -11,7 +11,6 @@ private:
     tm time;
     std::string user;
 
-
 public:
     Event();
     //~Event();
@@ -23,9 +22,9 @@ public:
     void setYear(tm timedate);
     void setMin(tm timedate);
     void setHour(tm timedate);
-    void setUser(string newUser);
+    void setUser(std::string newUser);
 
-    string getDescription();
+    std::string getDescription();
     tm getTime();
     int getDay();
     int getMonth();
@@ -33,11 +32,6 @@ public:
     int getMin();
     int getHour();
     std::string getUser();
-
 };
-
-
-
-
 
 #endif // EVENT_H

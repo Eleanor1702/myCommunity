@@ -1,6 +1,4 @@
 #include "lib/residentexpert.h"
-#include <string>
-#include <iostream>
 
 ResidentExpert* ResidentExpert::instance = NULL;
 
@@ -9,7 +7,7 @@ ResidentExpert::ResidentExpert(){
     Residentlist = data->getAllResidents();
 }
 
-void ResidentExpert::createResident(string name, int password){
+void ResidentExpert::createResident(std::string name, int password){
     Resident re;
     re.setFirstname(name);
     re.setPassword(password);
@@ -17,8 +15,8 @@ void ResidentExpert::createResident(string name, int password){
     data->addResident(name, password);
 }
 
-void ResidentExpert::deleteResident(string name){
-    for(vector<Resident>::iterator it = Residentlist.begin(); it != Residentlist.end(); ++it) {
+void ResidentExpert::deleteResident(std::string name){
+    for(std::vector<Resident>::iterator it = Residentlist.begin(); it != Residentlist.end(); ++it) {
         if((it)->getFirstname() == name) {
             Residentlist.erase(it);
             data->deleteResident(name);
@@ -27,8 +25,8 @@ void ResidentExpert::deleteResident(string name){
     }
 }
 
-void ResidentExpert::editResident(string username, int newPassword){
-    for(vector<Resident>::iterator it = Residentlist.begin(); it != Residentlist.end(); ++it) {
+void ResidentExpert::editResident(std::string username, int newPassword){
+    for(std::vector<Resident>::iterator it = Residentlist.begin(); it != Residentlist.end(); ++it) {
         if((it)->getFirstname() == username) {
             (it)->setPassword(newPassword);
             data->updatePassword(username, newPassword);
@@ -39,7 +37,7 @@ void ResidentExpert::editResident(string username, int newPassword){
 
 }
 
-bool ResidentExpert::verifyLogInData(string username, int password){
+bool ResidentExpert::verifyLogInData(std::string username, int password){
   for(std::vector<Resident>::iterator it = this->Residentlist.begin(); it != this->Residentlist.end(); ++it) {
       if((it)->getFirstname() == username && (it)->getPassword() == password) {
           return true;
@@ -52,7 +50,7 @@ bool ResidentExpert::verifyLogInData(string username, int password){
     else return false;
 }
 
-bool ResidentExpert::verifyName(string username){
+bool ResidentExpert::verifyName(std::string username){
   for(std::vector<Resident>::iterator it = this->Residentlist.begin(); it != this->Residentlist.end(); ++it) {
       if((it)->getFirstname() == username) {
           return true;

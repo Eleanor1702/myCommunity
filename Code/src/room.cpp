@@ -1,22 +1,19 @@
 #include "lib/room.h"
-#include <iostream>
-
-using namespace std;
 
 Room::Room() {}
 
-void Room::setArt(string eingabe){
+void Room::setArt(std::string eingabe){
     art = eingabe;
 }
 
-void Room::setName(string eingabe){
+void Room::setName(std::string eingabe){
     name = eingabe;
 }
 
-string Room::getArt(){
+std::string Room::getArt(){
     return art;
 }
 
-string Room::getName(){
+std::string Room::getName(){
     return name;
 }

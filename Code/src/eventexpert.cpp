@@ -1,13 +1,10 @@
 #include "lib/eventexpert.h"
 
-
 EventExpert* EventExpert::instance = NULL;
 
-EventExpert::EventExpert(){
+EventExpert::EventExpert(){}
 
-}
-
-void EventExpert::createEvent(string description,tm timedate, string user){
+void EventExpert::createEvent(std::string description,tm timedate, std::string user){
     Event ev;
     ev.Event::setDescription(description);
     ev.Event::setTime(timedate);
@@ -15,8 +12,8 @@ void EventExpert::createEvent(string description,tm timedate, string user){
     Eventlist.push_back(ev);
 }
 
-void EventExpert::deleteEvent(string description, tm timedate, string user){
-    for(vector<Event>::iterator it = Eventlist.begin(); it != Eventlist.end(); ++it) {
+void EventExpert::deleteEvent(std::string description, tm timedate, std::string user){
+    for(std::vector<Event>::iterator it = Eventlist.begin(); it != Eventlist.end(); ++it) {
         if((it)->getDescription() == description && (it)->getUser() == user
                 && (it)->getDay() == timedate.tm_mday && (it)->getMonth() == timedate.tm_mon && (it)->getYear() == timedate.tm_year
                 && (it)->getMin() == timedate.tm_min && (it)->getMin() == timedate.tm_min
@@ -26,8 +23,8 @@ void EventExpert::deleteEvent(string description, tm timedate, string user){
     }
 }
 
-void EventExpert::editEvent(string description, tm timedate){
-    for(vector<Event>::iterator it = Eventlist.begin(); it != Eventlist.end(); ++it) {
+void EventExpert::editEvent(std::string description, tm timedate){
+    for(std::vector<Event>::iterator it = Eventlist.begin(); it != Eventlist.end(); ++it) {
         if((it)->getDescription() == description) {
             (it)->setTime(timedate);
         }

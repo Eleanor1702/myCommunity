@@ -6,9 +6,7 @@
 #include <QPushButton>
 #include <QHBoxLayout>
 
-
-class RoomListItem : public QFrame
-{
+class RoomListItem : public QFrame {
   Q_OBJECT
 private:
   friend class GuiController;
@@ -25,13 +23,11 @@ private slots:
   void deleteRoom();
 
 signals:
-  void deleteButtonSignal(QString name);
+  void deleteRoomSignal(QString name);
 
 public:
   //QFrame ist ein QWidget
   explicit RoomListItem(QString roomName, QString roomType, QWidget *parent = NULL);
-
-public slots:
 };
 
 #endif // ROOMLISTITEM_H

@@ -95,8 +95,6 @@ void SignIn::setMainLayoutDesign() {
   mainLayout->addWidget(wrongPassLabel, 0, Qt::AlignCenter);
   wrongPassLabel->setStyleSheet("font-weight: bold; color:red");
   wrongPassLabel->hide();
-
-
 }
 
 void SignIn::clearContent() {

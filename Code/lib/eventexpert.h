@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "event.h"
+#include "Database/lib/communitydata.h"
 
 class EventExpert{
 private:

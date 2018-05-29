@@ -17,6 +17,8 @@ EventPage::EventPage(QWidget *parent) : QWidget(parent) {
 
     this->setMainWindowDesign();
     this->setMainLayoutDesign();
+
+    QObject::connect(saveEventButton, SIGNAL(clicked()), this, SLOT(homePageCalled()));
 }
 
 void EventPage::setMainWindowDesign() {
@@ -55,4 +57,6 @@ void EventPage::setMainLayoutDesign() {
                                     "color: white; font-weight: bold;}");
 }
 
-
+void EventPage::homePageCalled() {
+  emit homePageCallSignal();
+}

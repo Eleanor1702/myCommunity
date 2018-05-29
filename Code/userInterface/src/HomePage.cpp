@@ -14,7 +14,7 @@ HomePage::HomePage(QWidget *parent) : QWidget(parent) {
 
   this->buttonColumn = new QBoxLayout(QBoxLayout::TopToBottom);
   this->settings = new QPushButton("WG \n Einstellungen");
-  this->calendarButton = new QPushButton ("Kalender");
+  this->calendar = new QPushButton ("Kalender");
   this->shoppingList = new QPushButton("Einkaufsliste");
   this->cleanPlan = new QPushButton("Putzplan");
   this->saveFormat = new QPushButton("Export");
@@ -27,6 +27,9 @@ HomePage::HomePage(QWidget *parent) : QWidget(parent) {
   QObject::connect(settings,SIGNAL(clicked()), this, SLOT(settingsCalled()));
   QObject::connect(roomSettingButton, SIGNAL(clicked()), this, SLOT(roomSettingCalled()));
   QObject::connect(userSettingButton, SIGNAL(clicked()), this, SLOT(userSettingCalled()));
+  QObject::connect(calendar, SIGNAL(clicked()), this, SLOT(calendarCalled()));
+  QObject::connect(cleanPlan, SIGNAL(clicked()), this, SLOT(cleanPlanCalled()));
+  QObject::connect(logOut, SIGNAL(clicked()), this, SLOT(logOutCalled()));
 }
 
 void HomePage::setMainScreenDesign(){
@@ -51,7 +54,7 @@ void HomePage::setMainLayoutDesign(){
                                  "margin-right: 20px;");
 
   this->buttonColumn->addWidget(settings, 4, Qt::AlignTop);
-  this->buttonColumn->addWidget(calendarButton, 4, Qt::AlignCenter);
+  this->buttonColumn->addWidget(calendar, 4, Qt::AlignCenter);
   this->buttonColumn->addWidget(shoppingList, 4, Qt::AlignCenter);
   this->buttonColumn->addWidget(cleanPlan, 4, Qt::AlignCenter);
   this->buttonColumn->addWidget(saveFormat, 4, Qt::AlignCenter);
@@ -62,8 +65,8 @@ void HomePage::setMainLayoutDesign(){
                                 "border-radius: 5px; background-color: #3399ff; "
                                 "color: white; font-weight: bold;}");
 
-  this->calendarButton->setFixedSize(90, 90);
-  this->calendarButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
+  this->calendar->setFixedSize(90, 90);
+  this->calendar->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                                 "border-radius: 5px; background-color: #3399ff; "
                                 "color: white; font-weight: bold;}");
 
@@ -113,4 +116,16 @@ void HomePage::roomSettingCalled() {
 
 void HomePage::userSettingCalled() {
   emit userSettingsCallSignal();
+}
+
+void HomePage::calendarCalled() {
+  emit calendarCallSignal();
+}
+
+void HomePage::cleanPlanCalled() {
+  emit cleanPlanCallSignal();
+}
+
+void HomePage::logOutCalled() {
+  emit logOutCallSignal();
 }

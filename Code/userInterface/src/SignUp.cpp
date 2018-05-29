@@ -29,8 +29,8 @@ SignUp::SignUp(QWidget *parent) : QWidget(parent) {
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
 
-  QObject::connect(backButton, SIGNAL(clicked()),this, SLOT(startPageCalled()));
-  QObject::connect(saveButton, SIGNAL(clicked()),this, SLOT(saveClicked()));
+  QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(startPageCalled()));
+  QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(saveClicked()));
 }
 
 void SignUp::setMainWindowDesign() {
@@ -84,7 +84,6 @@ void SignUp::setMainLayoutDesign() {
     saveButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
                               "border-radius: 5px; background-color: #00b300; "
                               "color: white; font-weight: bold;}");
-
 }
 
 void SignUp::clearContent() {
