@@ -54,3 +54,13 @@ Endlich: pushen :)<br>
 2. Click Run.<br>
 
 Results listed in "Applications Output".
+
+----------------------------------------------------
+
+<h3> To manually connect with database in terminal:</h3>
+
+<code>mysql -p user -h 51.15.118.119 -p</code><br>
+
+you will be asked for password. Our password is:<br>
+
+<code>bmns2018!!</code>
