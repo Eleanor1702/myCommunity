@@ -103,16 +103,7 @@ void CommunityData::addResident(Resident re) {
     delete stmt;
 }
 
-//add a new room identifies by a room type and a name
-/*void CommunityData::addRoom(std::string name, std::string type) {
-    PreparedStatement* stmt;
-    stmt = con->prepareStatement("INSERT INTO Rooms(Name, Type) VALUES(?, ?)");
-    stmt->setString(1, name);
-    stmt->setString(2, type);
-    stmt->execute();
-    delete stmt;
-}
-*/
+//add a new room identified by a room type and a name
 void CommunityData::addRoom(Room ro) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("INSERT INTO Rooms(Name, Type) VALUES(?, ?)");
@@ -203,7 +194,7 @@ void CommunityData::deleteResident(std::string name) {
     stmt->setString(1, name);
     stmt->execute();
     deleteCalendar(name); //delete calendar of deleted resident
-    deleteResidentCleaningplan(name); //delete his cleaning tasks
+    //deleteResidentCleaningplan(name); //delete his cleaning tasks
     delete stmt;
 }
 
@@ -261,7 +252,7 @@ void CommunityData::deleteCalendar(std::string user) {
     delete stmt;
 }
 
-//update clenaingplan by task
+//update cleaningplan by task
 void CommunityData::deleteTaskCleaningplan(std::string task){
     PreparedStatement* stmt;
     stmt = con->prepareStatement("DELETE FROM Cleaning WHERE Task = ?");
