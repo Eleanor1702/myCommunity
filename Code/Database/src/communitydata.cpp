@@ -193,7 +193,7 @@ void CommunityData::deleteRoom(std::string name) {
     stmt->setString(1, name);
     stmt->execute();
     deleteTaskByRoom(name); //delete tasks
-    deleteRoomCleaningplan(name); //and update cleaningplan
+    //deleteRoomCleaningplan(name); //and update cleaningplan
     delete stmt;
 }
 
@@ -214,6 +214,8 @@ void CommunityData::deleteTaskByName(std::string taskname){
     stmt = con->prepareStatement("DELETE FROM Tasks WHERE Name = ? ");
     stmt->setString(1, taskname);
     stmt->execute();
+    //update cleaning plan
+
     delete stmt;
 }
 
@@ -223,6 +225,9 @@ void CommunityData::deleteTaskByRoom(std::string room){
     stmt = con->prepareStatement("DELETE FROM Tasks WHERE Room = ?");
     stmt->setString(1, room);
     stmt->execute();
+    //update cleaning plan
+    //deleteTaskCleaningplan();
+
     delete stmt;
 }
 
@@ -255,13 +260,13 @@ void CommunityData::deleteResidentCleaningplan(std::string resident){
 }
 
 //update cleaningplan by room
-void CommunityData::deleteRoomCleaningplan(std::string room){
+/*void CommunityData::deleteRoomCleaningplan(std::string room){
     PreparedStatement* stmt;
     stmt = con->prepareStatement("DELETE FROM Cleaning WHERE Room = ?");
     stmt->setString(1, room);
     stmt->execute();
     delete stmt;
-}
+}*/
 
 //get all residents from database
 std::vector<Resident> CommunityData::getAllResidents() {
