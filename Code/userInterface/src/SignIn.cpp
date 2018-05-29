@@ -27,6 +27,9 @@ SignIn::SignIn(QWidget *parent) : QWidget (parent){
 
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
+
+  QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(startPageCalled()));
+  QObject::connect(logInButton, SIGNAL(clicked()), this, SLOT(userLogedIn()));
 }
 
 void SignIn::setMainWindowDesign() {
@@ -92,8 +95,6 @@ void SignIn::setMainLayoutDesign() {
   mainLayout->addWidget(wrongPassLabel, 0, Qt::AlignCenter);
   wrongPassLabel->setStyleSheet("font-weight: bold; color:red");
   wrongPassLabel->hide();
-
-
 }
 
 void SignIn::clearContent() {
@@ -118,3 +119,12 @@ int SignIn::getUserPassword() {
     return intPassword;
 }
 
+void SignIn::startPageCalled() {
+    emit startPageCallSignal();
+    clearContent();
+}
+
+void SignIn::userLogedIn() {
+    emit userLogInSignal(getUserName(), getUserPassword());
+    clearContent();
+}

@@ -1,5 +1,4 @@
-#include "userInterface/lib/setuptasks.h"
-
+#include "userInterface/lib/SetUpTasks.h"
 
 //calling the constructor, calls the parent constructor too
 //in this case QWidget
@@ -29,6 +28,8 @@ SetUpTasks::SetUpTasks(QWidget *parent) : QWidget(parent){
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
 
+  QObject::connect(addButton, SIGNAL(clicked()), this, SLOT(setNewTaskCalled()));
+  QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(homePageCalled()));
 }
 
 void SetUpTasks::setMainWindowDesign() {
@@ -97,5 +98,56 @@ void SetUpTasks::setMainLayoutDesign() {
     saveButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
                               "border-radius: 5px; background-color: #00b300; "
                               "color: white; font-weight: bold;}");
+}
 
+std::string SetUpTasks::getSelectedTaskFrequency() {
+  return chooseTaskFrequencyCombo->currentText().toStdString();
+}
+
+std::string SetUpTasks::getSelectedRoomTask() {
+  return chooseTaskRoomCombo->currentText().toStdString();
+}
+
+std::string SetUpTasks::getTaskNameInput() {
+    //proceed only with a room name
+    if(giveNameEdit->text().size() == 0 || giveNameEdit->text()[0] == ' '){
+        return "Error";
+    }
+
+    return giveNameEdit->text().toStdString();
+}
+
+void SetUpTasks::appear(std::vector<std::string> nameVec, std::vector<std::string> roomVec, std::vector<std::string> frequencyVec, int size) {
+    this->show();
+
+    for(unsigned int i = 0; i < TaskListItemList.size(); i++) {
+        scrollLayout->removeWidget(TaskListItemList[i]);
+    }
+
+    TaskListItemList.clear();
+
+    for(int i = 0; i < size; i++) {
+        newTask = new TaskListItem(QString::fromStdString(nameVec[i]), QString::fromStdString(roomVec[i]), QString::fromStdString(frequencyVec[i]));
+
+        // so every TaskListItem is connected..
+        connect(newTask, SIGNAL(deleteTaskSignal(QString)), this, SLOT(deleteTaskCalled(QString)));
+
+        TaskListItemList.push_back(newTask);
+        scrollLayout->addWidget(newTask);
+    }
+
+    giveNameEdit->clear();
+}
+
+
+void SetUpTasks::setNewTaskCalled() {
+  emit newTaskSignal();
+}
+
+void SetUpTasks::homePageCalled() {
+  emit homePageCallSignal();
+}
+
+void SetUpTasks::deleteTaskCalled(QString name) {
+  emit deleteTaskSignal(name);
 }

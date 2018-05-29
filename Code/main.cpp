@@ -5,9 +5,8 @@ int main(int argc, char **argv){
 
     QApplication app (argc, argv);
 
-    GuiController init;
+    GuiController* gui = gui->getInstance();
 
     return app.exec();
-
 }
 

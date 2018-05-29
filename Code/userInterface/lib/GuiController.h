@@ -11,14 +11,12 @@
 #include "userInterface/lib/SetUpRooms.h"
 #include "userInterface/lib/SetUpUsers.h"
 #include "userInterface/lib/eventpage.h"
-#include "userInterface/lib/setuptasks.h"
+#include "userInterface/lib/SetUpTasks.h"
 #include "userInterface/lib/cleaningpage.h"
 
 #include "lib/controller.h"
 
-#include <string>
-
-//Inheritance from QWidget ist a must
+//Inheritance from QWidget is a must
 //because this class has slots
 class GuiController : public QWidget{
   Q_OBJECT
@@ -41,10 +39,6 @@ private:
 
   static GuiController* instance;   //Singleton
 
-public:
- static GuiController* getInstance(QWidget *parent);     //Singleton
- explicit GuiController(QWidget *parent = NULL);
-
 public slots:
   //class need to be QWidget to be able to call the actions
 
@@ -53,41 +47,46 @@ public slots:
   void callSignIn();
 
   //SignUp Slots
-  void saveClicked();
+  void signUpNewUser(std::string name, int password);
 
   //SignIn Slots
-  void logInClicked();
+  void logInUser(std::string name, int password);
 
   //SignUp & SignIn Slots
   void callStartPage();
 
   //HomePage Slots
-  void roomSettingClicked();
-  void userSettingClicked();
-  void calendarClicked();
-  void cleanPlanButtonClicked();
-  void logOutClicked();
+  void callRoomSettings();
+  void callUserSettings();
+  void callCalendar();
+  void callCleanPlan();
+  void callLogOut();
 
   //SetUpRooms Slots
-  void addRoomButtonClicked();
+  void newRoomSet();
   void roomDeleted(QString room);
-  void saveRoomButtonClicked();
 
   //SetUpUsers Slots:
+  void newUserSet();
+  void userDeleted(QString name);
   //void deleteUserButtonClicked(QString name);
-  void backButtonClicked();
 
-  //Events Slots
-  void saveEventButtonClicked();
+  //Back To HomePage Slot:
+  void callHomePage();
 
-  //Putzplan
-  void setupTaskButtonClicked();
+  //Cleaning Plan Slots:
+  void callTask();
   //void createPlanButtonClicked();
-  void backToHomeButtonClicked();
 
-  void saveTaskButtonClicked();
-  //void deleteTaskButtonClicked();
-  void addTaskButtonClicked();
+  //SetUpTask Slots:
+  void taskDeleted(QString task);
+  void newTaskSet();
 
+public:
+  static GuiController* getInstance();     //Singleton
+
+protected:
+  explicit GuiController();
 };
+
 #endif // GUICONTROLLER_H

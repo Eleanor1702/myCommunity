@@ -1,16 +1,15 @@
-#include "userInterface/lib/tasklistitem.h"
-
+#include "userInterface/lib/TaskListItem.h"
 
 TaskListItem::TaskListItem(QString taskName, QString taskRoom, QString taskFrequency, QWidget *parent) : QFrame(parent){
   this->newTaskLayout = new QHBoxLayout();
-  this->task = new QLabel(taskFrequency + " - " + taskRoom + " - " + taskName);
+  this->task = new QLabel(taskName + " - " + taskRoom + " - " + taskFrequency);
   this->deleteButton = new QPushButton(QString::fromUtf8("Löschen"));
   name = taskName;
 
   setItemStyle();
 
   //events
-  QObject::connect(deleteButton,SIGNAL(clicked()),this,SLOT(deleteButtonClicked()));
+  QObject::connect(deleteButton,SIGNAL(clicked()),this,SLOT(deleteTask()));
 }
 
 void TaskListItem::setItemStyle() {
@@ -34,7 +33,7 @@ void TaskListItem::setItemStyle() {
                                     " color: white; font-weight: bold;}");
 }
 
-void TaskListItem::deleteButtonClicked() {
-  emit deleteButtonClickedSignal(name);
+void TaskListItem::deleteTask() {
+  emit deleteTaskSignal(name);
   this->close();
 }

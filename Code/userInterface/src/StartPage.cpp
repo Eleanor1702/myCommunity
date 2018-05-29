@@ -15,6 +15,9 @@ StartPage::StartPage(QWidget *parent) : QWidget(parent) {
 
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
+
+  QObject::connect(signUpButton,SIGNAL(clicked()),this,SLOT(signUpCalled()));
+  QObject::connect(signInButton,SIGNAL(clicked()),this,SLOT(signInCalled()));
 }
 
 void StartPage::setMainWindowDesign() {
@@ -46,6 +49,14 @@ void StartPage::setMainLayoutDesign() {
                             "border-radius: 5px; background-color: #00b300; "
                             "color: white; font-weight: bold;}");
 
+}
+
+void StartPage::signUpCalled() {
+  emit signUpCallSignal();
+}
+
+void StartPage::signInCalled() {
+  emit signInCallSignal();
 }
 
 

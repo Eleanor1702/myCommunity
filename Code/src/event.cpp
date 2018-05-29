@@ -1,15 +1,12 @@
 #include <lib/event.h>
 
-
-
 Event::Event() {}
 
-void Event::setDescription(string newDescription){
+void Event::setDescription(std::string newDescription){
     description = newDescription;
 }
 
-/*
- * void Event::setTime(tm timedate){
+/*void Event::setTime(tm timedate){
     Event::setDay(timedate);
     Event::setMonth(timedate);
     Event::setYear(timedate);
@@ -35,43 +32,39 @@ void Event::setMin(tm timedate){
 
 void Event::setHour(tm timedate){
    time.tm_hour = timedate.tm_hour;
-}
-*/
-void Event::setUser(string newUser){
+}*/
+
+void Event::setUser(std::string newUser){
     user = newUser;
 }
 
-void Event::setTime(string newTime){
+void Event::setTime(std::string newTime){
     time = newTime;
 }
 
-void Event::setDate(string newDate){
+void Event::setDate(std::string newDate){
     date = newDate;
 }
 
-void Event::setDatetime(string datetime){
- char buffer[12];
-  std::size_t length = datetime.copy(buffer,10,0); //date kopieren
-  buffer[length]='\0';
-  setDate(buffer);
+void Event::setDatetime(std::string datetime){
+    char buffer[12];
+    std::size_t length = datetime.copy(buffer,10,0); //date kopieren
+    buffer[length]='\0';
+    setDate(buffer);
 
-  length = datetime.copy(buffer,8,10);
-  buffer[length] = '\0';
-  setTime(buffer);
-
+    length = datetime.copy(buffer,8,10);
+    buffer[length] = '\0';
+    setTime(buffer);
 }
 
-
-
-
-string Event::getDescription(){
+std::string Event::getDescription(){
     return description;
 }
+
 /*
 tm Event::getTime(){
     return time;
 }
-
 
 int Event::getDay(){
     return (int)time.tm_mday;
@@ -91,18 +84,17 @@ int Event::getMin(){
 
 int Event::getHour(){
     return time.tm_hour;
-}
+}*/
 
-*/
-string Event::getUser(){
+std::string Event::getUser(){
     return user;
 }
 
-string Event::getTime(){
+std::string Event::getTime(){
     return time;
 }
 
-string Event::getDate(){
+std::string Event::getDate(){
     return date;
 }
 

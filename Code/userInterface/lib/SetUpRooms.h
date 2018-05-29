@@ -17,7 +17,7 @@
 
 //Inheritance from QWidget allows the class itself to react on events
 //example (Button clicks.. etc)
-class SetUpRooms : public QWidget{
+class SetUpRooms : public QWidget {
   //enable creation of slots and signals
   Q_OBJECT
 private:
@@ -47,6 +47,16 @@ private:
     void setMainWindowDesign();
     void setMainLayoutDesign();
 
+private slots:
+    void setNewRoomCalled();
+    void homePageCalled();
+    void deleteRoomCalled(QString name);
+
+signals:
+    void setNewRoomSignal();
+    void homePageCallSignal();
+    void deleteRoomSignal(QString);
+
 public:
     //the constructor build the window
     //the parameter *parent is here to nest widgets in widgets
@@ -55,7 +65,8 @@ public:
 
     std::string getRoomTypeInput();
     std::string getRoomNameInput();
-    void updateContent();
+    void appear(std::vector<std::string> nameVec, std::vector<std::string> typeVec, int size);
+
 };
 
 #endif // SETUPROOMS_H

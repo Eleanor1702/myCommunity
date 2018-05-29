@@ -6,8 +6,7 @@
 #include <QPushButton>
 #include <QHBoxLayout>
 
-class UserList : public QFrame
-{
+class UserList : public QFrame {
   Q_OBJECT
 private:
   friend class GuiController;
@@ -29,6 +28,7 @@ public:
   explicit UserList(QString userName, QWidget *parent = NULL);
 
 public slots:
+
 };
 
 #endif // USERLIST_H

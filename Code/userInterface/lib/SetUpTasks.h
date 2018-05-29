@@ -13,13 +13,11 @@
 #include <QStringList>
 #include <QList>
 
-#include "tasklistitem.h"
-
-
+#include "TaskListItem.h"
 
 //Inheritance from QWidget allows the class itself to react on events
 //example (Button clicks.. etc)
-class SetUpTasks : public QWidget{
+class SetUpTasks : public QWidget {
   //enable creation of slots and signals
   Q_OBJECT
 private:
@@ -51,14 +49,26 @@ private:
     void setMainWindowDesign();
     void setMainLayoutDesign();
 
+private slots:
+    void setNewTaskCalled();
+    void deleteTaskCalled(QString name);
+    void homePageCalled();
+
+signals:
+    void newTaskSignal();
+    void deleteTaskSignal(QString);
+    void homePageCallSignal();
+
 public:
     //the constructor build the window
     //the parameter *parent is here to nest widgets in widgets
     explicit SetUpTasks(QWidget *parent = NULL);  //geänderter Name
     std::vector<TaskListItem*> TaskListItemList;
 
-public slots:
-
+    std::string getSelectedTaskFrequency();
+    std::string getSelectedRoomTask();
+    std::string getTaskNameInput();
+    void appear(std::vector<std::string> nameVec, std::vector<std::string> roomVec, std::vector<std::string> frequencyVec, int size);
 };
 
 #endif // SETUPTASKS_H

@@ -2,7 +2,8 @@
 
 //calling the constructor, calls the parent constructor too
 //in this case QWidget
-SetUpRooms::SetUpRooms(QWidget *parent) : QWidget(parent){
+
+SetUpRooms::SetUpRooms(QWidget *parent) : QWidget(parent) {
   //declarations of window contents
   mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, this);
   mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
@@ -26,6 +27,8 @@ SetUpRooms::SetUpRooms(QWidget *parent) : QWidget(parent){
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
 
+  QObject::connect(addButton, SIGNAL(clicked()), this, SLOT(setNewRoomCalled()));
+  QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(homePageCalled()));
 }
 
 void SetUpRooms::setMainWindowDesign() {
@@ -98,19 +101,36 @@ std::string SetUpRooms::getRoomNameInput() {
     return this->giveNameEdit->text().toStdString();
 }
 
-void SetUpRooms::updateContent() {
-    //This section can be exchanged with data recall from databank
-    //-----------------------------------------------------------
-    QString roomType = this->chooseRoomTypeCombo->currentText();
+void SetUpRooms::appear(std::vector<std::string> nameVec, std::vector<std::string> typeVec, int size) {
+    this->show();
 
-    QString roomName = this->giveNameEdit->text();
-    //-----------------------------------------------------------
-    newRoom = new RoomListItem(roomType, roomName);
-    this->RoomListItemList.push_back(this->newRoom);
-
-    for(int i = 0; i < this->RoomListItemList.size(); i++) {
-        this->scrollLayout->addWidget(this->RoomListItemList[i]);
+    for(int i = 0; i < RoomListItemList.size(); i++) {
+        scrollLayout->removeWidget(RoomListItemList[i]);
     }
 
-    this->giveNameEdit->clear();
+    RoomListItemList.clear();
+
+    for(int i = 0; i < size; i++) {
+        newRoom = new RoomListItem(QString::fromStdString(nameVec[i]), QString::fromStdString(typeVec[i]));
+
+        // so every RoomListItem is connected..
+        connect(newRoom, SIGNAL(deleteRoomSignal(QString)), this, SLOT(deleteRoomCalled(QString)));
+
+        RoomListItemList.push_back(newRoom);
+        scrollLayout->addWidget(newRoom);
+    }
+
+    giveNameEdit->clear();
+}
+
+void SetUpRooms::setNewRoomCalled() {
+  emit setNewRoomSignal();
+}
+
+void SetUpRooms::homePageCalled() {
+  emit homePageCallSignal();
+}
+
+void SetUpRooms::deleteRoomCalled(QString name) {
+  emit deleteRoomSignal(name);
 }

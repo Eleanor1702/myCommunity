@@ -2,7 +2,7 @@
 #define COMMUNITYDATA_H
 
 #include <vector>
-#include <string>
+
 #include <cppconn/connection.h>
 #include <cppconn/prepared_statement.h>
 #include <cppconn/driver.h>
@@ -11,6 +11,7 @@
 #include <cppconn/statement.h>
 #include <mysql_driver.h>
 #include <mysql_connection.h>
+
 #include "lib/resident.h"
 #include "lib/room.h"
 #include "lib/event.h"
@@ -36,40 +37,41 @@ public:
     void createEventCommunityView();
     void createCleaningTable();
     void createTaskTable();
-    void createShoppinglistTable();
+    //void createShoppinglistTable();
 
-    void addResident(string name, int password);
-    void addRoom(string name, string type);
-    void addEvent(string timedate, string description, string user);
-    void addTask(string taskname, string room, string frequency);
-    void addToCleaningplan(string task, string resident, string week);
+    void addResident(std::string name, int password);
+    void addRoom(std::string name, std::string type);
+    void addEvent(std::string timedate, std::string description, std::string user);
+    void addTask(std::string taskname, std::string room, std::string frequency);
+    void addToCleaningplan(std::string task, std::string resident, std::string week);
 
-    void updatePassword(string user, int password);
-    void updateEvent(Event ev, string timedate,string description);
+    void updatePassword(std::string user, int password);
+    void updateEvent(Event ev, std::string timedate,std::string description);
 
-    void deleteResident(string name);
-    void deleteRoom(string name);
-    void deleteEvent(string timedate, string description, string user);
-    void deleteTaskByName(string taskname);
-    void deleteTaskByRoom(string room);
-    void deleteCalendar(string user);
-    void deleteTaskCleaningplan(string task);
-    void deleteResidentCleaningplan(string resident);
-    void deleteRoomCleaningplan(string room);
+    void deleteResident(std::string name);
+    void deleteRoom(std::string name);
+    void deleteEvent(std::string timedate, std::string description, std::string user);
+    void deleteTaskByName(std::string taskname);
+    void deleteTaskByRoom(std::string room);
+    void deleteCalendar(std::string user);
+    void deleteTaskCleaningplan(std::string task);
+    void deleteResidentCleaningplan(std::string resident);
+    void deleteRoomCleaningplan(std::string room);
 
-    vector<Resident> getAllResidents();
-    vector<Room> getAllRooms();
-    vector<Event> getAllEventsOfUser(string user);
-    vector<Event> getAllCommunityEvents();
-    vector<Task> getAllTasks();
+    std::vector<Resident> getAllResidents();
+    std::vector<Room> getAllRooms();
+    std::vector<Event> getAllEventsOfUser(std::string user);
+    std::vector<Event> getAllCommunityEvents();
+    std::vector<Task> getAllTasks();
+
     // getCleaningPlan()
 
-    bool verifyLogInData(string, int);
-    bool verifyName(string);
+    bool verifyLogInData(std::string, int);
+    bool verifyName(std::string);
+
     ~CommunityData();
 
     static CommunityData* getInstance();
-
 };
 
 #endif // COMMUNITYDATA_H

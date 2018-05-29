@@ -2,6 +2,7 @@
 #define RESIDENTEXPERT_H
 
 #include <vector>
+
 #include "resident.h"
 #include "Database/lib/communitydata.h"
 
@@ -17,11 +18,11 @@ protected:
 
 public:
 
-    void createResident(string name, int password);
-    void deleteResident(string name);
-    void editResident(string username, int newPassword);
-    bool verifyLogInData(string username, int password);
-    bool verifyName(string username);
+    void createResident(std::string name, int password);
+    void deleteResident(std::string name);
+    void editResident(std::string username, int newPassword);
+    bool verifyLogInData(std::string username, int password);
+    bool verifyName(std::string username);
 
     static ResidentExpert* getInstance();
 };

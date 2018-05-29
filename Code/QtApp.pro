@@ -39,11 +39,11 @@ SOURCES += \
     userInterface/src/RoomListItem.cpp \
     Database/src/communitydata.cpp \
     userInterface/src/eventpage.cpp \
-    userInterface/src/setuptasks.cpp \
-    userInterface/src/tasklistitem.cpp \
     userInterface/src/cleaningpage.cpp \
     src/task.cpp \
-    src/taskexpert.cpp
+    src/taskexpert.cpp \
+    userInterface/src/SetUpTasks.cpp \
+    userInterface/src/TaskListItem.cpp
 
 HEADERS += \
     lib/controller.h \
@@ -64,11 +64,11 @@ HEADERS += \
     userInterface/lib/RoomListItem.h \
     Database/lib/communitydata.h \
     userInterface/lib/eventpage.h \
-    userInterface/lib/setuptasks.h \
-    userInterface/lib/tasklistitem.h \
     userInterface/lib/cleaningpage.h \
     lib/taskexpert.h \
-    lib/task.h
+    lib/task.h \
+    userInterface/lib/SetUpTasks.h \
+    userInterface/lib/TaskListItem.h
 
 
 RESOURCES = \
@@ -90,11 +90,9 @@ test {
         test/lib/TestResident.h \
         test/lib/TestRoomExpert.h \
 
-
     SOURCES += \
         test/main.cpp \
         test/src/TestRoom.cpp \
         test/src/TestResident.cpp \
         test/src/TestRoomExpert.cpp \
-
 }

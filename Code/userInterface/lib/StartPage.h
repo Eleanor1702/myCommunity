@@ -27,6 +27,14 @@ public:
     //the constructor build the window
     //the parameter *parent is here to nest widgets in widgets
     explicit StartPage(QWidget *parent = NULL);
+
+private slots:
+   void signUpCalled();
+   void signInCalled();
+
+signals:
+   void signUpCallSignal();
+   void signInCallSignal();
 };
 
 #endif // STARTPAGE_H

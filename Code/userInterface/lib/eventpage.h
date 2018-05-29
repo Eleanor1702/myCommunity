@@ -6,8 +6,7 @@
 #include <QCalendarWidget>
 #include <QPushButton>
 
-class EventPage : public QWidget
-{
+class EventPage : public QWidget {
     Q_OBJECT
 public:
     EventPage(QWidget *parent=NULL);
@@ -25,11 +24,14 @@ private:
     QPushButton *saveEventButton;
     QPushButton *addEventButton;
 
-
-
     void setMainWindowDesign();
     void setMainLayoutDesign();
-};
 
+private slots:
+    void homePageCalled();
+
+signals:
+    void homePageCallSignal();
+};
 
 #endif // EVENTPAGE_H

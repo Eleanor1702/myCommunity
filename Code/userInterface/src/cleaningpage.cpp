@@ -1,8 +1,6 @@
 #include "userInterface/lib/cleaningpage.h"
 
-
-CleaningPage::CleaningPage(QWidget *parent) : QWidget(parent)
-{
+CleaningPage::CleaningPage(QWidget *parent) : QWidget(parent) {
 
     mainLayout = new QBoxLayout(QBoxLayout::TopToBottom);
 
@@ -20,6 +18,8 @@ CleaningPage::CleaningPage(QWidget *parent) : QWidget(parent)
     this->setMainWindowDesign();
     this->setMainLayoutDesign();
 
+    QObject::connect(setuptaskButton, SIGNAL(clicked()), this, SLOT(taskCalled()));
+    QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(homePageCalled()));
 }
 
 void CleaningPage::setMainWindowDesign(){
@@ -63,7 +63,12 @@ void CleaningPage::setMainLayoutDesign(){
     this->backButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
                                     "border-radius: 5px; background-color: #00b300; "
                                     "color: white; font-weight: bold;}");
+}
 
+void CleaningPage::taskCalled() {
+  emit taskCallSignal();
+}
 
-
+void CleaningPage::homePageCalled() {
+  emit homePageCallSignal();
 }

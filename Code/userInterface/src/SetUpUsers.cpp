@@ -21,6 +21,7 @@ SetUpUsers::SetUpUsers(QWidget *parent) : QWidget(parent){
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
 
+  QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(homePageCalled()));
 }
 
 void SetUpUsers::setMainWindowDesign() {
@@ -56,4 +57,6 @@ void SetUpUsers::setMainLayoutDesign() {
 
 }
 
-
+void SetUpUsers::homePageCalled() {
+  emit homePageCallSignal();
+}
