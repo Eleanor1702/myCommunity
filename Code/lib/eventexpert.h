@@ -9,6 +9,7 @@ class EventExpert{
 private:
     static EventExpert* instance;
     std::vector<Event> Eventlist;
+    CommunityData* data;
 
 protected:
     EventExpert();
