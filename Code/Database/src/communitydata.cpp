@@ -85,7 +85,7 @@ void CommunityData::createCleaningTable(){
 void CommunityData::createTaskTable(){
     Statement* stmt;
     stmt = con->createStatement();
-    stmt->execute("CREATE TABLE IF NOT EXISTS Tasks (Name VARCHAR(50) PRIMARY KEY, FREQUENCY VARCHAR(50))");
+    stmt->execute("CREATE TABLE IF NOT EXISTS Tasks (Name VARCHAR(50) PRIMARY KEY, Room(50), FREQUENCY VARCHAR(50))");
     delete stmt;
 }
 
@@ -110,12 +110,10 @@ void CommunityData::addRoom(string name, string type) {
 }
 
 //add a new calendar event for a user
-void CommunityData::addEvent(tm timedate, string description, string user) {
+void CommunityData::addEvent(string timedate, string description, string user) {
     PreparedStatement* stmt;
-    //Convert tm type to SQL String
-    SQLString td = "2018-05-01";
     stmt = con->prepareStatement("INSERT INTO Calendar(Datetime, Event, User) VALUES(?, ?, ?)");
-    stmt->setDateTime(1, td);
+    stmt->setDateTime(1, timedate);
     stmt->setString(2, description);
     stmt->setString(3, user);
     stmt->execute();
@@ -123,11 +121,12 @@ void CommunityData::addEvent(tm timedate, string description, string user) {
 }
 
 //add a new cleaning task
-void CommunityData::addTask(string taskname, string frequency){
+void CommunityData::addTask(string taskname, string room,string frequency){
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("INSERT INTO Tasks(Name, Frequency) VALUES(?, ?)");
+    stmt = con->prepareStatement("INSERT INTO Tasks(Name, Room, Frequency) VALUES(?, ?)");
     stmt->setString(1, taskname);
-    stmt->setString(2, frequency);
+    stmt->setString(2, room);
+    stmt->setString(3, frequency);
     stmt->execute();
     delete stmt;
 }
@@ -153,7 +152,7 @@ void CommunityData::updatePassword(string username, int newPassword) {
 }
 
 //change time or description of an event
-void CommunityData::updateEvent(Event ev, tm newtimedate, string newdescription) {
+void CommunityData::updateEvent(Event ev, string newtimedate, string newdescription) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("UPDATE Calendar SET Datetime = ? WHERE Datetime = ? AND EVENT = ? AND User = ? ");
     //stmt->setDateTime(1, newtimedate);
@@ -264,8 +263,7 @@ vector<Event> CommunityData::getAllEventsOfUser(string user) {
         Event ev;
         ev.setDescription(resultSet->getString("Event"));
         ev.setUser(user);
-        //Convert datetime / SQLString to tm type
-
+        //ev.setDatetime(resultSet->getString("Datetime"));
 
         //ev.setTime(timedate);
         list.push_back(ev);
