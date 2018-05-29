@@ -47,7 +47,7 @@ GuiController::GuiController(QWidget *parent) : QWidget(parent) {
 
   //SetUpUsers Events
   //QObject::connect(users->addButton,SIGNAL(clicked()),this,SLOT(addUserButtonClicked()));
-  //QObject::connect(users->saveButton,SIGNAL(clicked()),this,SLOT(saveUserButtonClicked()));
+  QObject::connect(users->backButton,SIGNAL(clicked()),this,SLOT(backButtonClicked()));
 
   //EventPage Events
   QObject::connect(events->saveEventButton,SIGNAL(clicked()),this,SLOT(saveEventButtonClicked()));
@@ -197,7 +197,7 @@ void GuiController::roomDeleted(QString room) {
     con->deleteRoom(room.toStdString());
 }
 
-void GuiController::saveUserButtonClicked(){
+void GuiController::backButtonClicked(){
     this->home->show();
     this->users->hide();
 }
@@ -244,7 +244,7 @@ void GuiController::saveRoomButtonClicked() {
 
 }
 
-void GuiController::saveUserButtonClicked(){
+void GuiController::backButtonClicked(){
     home->show();
     users->hide();
 }*/

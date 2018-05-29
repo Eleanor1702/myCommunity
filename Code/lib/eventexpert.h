@@ -15,9 +15,9 @@ protected:
 
 public:
 
-    void createEvent(string description, tm timedate, string user);             // time und date als t_time
-    void deleteEvent(string description, tm timedate, string user);
-    void editEvent(string description, tm timedate);       //nur die zeit darf verändert werden
+    void createEvent(string description, string timedate, string user);             // time und date als t_time
+    void deleteEvent(string description, string timedate, string user);
+    void editEvent(string description, string timedate);       //nur die zeit darf verändert werden
 
     static EventExpert* getInstance();
 };

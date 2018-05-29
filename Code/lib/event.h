@@ -10,7 +10,9 @@ class Event{
 
 private:
     string description;
-    tm time;
+    //tm time;
+    string date;
+    string time;
     string user;
 
 
@@ -19,22 +21,35 @@ public:
     //~Event();
 
     void setDescription(string newDescription);
-    void setTime(tm timedate);
+   /* void setTime(tm timedate);
     void setDay(tm timedate);
     void setMonth(tm timedate);
     void setYear(tm timedate);
     void setMin(tm timedate);
     void setHour(tm timedate);
+*/
     void setUser(string newUser);
 
+    void setTime(string time);
+    void setDate(string date);
+    void setDatetime(string datetime);
+
+
+
     string getDescription();
-    tm getTime();
+    /*tm getTime();
     int getDay();
     int getMonth();
     int getYear();
     int getMin();
     int getHour();
+*/
     string getUser();
+
+    string getTime();
+    string getDate();
+
+
 
 };
 
