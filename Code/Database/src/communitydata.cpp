@@ -7,8 +7,8 @@ CommunityData* CommunityData::instance = NULL;
 bool CommunityData::connect() {
     driver = mysql::get_mysql_driver_instance();
     SQLString userName = "user";
-    SQLString hostName = "localhost";
-    SQLString password = "mycommunity";
+    SQLString hostName = "51.15.118.119";
+    SQLString password = "bmns2018!!";
     SQLString schema = "MyCommunity";
     connection_properties["hostName"] = hostName;
     connection_properties["userName"] = userName;
@@ -31,9 +31,6 @@ CommunityData::CommunityData() {
         std::cout <<"Fehler bei der Verbindung!" << std::endl;
 
     //nur einmal ausführen
-    //Statement* stmt;
-    //stmt = con->createStatement();
-    //stmt->execute("CREATE DATABASE IF NOT EXISTS MyCommunity");
     createRoomTable();
     createResidentTable();
     createCalendarTable();
