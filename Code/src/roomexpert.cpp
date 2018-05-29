@@ -25,16 +25,27 @@ void RoomExpert::deleteRoom(std::string name){
             }
         }   
 }
-int RoomExpert::GetSizeAndUpdate() {
-    Roomlist = data->getAllRooms(); //nochmal zur Sicherheit akuellen Daten aus DB holen
-    return Roomlist.size();
+
+std::vector<std::string> RoomExpert::roomNameGetter() {
+  std::vector<std::string> nameVector;
+
+  for(int i = 0; i < Roomlist.size(); i++){
+      nameVector.push_back(Roomlist[i].getName());
+  }
+  return nameVector;
 }
 
-string RoomExpert::RoomGetterName(int i) {
-    return Roomlist[i].getName();
+std::vector<std::string> RoomExpert::roomArtGetter() {
+  std::vector<std::string> artVector;
+
+  for(int i = 0; i < Roomlist.size(); i++){
+      artVector.push_back(Roomlist[i].getArt());
+  }
+  return artVector;
 }
-string RoomExpert::RoomGetterArt(int i) {
-    return Roomlist[i].getArt();
+
+std::vector<Room> RoomExpert::getRooms() {
+  return Roomlist;
 }
 
 std::vector<std::string> RoomExpert::roomNameGetter() {
