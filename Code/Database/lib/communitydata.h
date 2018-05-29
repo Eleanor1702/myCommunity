@@ -1,8 +1,8 @@
 #ifndef COMMUNITYDATA_H
 #define COMMUNITYDATA_H
 
-//  sudo apt-get install  libmysqlcppconn-dev
-
+#include <vector>
+#include <string>
 #include <cppconn/connection.h>
 #include <cppconn/prepared_statement.h>
 #include <cppconn/driver.h>
@@ -11,10 +11,10 @@
 #include <cppconn/statement.h>
 #include <mysql_driver.h>
 #include <mysql_connection.h>
-
 #include "lib/resident.h"
 #include "lib/room.h"
 #include "lib/event.h"
+#include "lib/task.h"
 #include <time.h>
 
 class CommunityData {
@@ -36,35 +36,40 @@ public:
     void createEventCommunityView();
     void createCleaningTable();
     void createTaskTable();
+    void createShoppinglistTable();
 
-    void addResident(std::string name, int password);
-    void addRoom(std::string , std::string);
-    void addEvent(tm timedate, std::string description, std::string user);
-    void addTask(std::string taskname, std::string frequency);
-    void addToCleaningplan(std::string task, std::string resident, std::string week);
+    void addResident(string name, int password);
+    void addRoom(string name, string type);
+    void addEvent(string timedate, string description, string user);
+    void addTask(string taskname, string room, string frequency);
+    void addToCleaningplan(string task, string resident, string week);
 
-    void updatePassword(std::string user, int password);
-    void updateEvent(Event ev, tm timedate, std::string description);
+    void updatePassword(string user, int password);
+    void updateEvent(Event ev, string timedate,string description);
 
-    void deleteResident(std::string name);
-    void deleteRoom(std::string name);
-    void deleteEvent(tm timedate, std::string description, std::string user);
-    void deleteTask(std::string taskname);
-    //deleteCleaningplan()
+    void deleteResident(string name);
+    void deleteRoom(string name);
+    void deleteEvent(string timedate, string description, string user);
+    void deleteTaskByName(string taskname);
+    void deleteTaskByRoom(string room);
+    void deleteCalendar(string user);
+    void deleteTaskCleaningplan(string task);
+    void deleteResidentCleaningplan(string resident);
+    void deleteRoomCleaningplan(string room);
 
-    std::vector<Resident> getAllResidents();
-    std::vector<Room> getAllRooms();
-    std::vector<Event> getAllEventsOfUser(std::string user);
-    std::vector<Event> getAllCommunityEvents();
-    //vector<Task> getAllTasks();
+    vector<Resident> getAllResidents();
+    vector<Room> getAllRooms();
+    vector<Event> getAllEventsOfUser(string user);
+    vector<Event> getAllCommunityEvents();
+    vector<Task> getAllTasks();
     // getCleaningPlan()
 
-    bool verifyLogInData(std::string, int);
-    bool verifyName(std::string);
-
+    bool verifyLogInData(string, int);
+    bool verifyName(string);
     ~CommunityData();
 
     static CommunityData* getInstance();
+
 };
 
 #endif // COMMUNITYDATA_H
