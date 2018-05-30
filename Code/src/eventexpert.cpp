@@ -14,13 +14,24 @@ EventExpert* EventExpert::getInstance(){
 }
 
 //Funktion für String datetime
-void EventExpert::createEvent(std::string description, std::string datetime, std::string user){
+void EventExpert::createEvent(std::string time, std::string date, std::string description, std::string user){
     Event ev;
     ev.Event::setDescription(description);
-    ev.Event::setDatetime(datetime);
+    ev.Event::setTime(time);
+    ev.Event::setDate(date);
     ev.Event::setUser(user);
     Eventlist.push_back(ev);
-    data->addEvent(ev);
+    //data->addEvent(ev);
+}
+
+void EventExpert::deleteEvent(std::string time, std::string date, std::string description, std::string user){
+    for(std::vector<Event>::iterator it = Eventlist.begin(); it != Eventlist.end(); ++it){
+        if((it->getDate()==date && it->getTime()==time && it->getDescription()==description && it->getUser()==user)){
+            Eventlist.erase(it);
+            //data->deleteEvent(ev);
+            break;
+        }
+    }
 }
 
 /*void EventExpert::deleteEvent(string description, tm datetime, string user){
@@ -34,18 +45,19 @@ void EventExpert::createEvent(std::string description, std::string datetime, std
     }
 }
 */
-
+/*
 //Funktion für String datetime
-void EventExpert::deleteEvent(std::string description, std::string datetime, std::string user){
+void EventExpert::deleteEvent(std::string time, std::string date, std::string description, std::string user){
  char dbuffer[12];
  char tbuffer[12];
 
-  std::size_t length = datetime.copy(dbuffer,10,0); //date kopieren
+  std::size_t length = date.copy(dbuffer,10,0); //date kopieren
   dbuffer[length]='\0';
 
-  length = datetime.copy(tbuffer,8,10);
+  length = date.copy(tbuffer,8,10);
   tbuffer[length] = '\0';
-}
+}*/
+
 
 /*
 void EventExpert::editEvent(string description, tm datetime){
@@ -57,7 +69,7 @@ void EventExpert::editEvent(string description, tm datetime){
     }
 }
 */
-
+/*
 //Funktion für string datetime
 void EventExpert::editEvent(std::string description, std::string datetime){
      char tbuffer[12];
@@ -69,4 +81,39 @@ void EventExpert::editEvent(std::string description, std::string datetime){
             (it)->setTime(tbuffer);
         }
     }
+}*/
+
+std::vector<std::string>EventExpert::eventTimeGetter(){
+    std::vector<std::string> timeVec;
+    for(unsigned int i=0; i<Eventlist.size(); i++){
+        timeVec.push_back(Eventlist[i].getTime());
+    }
+    return timeVec;
 }
+
+std::vector<std::string>EventExpert::eventDateGetter(){
+    std::vector<std::string> dateVec;
+    for(unsigned int i=0; i<Eventlist.size(); i++){
+        dateVec.push_back(Eventlist[i].getDate());
+    }
+    return dateVec;
+}
+
+std::vector<std::string>EventExpert::eventDescriptionGetter(){
+    std::vector<std::string> descrVec;
+    for(unsigned int i=0; i<Eventlist.size(); i++){
+        descrVec.push_back(Eventlist[i].getDescription());
+    }
+    return descrVec;
+}
+
+std::vector<std::string>EventExpert::eventUserGetter(){
+    std::vector<std::string> userVec;
+    for(unsigned int i=0; i<Eventlist.size(); i++){
+        userVec.push_back(Eventlist[i].getUser());
+    }
+    return userVec;
+}
+
+
+

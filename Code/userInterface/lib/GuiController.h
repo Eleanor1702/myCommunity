@@ -74,6 +74,11 @@ public slots:
   //Back To HomePage Slot:
   void callHomePage();
 
+  //EventPage Slots:
+  void newEventSet();
+  void eventDeleted(QString time, QString date, QString description, QString user);
+//    void eventEdited();
+
   //Cleaning Plan Slots:
   void callTask();
   //void createPlanButtonClicked();

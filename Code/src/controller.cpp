@@ -52,6 +52,40 @@ int Controller::getSize() {
   return roExpert->Roomlist.size();
 }
 
+void Controller::addEvent(std::string time, std::string date,
+                          std::string description, std::string user){
+    evExpert->createEvent(time, date, description, user);
+}
+
+void Controller::deleteEvent(std::string time, std::string date,
+                             std::string descpription, std::string user){
+    evExpert->deleteEvent(time, date, descpription, user);
+}
+/*
+void Controller::editEvent(std::string time, std::string description, std::string user){
+    evExpert->editEvent(time, description, user);
+}
+*/
+std::vector<std::string> Controller::getEventTime(){
+    return evExpert->eventTimeGetter();
+}
+std::vector<std::string> Controller::getEventDate(){
+    return evExpert->eventDateGetter();
+}
+std::vector<std::string> Controller::getEventDescription(){
+    return evExpert->eventDescriptionGetter();
+}
+std::vector<std::string> Controller::getEventUser(){
+    return evExpert->eventUserGetter();
+}
+
+int Controller::getSizeEvent(){
+    return evExpert->Eventlist.size();
+}
+
+
+
+
 Controller* Controller::getInstance(){
     if(instance == NULL){
         instance = new Controller();
