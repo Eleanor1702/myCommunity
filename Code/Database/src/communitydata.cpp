@@ -113,7 +113,7 @@ void CommunityData::addRoom(Room ro) {
     delete stmt;
 }
 //add a new calendar event for a user
-
+/*
 void CommunityData::addEvent(Event ev) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("INSERT INTO Calendar(Datetime, Event, User) VALUES(?, ?, ?)");
@@ -122,7 +122,7 @@ void CommunityData::addEvent(Event ev) {
     stmt->setString(3, ev.getUser());
     stmt->execute();
     delete stmt;
-}
+}*/
 
 //add a new cleaning task
 void CommunityData::addTask(Task ta){
@@ -165,7 +165,7 @@ void CommunityData::updatePassword(std::string username, int newPassword) {
     stmt->execute();
     delete stmt;
 }
-
+/*
 //change time or description of an event
 void CommunityData::updateEvent(Event ev, std::string newtimedate, std::string newdescription) {
     PreparedStatement* stmt;
@@ -186,7 +186,7 @@ void CommunityData::updateEvent(Event ev, std::string newtimedate, std::string n
     delete stmt;
 
 }
-
+*/
 //delete a resident
 void CommunityData::deleteResident(std::string name) {
     PreparedStatement* stmt;
@@ -208,7 +208,7 @@ void CommunityData::deleteRoom(std::string name) {
     //deleteRoomCleaningplan(name); //and update cleaningplan
     delete stmt;
 }
-
+/*
 //delete a calendar event
 void CommunityData::deleteEvent(Event ev) {
     PreparedStatement* stmt;
@@ -218,7 +218,7 @@ void CommunityData::deleteEvent(Event ev) {
     stmt->setString(3, ev.getUser());
     stmt->execute();
     delete stmt;
-}
+}*/
 
 //delete a cleaning task from database
 void CommunityData::deleteTaskByName(std::string taskname){
@@ -324,7 +324,7 @@ std::vector<Room> CommunityData::getAllRooms() {
     delete resultSet;
     return list;
 }
-
+/*
 //get all events from calendar of a user
 std::vector<Event> CommunityData::getAllEventsOfUser(std::string user) {
     std::vector<Event> list;
@@ -362,7 +362,7 @@ std::vector<Event> CommunityData::getAllCommunityEvents() {
     delete resultSet;
     return list;
 }
-
+*/
 //verifying the log in data by username and password
  bool CommunityData::verifyLogInData(std::string username, int password) {
      PreparedStatement* stmt = con->prepareStatement("SELECT * FROM Residents WHERE Firstname = ? AND Password = ?");

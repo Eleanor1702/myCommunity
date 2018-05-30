@@ -31,9 +31,24 @@ public:
         bool searchResident(std::string username, int password);
         bool searchNameResident(std::string username);       // To get the same Name in Login
 
+        void addEvent (std::string time, std::string date,
+                       std::string description, std::string user);
+        void deleteEvent(std::string time, std::string date,
+                         std::string descpription, std::string user);
+    //  void editEvent(std::string time, std::string description, std::string user);
+
+
+
         std::vector<std::string>getRoomNames();
         std::vector<std::string>getRoomArts();
         int getSize();
+
+        std::vector<std::string>getEventTime();
+        std::vector<std::string>getEventDate();
+        std::vector<std::string>getEventDescription();
+        std::vector<std::string>getEventUser();
+        int getSizeEvent();
+
 
         static Controller* getInstance();
 };
