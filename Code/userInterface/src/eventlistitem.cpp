@@ -17,7 +17,7 @@ EventListItem::EventListItem(QString eventTime, QString eventDateStr, QString ev
     setItemStyle();
 
 //    QObject::connect(editEventButton,SIGNAL(clicked()),this,SLOT(editEvent()));
-    QObject::connect(deleteEventButton,SIGNAL(clicked()),this,SLOT(deleteEvent));
+    QObject::connect(deleteEventButton,SIGNAL(clicked()),this,SLOT(deleteEvent()));
 }
 
 void EventListItem::setItemStyle(){

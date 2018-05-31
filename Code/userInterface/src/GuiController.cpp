@@ -96,7 +96,7 @@ void GuiController::callSignIn(){
 //SignIn Event
 void GuiController::logInUser(std::string name, int password) {
     if(con->searchResident(name, password)) {
-        con->setCurrentUser(name);      //Set Current User to loged in user
+        con->setCurrentUser(name);      //Set Current User to logged in user
         home->show();
         in->hide();
     }
@@ -164,6 +164,7 @@ void GuiController::newUserSet() {
 
     connect(this->users->newUser,SIGNAL(deleteUserButtonClickedSignal(QString)),this,SLOT(deleteUserButtonClicked(QString)));*/
 }
+
 
 void GuiController::userDeleted(QString name) {
     // delete user from Databank

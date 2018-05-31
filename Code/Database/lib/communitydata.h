@@ -41,7 +41,7 @@ public:
 
     void addResident(Resident re);
     void addRoom(Room ro);
-    //void addEvent(Event ev);
+    void addEvent(Event ev);
     void addTask(Task ta);
     void addToCleaningplan(std::string task, std::string resident, std::string week);
     void addItem(std::string item, int number);
@@ -51,7 +51,7 @@ public:
 
     void deleteResident(std::string name);
     void deleteRoom(std::string name);
-    //void deleteEvent(Event ev);
+    void deleteEvent(Event ev);
 
     void deleteTaskByRoom(std::string room);
     void deleteTaskByName(std::string taskname);
@@ -66,8 +66,8 @@ public:
 
     std::vector<Resident> getAllResidents();
     std::vector<Room> getAllRooms();
-    //std::vector<Event> getAllEventsOfUser(std::string user);
-    //std::vector<Event> getAllCommunityEvents();
+    std::vector<Event> getAllEventsOfUser(std::string user);
+    std::vector<Event> getAllCommunityEvents();
     std::vector<Task> getAllTasks();
 
     // getCleaningPlan()

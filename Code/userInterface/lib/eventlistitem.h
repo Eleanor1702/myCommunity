@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QDate>
+#include <QObject>
 
 class EventListItem : public QFrame
 {
@@ -30,7 +31,7 @@ private slots:
 
 //    void editEvent();
 
-    //    void deleteEventButtonClicked();
+//      void deleteEventButtonClicked();
 
 signals:
     void deleteEventSignal(QString time, QString date, QString description, QString user);
