@@ -15,7 +15,7 @@ private:
   QPushButton *deleteButton;
   QHBoxLayout *newUserLayout;
 
-  void setItemStyle();
+  void setItemStyle(std::string currentUser, QString userName);
 
 signals:
   void deleteUserButtonClickedSignal(QString name);
@@ -25,7 +25,7 @@ private slots:
 
 public:
   //QFrame ist ein QWidget
-  explicit UserList(QString userName, QWidget *parent = NULL);
+  explicit UserList(std::string currentUser, QString userName, QWidget *parent = NULL);
 
 public slots:
 

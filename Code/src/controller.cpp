@@ -113,6 +113,16 @@ int Controller::getSizeEvent(){
     return evExpert->Eventlist.size();
 }
 
+//Current User Methods
+
+void Controller::setCurrentUser(std::string user){
+    rsExpert->setCurrentUser(user);
+}
+
+std::string Controller::getCurrentUser(){
+    return rsExpert->getCurrentUser();
+}
+
 
 
 

@@ -82,3 +82,11 @@ std::vector<std::string> ResidentExpert::userNameGetter() {
 std::vector<Resident> ResidentExpert::getResidents(){
     return Residentlist;
 }
+
+void ResidentExpert::setCurrentUser(std::string newUser){
+    currentUser = newUser;
+}
+
+std::string ResidentExpert::getCurrentUser(){
+    return currentUser;
+}

@@ -46,6 +46,11 @@ public:
     //  void editEvent(std::string time, std::string description, std::string user);
 
 
+        //Methods currentUser
+        void setCurrentUser(std::string user);
+        std::string getCurrentUser();
+
+
 
 
         std::vector<std::string>getRoomNames();

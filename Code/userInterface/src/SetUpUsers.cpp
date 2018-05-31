@@ -65,7 +65,7 @@ void SetUpUsers::deleteUserCalled(QString name){
     emit deleteUserSignal(name);
 }
 
-void SetUpUsers::appear(std::vector<std::string> nameVec, int size){
+void SetUpUsers::appear(std::vector<std::string> nameVec, int size, std::string username){
     this->show();
 
     for(int i = 0; i < UserLList.size(); i++) {
@@ -75,9 +75,10 @@ void SetUpUsers::appear(std::vector<std::string> nameVec, int size){
     UserLList.clear();
 
     for(int i = 0; i < size; i++) {
-        newUser = new UserList(QString::fromStdString(nameVec[i]));
+        newUser = new UserList(username,QString::fromStdString(nameVec[i]));
 
         // so every UserLList is connected..
+                        //Current User should not be able to delete himself
         connect(newUser, SIGNAL(deleteUserSignal(QString)), this, SLOT(deleteUserCalled(QString)));
 
         UserLList.push_back(newUser);

@@ -57,7 +57,7 @@ public:
     explicit SetUpUsers(QWidget *parent = NULL);
     std::vector<UserList*> UserLList;
 
-    void appear(std::vector<std::string> nameVec, int size);
+    void appear(std::vector<std::string> nameVec, int size, std::string username);
 };
 
 
