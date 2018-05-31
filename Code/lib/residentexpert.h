@@ -13,6 +13,8 @@ private:
     std::vector<Resident> Residentlist;
     CommunityData* data;
 
+    std::string currentUser;    //current loged in User
+
 protected:
     ResidentExpert();
 
@@ -23,6 +25,10 @@ public:
     void editResident(std::string username, int newPassword);
     bool verifyLogInData(std::string username, int password);
     bool verifyName(std::string username);
+
+    void setCurrentUser(std::string newUser);
+    std::string getCurrentUser();
+
 
     std::vector<std::string> userNameGetter();
 

@@ -50,6 +50,7 @@ GuiController::GuiController() : QWidget() {
     //SetUpUsers Events
     //QObject::connect(users->addButton,SIGNAL(clicked()),this,SLOT(addUserButtonClicked()));
     connect(users, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
+    connect(users, SIGNAL(deleteUserSignal(QString)), this, SLOT(userDeleted(QString)));    //n
 
     //EventPage Events
     connect(events, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
@@ -95,6 +96,7 @@ void GuiController::callSignIn(){
 //SignIn Event
 void GuiController::logInUser(std::string name, int password) {
     if(con->searchResident(name, password)) {
+        con->setCurrentUser(name);      //Set Current User to loged in user
         home->show();
         in->hide();
     }
@@ -137,7 +139,7 @@ void GuiController::roomDeleted(QString room) {
 }
 
 void GuiController::callUserSettings() {
-    users->appear(con->getUserNames(), con->getUserlistSize());
+    users->appear(con->getUserNames(), con->getUserlistSize(), con->getCurrentUser());
     home->hide();
 }
 
@@ -167,7 +169,7 @@ void GuiController::userDeleted(QString name) {
     // delete user from Databank
     con->deleteResident(name.toStdString());
 
-    users->appear(con->getUserNames(), con->getRoomlistSize());
+    users->appear(con->getUserNames(), con->getRoomlistSize(), con->getCurrentUser());
 }
 
 //All back Events to HomePage
