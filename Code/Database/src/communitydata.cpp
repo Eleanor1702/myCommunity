@@ -7,8 +7,10 @@ CommunityData* CommunityData::instance = NULL;
 bool CommunityData::connect() {
     driver = mysql::get_mysql_driver_instance();
     SQLString userName = "user";
-    SQLString hostName = "51.15.118.119";
-    SQLString password = "bmns2018!!";
+   // SQLString hostName = "51.15.118.119";
+   // SQLString password = "bmns2018!!";
+    SQLString hostName = "localhost";
+    SQLString password = "mycommunity";
     SQLString schema = "MyCommunity";
     connection_properties["hostName"] = hostName;
     connection_properties["userName"] = userName;
@@ -113,7 +115,6 @@ void CommunityData::addRoom(Room ro) {
     delete stmt;
 }
 //add a new calendar event for a user
-/*
 void CommunityData::addEvent(Event ev) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("INSERT INTO Calendar(Datetime, Event, User) VALUES(?, ?, ?)");
@@ -122,7 +123,7 @@ void CommunityData::addEvent(Event ev) {
     stmt->setString(3, ev.getUser());
     stmt->execute();
     delete stmt;
-}*/
+}
 
 //add a new cleaning task
 void CommunityData::addTask(Task ta){
@@ -208,7 +209,7 @@ void CommunityData::deleteRoom(std::string name) {
     //deleteRoomCleaningplan(name); //and update cleaningplan
     delete stmt;
 }
-/*
+
 //delete a calendar event
 void CommunityData::deleteEvent(Event ev) {
     PreparedStatement* stmt;
@@ -218,7 +219,7 @@ void CommunityData::deleteEvent(Event ev) {
     stmt->setString(3, ev.getUser());
     stmt->execute();
     delete stmt;
-}*/
+}
 
 //delete a cleaning task from database
 void CommunityData::deleteTaskByName(std::string taskname){
@@ -324,7 +325,7 @@ std::vector<Room> CommunityData::getAllRooms() {
     delete resultSet;
     return list;
 }
-/*
+
 //get all events from calendar of a user
 std::vector<Event> CommunityData::getAllEventsOfUser(std::string user) {
     std::vector<Event> list;
@@ -362,7 +363,7 @@ std::vector<Event> CommunityData::getAllCommunityEvents() {
     delete resultSet;
     return list;
 }
-*/
+
 //verifying the log in data by username and password
  bool CommunityData::verifyLogInData(std::string username, int password) {
      PreparedStatement* stmt = con->prepareStatement("SELECT * FROM Residents WHERE Firstname = ? AND Password = ?");

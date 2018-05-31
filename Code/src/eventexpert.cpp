@@ -21,14 +21,19 @@ void EventExpert::createEvent(std::string time, std::string date, std::string de
     ev.Event::setDate(date);
     ev.Event::setUser(user);
     Eventlist.push_back(ev);
-    //data->addEvent(ev);
+    data->addEvent(ev);
 }
 
 void EventExpert::deleteEvent(std::string time, std::string date, std::string description, std::string user){
     for(std::vector<Event>::iterator it = Eventlist.begin(); it != Eventlist.end(); ++it){
         if((it->getDate()==date && it->getTime()==time && it->getDescription()==description && it->getUser()==user)){
+            Event ev;
+            ev.setDate(date);
+            ev.setDescription(description);
+            ev.setTime(time);
+            ev.setUser(user);
             Eventlist.erase(it);
-            //data->deleteEvent(ev);
+            data->deleteEvent(ev);
             break;
         }
     }

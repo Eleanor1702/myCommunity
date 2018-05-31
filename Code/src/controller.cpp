@@ -82,13 +82,11 @@ int Controller::getUserlistSize(){
     return rsExpert->getResidents().size();
 }
 
-void Controller::addEvent(std::string time, std::string date,
-                          std::string description, std::string user){
+void Controller::addEvent(std::string time, std::string date,std::string description, std::string user){
     evExpert->createEvent(time, date, description, user);
 }
 
-void Controller::deleteEvent(std::string time, std::string date,
-                             std::string descpription, std::string user){
+void Controller::deleteEvent(std::string time, std::string date, std::string descpription, std::string user){
     evExpert->deleteEvent(time, date, descpription, user);
 }
 /*
