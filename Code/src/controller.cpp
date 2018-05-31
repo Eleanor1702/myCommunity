@@ -9,16 +9,20 @@ Controller::Controller(){
    taExpert = taExpert->getInstance();
 }
 
+//  RoomExpert
+
 void Controller::addRoom(std::string art, std::string name){
     roExpert->createRoom(name, art);
 }
 
-void Controller::addResident(std::string name, int password){
-    rsExpert->createResident(name, password);
-}
-
 void Controller::deleteRoom(std::string name){
     roExpert->deleteRoom(name);
+}
+
+//  ResidentExpert
+
+void Controller::addResident(std::string name, int password){
+    rsExpert->createResident(name, password);
 }
 
 void Controller::deleteResident(std::string name){
@@ -40,6 +44,24 @@ bool Controller::searchNameResident(std::string username){
     return rsExpert->verifyName(username);
 }
 
+// EventController
+
+void Controller::addEvent(std::string description, std::string timedate, std::string user){
+    evExpert->createEvent(description, timedate, user);
+}
+
+void Controller::deleteEvent(std::string description, std::string timedate, std::string user){
+    evExpert->deleteEvent(description, timedate, user);
+}
+
+void Controller::editEvent(std::string description, std::string timedate){
+    evExpert->editEvent(description, timedate);
+}
+
+//
+
+
+
 std::vector<std::string> Controller::getRoomNames() {
   return roExpert->roomNameGetter();
 }
@@ -48,42 +70,16 @@ std::vector<std::string> Controller::getRoomArts() {
   return roExpert->roomArtGetter();
 }
 
-int Controller::getSize() {
+int Controller::getRoomlistSize() {
   return roExpert->Roomlist.size();
 }
 
-void Controller::addEvent(std::string time, std::string date,
-                          std::string description, std::string user){
-    evExpert->createEvent(time, date, description, user);
+std::vector<std::string> Controller::getUserNames(){
+    return rsExpert->userNameGetter();
 }
-
-void Controller::deleteEvent(std::string time, std::string date,
-                             std::string descpription, std::string user){
-    evExpert->deleteEvent(time, date, descpription, user);
+int Controller::getUserlistSize(){
+    return rsExpert->getResidents().size();
 }
-/*
-void Controller::editEvent(std::string time, std::string description, std::string user){
-    evExpert->editEvent(time, description, user);
-}
-*/
-std::vector<std::string> Controller::getEventTime(){
-    return evExpert->eventTimeGetter();
-}
-std::vector<std::string> Controller::getEventDate(){
-    return evExpert->eventDateGetter();
-}
-std::vector<std::string> Controller::getEventDescription(){
-    return evExpert->eventDescriptionGetter();
-}
-std::vector<std::string> Controller::getEventUser(){
-    return evExpert->eventUserGetter();
-}
-
-int Controller::getSizeEvent(){
-    return evExpert->Eventlist.size();
-}
-
-
 
 
 Controller* Controller::getInstance(){

@@ -110,9 +110,10 @@ void GuiController::callStartPage() {
 //HomePage Events
 void GuiController::callRoomSettings() {
     //Show SetUpRooms and update room List
-    rooms->appear(con->getRoomNames(), con->getRoomArts(), con->getSize());
+    rooms->appear(con->getRoomNames(), con->getRoomArts(), con->getRoomlistSize());
     home->hide();
 }
+
 
 //SetUpRooms Events
 void GuiController::newRoomSet() {
@@ -125,18 +126,18 @@ void GuiController::newRoomSet() {
     }
 
     //update room list in Gui
-    rooms->appear(con->getRoomNames(), con->getRoomArts(), con->getSize());
+    rooms->appear(con->getRoomNames(), con->getRoomArts(), con->getRoomlistSize());
 }
 
 void GuiController::roomDeleted(QString room) {
     // delete room from Databank
     con->deleteRoom(room.toStdString());
 
-    rooms->appear(con->getRoomNames(), con->getRoomArts(), con->getSize());
+    rooms->appear(con->getRoomNames(), con->getRoomArts(), con->getRoomlistSize());
 }
 
 void GuiController::callUserSettings() {
-    users->show();
+    users->appear(con->getUserNames(), con->getUserlistSize());
     home->hide();
 }
 
@@ -163,7 +164,10 @@ void GuiController::newUserSet() {
 }
 
 void GuiController::userDeleted(QString name) {
-    //do things with user delete signal
+    // delete user from Databank
+    con->deleteResident(name.toStdString());
+
+    users->appear(con->getUserNames(), con->getRoomlistSize());
 }
 
 //All back Events to HomePage
@@ -232,12 +236,12 @@ void GuiController::newTaskSet(){
   }
 
   //update task list in Gui
-  //task->appear(con->getTaskName(), con->getRoomTask(), con->getTaskFrequency(), con->getSize());
+  //task->appear(con->getTaskName(), con->getRoomTask(), con->getTaskFrequency(), con->getRoomlistSize());
 }
 
 void GuiController::taskDeleted(QString task){
     // delete task from Databank
     //con->deleteTask(task.toStdString());
 
-    //task->appear(con->getTaskName(), con->getRoomTask(), con->getTaskFrequency(), con->getSize());
+    //task->appear(con->getTaskName(), con->getRoomTask(), con->getTaskFrequency(), con->getTaskListSize());
 }

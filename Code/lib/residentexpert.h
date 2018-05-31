@@ -24,6 +24,10 @@ public:
     bool verifyLogInData(std::string username, int password);
     bool verifyName(std::string username);
 
+    std::vector<std::string> userNameGetter();
+
+    std::vector<Resident> getResidents();
+
     static ResidentExpert* getInstance();
 };
 
