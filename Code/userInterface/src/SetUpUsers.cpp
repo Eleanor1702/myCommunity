@@ -60,3 +60,29 @@ void SetUpUsers::setMainLayoutDesign() {
 void SetUpUsers::homePageCalled() {
   emit homePageCallSignal();
 }
+
+void SetUpUsers::deleteUserCalled(QString name){
+    emit deleteUserSignal(name);
+}
+
+void SetUpUsers::appear(std::vector<std::string> nameVec, int size){
+    this->show();
+
+    for(int i = 0; i < UserLList.size(); i++) {
+        scrollLayout->removeWidget(UserLList[i]);
+    }
+
+    UserLList.clear();
+
+    for(int i = 0; i < size; i++) {
+        newUser = new UserList(QString::fromStdString(nameVec[i]));
+
+        // so every UserLList is connected..
+        connect(newUser, SIGNAL(deleteUserSignal(QString)), this, SLOT(deleteUserCalled(QString)));
+
+        UserLList.push_back(newUser);
+        scrollLayout->addWidget(newUser);
+    }
+
+}
+

@@ -69,3 +69,16 @@ ResidentExpert* ResidentExpert::getInstance(){
         }
     return instance;
 }
+
+std::vector<std::string> ResidentExpert::userNameGetter() {
+  std::vector<std::string> nameVector;
+
+  for(int i = 0; i < Residentlist.size(); i++){
+      nameVector.push_back(Residentlist[i].getFirstname());
+  }
+  return nameVector;
+}
+
+std::vector<Resident> ResidentExpert::getResidents(){
+    return Residentlist;
+}
