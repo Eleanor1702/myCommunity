@@ -12,7 +12,7 @@ void ResidentExpert::createResident(std::string name, int password){
     re.setFirstname(name);
     re.setPassword(password);
     Residentlist.push_back(re);
-    data->addResident(name, password);
+    data->addResident(re);
 }
 
 void ResidentExpert::deleteResident(std::string name){

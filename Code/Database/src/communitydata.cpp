@@ -7,8 +7,8 @@ CommunityData* CommunityData::instance = NULL;
 bool CommunityData::connect() {
     driver = mysql::get_mysql_driver_instance();
     SQLString userName = "user";
-    SQLString hostName = "localhost";
-    SQLString password = "mycommunity";
+    SQLString hostName = "51.15.118.119";
+    SQLString password = "bmns2018!!";
     SQLString schema = "MyCommunity";
     connection_properties["hostName"] = hostName;
     connection_properties["userName"] = userName;
@@ -31,16 +31,13 @@ CommunityData::CommunityData() {
         std::cout <<"Fehler bei der Verbindung!" << std::endl;
 
     //nur einmal ausführen
-    //Statement* stmt;
-    //stmt = con->createStatement();
-    //stmt->execute("CREATE DATABASE IF NOT EXISTS MyCommunity");
     createRoomTable();
     createResidentTable();
     createCalendarTable();
     //createEventCommunityView();
     createCleaningTable();
     createTaskTable();
-    //createShoppinglistTable();
+    createShoppinglistTable();
 }
 
 //Table for all Rooms
@@ -89,47 +86,52 @@ void CommunityData::createTaskTable(){
 }
 
 //create Table for Shopping list
+void CommunityData::createShoppinglistTable(){
+    Statement* stmt;
+    stmt = con->createStatement();
+    stmt->execute("CREATE TABLE IF NOT EXISTS ShoppingList (Item VARCHAR(50), Number INT)");
+    delete stmt;
+}
 
 //insert a new resident identified by his name and his password
-void CommunityData::addResident(std::string name, int password) {
+void CommunityData::addResident(Resident re) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("INSERT INTO Residents(Firstname, Password) VALUES(?, ?)");
-    stmt->setString(1, name);
-    stmt->setInt(2, password);
+    stmt->setString(1, re.getFirstname());
+    stmt->setInt(2, re.getPassword());
     stmt->execute();
     delete stmt;
 }
 
-//add a new room identifies by a room type and a name
-void CommunityData::addRoom(std::string name, std::string type) {
+//add a new room identified by a room type and a name
+void CommunityData::addRoom(Room ro) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("INSERT INTO Rooms(Name, Type) VALUES(?, ?)");
-    stmt->setString(1, name);
-    stmt->setString(2, type);
+    stmt->setString(1, ro.getName());
+    stmt->setString(2, ro.getArt());
     stmt->execute();
     delete stmt;
 }
-
 //add a new calendar event for a user
-
-void CommunityData::addEvent(std::string timedate, std::string description, std::string user) {
+/*
+void CommunityData::addEvent(Event ev) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("INSERT INTO Calendar(Datetime, Event, User) VALUES(?, ?, ?)");
-    stmt->setDateTime(1, timedate);
-    stmt->setString(2, description);
-    stmt->setString(3, user);
+    stmt->setDateTime(1, ev.getDatetime());
+    stmt->setString(2, ev.getDescription());
+    stmt->setString(3, ev.getUser());
     stmt->execute();
     delete stmt;
-}
+}*/
 
 //add a new cleaning task
-void CommunityData::addTask(std::string taskname,std::string room, std::string frequency){
+void CommunityData::addTask(Task ta){
 
     PreparedStatement* stmt;
     stmt = con->prepareStatement("INSERT INTO Tasks(Name, Room, Frequency) VALUES(?, ?)");
-    stmt->setString(1, taskname);
-    stmt->setString(2, room);
-    stmt->setString(3, frequency);
+    stmt->setString(1, ta.getName());
+    stmt->setString(2, ta.getRoom());
+    stmt->setInt(3, ta.getFrequency());
     stmt->execute();
     delete stmt;
 }
@@ -144,6 +146,16 @@ void CommunityData::addToCleaningplan(std::string task, std::string resident, st
     delete stmt;
 }
 
+//add Shoppinglist item
+void CommunityData::addItem(std::string item, int number) {
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("INSERT INTO Shoppinglist(Item, Number) VALUES (?,?)");
+    stmt->setString(1,item);
+    stmt->setInt(2, number);
+    stmt->execute();
+    delete stmt;
+}
+
 //set a new password for a resident
 void CommunityData::updatePassword(std::string username, int newPassword) {
     PreparedStatement* stmt;
@@ -153,7 +165,7 @@ void CommunityData::updatePassword(std::string username, int newPassword) {
     stmt->execute();
     delete stmt;
 }
-
+/*
 //change time or description of an event
 void CommunityData::updateEvent(Event ev, std::string newtimedate, std::string newdescription) {
     PreparedStatement* stmt;
@@ -174,7 +186,7 @@ void CommunityData::updateEvent(Event ev, std::string newtimedate, std::string n
     delete stmt;
 
 }
-
+*/
 //delete a resident
 void CommunityData::deleteResident(std::string name) {
     PreparedStatement* stmt;
@@ -182,7 +194,7 @@ void CommunityData::deleteResident(std::string name) {
     stmt->setString(1, name);
     stmt->execute();
     deleteCalendar(name); //delete calendar of deleted resident
-    deleteResidentCleaningplan(name); //delete his cleaning tasks
+    //deleteResidentCleaningplan(name); //delete his cleaning tasks
     delete stmt;
 }
 
@@ -193,20 +205,20 @@ void CommunityData::deleteRoom(std::string name) {
     stmt->setString(1, name);
     stmt->execute();
     deleteTaskByRoom(name); //delete tasks
-    deleteRoomCleaningplan(name); //and update cleaningplan
+    //deleteRoomCleaningplan(name); //and update cleaningplan
     delete stmt;
 }
-
+/*
 //delete a calendar event
-void CommunityData::deleteEvent(std::string timedate, std::string description, std::string user) {
+void CommunityData::deleteEvent(Event ev) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("DELETE FROM Calendar WHERE Datetime = ? AND Event = ? AND User = ?");
-    stmt->setDateTime(1,timedate);
-    stmt->setString(2, description);
-    stmt->setString(3, user);
+    stmt->setDateTime(1,ev.getDatetime());
+    stmt->setString(2, ev.getDescription());
+    stmt->setString(3, ev.getUser());
     stmt->execute();
     delete stmt;
-}
+}*/
 
 //delete a cleaning task from database
 void CommunityData::deleteTaskByName(std::string taskname){
@@ -214,6 +226,8 @@ void CommunityData::deleteTaskByName(std::string taskname){
     stmt = con->prepareStatement("DELETE FROM Tasks WHERE Name = ? ");
     stmt->setString(1, taskname);
     stmt->execute();
+    //update cleaning plan
+
     delete stmt;
 }
 
@@ -223,6 +237,9 @@ void CommunityData::deleteTaskByRoom(std::string room){
     stmt = con->prepareStatement("DELETE FROM Tasks WHERE Room = ?");
     stmt->setString(1, room);
     stmt->execute();
+    //update cleaning plan
+    //deleteTaskCleaningplan();
+
     delete stmt;
 }
 
@@ -235,7 +252,7 @@ void CommunityData::deleteCalendar(std::string user) {
     delete stmt;
 }
 
-//update clenaingplan by task
+//update cleaningplan by task
 void CommunityData::deleteTaskCleaningplan(std::string task){
     PreparedStatement* stmt;
     stmt = con->prepareStatement("DELETE FROM Cleaning WHERE Task = ?");
@@ -255,10 +272,19 @@ void CommunityData::deleteResidentCleaningplan(std::string resident){
 }
 
 //update cleaningplan by room
-void CommunityData::deleteRoomCleaningplan(std::string room){
+/*void CommunityData::deleteRoomCleaningplan(std::string room){
     PreparedStatement* stmt;
     stmt = con->prepareStatement("DELETE FROM Cleaning WHERE Room = ?");
     stmt->setString(1, room);
+    stmt->execute();
+    delete stmt;
+}*/
+
+//delete an item from shoppinglist
+void CommunityData::deleteShoppinglistItem(std::string item) {
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("DELETE FROM Shoppinglist WHERE Item = ?");
+    stmt->setString(1, item);
     stmt->execute();
     delete stmt;
 }
@@ -298,7 +324,7 @@ std::vector<Room> CommunityData::getAllRooms() {
     delete resultSet;
     return list;
 }
-
+/*
 //get all events from calendar of a user
 std::vector<Event> CommunityData::getAllEventsOfUser(std::string user) {
     std::vector<Event> list;
@@ -336,7 +362,7 @@ std::vector<Event> CommunityData::getAllCommunityEvents() {
     delete resultSet;
     return list;
 }
-
+*/
 //verifying the log in data by username and password
  bool CommunityData::verifyLogInData(std::string username, int password) {
      PreparedStatement* stmt = con->prepareStatement("SELECT * FROM Residents WHERE Firstname = ? AND Password = ?");

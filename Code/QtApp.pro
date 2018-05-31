@@ -43,7 +43,8 @@ SOURCES += \
     src/task.cpp \
     src/taskexpert.cpp \
     userInterface/src/SetUpTasks.cpp \
-    userInterface/src/TaskListItem.cpp
+    userInterface/src/TaskListItem.cpp \
+    userInterface/src/eventlistitem.cpp
 
 HEADERS += \
     lib/controller.h \
@@ -68,7 +69,8 @@ HEADERS += \
     lib/taskexpert.h \
     lib/task.h \
     userInterface/lib/SetUpTasks.h \
-    userInterface/lib/TaskListItem.h
+    userInterface/lib/TaskListItem.h \
+    userInterface/lib/eventlistitem.h
 
 
 RESOURCES = \

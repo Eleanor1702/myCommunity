@@ -34,7 +34,7 @@ public:
     std::string getRoom();
     int getFrequency();
 
-    //Methoden die nicht direkt gebraucht werden, da der Putzplan
+    //Methoden, die nicht direkt gebraucht werden, da der Putzplan
     //auf wöchentlicher Basis erstellt wird
 
     void setTime(tm timedate);

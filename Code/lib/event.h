@@ -27,11 +27,9 @@ public:
     */
     void setUser(std::string newUser);
 
-    void setTime(std::string time);
-    void setDate(std::string date);
-    void setDatetime(std::string datetime);
-
-    std::string getDescription();
+    void setTime(std::string newTime);
+    void setDate(std::string newDate);
+ //   void setDatetime(std::string datetime);
 
     /*tm getTime();
     int getDay();
@@ -41,9 +39,11 @@ public:
     int getHour();
     */
 
+    std::string getDescription();
     std::string getUser();
     std::string getTime();
     std::string getDate();
+//    std::string getDatetime();
 };
 
 #endif // EVENT_H

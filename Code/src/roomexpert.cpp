@@ -13,7 +13,7 @@ void RoomExpert::createRoom(std::string name, std::string typ){
      ro.setName(name);
      ro.setArt(typ);
      Roomlist.push_back(ro);
-     data->addRoom(name, typ);
+     data->addRoom(ro);
 }
 
 void RoomExpert::deleteRoom(std::string name){
@@ -29,7 +29,7 @@ void RoomExpert::deleteRoom(std::string name){
 std::vector<std::string> RoomExpert::roomNameGetter() {
   std::vector<std::string> nameVector;
 
-  for(int i = 0; i < Roomlist.size(); i++){
+  for(unsigned int i = 0; i < Roomlist.size(); i++){
       nameVector.push_back(Roomlist[i].getName());
   }
   return nameVector;
@@ -38,7 +38,7 @@ std::vector<std::string> RoomExpert::roomNameGetter() {
 std::vector<std::string> RoomExpert::roomArtGetter() {
   std::vector<std::string> artVector;
 
-  for(int i = 0; i < Roomlist.size(); i++){
+  for(unsigned int i = 0; i < Roomlist.size(); i++){
       artVector.push_back(Roomlist[i].getArt());
   }
   return artVector;

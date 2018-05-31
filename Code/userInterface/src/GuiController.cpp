@@ -53,6 +53,10 @@ GuiController::GuiController() : QWidget() {
 
     //EventPage Events
     connect(events, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
+    connect(events,SIGNAL(setNewEventSignal()),this,SLOT(newEventSet()));
+    connect(events,SIGNAL(deleteEventSignal(QString, QString, QString, QString)),this,
+            SLOT(eventDeleted(QString, QString, QString, QString)));
+
 
     //CleaningPage Events
     connect(clean, SIGNAL(taskCallSignal()), this, SLOT(callTask()));
@@ -175,6 +179,30 @@ void GuiController::callHomePage() {
     rooms->hide();
     users->hide();
 }
+
+//EventPage Events
+void GuiController::newEventSet(){
+    if(events->getEventDescriptionInput() == "Error"){
+        //Exception
+        return;
+    } else {
+        //database connection
+        con->addEvent(events->getEventTimeInput(), events->getEventDateInput(),
+                      events->getEventDescriptionInput(), events->getEventUserInput());
+    }
+    //udate eventlist in Gui
+    events->appear(con->getEventTime(), con->getEventDate(), con->getEventDescription(),
+                   con->getEventUser(), con->getSizeEvent());
+}
+void GuiController::eventDeleted(QString time, QString date, QString description, QString user){
+    //delete event from database
+    con->deleteEvent(time.toStdString(), date.toStdString(), description.toStdString(), user.toStdString());
+
+    events->appear(con->getEventTime(), con->getEventDate(),
+                   con->getEventDescription(), con->getEventUser(),
+                   con->getSizeEvent());
+}
+
 
 void GuiController::callCalendar() {
     events->show();
