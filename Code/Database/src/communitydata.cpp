@@ -7,10 +7,10 @@ CommunityData* CommunityData::instance = NULL;
 bool CommunityData::connect() {
     driver = mysql::get_mysql_driver_instance();
     SQLString userName = "user";
-   // SQLString hostName = "51.15.118.119";
-   // SQLString password = "bmns2018!!";
-    SQLString hostName = "localhost";
-    SQLString password = "mycommunity";
+    SQLString hostName = "172.104.230.99";
+    SQLString password = "bmns2018!!";
+    //SQLString hostName = "localhost";
+    //SQLString password = "mycommunity";
     SQLString schema = "MyCommunity";
     connection_properties["hostName"] = hostName;
     connection_properties["userName"] = userName;
