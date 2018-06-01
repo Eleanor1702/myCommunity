@@ -4,18 +4,26 @@ using namespace sql;
 
 CommunityData* CommunityData::instance = NULL;
 
-bool CommunityData::connect() {
+//return an instance of community data and assure that only one instance exists
+CommunityData* CommunityData::getInstance(std::string user, std::string password, std::string host, std::string database) {
+   if(instance == NULL) {
+       instance = new CommunityData(user, password, host, database);
+   }
+   return instance;
+}
+
+bool CommunityData::connect(std::string user, std::string password, std::string host, std::string database) {
     driver = mysql::get_mysql_driver_instance();
-    SQLString userName = "user";
-    SQLString hostName = "172.104.230.99";
-    SQLString password = "bmns2018!!";
+    //SQLString userName = "user";
+    //SQLString hostName = "172.104.230.99";
+    //SQLString password = "bmns2018!!";
     //SQLString hostName = "localhost";
     //SQLString password = "mycommunity";
-    SQLString schema = "MyCommunity";
-    connection_properties["hostName"] = hostName;
-    connection_properties["userName"] = userName;
+    //SQLString schema = "MyCommunity";
+    connection_properties["hostName"] = host;
+    connection_properties["userName"] = user;
     connection_properties["password"] = password;
-    connection_properties["schema"] = schema;
+    connection_properties["schema"] = database;
     connection_properties["port"] = 3306;
     if((con = driver->connect(connection_properties)) == NULL) {
         return false;
@@ -28,9 +36,10 @@ CommunityData::~CommunityData() {
 }
 
 //Constructor
-CommunityData::CommunityData() {
-    if(!connect())
+CommunityData::CommunityData(std::string user, std::string password, std::string host, std::string database) {
+    if(!connect(user, password, host, database)) {
         std::cout <<"Fehler bei der Verbindung!" << std::endl;
+    }
 
     //nur einmal ausführen
     createRoomTable();
@@ -401,11 +410,3 @@ std::vector<Event> CommunityData::getAllCommunityEvents() {
          return false;
      }
  }
-
- //return an instance of community data and assure that only one instance exists
-CommunityData* CommunityData::getInstance() {
-    if(instance == NULL) {
-        instance = new CommunityData();
-    }
-    return instance;
-}

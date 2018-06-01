@@ -2,13 +2,13 @@
 
 EventExpert* EventExpert::instance = NULL;
 
-EventExpert::EventExpert(){
-    data = data->getInstance();
+EventExpert::EventExpert(CommunityData* data){
+    this->data = data;
 }
 
-EventExpert* EventExpert::getInstance(){
+EventExpert* EventExpert::getInstance(CommunityData* data){
     if(instance == NULL){
-        instance = new EventExpert();
+        instance = new EventExpert(data);
     }
     return instance;
 }

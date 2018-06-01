@@ -16,7 +16,7 @@ private:
     std::string currentUser;    //current loged in User
 
 protected:
-    ResidentExpert();
+    ResidentExpert(CommunityData* data);
 
 public:
 
@@ -28,13 +28,10 @@ public:
 
     void setCurrentUser(std::string newUser);
     std::string getCurrentUser();
-
-
     std::vector<std::string> userNameGetter();
-
     std::vector<Resident> getResidents();
 
-    static ResidentExpert* getInstance();
+    static ResidentExpert* getInstance(CommunityData* data);
 };
 
 #endif // RESIDENTEXPERT_H

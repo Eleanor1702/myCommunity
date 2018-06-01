@@ -14,7 +14,7 @@ private:
     CommunityData* data;
 
 protected:
-    EventExpert();
+    EventExpert(CommunityData* data);
 
 public:
     void createEvent(std::string time, std::string date,
@@ -28,7 +28,7 @@ public:
     std::vector<std::string> eventDescriptionGetter();
     std::vector<std::string> eventUserGetter();
 
-    static EventExpert* getInstance();
+    static EventExpert* getInstance(CommunityData* data);
 };
 
 #endif // EVENTEXPERT_H

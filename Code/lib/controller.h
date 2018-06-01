@@ -16,12 +16,13 @@ private:
         EventExpert* evExpert;
         TaskExpert* taExpert;
 
-        static Controller* instance;                    //Singleton
+        static Controller* instance;                         //Singleton
 
         std::string user;                                    //aktueller User, der angemeldet ist
 
 protected:
-        Controller();
+        Controller(CommunityData* data);
+
 public:
         void addRoom(std::string art, std::string name);          //From Gui to WG (create Rooms)
         void addResident(std::string name, int password);    //From Gui to WG (add Users)
@@ -43,15 +44,11 @@ public:
                        std::string description, std::string user);
         void deleteEvent(std::string time, std::string date,
                          std::string descpription, std::string user);
-    //  void editEvent(std::string time, std::string description, std::string user);
-
+        //void editEvent(std::string time, std::string description, std::string user);
 
         //Methods currentUser
         void setCurrentUser(std::string user);
         std::string getCurrentUser();
-
-
-
 
         std::vector<std::string>getRoomNames();
         std::vector<std::string>getRoomArts();
@@ -66,8 +63,7 @@ public:
         std::vector<std::string>getEventUser();
         int getSizeEvent();
 
-
-        static Controller* getInstance();
+        static Controller* getInstance(CommunityData* data);
 };
 
 
