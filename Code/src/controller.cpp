@@ -2,10 +2,10 @@
 
 Controller* Controller::instance = NULL;
 
-Controller::Controller(){
-   rsExpert = rsExpert->getInstance();
-   roExpert = roExpert->getInstance();
-   evExpert = evExpert->getInstance();
+Controller::Controller(CommunityData* data){
+   rsExpert = rsExpert->getInstance(data);
+   roExpert = roExpert->getInstance(data);
+   evExpert = evExpert->getInstance(data);
    taExpert = taExpert->getInstance();
 }
 
@@ -121,13 +121,9 @@ std::string Controller::getCurrentUser(){
     return rsExpert->getCurrentUser();
 }
 
-
-
-
-
-Controller* Controller::getInstance(){
+Controller* Controller::getInstance(CommunityData* data){
     if(instance == NULL){
-        instance = new Controller();
+        instance = new Controller(data);
     }
     return instance;
 }

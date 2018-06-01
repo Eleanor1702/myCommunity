@@ -2,8 +2,8 @@
 
 RoomExpert* RoomExpert::instance = NULL;
 
-RoomExpert::RoomExpert(){
-    data = data->getInstance();
+RoomExpert::RoomExpert(CommunityData* data){
+    this->data = data;
     Roomlist = data->getAllRooms();
 }
 
@@ -48,9 +48,9 @@ std::vector<Room> RoomExpert::getRooms() {
   return Roomlist;
 }
 
-RoomExpert* RoomExpert::getInstance(){
+RoomExpert* RoomExpert::getInstance(CommunityData* data){
     if(instance == NULL){
-        instance = new RoomExpert();
+        instance = new RoomExpert(data);
     }
     return instance;
 }

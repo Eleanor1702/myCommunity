@@ -26,10 +26,14 @@ private:
     static CommunityData* instance;
 
 protected:
-    CommunityData();
+    CommunityData(std::string user, std::string password, std::string host, std::string database);
 
 public:
-    bool connect();
+    static CommunityData* getInstance(std::string user, std::string password, std::string host, std::string database);
+
+    ~CommunityData();
+
+    bool connect(std::string user, std::string password, std::string host, std::string database);
     void createRoomTable();
     void createResidentTable();
     void createCalendarTable();
@@ -74,10 +78,6 @@ public:
 
     bool verifyLogInData(std::string, int);
     bool verifyName(std::string);
-
-    ~CommunityData();
-
-    static CommunityData* getInstance();
 };
 
 #endif // COMMUNITYDATA_H

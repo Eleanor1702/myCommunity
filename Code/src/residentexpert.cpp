@@ -2,8 +2,8 @@
 
 ResidentExpert* ResidentExpert::instance = NULL;
 
-ResidentExpert::ResidentExpert(){
-    data = data->getInstance();
+ResidentExpert::ResidentExpert(CommunityData* data){
+    this->data = data;
     Residentlist = data->getAllResidents();
 }
 
@@ -63,9 +63,9 @@ bool ResidentExpert::verifyName(std::string username){
     else return false;
 }
 
-ResidentExpert* ResidentExpert::getInstance(){
+ResidentExpert* ResidentExpert::getInstance(CommunityData* data){
     if(instance == NULL){
-        instance = new ResidentExpert();
+        instance = new ResidentExpert(data);
         }
     return instance;
 }

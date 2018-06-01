@@ -2,14 +2,18 @@
 
 GuiController* GuiController::instance = NULL;
 
-GuiController* GuiController::getInstance(){
+void GuiController::startApplication(Controller* con) {
+    getInstance(con);
+}
+
+GuiController* GuiController::getInstance(Controller* con){
     if(instance == NULL){
-        instance = new GuiController();
+        instance = new GuiController(con);
     }
     return instance;
 }
 
-GuiController::GuiController() : QWidget() {
+GuiController::GuiController(Controller* con) : QWidget() {
     this->main = new StartPage();
     this->up = new SignUp();
     this->in = new SignIn();
@@ -21,7 +25,7 @@ GuiController::GuiController() : QWidget() {
     this->clean = new CleaningPage();
     this->task = new SetUpTasks();
 
-    con = this->con->getInstance();
+    this->con = con;
 
     //StartPage Events
     connect(main, SIGNAL(signUpCallSignal()), this, SLOT(callSignUp()));

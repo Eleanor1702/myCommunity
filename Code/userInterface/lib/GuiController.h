@@ -37,7 +37,7 @@ private:
 
   Controller* con;
 
-  static GuiController* instance;   //Singleton
+  static GuiController* instance;               //Singleton
 
 public slots:
   //class need to be QWidget to be able to call the actions
@@ -88,10 +88,11 @@ public slots:
   void newTaskSet();
 
 public:
-  static GuiController* getInstance();     //Singleton
+    static void startApplication(Controller* con);
 
 protected:
-  explicit GuiController();
+    static GuiController* getInstance(Controller* con);        //Singleton
+    explicit GuiController(Controller* con);
 };
 
 #endif // GUICONTROLLER_H
