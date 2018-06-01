@@ -1,8 +1,8 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include "residentexpert.h"
-#include "roomexpert.h"
+#include "ResidentExpert.h"
+#include "RoomExpert.h"
 #include "eventexpert.h"
 #include "taskexpert.h"
 

@@ -7,9 +7,6 @@
 
 class RoomExpert{
 private:
-    friend class Controller;
-
-    std::vector<Room> Roomlist;
     static RoomExpert* instance;
 
     CommunityData* data;
@@ -21,6 +18,7 @@ public:
 
     void createRoom(std::string name, std::string typ);
     void deleteRoom(std::string name);
+
     std::vector<std::string> roomNameGetter();
     std::vector<std::string> roomArtGetter();
 

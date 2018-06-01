@@ -71,7 +71,7 @@ std::vector<std::string> Controller::getRoomArts() {
 }
 
 int Controller::getRoomlistSize() {
-  return roExpert->Roomlist.size();
+  return roExpert->getRooms().size();
 }
 
 

@@ -23,11 +23,9 @@ SOURCES += \
     main.cpp \
     src/controller.cpp \
     src/room.cpp \
-    src/roomexpert.cpp \
     src/event.cpp \
     src/eventexpert.cpp \
     src/resident.cpp \
-    src/residentexpert.cpp \
     userInterface/src/GuiController.cpp \
     userInterface/src/HomePage.cpp \
     userInterface/src/SetUpRooms.cpp \
@@ -44,14 +42,14 @@ SOURCES += \
     src/taskexpert.cpp \
     userInterface/src/SetUpTasks.cpp \
     userInterface/src/TaskListItem.cpp \
-    userInterface/src/eventlistitem.cpp
+    userInterface/src/eventlistitem.cpp \
+    src/ResidentExpert.cpp \
+    src/RoomExpert.cpp
 
 HEADERS += \
     lib/controller.h \
     lib/resident.h \
-    lib/residentexpert.h \
     lib/room.h \
-    lib/roomexpert.h \
     lib/event.h \
     lib/eventexpert.h \
     userInterface/lib/GuiController.h \
@@ -70,8 +68,9 @@ HEADERS += \
     lib/task.h \
     userInterface/lib/SetUpTasks.h \
     userInterface/lib/TaskListItem.h \
-    userInterface/lib/eventlistitem.h
-
+    userInterface/lib/eventlistitem.h \
+    lib/ResidentExpert.h \
+    lib/RoomExpert.h
 
 RESOURCES = \
     media/application.qrc \
@@ -88,13 +87,17 @@ test {
     SOURCES -= main.cpp
 
     HEADERS += \
+        test/lib/TestDatabaseDeleter.h \
         test/lib/TestRoom.h \
         test/lib/TestResident.h \
         test/lib/TestRoomExpert.h \
+        test/lib/TestResidentExpert.h \
 
     SOURCES += \
+        test/src/TestDatabaseDeleter.cpp \
         test/main.cpp \
         test/src/TestRoom.cpp \
         test/src/TestResident.cpp \
         test/src/TestRoomExpert.cpp \
+        test/src/TestResidentExpert.cpp \
 }

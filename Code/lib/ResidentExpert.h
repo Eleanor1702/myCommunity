@@ -9,8 +9,9 @@
 class ResidentExpert{
 private:
     static ResidentExpert* instance;
+
     Resident re;
-    std::vector<Resident> Residentlist;
+    //std::vector<Resident> Residentlist;
     CommunityData* data;
 
     std::string currentUser;    //current loged in User
@@ -19,7 +20,6 @@ protected:
     ResidentExpert(CommunityData* data);
 
 public:
-
     void createResident(std::string name, int password);
     void deleteResident(std::string name);
     void editResident(std::string username, int newPassword);
@@ -28,6 +28,7 @@ public:
 
     void setCurrentUser(std::string newUser);
     std::string getCurrentUser();
+
     std::vector<std::string> userNameGetter();
     std::vector<Resident> getResidents();
 
