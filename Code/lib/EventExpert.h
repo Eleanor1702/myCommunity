@@ -21,12 +21,14 @@ public:
                      std::string description, std::string user);             // time und date als t_time
     void deleteEvent(std::string time, std::string date,
                      std::string description, std::string user);
-//    void editEvent(std::string description, std::string timedate);       //nur die zeit darf verändert werden
+    //void editEvent(std::string description, std::string timedate);       //nur die zeit darf verändert werden
 
     std::vector<std::string> eventTimeGetter();
     std::vector<std::string> eventDateGetter();
     std::vector<std::string> eventDescriptionGetter();
     std::vector<std::string> eventUserGetter();
+    std::vector<Event> getUserEvents(std::string user);
+    std::vector<Event> getCommunityEvents();
 
     static EventExpert* getInstance(CommunityData* data);
 };

@@ -1,4 +1,4 @@
-#include "lib/eventexpert.h"
+#include "lib/EventExpert.h"
 
 EventExpert* EventExpert::instance = NULL;
 
@@ -118,6 +118,14 @@ std::vector<std::string>EventExpert::eventUserGetter(){
         userVec.push_back(Eventlist[i].getUser());
     }
     return userVec;
+}
+
+std::vector<Event> EventExpert::getUserEvents(std::string user) {
+  return data->getAllEventsOfUser(user);
+}
+
+std::vector<Event> EventExpert::getCommunityEvents() {
+  return data->getAllCommunityEvents();
 }
 
 

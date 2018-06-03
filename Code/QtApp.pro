@@ -24,7 +24,6 @@ SOURCES += \
     src/controller.cpp \
     src/room.cpp \
     src/event.cpp \
-    src/eventexpert.cpp \
     src/resident.cpp \
     userInterface/src/GuiController.cpp \
     userInterface/src/HomePage.cpp \
@@ -38,20 +37,20 @@ SOURCES += \
     Database/src/communitydata.cpp \
     userInterface/src/eventpage.cpp \
     userInterface/src/cleaningpage.cpp \
-    src/task.cpp \
     src/taskexpert.cpp \
     userInterface/src/SetUpTasks.cpp \
     userInterface/src/TaskListItem.cpp \
     userInterface/src/eventlistitem.cpp \
     src/ResidentExpert.cpp \
-    src/RoomExpert.cpp
+    src/RoomExpert.cpp \
+    src/EventExpert.cpp \
+    src/Task.cpp \
 
 HEADERS += \
     lib/controller.h \
     lib/resident.h \
     lib/room.h \
     lib/event.h \
-    lib/eventexpert.h \
     userInterface/lib/GuiController.h \
     userInterface/lib/HomePage.h \
     userInterface/lib/SetUpRooms.h \
@@ -65,12 +64,13 @@ HEADERS += \
     userInterface/lib/eventpage.h \
     userInterface/lib/cleaningpage.h \
     lib/taskexpert.h \
-    lib/task.h \
     userInterface/lib/SetUpTasks.h \
     userInterface/lib/TaskListItem.h \
     userInterface/lib/eventlistitem.h \
     lib/ResidentExpert.h \
-    lib/RoomExpert.h
+    lib/RoomExpert.h \
+    lib/EventExpert.h \
+    lib/Task.h
 
 RESOURCES = \
     media/application.qrc \
@@ -92,6 +92,7 @@ test {
         test/lib/TestResident.h \
         test/lib/TestRoomExpert.h \
         test/lib/TestResidentExpert.h \
+        test/lib/TestTask.h \
 
     SOURCES += \
         test/src/TestDatabaseDeleter.cpp \
@@ -100,4 +101,5 @@ test {
         test/src/TestResident.cpp \
         test/src/TestRoomExpert.cpp \
         test/src/TestResidentExpert.cpp \
+        test/src/TestTask.cpp \
 }

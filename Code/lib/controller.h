@@ -3,7 +3,7 @@
 
 #include "ResidentExpert.h"
 #include "RoomExpert.h"
-#include "eventexpert.h"
+#include "EventExpert.h"
 #include "taskexpert.h"
 
 //Connector between GUI and Logic

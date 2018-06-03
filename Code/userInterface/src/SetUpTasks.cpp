@@ -3,33 +3,33 @@
 //calling the constructor, calls the parent constructor too
 //in this case QWidget
 SetUpTasks::SetUpTasks(QWidget *parent) : QWidget(parent){
-  //declarations of window contents
-  mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, this);
-  mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
-  mainLabel = new QLabel("Aufgaben hinzufügen..");
+    //declarations of window contents
+    mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, this);
+    mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
+    mainLabel = new QLabel("Aufgaben hinzufügen..");
 
-  scrollAreaRow = new QBoxLayout(QBoxLayout::LeftToRight);
-  scrollArea = new QScrollArea(this);
-  scrollWidget = new QWidget(this);
-  scrollLayout = new QBoxLayout(QBoxLayout::TopToBottom, this->scrollWidget);
+    scrollAreaRow = new QBoxLayout(QBoxLayout::LeftToRight);
+    scrollArea = new QScrollArea(this);
+    scrollWidget = new QWidget(this);
+    scrollLayout = new QBoxLayout(QBoxLayout::TopToBottom, this->scrollWidget);
 
-  addTasksRow = new QBoxLayout(QBoxLayout::LeftToRight);
+    addTasksRow = new QBoxLayout(QBoxLayout::LeftToRight);
 
-  mainButtonsRow = new QBoxLayout(QBoxLayout::LeftToRight);
-  TaskFrequencyLabel = new QLabel("Häufigkeit:");
-  chooseTaskFrequencyCombo = new QComboBox();
-  TaskRoomLabel = new QLabel ("Raum:");
-  chooseTaskRoomCombo = new QComboBox();
-  nameLabel = new QLabel("Name:");
-  giveNameEdit = new QLineEdit();
-  addButton = new QPushButton (QString::fromUtf8("Aufgabe hinzufügen"), this);
-  saveButton = new QPushButton ("Speichern");
+    mainButtonsRow = new QBoxLayout(QBoxLayout::LeftToRight);
+    TaskFrequencyLabel = new QLabel("Häufigkeit:");
+    chooseTaskFrequencyCombo = new QComboBox();
+    TaskRoomLabel = new QLabel ("Raum:");
+    chooseTaskRoomCombo = new QComboBox();
+    nameLabel = new QLabel("Name:");
+    giveNameEdit = new QLineEdit();
+    addButton = new QPushButton (QString::fromUtf8("Aufgabe hinzufügen"), this);
+    saveButton = new QPushButton ("Speichern");
 
-  this->setMainWindowDesign();
-  this->setMainLayoutDesign();
+    this->setMainWindowDesign();
+    this->setMainLayoutDesign();
 
-  QObject::connect(addButton, SIGNAL(clicked()), this, SLOT(setNewTaskCalled()));
-  QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(homePageCalled()));
+    QObject::connect(addButton, SIGNAL(clicked()), this, SLOT(setNewTaskCalled()));
+    QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(homePageCalled()));
 }
 
 void SetUpTasks::setMainWindowDesign() {
@@ -101,15 +101,15 @@ void SetUpTasks::setMainLayoutDesign() {
 }
 
 std::string SetUpTasks::getSelectedTaskFrequency() {
-  return chooseTaskFrequencyCombo->currentText().toStdString();
+    return chooseTaskFrequencyCombo->currentText().toStdString();
 }
 
 std::string SetUpTasks::getSelectedRoomTask() {
-  return chooseTaskRoomCombo->currentText().toStdString();
+    return chooseTaskRoomCombo->currentText().toStdString();
 }
 
 std::string SetUpTasks::getTaskNameInput() {
-    //proceed only with a room name
+    //proceed only with a task name
     if(giveNameEdit->text().size() == 0 || giveNameEdit->text()[0] == ' '){
         return "Error";
     }

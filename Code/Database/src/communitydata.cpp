@@ -14,12 +14,6 @@ CommunityData* CommunityData::getInstance(std::string user, std::string password
 
 bool CommunityData::connect(std::string user, std::string password, std::string host, std::string database) {
     driver = mysql::get_mysql_driver_instance();
-    //SQLString userName = "user";
-    //SQLString hostName = "172.104.230.99";
-    //SQLString password = "bmns2018!!";
-    //SQLString hostName = "localhost";
-    //SQLString password = "mycommunity";
-    //SQLString schema = "MyCommunity";
     connection_properties["hostName"] = host;
     connection_properties["userName"] = user;
     connection_properties["password"] = password;
@@ -136,7 +130,6 @@ void CommunityData::addEvent(Event ev) {
 
 //add a new cleaning task
 void CommunityData::addTask(Task ta){
-
     PreparedStatement* stmt;
     stmt = con->prepareStatement("INSERT INTO Tasks(Name, Room, Frequency) VALUES(?, ?)");
     stmt->setString(1, ta.getName());
