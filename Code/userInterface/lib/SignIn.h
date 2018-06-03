@@ -13,30 +13,30 @@ class SignIn : public QWidget {
   Q_OBJECT
 private:
    friend class GuiController;
-   QBoxLayout *mainLayout;
+   QBoxLayout* mainLayout;
 
-   QBoxLayout *mainLabelRow;
-   QLabel *mainLabel;
+   QBoxLayout* mainLabelRow;
+   QLabel* mainLabel;
 
-   QBoxLayout *imageRow;
-   QPixmap *pic;
+   QBoxLayout* imageRow;
+   QPixmap* pic;
    QPixmap scaled;
-   QLabel *picLabel;
+   QLabel* picLabel;
 
-   QBoxLayout *nameRow;
-   QLabel *nameLabel;
-   QLineEdit *giveNameEdit;
+   QBoxLayout* nameRow;
+   QLabel* nameLabel;
+   QLineEdit* giveNameEdit;
 
-   QBoxLayout *passwordRow;
-   QLabel *passwordLabel;
-   QLineEdit *givePasswordEdit;
+   QBoxLayout* passwordRow;
+   QLabel* passwordLabel;
+   QLineEdit* givePasswordEdit;
 
-   QBoxLayout *wrongPassRow;
-   QLabel *wrongPassLabel;
+   QBoxLayout* errorMsgRow;
+   QLabel* errorMsgLabel;
 
-   QBoxLayout *buttonsRow;
-   QPushButton *backButton;
-   QPushButton *logInButton;
+   QBoxLayout* buttonsRow;
+   QPushButton* backButton;
+   QPushButton* logInButton;
 
     void setMainWindowDesign();
     void setMainLayoutDesign();
@@ -46,7 +46,10 @@ public:
     //the parameter *parent is here to nest widgets in widgets
     explicit SignIn(QWidget *parent = NULL);
 
+    void appear();
     void clearContent();
+    void falseData();
+    void validate();
     std::string getUserName();
     int getUserPassword();
 

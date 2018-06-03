@@ -23,6 +23,11 @@ public:
     void setName(std::string newName);
     void setDay(tm timedate);
     void setMonth(tm timedate);
+    void setYear(tm timedate);
+    void setHour(tm timedate);
+    void setMin(tm timedate);
+    void setTime(tm timedate);
+
     void setUser(std::string newUser);
     void setRoom(std::string newRoom);
     void setFrequency(int newFrequency);
@@ -30,22 +35,14 @@ public:
     std::string getName();
     int getDay();
     int getMonth();
+    int getYear();
+    int getHour();
+    int getMin();
+    tm getTime();
+
     std::string getUser();
     std::string getRoom();
     int getFrequency();
-
-    //Methoden, die nicht direkt gebraucht werden, da der Putzplan
-    //auf wöchentlicher Basis erstellt wird
-
-    void setTime(tm timedate);
-    void setYear(tm timedate);
-    void setMin(tm timedate);
-    void setHour(tm timedate);
-
-    tm getTime();
-    int getYear();
-    int getMin();
-    int getHour();
 };
 
 #endif // TASK_H

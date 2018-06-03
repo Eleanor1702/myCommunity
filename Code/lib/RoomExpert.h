@@ -15,7 +15,6 @@ protected:
     RoomExpert(CommunityData* data);
 
 public:
-
     void createRoom(std::string name, std::string typ);
     void deleteRoom(std::string name);
 
@@ -25,6 +24,6 @@ public:
     std::vector<Room> getRooms();
 
     static RoomExpert* getInstance(CommunityData* data);
-
 };
+
 #endif // ROOMEXPERT_H
