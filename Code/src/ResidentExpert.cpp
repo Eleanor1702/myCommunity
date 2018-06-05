@@ -26,7 +26,7 @@ void ResidentExpert::deleteResident(std::string name){
 }
 
 void ResidentExpert::editResident(std::string username, int newPassword){
-    for(int i = 0; i < getResidents().size(); i++) {
+    for(unsigned int i = 0; i < getResidents().size(); i++) {
         if(getResidents()[i].getFirstname() == username) {
             getResidents()[i].setPassword(newPassword);
             data->updatePassword(username, newPassword);
@@ -36,7 +36,7 @@ void ResidentExpert::editResident(std::string username, int newPassword){
 }
 
 bool ResidentExpert::verifyLogInData(std::string username, int password){
-    for(int i = 0; i < getResidents().size(); i++) {
+    for(unsigned int i = 0; i < getResidents().size(); i++) {
         if(getResidents()[i].getFirstname() == username && getResidents()[i].getPassword() == password) {
             return true;
         }
@@ -46,7 +46,7 @@ bool ResidentExpert::verifyLogInData(std::string username, int password){
 }
 
 bool ResidentExpert::verifyName(std::string username){
-    for(int i = 0; i < getResidents().size(); i++) {
+    for(unsigned int i = 0; i < getResidents().size(); i++) {
         if(getResidents()[i].getFirstname() == username) {
             return true;
         }
@@ -58,7 +58,7 @@ bool ResidentExpert::verifyName(std::string username){
 std::vector<std::string> ResidentExpert::userNameGetter() {
   std::vector<std::string> nameVector;
 
-  for(int i = 0; i < data->getAllResidents().size(); i++){
+  for(unsigned int i = 0; i < data->getAllResidents().size(); i++){
       nameVector.push_back(data->getAllResidents()[i].getFirstname());
   }
   return nameVector;

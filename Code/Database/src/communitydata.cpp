@@ -216,6 +216,8 @@ void CommunityData::deleteRoom(std::string name) {
     stmt->execute();
     deleteTaskByRoom(name); //delete tasks
     //deleteRoomCleaningplan(name); //and update cleaningplan
+
+
     delete stmt;
 }
 
