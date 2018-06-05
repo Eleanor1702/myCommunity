@@ -62,6 +62,7 @@ public:
     //the parameter *parent is here to nest widgets in widgets
     explicit SetUpRooms(QWidget *parent = NULL);
     std::vector<RoomListItem*> RoomListItemList;
+    QList<RoomListItem*> roomLabelList;
 
     std::string getRoomTypeInput();
     std::string getRoomNameInput();
