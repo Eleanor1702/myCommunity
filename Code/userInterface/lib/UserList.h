@@ -18,12 +18,11 @@ private:
   void setItemStyle(std::string currentUser, QString userName);
 
 signals:
-  void deleteUserButtonClickedSignal(QString name);
-  void deleteUserSignal(QString);
+  void deleteUserSignal(QString name);
 
 
 private slots:
-  void deleteUserButtonClicked();
+  void deleteUser();
 
 public:
   //QFrame ist ein QWidget

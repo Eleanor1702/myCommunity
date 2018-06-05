@@ -39,54 +39,15 @@ void EventExpert::deleteEvent(std::string time, std::string date, std::string de
     }
 }
 
-/*void EventExpert::deleteEvent(string description, tm datetime, string user){
-    for(vector<Event>::iterator it = Eventlist.begin(); it != Eventlist.end(); ++it) {
-        if((it)->getDescription() == description && (it)->getUser() == user
-                && (it)->getDay() == datetime.tm_mday && (it)->getMonth() == datetime.tm_mon && (it)->getYear() == datetime.tm_year
-                && (it)->getMin() == datetime.tm_min && (it)->getMin() == datetime.tm_min
-                ) {
-            Eventlist.erase(it);
-        }
-    }
+void EventExpert::editEvent(std::string time, std::string date, std::string description, std::string user, std::string newtime, std::string newdate, std::string newdescription){
+    Event ev;
+    ev.setDate(date);
+    ev.setTime(time);
+    ev.setDescription(description);
+    ev.setUser(user);
+
+    data->updateEvent(ev, (newdate+newtime), newdescription);
 }
-*/
-/*
-//Funktion für String datetime
-void EventExpert::deleteEvent(std::string time, std::string date, std::string description, std::string user){
- char dbuffer[12];
- char tbuffer[12];
-
-  std::size_t length = date.copy(dbuffer,10,0); //date kopieren
-  dbuffer[length]='\0';
-
-  length = date.copy(tbuffer,8,10);
-  tbuffer[length] = '\0';
-}*/
-
-
-/*
-void EventExpert::editEvent(string description, tm datetime){
-    for(vector<Event>::iterator it = Eventlist.begin(); it != Eventlist.end(); ++it) {
->>>>>>> 02e06bb6ad3d5894727068382ee26c3e3720dd00
-        if((it)->getDescription() == description) {
-            (it)->setTime(datetime);
-        }
-    }
-}
-*/
-/*
-//Funktion für string datetime
-void EventExpert::editEvent(std::string description, std::string datetime){
-     char tbuffer[12];
-     std::size_t length = datetime.copy(tbuffer,8,10);
-     tbuffer[length] = '\0';
-
-     for(std::vector<Event>::iterator it = Eventlist.begin(); it != Eventlist.end(); ++it) {
-        if((it)->getDescription() == description) {
-            (it)->setTime(tbuffer);
-        }
-    }
-}*/
 
 std::vector<std::string>EventExpert::eventTimeGetter(){
     std::vector<std::string> timeVec;

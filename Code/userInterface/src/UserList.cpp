@@ -8,7 +8,7 @@ UserList::UserList(std::string currentUser,QString userName, QWidget *parent) : 
   setItemStyle(currentUser, userName);    //delete button should not exist for current user
 
   //events
-  QObject::connect(deleteButton,SIGNAL(clicked()),this,SLOT(deleteUserButtonClicked()));
+  QObject::connect(deleteButton,SIGNAL(clicked()),this,SLOT(deleteUser()));
 
 }
 
@@ -37,8 +37,8 @@ void UserList::setItemStyle(std::string currentUser, QString userName) {
 
 }
 
-void UserList::deleteUserButtonClicked() {
-  emit deleteUserButtonClickedSignal(this->user->text());
+void UserList::deleteUser() {
+  emit deleteUserSignal(this->user->text());
   this->close();
 }
 

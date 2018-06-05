@@ -32,10 +32,6 @@ public:
         bool searchResident(std::string username, int password);
         bool searchNameResident(std::string username);       // To get the same Name in Login
 
-       // void addEvent(std::string description, std::string timedate, std::string user);
-       // void deleteEvent(std::string description, std::string timedate, std::string user);
-        void editEvent(std::string description, std::string timedate);
-
         void addTask();
         void deleteTask();
         void editTask();
@@ -44,7 +40,7 @@ public:
                        std::string description, std::string user);
         void deleteEvent(std::string time, std::string date,
                          std::string descpription, std::string user);
-        //void editEvent(std::string time, std::string description, std::string user);
+        void editEvent(std::string time, std::string date, std::string description, std::string user, std::string newtime, std::string newdate, std::string newdescription);
 
         //Methods currentUser
         void setCurrentUser(std::string user);

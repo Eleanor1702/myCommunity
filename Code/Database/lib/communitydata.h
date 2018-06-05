@@ -51,7 +51,7 @@ public:
     void addItem(std::string item, int number);
 
     void updatePassword(std::string user, int password);
-    //void updateEvent(Event ev, std::string timedate,std::string description);
+    void updateEvent(Event ev, std::string timedate,std::string description);
 
     void deleteResident(std::string name);
     void deleteRoom(std::string name);

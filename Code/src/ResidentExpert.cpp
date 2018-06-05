@@ -38,7 +38,7 @@ void ResidentExpert::editResident(std::string username, int newPassword){
 bool ResidentExpert::verifyLogInData(std::string username, int password){
     for(unsigned int i = 0; i < getResidents().size(); i++) {
         if(getResidents()[i].getFirstname() == username && getResidents()[i].getPassword() == password) {
-            return true;
+            return data->verifyLogInData(username, password);
         }
     }
 

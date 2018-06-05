@@ -168,7 +168,7 @@ void CommunityData::updatePassword(std::string username, int newPassword) {
     stmt->execute();
     delete stmt;
 }
-/*
+
 //change time or description of an event
 void CommunityData::updateEvent(Event ev, std::string newtimedate, std::string newdescription) {
     PreparedStatement* stmt;
@@ -189,7 +189,7 @@ void CommunityData::updateEvent(Event ev, std::string newtimedate, std::string n
     delete stmt;
 
 }
-*/
+
 //delete a resident
 void CommunityData::deleteResident(std::string name) {
     PreparedStatement* stmt;

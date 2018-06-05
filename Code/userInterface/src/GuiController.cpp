@@ -176,9 +176,9 @@ void GuiController::newUserSet() {
 void GuiController::userDeleted(QString name) {
     // delete user from Databank
     con->deleteResident(name.toStdString());
-    //users->hide();
-   //main->show();
-    users->appear(con->getUserNames(), con->getRoomlistSize(), con->getCurrentUser());
+   users->hide();
+   main->show();
+    //users->appear(con->getUserNames(), con->getRoomlistSize(), con->getCurrentUser());
 }
 
 //All back Events to HomePage

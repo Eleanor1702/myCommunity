@@ -55,8 +55,8 @@ void Controller::deleteEvent(std::string time, std::string date, std::string des
     evExpert->deleteEvent(time, date, descpription, user);
 }
 /*
-void Controller::editEvent(std::string time, std::string description, std::string user){
-    evExpert->editEvent(time, description, user);
+void Controller::editEvent(std::string time, std::string date, std::string description, std::string user, std::string newtime, std::string newdate, std::string newdescription ){
+    evExpert->editEvent(time, date, description, user, newtime, newdate, newdescription);
 }
 */
 
