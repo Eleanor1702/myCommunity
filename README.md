@@ -59,7 +59,7 @@ Results listed in "Applications Output".
 
 <h3> To manually connect with database in terminal:</h3>
 
-<code>mysql -p user -h 172.104.230.99 -p</code><br>
+<code>mysql -u user -h 172.104.230.99 -p</code><br>
 
 you will be asked for password. Our password is:<br>
 

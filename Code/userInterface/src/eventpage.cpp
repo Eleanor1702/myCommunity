@@ -172,32 +172,35 @@ std::string EventPage::getEventHourInput(){
 
 std::string EventPage::getEventMinInput(){
     return this->chooseMinuteCombo->currentText().toStdString();
-}
-*/
+}*/
+
 //get Input -> turn to std::string
 std::string EventPage::getEventTimeInput(){
     std::string hour_str = this->chooseHourCombo->currentText().toStdString();
     std::string min_str = this->chooseMinuteCombo->currentText().toStdString();
     std::string time = hour_str + ":" + min_str;
+
     return time;
 }
+
 std::string EventPage::getEventDateInput(){
    QDate Date_select = calendar->selectedDate();
    QString Date_select_str = Date_select.toString("dd.MM.yy");
+
    return Date_select_str.toStdString();
 }
+
 std::string EventPage::getEventDescriptionInput(){
     return this->giveNameEdit->text().toStdString();
 }
+
 std::string EventPage::getEventUserInput(){
     if(this->checkPub->isChecked()){
-        return "gemeinschaftlich"; //Alle User??
+        return "gemeinschaftlich";              //Alle User??
     } else {
-        return "privat"; //current UserName
+        return "privat";                        //current UserName
     }
 }
-
-
 
 void EventPage::appear(std::vector<std::string> timeVec,
                        std::vector<std::string> dateVec,
@@ -254,7 +257,6 @@ void EventPage::setNewEventCalled(){
 void EventPage::homePageCalled(){
     emit homePageCallSignal();
 }
-
 
 void EventPage::deleteEventCalled(QString time , QString date, QString description, QString user){
     emit deleteEventSignal(time, date, description, user);

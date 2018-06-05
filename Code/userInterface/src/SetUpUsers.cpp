@@ -84,6 +84,4 @@ void SetUpUsers::appear(std::vector<std::string> nameVec, int size, std::string 
         UserLList.push_back(newUser);
         scrollLayout->addWidget(newUser);
     }
-
 }
-

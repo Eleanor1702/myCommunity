@@ -15,7 +15,7 @@
 #include "lib/resident.h"
 #include "lib/room.h"
 #include "lib/event.h"
-#include "lib/task.h"
+#include "lib/Task.h"
 #include <time.h>
 
 class CommunityData {

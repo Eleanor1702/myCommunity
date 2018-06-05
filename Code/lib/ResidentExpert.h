@@ -11,10 +11,9 @@ private:
     static ResidentExpert* instance;
 
     Resident re;
-    //std::vector<Resident> Residentlist;
     CommunityData* data;
 
-    std::string currentUser;    //current loged in User
+    std::string currentUser;                                      //current loged in User
 
 protected:
     ResidentExpert(CommunityData* data);

@@ -38,12 +38,17 @@ private:
    QLabel *passwordLabel;
    QLineEdit *givePasswordEdit;
 
+   QBoxLayout* errorMsgRow;
+   QLabel* errorMsgLabel;
+
    QBoxLayout *mainButtonsRow;
    QPushButton *backButton;
    QPushButton *saveButton;
 
    void setMainWindowDesign();
    void setMainLayoutDesign();
+
+   void validate();
 
 private slots:
    void startPageCalled();
@@ -54,14 +59,15 @@ signals:
    void newUserSignUpSignal(std::string name, int password);
 
 public:
-    //the constructor build the window
-    //the parameter *parent is here to nest widgets in widgets
-    //explicit SignUp(QWidget *parent = NULL);
-    explicit SignUp(QWidget *parent = NULL);
+   //the constructor build the window
+   //the parameter *parent is here to nest widgets in widgets
+   //explicit SignUp(QWidget *parent = NULL);
+   explicit SignUp(QWidget *parent = NULL);
 
+   void appear();
    void clearContent();
-   std::string getUserName();
-   int getUserPassword();
+   void usernameExist();
+
 };
 
 #endif // SIGNUP_H

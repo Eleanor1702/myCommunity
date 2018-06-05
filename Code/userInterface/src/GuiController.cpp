@@ -58,9 +58,8 @@ GuiController::GuiController(Controller* con) : QWidget() {
 
     //EventPage Events
     connect(events, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
-    connect(events,SIGNAL(setNewEventSignal()),this,SLOT(newEventSet()));
-    connect(events,SIGNAL(deleteEventSignal(QString, QString, QString, QString)),this,
-            SLOT(eventDeleted(QString, QString, QString, QString)));
+    connect(events, SIGNAL(setNewEventSignal()), this, SLOT(newEventSet()));
+    connect(events, SIGNAL(deleteEventSignal(QString, QString, QString, QString)), this, SLOT(eventDeleted(QString, QString, QString, QString)));
 
 
     //CleaningPage Events
@@ -78,7 +77,7 @@ GuiController::GuiController(Controller* con) : QWidget() {
 
 //StartPage Events
 void GuiController::callSignUp(){
-    up->show();
+    up->appear();
     main->hide();
 }
 
@@ -89,20 +88,24 @@ void GuiController::signUpNewUser(std::string name, int password) {
 
         in->show();
         up->hide();
+    }else{
+        up->usernameExist();
     }
 }
 
 void GuiController::callSignIn(){
-    in->show();
+    in->appear();
     main->hide();
 }
 
 //SignIn Event
 void GuiController::logInUser(std::string name, int password) {
     if(con->searchResident(name, password)) {
-        con->setCurrentUser(name);      //Set Current User to logged in user
+        con->setCurrentUser(name);              //Set Current User to logged in user
         home->show();
         in->hide();
+    }else{
+        in->falseData();
     }
 }
 

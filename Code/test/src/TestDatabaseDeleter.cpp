@@ -1,4 +1,4 @@
-#include "../lib/testdatabasedeleter.h"
+#include "../lib/TestDatabaseDeleter.h"
 
 TestDatabaseDeleter::TestDatabaseDeleter(std::string user, std::string password, std::string host, std::string database) {
     driver = sql::mysql::get_mysql_driver_instance();
