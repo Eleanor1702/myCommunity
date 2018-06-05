@@ -6,7 +6,7 @@ Controller::Controller(CommunityData* data){
    rsExpert = rsExpert->getInstance(data);
    roExpert = roExpert->getInstance(data);
    evExpert = evExpert->getInstance(data);
-   taExpert = taExpert->getInstance();
+   taExpert = taExpert->getInstance(data);
 }
 
 //  RoomExpert
