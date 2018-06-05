@@ -19,6 +19,8 @@ private:
 
 signals:
   void deleteUserButtonClickedSignal(QString name);
+  void deleteUserSignal(QString);
+
 
 private slots:
   void deleteUserButtonClicked();
