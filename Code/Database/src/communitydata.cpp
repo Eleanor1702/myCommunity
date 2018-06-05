@@ -86,7 +86,7 @@ void CommunityData::createCleaningTable(){
 void CommunityData::createTaskTable(){
     Statement* stmt;
     stmt = con->createStatement();
-    stmt->execute("CREATE TABLE IF NOT EXISTS Tasks (Name VARCHAR(50) PRIMARY KEY, Room VARCHAR(50), Frequency VARCHAR(50))");
+    stmt->execute("CREATE TABLE IF NOT EXISTS Tasks (Name VARCHAR(50), Room VARCHAR(50), Frequency VARCHAR(50))");
     delete stmt;
 }
 
@@ -134,7 +134,7 @@ void CommunityData::addTask(Task ta){
     stmt = con->prepareStatement("INSERT INTO Tasks(Name, Room, Frequency) VALUES(?, ?)");
     stmt->setString(1, ta.getName());
     stmt->setString(2, ta.getRoom());
-    stmt->setInt(3, ta.getFrequency());
+    stmt->setString(3, ta.getFrequency());
     stmt->execute();
     delete stmt;
 }

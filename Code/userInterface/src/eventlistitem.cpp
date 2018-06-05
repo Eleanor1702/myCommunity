@@ -45,7 +45,7 @@ void EventListItem::setItemStyle(){
 
 /*
 void EventListItem::editEvent(){
-    emit editEventSignal(this-> hour, this->min, this->description);
+    emit editEventSignal(this->time, this->date, this->description, this->user, );
     //Name wieder in eingabezeile ??
     this->close();
 }
