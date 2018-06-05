@@ -60,7 +60,7 @@ GuiController::GuiController(Controller* con) : QWidget() {
     connect(events, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
     connect(events, SIGNAL(setNewEventSignal()), this, SLOT(newEventSet()));
     connect(events, SIGNAL(deleteEventSignal(QString, QString, QString, QString)), this, SLOT(eventDeleted(QString, QString, QString, QString)));
-
+    //connect event edit
 
     //CleaningPage Events
     connect(clean, SIGNAL(taskCallSignal()), this, SLOT(callTask()));
@@ -176,7 +176,8 @@ void GuiController::newUserSet() {
 void GuiController::userDeleted(QString name) {
     // delete user from Databank
     con->deleteResident(name.toStdString());
-
+    //users->hide();
+   //main->show();
     users->appear(con->getUserNames(), con->getRoomlistSize(), con->getCurrentUser());
 }
 

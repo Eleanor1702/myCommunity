@@ -21,7 +21,7 @@ void UserList::setItemStyle(std::string currentUser, QString userName) {
   //Layout Design
   this->setLayout(this->newUserLayout);
   this->newUserLayout->addWidget(this->user);
-    if(currentUser != userName.toUtf8().constData()){       //User should not be able to delete himself
+    if(currentUser == userName.toUtf8().constData()){       //User should only be able to delete himself
 
   this->newUserLayout->addWidget(this->deleteButton);
 }
