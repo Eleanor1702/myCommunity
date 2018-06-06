@@ -76,7 +76,7 @@ std::vector<std::string> Controller::getUserNames(){
     return rsExpert->userNameGetter();
 }
 int Controller::getUserlistSize(){
-    return rsExpert->getResidents().size();
+    return rsExpert->userNameGetter().size();
 }
 
 std::vector<std::string> Controller::getEventTime(){
