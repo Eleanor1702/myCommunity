@@ -12,7 +12,7 @@ private:
    CommunityData* data;
 
 protected:
-    TaskExpert(CommunityData data);
+    TaskExpert(CommunityData* data);
 
 public:
 

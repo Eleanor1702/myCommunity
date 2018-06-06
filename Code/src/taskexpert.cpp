@@ -2,7 +2,7 @@
 
 TaskExpert* TaskExpert::instance = NULL;
 
-TaskExpert::TaskExpert(CommunityData data){
+TaskExpert::TaskExpert(CommunityData* data){
     this->data = data;
 }
 /*

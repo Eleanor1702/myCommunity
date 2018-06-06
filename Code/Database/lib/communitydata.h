@@ -68,10 +68,11 @@ public:
 
     void deleteShoppinglistItem(std::string item);
 
-    std::vector<Resident> getAllResidents();
+    std::vector<std::string> getAllResidents();
     std::vector<Room> getAllRooms();
     std::vector<Event> getAllEventsOfUser(std::string user);
     std::vector<Event> getAllCommunityEvents();
+    std::vector<Event> getAllEvents();
     std::vector<Task> getAllTasks();
 
     // getCleaningPlan()
