@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include <cppconn/connection.h>
+//#include <cppconn/connection.h>
 #include <cppconn/prepared_statement.h>
 #include <cppconn/driver.h>
 #include <cppconn/exception.h>
