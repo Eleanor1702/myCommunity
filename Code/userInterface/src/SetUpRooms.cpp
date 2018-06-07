@@ -102,7 +102,8 @@ std::string SetUpRooms::getRoomNameInput() {
 }
 
 void SetUpRooms::appear(std::vector<std::string> nameVec, std::vector<std::string> typeVec, int size) {
-    for(int i = 0; i < RoomListItemList.size(); i++) {
+    this->show();
+    for(unsigned int i = 0; i < RoomListItemList.size(); i++) {
         scrollLayout->removeWidget(RoomListItemList[i]);
     }
 
@@ -116,11 +117,11 @@ void SetUpRooms::appear(std::vector<std::string> nameVec, std::vector<std::strin
 
         RoomListItemList.push_back(newRoom);
         scrollLayout->addWidget(newRoom);
-    }
+        }
 
     giveNameEdit->clear();
 
-    this->show();
+
 }
 
 void SetUpRooms::setNewRoomCalled() {
