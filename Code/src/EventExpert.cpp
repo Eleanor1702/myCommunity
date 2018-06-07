@@ -41,8 +41,13 @@ void EventExpert::editEvent(std::string time, std::string date, std::string desc
     data->updateEvent(ev, (newdate+newtime), newdescription);
 }
 
+unsigned int EventExpert::getEventSize(){
+    return (data->getAllEvents()).size();
+}
+
 std::vector<std::string>EventExpert::eventTimeGetter(){
     std::vector<std::string> timeVec;
+    std::vector<Event> Eventlist = data->getAllEvents();
     for(unsigned int i=0; i<Eventlist.size(); i++){
         timeVec.push_back(Eventlist[i].getTime());
     }
