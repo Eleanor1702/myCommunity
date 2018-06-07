@@ -141,7 +141,6 @@ void GuiController::newRoomSet() {
 void GuiController::roomDeleted(QString room) {
     // delete room from Databank
     con->deleteRoom(room.toStdString());
-
     rooms->appear(con->getRoomNames(), con->getRoomArts(), con->getRoomlistSize());
 }
 
