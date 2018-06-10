@@ -1,12 +1,12 @@
-#ifndef USERLIST_H
-#define USERLIST_H
+#ifndef USERLISTITEM_H
+#define USERLISTITEM_H
 
 #include <QFrame>
 #include <QLabel>
 #include <QPushButton>
 #include <QHBoxLayout>
 
-class UserList : public QFrame {
+class UserListItem : public QFrame {
   Q_OBJECT
 private:
   friend class GuiController;
@@ -26,10 +26,10 @@ private slots:
 
 public:
   //QFrame ist ein QWidget
-  explicit UserList(std::string currentUser, QString userName, QWidget *parent = NULL);
+  explicit UserListItem(std::string currentUser, QString userName, QWidget *parent = NULL);
 
 public slots:
 
 };
 
-#endif // USERLIST_H
+#endif // USERLISTITEM_H

@@ -37,7 +37,6 @@ SOURCES += \
     userInterface/src/SignIn.cpp \
     userInterface/src/SignUp.cpp \
     userInterface/src/StartPage.cpp \
-    userInterface/src/UserList.cpp \
     userInterface/src/RoomListItem.cpp \
     Database/src/communitydata.cpp \
     userInterface/src/eventpage.cpp \
@@ -50,6 +49,7 @@ SOURCES += \
     src/RoomExpert.cpp \
     src/EventExpert.cpp \
     src/Task.cpp \
+    userInterface/src/UserListItem.cpp
 
 HEADERS += \
     lib/controller.h \
@@ -63,7 +63,6 @@ HEADERS += \
     userInterface/lib/SignIn.h \
     userInterface/lib/SignUp.h \
     userInterface/lib/StartPage.h \
-    userInterface/lib/UserList.h \
     userInterface/lib/RoomListItem.h \
     Database/lib/communitydata.h \
     userInterface/lib/eventpage.h \
@@ -75,7 +74,8 @@ HEADERS += \
     lib/ResidentExpert.h \
     lib/RoomExpert.h \
     lib/EventExpert.h \
-    lib/Task.h
+    lib/Task.h \
+    userInterface/lib/UserListItem.h
 
 RESOURCES = \
     media/application.qrc \
