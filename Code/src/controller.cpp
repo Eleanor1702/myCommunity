@@ -93,7 +93,7 @@ std::vector<std::string> Controller::getEventUser(){
 }
 
 int Controller::getSizeEvent(){
-    return evExpert->getEventSize();
+    return evExpert->getCommunityEvents().size();
 }
 
 //Current User Methods

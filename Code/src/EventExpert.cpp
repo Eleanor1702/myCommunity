@@ -41,15 +41,10 @@ void EventExpert::editEvent(std::string time, std::string date, std::string desc
     data->updateEvent(ev, (newdate+newtime), newdescription);
 }
 
-unsigned int EventExpert::getEventSize(){
-    return (data->getAllEvents()).size();
-}
-
 std::vector<std::string>EventExpert::eventTimeGetter(){
     std::vector<std::string> timeVec;
-    std::vector<Event> Eventlist = data->getAllEvents();
-    for(unsigned int i=0; i<Eventlist.size(); i++){
-        timeVec.push_back(Eventlist[i].getTime());
+    for(unsigned int i=0; i<getCommunityEvents().size(); i++){
+        timeVec.push_back(getCommunityEvents()[i].getTime());
     }
     return timeVec;
 }
@@ -88,6 +83,3 @@ std::vector<Event> EventExpert::getUserEvents(std::string user) {
 std::vector<Event> EventExpert::getCommunityEvents() {
   return data->getAllCommunityEvents();
 }
-
-
-
