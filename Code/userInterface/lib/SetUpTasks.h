@@ -48,6 +48,7 @@ private:
 
     void setMainWindowDesign();
     void setMainLayoutDesign();
+    void deepDeleteLayout(QLayout* layout);
 
 private slots:
     void setNewTaskCalled();
@@ -63,7 +64,6 @@ public:
     //the constructor build the window
     //the parameter *parent is here to nest widgets in widgets
     explicit SetUpTasks(QWidget *parent = NULL);  //geänderter Name
-    std::vector<TaskListItem*> TaskListItemList;
 
     std::string getSelectedTaskFrequency();
     std::string getSelectedRoomTask();

@@ -65,23 +65,34 @@ void SetUpUsers::deleteUserCalled(QString name){
     emit deleteUserSignal(name);
 }
 
-void SetUpUsers::appear(std::vector<std::string> nameVec, int size, std::string username){
-    this->show();
+void SetUpUsers::deepDeleteLayout(QLayout *layout) {
+    QLayoutItem* item;
 
-    for(unsigned int i = 0; i < UserLList.size(); i++) {
-        scrollLayout->removeWidget(UserLList[i]);
+    while((item = layout->takeAt(0))) {
+        if(item->layout()){
+            deepDeleteLayout(item->layout());
+            delete item->layout();
+        }
+
+        if(item->widget()) {
+            delete item->widget();
+        }
+
+        delete item;
     }
+}
 
-    UserLList.clear();
+void SetUpUsers::appear(std::vector<std::string> nameVec, int size, std::string username){
+    deepDeleteLayout(scrollLayout);
 
     for(int i = 0; i < size; i++) {
-        newUser = new UserList(username,QString::fromStdString(nameVec[i]));
+        newUser = new UserListItem(username, QString::fromStdString(nameVec[i]));
 
-        // so every UserLList is connected..
-                        //Current User should not be able to delete himself
+        // so every UserListItem is connected..
         connect(newUser, SIGNAL(deleteUserSignal(QString)), this, SLOT(deleteUserCalled(QString)));
 
-        UserLList.push_back(newUser);
         scrollLayout->addWidget(newUser);
     }
+
+    this->show();
 }

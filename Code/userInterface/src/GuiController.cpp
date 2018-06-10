@@ -86,7 +86,7 @@ void GuiController::signUpNewUser(std::string name, int password) {
     if( !(con->searchNameResident(name)) ) {
         con->addResident(name, password);
 
-        in->show();
+        in->appear();
         up->hide();
     }else{
         up->usernameExist();

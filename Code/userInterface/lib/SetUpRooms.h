@@ -46,6 +46,7 @@ private:
 
     void setMainWindowDesign();
     void setMainLayoutDesign();
+    void deepDeleteLayout(QLayout* layout);
 
 private slots:
     void setNewRoomCalled();
@@ -61,8 +62,6 @@ public:
     //the constructor build the window
     //the parameter *parent is here to nest widgets in widgets
     explicit SetUpRooms(QWidget *parent = NULL);
-    std::vector<RoomListItem*> RoomListItemList;
-    QList<RoomListItem*> roomLabelList;
 
     std::string getRoomTypeInput();
     std::string getRoomNameInput();
