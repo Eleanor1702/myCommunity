@@ -10,7 +10,7 @@ private:
     friend class Controller;
 
     static EventExpert* instance;
-    std::vector<Event> Eventlist;
+    //std::vector<Event> Eventlist;
     CommunityData* data;
 
 protected:
@@ -21,7 +21,7 @@ public:
                      std::string description, std::string user);             // time und date als t_time
     void deleteEvent(std::string time, std::string date,
                      std::string description, std::string user);
-    //void editEvent(std::string description, std::string timedate);       //nur die zeit darf verändert werden
+    void editEvent(std::string time, std::string date, std::string description, std::string user, std::string newtime, std::string newdate, std::string newdescription);
 
     std::vector<std::string> eventTimeGetter();
     std::vector<std::string> eventDateGetter();

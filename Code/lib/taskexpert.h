@@ -3,22 +3,24 @@
 
 #include <vector>
 #include "Task.h"
+#include "Database/lib/communitydata.h"
 
 class TaskExpert{
 private:
     static TaskExpert* instance;
-    std::vector<Task> Tasklist;
+   // std::vector<Task> Tasklist;
+   CommunityData* data;
 
 protected:
-    TaskExpert();
+    TaskExpert(CommunityData* data);
 
 public:
 
-    void createTask(std::string name, tm timedate, std::string user, std::string room, int frequency);             // time und date als t_time
-    void deleteTask(std::string name, tm timedate, std::string user);
-    void editTask(std::string name, tm timedate, int frequency);       //nur die zeit darf verändert werden
+    void createTask(std::string name, std::string room, std::string frequency);
+    void deleteTask(std::string name, std::string );
+    void editTask(std::string name, std::string frequency, std::string room);       //was darf alles verändert werden?
 
-    static TaskExpert* getInstance();
+    static TaskExpert* getInstance(CommunityData* data);
 };
 
 #endif // TASKEXPERT_H

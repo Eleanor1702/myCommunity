@@ -34,8 +34,6 @@ CommunityData::CommunityData(std::string user, std::string password, std::string
     if(!connect(user, password, host, database)) {
         std::cout <<"Fehler bei der Verbindung!" << std::endl;
     }
-
-    //nur einmal ausführen
     createRoomTable();
     createResidentTable();
     createCalendarTable();
@@ -86,7 +84,7 @@ void CommunityData::createCleaningTable(){
 void CommunityData::createTaskTable(){
     Statement* stmt;
     stmt = con->createStatement();
-    stmt->execute("CREATE TABLE IF NOT EXISTS Tasks (Name VARCHAR(50) PRIMARY KEY, Room VARCHAR(50), Frequency VARCHAR(50))");
+    stmt->execute("CREATE TABLE IF NOT EXISTS Tasks (Name VARCHAR(50), Room VARCHAR(50), Frequency VARCHAR(50))");
     delete stmt;
 }
 
@@ -134,7 +132,7 @@ void CommunityData::addTask(Task ta){
     stmt = con->prepareStatement("INSERT INTO Tasks(Name, Room, Frequency) VALUES(?, ?)");
     stmt->setString(1, ta.getName());
     stmt->setString(2, ta.getRoom());
-    stmt->setInt(3, ta.getFrequency());
+    stmt->setString(3, ta.getFrequency());
     stmt->execute();
     delete stmt;
 }
@@ -168,7 +166,7 @@ void CommunityData::updatePassword(std::string username, int newPassword) {
     stmt->execute();
     delete stmt;
 }
-/*
+
 //change time or description of an event
 void CommunityData::updateEvent(Event ev, std::string newtimedate, std::string newdescription) {
     PreparedStatement* stmt;
@@ -189,7 +187,7 @@ void CommunityData::updateEvent(Event ev, std::string newtimedate, std::string n
     delete stmt;
 
 }
-*/
+
 //delete a resident
 void CommunityData::deleteResident(std::string name) {
     PreparedStatement* stmt;
@@ -209,6 +207,8 @@ void CommunityData::deleteRoom(std::string name) {
     stmt->execute();
     deleteTaskByRoom(name); //delete tasks
     //deleteRoomCleaningplan(name); //and update cleaningplan
+
+
     delete stmt;
 }
 
@@ -293,17 +293,15 @@ void CommunityData::deleteShoppinglistItem(std::string item) {
 }
 
 //get all residents from database
-std::vector<Resident> CommunityData::getAllResidents() {
-    std::vector<Resident> list;
+std::vector<std::string> CommunityData::getAllResidents() {
+    std::vector<std::string> list;
     PreparedStatement* stmt = con->prepareStatement("SELECT * FROM Residents");
     ResultSet *resultSet = NULL;
     resultSet = stmt->executeQuery();
 
     while(resultSet->next()) {
-        Resident res;
-        SQLString psw = "Password";
-        res.setFirstname(resultSet->getString("Firstname"));
-        res.setPassword(resultSet->getInt(psw));
+        std::string res;
+        res = resultSet->getString("Firstname");
         list.push_back(res);
     }
     delete stmt;
@@ -353,6 +351,25 @@ std::vector<Event> CommunityData::getAllCommunityEvents() {
     ResultSet* resultSet = NULL;
     PreparedStatement* stmt;
     stmt = con->prepareStatement("SELECT * FROM CommunityEvent");
+    resultSet = stmt->executeQuery();
+    while(resultSet->next()) {
+        Event ev;
+        ev.setDescription(resultSet->getString("Event"));
+        ev.setUser("community");
+        ev.setDatetime(resultSet->getString("Datetime"));
+        list.push_back(ev);
+    }
+    delete stmt;
+    delete resultSet;
+    return list;
+}
+
+//get all Events
+std::vector<Event> CommunityData::getAllEvents(){
+    std::vector<Event> list;
+    ResultSet* resultSet = NULL;
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("SELECT * FROM CALENDAR");
     resultSet = stmt->executeQuery();
     while(resultSet->next()) {
         Event ev;

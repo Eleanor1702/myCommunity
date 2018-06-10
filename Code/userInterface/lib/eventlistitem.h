@@ -35,7 +35,7 @@ private slots:
 
 signals:
     void deleteEventSignal(QString time, QString date, QString description, QString user);
-//    void editEventSignal(QString hour, QString min, QString name);
+//    void editEventSignal(QString hour, QString min, QString description);
 
 
 public:

@@ -2,8 +2,10 @@
 
 TaskExpert* TaskExpert::instance = NULL;
 
-TaskExpert::TaskExpert(){}
-
+TaskExpert::TaskExpert(CommunityData* data){
+    this->data = data;
+}
+/*
 void TaskExpert::createTask(std::string name,tm timedate, std::string user, std::string room, int frequency){
     Task ta;
     ta.Task::setName(name);
@@ -32,11 +34,11 @@ void TaskExpert::editTask(std::string name, tm timedate, int frequency) {       
             (it)->setFrequency(frequency);
         }
     }
-}
+}*/
 
-TaskExpert* TaskExpert::getInstance(){
+TaskExpert* TaskExpert::getInstance(CommunityData* data){
     if(instance == NULL){
-        instance = new TaskExpert();
+        instance = new TaskExpert(data);
     }
     return instance;
 }

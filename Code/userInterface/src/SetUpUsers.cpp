@@ -68,7 +68,7 @@ void SetUpUsers::deleteUserCalled(QString name){
 void SetUpUsers::appear(std::vector<std::string> nameVec, int size, std::string username){
     this->show();
 
-    for(int i = 0; i < UserLList.size(); i++) {
+    for(unsigned int i = 0; i < UserLList.size(); i++) {
         scrollLayout->removeWidget(UserLList[i]);
     }
 
