@@ -205,7 +205,7 @@ void CommunityData::deleteRoom(std::string name) {
     stmt = con->prepareStatement("DELETE FROM Rooms WHERE Name = ?");
     stmt->setString(1, name);
     stmt->execute();
-    deleteTaskByRoom(name); //delete tasks
+    deleteAllTaskOfRoom(name); //delete tasks
     //deleteRoomCleaningplan(name); //and update cleaningplan
 
 
@@ -224,10 +224,11 @@ void CommunityData::deleteEvent(Event ev) {
 }
 
 //delete a cleaning task from database
-void CommunityData::deleteTaskByName(std::string taskname){
+void CommunityData::deleteTaskByName(std::string taskname, std::string room){
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("DELETE FROM Tasks WHERE Name = ? ");
+    stmt = con->prepareStatement("DELETE FROM Tasks WHERE Name = ? AND Room = ? ");
     stmt->setString(1, taskname);
+    stmt->setString(2, room);
     stmt->execute();
     //update cleaning plan
 
@@ -235,7 +236,7 @@ void CommunityData::deleteTaskByName(std::string taskname){
 }
 
 //delete all tasks of a room
-void CommunityData::deleteTaskByRoom(std::string room){
+void CommunityData::deleteAllTaskOfRoom(std::string room){
     PreparedStatement* stmt;
     stmt = con->prepareStatement("DELETE FROM Tasks WHERE Room = ?");
     stmt->setString(1, room);
@@ -369,12 +370,12 @@ std::vector<Event> CommunityData::getAllEvents(){
     std::vector<Event> list;
     ResultSet* resultSet = NULL;
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("SELECT * FROM CALENDAR");
+    stmt = con->prepareStatement("SELECT * FROM Calendar");
     resultSet = stmt->executeQuery();
     while(resultSet->next()) {
         Event ev;
         ev.setDescription(resultSet->getString("Event"));
-        ev.setUser("community");
+        ev.setUser(resultSet->getString("User"));
         ev.setDatetime(resultSet->getString("Datetime"));
         list.push_back(ev);
     }

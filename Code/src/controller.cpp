@@ -45,7 +45,7 @@ bool Controller::searchNameResident(std::string username){
     return rsExpert->verifyName(username);
 }
 
-// EventController
+// EventExpert
 
 void Controller::addEvent(std::string time, std::string date,std::string description, std::string user){
     evExpert->createEvent(time, date, description, user);
@@ -60,6 +60,20 @@ void Controller::editEvent(std::string time, std::string date, std::string descr
 }
 */
 
+//TaskExpert
+
+void Controller::addTask(std::string name, std::string room, std::string frequency) {
+    taExpert->createTask(name, room, frequency);
+}
+
+void Controller::deleteTask(std::string name, std::string room) {
+    taExpert->deleteTask(name, room);
+}
+//editTask
+
+
+
+//Getter -> TaskGetter!!
 std::vector<std::string> Controller::getRoomNames() {
   return roExpert->roomNameGetter();
 }

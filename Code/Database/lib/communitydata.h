@@ -57,8 +57,8 @@ public:
     void deleteRoom(std::string name);
     void deleteEvent(Event ev);
 
-    void deleteTaskByRoom(std::string room);
-    void deleteTaskByName(std::string taskname);
+    void deleteAllTaskOfRoom(std::string room);
+    void deleteTaskByName(std::string taskname, std::string room );
 
     void deleteCalendar(std::string user);
 

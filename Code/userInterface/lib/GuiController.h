@@ -84,7 +84,7 @@ public slots:
   //void createPlanButtonClicked();
 
   //SetUpTask Slots:
-  void taskDeleted(QString task);
+  void taskDeleted(QString task, QString room);
   void newTaskSet();
 
 public:
