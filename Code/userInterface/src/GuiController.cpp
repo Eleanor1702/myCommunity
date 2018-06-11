@@ -68,7 +68,7 @@ GuiController::GuiController(Controller* con) : QWidget() {
 
     //SetUpTask Events
     connect(task, SIGNAL(newTaskSignal()), this, SLOT(newTaskSet()));
-    connect(task, SIGNAL(deleteTaskSignal(QString)), this, SLOT(taskDeleted(QString)));
+    connect(task, SIGNAL(deleteTaskSignal(QString)), this, SLOT(taskDeleted(QString, QString)));
     connect(task, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
 
     //show main page
@@ -242,16 +242,16 @@ void GuiController::newTaskSet(){
       return;
   }else{
       //databank connection
-      //con->addTask(task->getTaskNameInput(), task->getSelectedRoomTask(), task->getSelectedTaskFrequency());
+      con->addTask(task->getTaskNameInput(), task->getSelectedRoomTask(), task->getSelectedTaskFrequency());
   }
 
   //update task list in Gui
   //task->appear(con->getTaskName(), con->getRoomTask(), con->getTaskFrequency(), con->getRoomlistSize());
 }
 
-void GuiController::taskDeleted(QString task){
+void GuiController::taskDeleted(QString task, QString room){
     // delete task from Databank
-    //con->deleteTask(task.toStdString());
+    con->deleteTask(task.toStdString(), room.toStdString());
 
     //task->appear(con->getTaskName(), con->getRoomTask(), con->getTaskFrequency(), con->getTaskListSize());
 }

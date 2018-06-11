@@ -32,8 +32,8 @@ public:
         bool searchResident(std::string username, int password);
         bool searchNameResident(std::string username);       // To get the same Name in Login
 
-        void addTask();
-        void deleteTask();
+        void addTask(std::string name, std::string room, std::string frequency);
+        void deleteTask(std::string name, std::string room);
         void editTask();
 
         void addEvent (std::string time, std::string date,

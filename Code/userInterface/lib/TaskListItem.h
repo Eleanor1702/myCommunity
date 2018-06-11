@@ -10,7 +10,7 @@
 class TaskListItem : public QFrame {
   Q_OBJECT
 private:
-  //friend class GuiController;
+  friend class GuiController;
 
   QLabel *task;
   QPushButton *deleteButton;

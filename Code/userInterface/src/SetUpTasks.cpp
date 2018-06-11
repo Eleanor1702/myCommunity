@@ -77,6 +77,7 @@ void SetUpTasks::setMainLayoutDesign() {
 
     //Muss Liste der Räume aus Datenbank holen!
     QStringList rooms;
+
     rooms << "Bad" << "Küche";
     chooseTaskRoomCombo->addItems(rooms);
 
