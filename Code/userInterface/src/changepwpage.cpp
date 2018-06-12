@@ -24,6 +24,7 @@ changePwPage::changePwPage(QWidget *parent) : QWidget(parent){
     QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(setupusersCalled()));
 
 
+
 }
 
 void changePwPage::setMainWindowDesign(){
@@ -47,19 +48,21 @@ void changePwPage::setMainLayoutDesign(){
     this->changePwRow->addWidget(oldpwLabel);
     this->changePwRow->addWidget(giveOldpwEdit);
     this->giveOldpwEdit->setMaxLength(4);
+    this->giveOldpwEdit->setEchoMode(QLineEdit::Password);
     this->changePwRow->addWidget(newpwLabel);
     this->changePwRow->addWidget(giveNewpwEdit);
     this->giveNewpwEdit->setMaxLength(4);
+    this->giveNewpwEdit->setEchoMode(QLineEdit::Password);
 
     this->mainButtonsRow->addWidget(saveButton);
-    saveButton->setFixedSize(200, 50);
+    saveButton->setFixedSize(230, 50);
     saveButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                              "border-radius: 5px; background-color: #3399ff; "
                              "color: white; font-weight: bold;}");
 
 
     this->mainButtonsRow->addWidget(backButton);
-    backButton->setFixedSize(200, 50);
+    backButton->setFixedSize(230, 50);
     backButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
                               "border-radius: 5px; background-color: #00b300; "
                               "color: white; font-weight: bold;}");
@@ -71,7 +74,7 @@ std::string changePwPage::getOldPwInput(){
     if(this->giveOldpwEdit->text().size() == 0 || this->giveOldpwEdit->text()[0] == ' '){
         return "Error";
     }
-
+    //giveOldpwEdit->clear();
     return this->giveOldpwEdit->text().toStdString();
 
 }
@@ -80,7 +83,7 @@ std::string changePwPage::getNewPwInput(){
     if(this->giveNewpwEdit->text().size() == 0 || this->giveNewpwEdit->text()[0] == ' '){
         return "Error";
     }
-
+    //giveNewpwEdit->clear();
     return this->giveNewpwEdit->text().toStdString();
 
 }

@@ -61,6 +61,7 @@ public slots:
   //HomePage Slots
   void callRoomSettings();
   void callUserSettings();
+  void callUserSettingsFromPwPage();
   void callCalendar();
   void callCleanPlan();
   void callLogOut();
