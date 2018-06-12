@@ -30,6 +30,15 @@ SetUpTasks::SetUpTasks(QWidget *parent) : QWidget(parent){
 
     QObject::connect(addButton, SIGNAL(clicked()), this, SLOT(setNewTaskCalled()));
     QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(homePageCalled()));
+
+    this->setGeometry(          //To Center Window
+        QStyle::alignedRect(
+            Qt::LeftToRight,
+            Qt::AlignCenter,
+            this->size(),
+            qApp->desktop()->availableGeometry()
+        )
+    );
 }
 
 void SetUpTasks::setMainWindowDesign() {

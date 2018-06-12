@@ -6,6 +6,9 @@
 #include <QLabel>
 #include <QPushButton>
 
+#include <QStyle>
+#include <QDesktopWidget>
+
 class StartPage : public QWidget {
   //enable creation of slots and signals
   Q_OBJECT

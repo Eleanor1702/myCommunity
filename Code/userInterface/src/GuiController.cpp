@@ -21,6 +21,7 @@ GuiController::GuiController(Controller* con) : QWidget() {
     this->home = new HomePage();
     this->rooms = new SetUpRooms();
     this->users = new SetUpUsers();
+    this->pwpage = new changePwPage();
     this->events = new EventPage();
     this->clean = new CleaningPage();
     this->task = new SetUpTasks();
@@ -55,6 +56,12 @@ GuiController::GuiController(Controller* con) : QWidget() {
     //QObject::connect(users->addButton,SIGNAL(clicked()),this,SLOT(addUserButtonClicked()));
     connect(users, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
     connect(users, SIGNAL(deleteUserSignal(QString)), this, SLOT(userDeleted(QString)));    //n
+    connect(users, SIGNAL(pwpageSignal()), this, SLOT(callPwPage()));
+
+    //PwPage Events
+    connect(pwpage, SIGNAL(changepwSignal()), this, SLOT(changePW()));
+    connect(pwpage, SIGNAL(setupusersSignal()), this, SLOT(callUserSettingsFromPwPage()));
+
 
     //EventPage Events
     connect(events, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
@@ -149,6 +156,15 @@ void GuiController::callUserSettings() {
     home->hide();
 }
 
+void GuiController::callUserSettingsFromPwPage(){
+    users->appear(con->getUserNames(), con->getUserlistSize(), con->getCurrentUser());
+    pwpage->giveOldpwEdit->clear();
+    pwpage->giveNewpwEdit->clear();
+    pwpage->hide();
+}
+
+
+
 //SetUpUser Events
 void GuiController::newUserSet() {
     /*QString userName = users->giveNameEdit->text();
@@ -179,6 +195,25 @@ void GuiController::userDeleted(QString name) {
    main->show();
     //users->appear(con->getUserNames(), con->getRoomlistSize(), con->getCurrentUser());
 }
+
+void GuiController::callPwPage(){
+    users->hide();
+    pwpage->show();
+}
+
+//PWPage Events
+
+void GuiController::changePW(){
+    if(con->rsExpert->verifyLogInData(con->rsExpert->getCurrentUser(), std::stoi(pwpage->getOldPwInput()))){    //old pw = pw
+        con->editResident(con->rsExpert->getCurrentUser(), std::stoi(pwpage->getNewPwInput()));
+        users->show();
+        pwpage->giveOldpwEdit->clear();
+        pwpage->giveNewpwEdit->clear();
+        pwpage->hide();
+
+    }
+}
+
 
 //All back Events to HomePage
 void GuiController::callHomePage() {

@@ -13,6 +13,7 @@
 #include "userInterface/lib/eventpage.h"
 #include "userInterface/lib/SetUpTasks.h"
 #include "userInterface/lib/cleaningpage.h"
+#include "userInterface/lib/changepwpage.h"
 
 #include "lib/controller.h"
 
@@ -29,6 +30,8 @@ private:
   HomePage *home;
   SetUpRooms *rooms;
   SetUpUsers *users;
+  changePwPage *pwpage;
+
 
   EventPage *events;
 
@@ -58,6 +61,7 @@ public slots:
   //HomePage Slots
   void callRoomSettings();
   void callUserSettings();
+  void callUserSettingsFromPwPage();
   void callCalendar();
   void callCleanPlan();
   void callLogOut();
@@ -66,10 +70,16 @@ public slots:
   void newRoomSet();
   void roomDeleted(QString room);
 
+
   //SetUpUsers Slots:
   void newUserSet();
   void userDeleted(QString name);
+  void callPwPage();
   //void deleteUserButtonClicked(QString name);
+
+  //PwPage Slots
+  void changePW();
+
 
   //Back To HomePage Slot:
   void callHomePage();

@@ -6,6 +6,9 @@
 #include <QPushButton>
 #include <QLabel>
 
+#include <QStyle>
+#include <QDesktopWidget>
+
 //Inheritance from QWidget allows the class itself to react on events
 //example (Button clicks.. etc)
 class HomePage : public QWidget {

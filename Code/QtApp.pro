@@ -50,7 +50,11 @@ SOURCES += \
     src/EventExpert.cpp \
     src/Task.cpp \
     userInterface/src/UserListItem.cpp \
+<<<<<<< HEAD
     src/concretetask.cpp
+=======
+    userInterface/src/changepwpage.cpp
+>>>>>>> 894f19224a106f961d1476b8ab796c3455df6c25
 
 HEADERS += \
     lib/controller.h \
@@ -77,7 +81,11 @@ HEADERS += \
     lib/EventExpert.h \
     lib/Task.h \
     userInterface/lib/UserListItem.h \
+<<<<<<< HEAD
     lib/concretetask.h
+=======
+    userInterface/lib/changepwpage.h
+>>>>>>> 894f19224a106f961d1476b8ab796c3455df6c25
 
 RESOURCES = \
     media/application.qrc \

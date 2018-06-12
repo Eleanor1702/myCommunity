@@ -23,6 +23,15 @@ HomePage::HomePage(QWidget *parent) : QWidget(parent) {
   this->setMainScreenDesign();
   this->setMainLayoutDesign();
 
+  this->setGeometry(
+      QStyle::alignedRect(
+          Qt::LeftToRight,
+          Qt::AlignCenter,
+          this->size(),
+          qApp->desktop()->availableGeometry()
+      )
+  );
+
   //Event
   QObject::connect(settings,SIGNAL(clicked()), this, SLOT(settingsCalled()));
   QObject::connect(roomSettingButton, SIGNAL(clicked()), this, SLOT(roomSettingCalled()));

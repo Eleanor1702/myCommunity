@@ -14,6 +14,9 @@
 #include <QList>
 #include <QPixmap>
 
+#include <QStyle>
+#include <QDesktopWidget>
+
 class SignUp : public QWidget {
   //enable creation of slots and signals
   Q_OBJECT

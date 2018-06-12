@@ -30,6 +30,14 @@ SignUp::SignUp(QWidget *parent) : QWidget(parent) {
 
     setMainWindowDesign();
     setMainLayoutDesign();
+    this->setGeometry(        // To center window
+        QStyle::alignedRect(
+            Qt::LeftToRight,
+            Qt::AlignCenter,
+            this->size(),
+            qApp->desktop()->availableGeometry()
+        )
+    );
 
     QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(startPageCalled()));
     QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(saveClicked()));

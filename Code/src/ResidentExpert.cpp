@@ -58,3 +58,4 @@ void ResidentExpert::setCurrentUser(std::string newUser){
 std::string ResidentExpert::getCurrentUser(){
     return currentUser;
 }
+
