@@ -13,6 +13,9 @@
 #include <QStringList>
 #include <QList>
 
+#include <QStyle>
+#include <QDesktopWidget>
+
 #include <userInterface/lib/RoomListItem.h>
 
 //Inheritance from QWidget allows the class itself to react on events
