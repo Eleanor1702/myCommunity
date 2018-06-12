@@ -107,7 +107,7 @@ void EventPage::setMainLayoutDesign(){
     this->calendar->showToday();
     this->calendar->setFixedWidth(400);
     this->calendar->setFixedHeight(380);
-    this->calendar->setStyleSheet("font-family: URW Bookman L; font-size: 17px;");
+    this->calendar->setStyleSheet("font-family: URW Bookman L; font-size: 17px; color: black");
     this->fmt.setBackground(Qt::lightGray);
     this->calendar->setDateTextFormat(QDate::currentDate(), fmt);
 
