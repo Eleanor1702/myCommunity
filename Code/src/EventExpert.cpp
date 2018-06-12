@@ -41,48 +41,48 @@ void EventExpert::editEvent(std::string time, std::string date, std::string desc
     data->updateEvent(ev, (newdate+newtime), newdescription);
 }
 
-unsigned int EventExpert::getEventSize(){
-    return (data->getAllEvents()).size();
+unsigned int EventExpert::getEventSize(std::string user, std::string date){
+    return (data->getAllEvents(user, date)).size();
 }
 
-std::vector<std::string>EventExpert::eventTimeGetter(){
+std::vector<std::string>EventExpert::eventTimeGetter(std::string user, std::string date){
     std::vector<std::string> timeVec;
-    std::vector<Event> Eventlist = data->getAllEvents();
+    std::vector<Event> Eventlist = data->getAllEvents(user, date);
     for(unsigned int i=0; i<Eventlist.size(); i++){
         timeVec.push_back(Eventlist[i].getTime());
     }
     return timeVec;
 }
 
-std::vector<std::string>EventExpert::eventDateGetter(){
+std::vector<std::string>EventExpert::eventDateGetter(std::string user, std::string date){
     std::vector<std::string> dateVec;
-    std::vector<Event> Eventlist = data->getAllEvents();
+    std::vector<Event> Eventlist = data->getAllEvents(user, date);
     for(unsigned int i=0; i<Eventlist.size(); i++){
         dateVec.push_back(Eventlist[i].getDate());
     }
     return dateVec;
 }
 
-std::vector<std::string>EventExpert::eventDescriptionGetter(){
+std::vector<std::string>EventExpert::eventDescriptionGetter(std::string user, std::string date){
     std::vector<std::string> descrVec;
-    std::vector<Event> Eventlist = data->getAllEvents();
+    std::vector<Event> Eventlist = data->getAllEvents(user, date);
     for(unsigned int i=0; i<Eventlist.size(); i++){
         descrVec.push_back(Eventlist[i].getDescription());
     }
     return descrVec;
 }
 
-std::vector<std::string>EventExpert::eventUserGetter(){
+std::vector<std::string>EventExpert::eventUserGetter(std::string user, std::string date){
     std::vector<std::string> userVec;
-    std::vector<Event> Eventlist = data->getAllEvents();
+    std::vector<Event> Eventlist = data->getAllEvents(user, date);
     for(unsigned int i=0; i<Eventlist.size(); i++){
         userVec.push_back(Eventlist[i].getUser());
     }
     return userVec;
 }
 
-std::vector<Event> EventExpert::getUserEvents(std::string user) {
-  return data->getAllEventsOfUser(user);
+std::vector<Event> EventExpert::getUserEvents(std::string user, std::string datetime) {
+  return data->getAllEventsOfUser(user, datetime);
 }
 
 std::vector<Event> EventExpert::getCommunityEvents() {

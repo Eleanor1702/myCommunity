@@ -201,16 +201,22 @@ void GuiController::newEventSet(){
                       events->getEventDescriptionInput(), events->getEventUserInput());
     }
     //udate eventlist in Gui
-    events->appear(con->getEventTime(), con->getEventDate(), con->getEventDescription(),
-                   con->getEventUser(), con->getSizeEvent());
+    events->appear(con->getEventTime(events->getEventUserInput(), events->getEventDateInput()),
+                   con->getEventDate(events->getEventUserInput(), events->getEventDateInput()),
+                   con->getEventDescription(events->getEventUserInput(), events->getEventDateInput()),
+                   con->getEventUser(events->getEventUserInput(), events->getEventDateInput()),
+                   con->getSizeEvent(events->getEventUserInput(), events->getEventDateInput()));
 }
+
 void GuiController::eventDeleted(QString time, QString date, QString description, QString user){
     //delete event from database
     con->deleteEvent(time.toStdString(), date.toStdString(), description.toStdString(), user.toStdString());
 
-    events->appear(con->getEventTime(), con->getEventDate(),
-                   con->getEventDescription(), con->getEventUser(),
-                   con->getSizeEvent());
+    events->appear(con->getEventTime(events->getEventUserInput(), events->getEventDateInput()),
+                   con->getEventDate(events->getEventUserInput(), events->getEventDateInput()),
+                   con->getEventDescription(events->getEventUserInput(), events->getEventDateInput()),
+                   con->getEventUser(events->getEventUserInput(), events->getEventDateInput()),
+                   con->getSizeEvent(events->getEventUserInput(), events->getEventDateInput()));
 }
 
 

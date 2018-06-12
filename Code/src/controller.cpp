@@ -48,7 +48,11 @@ bool Controller::searchNameResident(std::string username){
 // EventExpert
 
 void Controller::addEvent(std::string time, std::string date,std::string description, std::string user){
-    evExpert->createEvent(time, date, description, user);
+    std::string currentUser = user;
+    if (user=="privat"){
+        currentUser=rsExpert->getCurrentUser();
+    }
+    evExpert->createEvent(time, date, description, currentUser);
 }
 
 void Controller::deleteEvent(std::string time, std::string date, std::string descpription, std::string user){
@@ -93,21 +97,21 @@ int Controller::getUserlistSize(){
     return rsExpert->userNameGetter().size();
 }
 
-std::vector<std::string> Controller::getEventTime(){
-    return evExpert->eventTimeGetter();
+std::vector<std::string> Controller::getEventTime(std::string user, std::string date){
+    return evExpert->eventTimeGetter(user, date);
 }
-std::vector<std::string> Controller::getEventDate(){
-    return evExpert->eventDateGetter();
+std::vector<std::string> Controller::getEventDate(std::string user, std::string date){
+    return evExpert->eventDateGetter(user, date);
 }
-std::vector<std::string> Controller::getEventDescription(){
-    return evExpert->eventDescriptionGetter();
+std::vector<std::string> Controller::getEventDescription(std::string user, std::string date){
+    return evExpert->eventDescriptionGetter(user, date);
 }
-std::vector<std::string> Controller::getEventUser(){
-    return evExpert->eventUserGetter();
+std::vector<std::string> Controller::getEventUser(std::string user, std::string date){
+    return evExpert->eventUserGetter(user, date);
 }
 
-int Controller::getSizeEvent(){
-    return evExpert->getEventSize();
+int Controller::getSizeEvent(std::string user, std::string date){
+    return evExpert->getEventSize(user, date);
 }
 
 //Current User Methods

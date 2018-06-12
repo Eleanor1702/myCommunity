@@ -23,13 +23,13 @@ public:
                      std::string description, std::string user);
     void editEvent(std::string time, std::string date, std::string description, std::string user, std::string newtime, std::string newdate, std::string newdescription);
 
-    std::vector<std::string> eventTimeGetter();
-    std::vector<std::string> eventDateGetter();
-    std::vector<std::string> eventDescriptionGetter();
-    std::vector<std::string> eventUserGetter();
-    std::vector<Event> getUserEvents(std::string user);
+    std::vector<std::string> eventTimeGetter(std::string user, std::string date);
+    std::vector<std::string> eventDateGetter(std::string user, std::string date);
+    std::vector<std::string> eventDescriptionGetter(std::string user, std::string date);
+    std::vector<std::string> eventUserGetter(std::string user, std::string date);
+    std::vector<Event> getUserEvents(std::string user, std::string datetime);
     std::vector<Event> getCommunityEvents();
-    unsigned int getEventSize();
+    unsigned int getEventSize(std::string user, std::string date);
 
     static EventExpert* getInstance(CommunityData* data);
 };

@@ -26,7 +26,7 @@ class EventPage : public QWidget
     Q_OBJECT
 
 private:
-    friend class GuiController;
+   friend class GuiController;
 
     EventListItem *newPrivEvent;
     EventListItem *newPubEvent;
@@ -77,9 +77,9 @@ private slots:
     void homePageCalled();
 
 signals:
-    void setNewEventSignal();
     void deleteEventSignal(QString, QString, QString, QString);
     void homePageCallSignal();
+    void setNewEventSignal();
 
 
 public:

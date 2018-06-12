@@ -52,7 +52,7 @@ void Event::setDatetime(std::string datetime){
     buffer[length]='\0';
     setDate(buffer);
 
-    length = datetime.copy(buffer,8,10);
+    length = datetime.copy(buffer,6,10);
     buffer[length] = '\0';
     setTime(buffer);
 }

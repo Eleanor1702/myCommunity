@@ -328,12 +328,13 @@ std::vector<Room> CommunityData::getAllRooms() {
 }
 
 //get all events from calendar of a user
-std::vector<Event> CommunityData::getAllEventsOfUser(std::string user) {
+std::vector<Event> CommunityData::getAllEventsOfUser(std::string user, std::string datetime) {
     std::vector<Event> list;
     PreparedStatement* stmt;
     ResultSet* resultSet = NULL;
-    stmt = con->prepareStatement("SELECT * FROM Calendar WHERE Username = ?");
+    stmt = con->prepareStatement("SELECT * FROM Calendar WHERE Username = ? AND WHERE DATE(Datetime) = ?");
     stmt->setString(1, user);
+    stmt->setString(2, datetime);
     resultSet = stmt->executeQuery();
     while(resultSet->next()) {
         Event ev;
@@ -366,11 +367,13 @@ std::vector<Event> CommunityData::getAllCommunityEvents() {
 }
 
 //get all Events
-std::vector<Event> CommunityData::getAllEvents(){
+std::vector<Event> CommunityData::getAllEvents(std::string user, std::string date){
     std::vector<Event> list;
     ResultSet* resultSet = NULL;
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("SELECT * FROM Calendar");
+    stmt = con->prepareStatement("SELECT * FROM Calendar WHERE User = ? AND DATE(Datetime) = ?");
+    stmt->setString(1, user);
+    stmt->setString(2, date);
     resultSet = stmt->executeQuery();
     while(resultSet->next()) {
         Event ev;

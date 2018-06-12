@@ -53,11 +53,11 @@ public:
         std::vector<std::string>getUserNames();
         int getUserlistSize();
 
-        std::vector<std::string>getEventTime();
-        std::vector<std::string>getEventDate();
-        std::vector<std::string>getEventDescription();
-        std::vector<std::string>getEventUser();
-        int getSizeEvent();
+        std::vector<std::string>getEventTime(std::string user, std::string date);
+        std::vector<std::string>getEventDate(std::string user, std::string date);
+        std::vector<std::string>getEventDescription(std::string user, std::string date);
+        std::vector<std::string>getEventUser(std::string user, std::string date);
+        int getSizeEvent(std::string user, std::string date);
 
         static Controller* getInstance(CommunityData* data);
 };
