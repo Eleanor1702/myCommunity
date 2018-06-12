@@ -7,6 +7,7 @@ Controller::Controller(CommunityData* data){
    roExpert = roExpert->getInstance(data);
    evExpert = evExpert->getInstance(data);
    taExpert = taExpert->getInstance(data);
+   shExpert = shExpert->getInstance(data);
 }
 
 //  RoomExpert
@@ -14,25 +15,31 @@ Controller::Controller(CommunityData* data){
 void Controller::addRoom(std::string art, std::string name){
     roExpert->createRoom(name, art);
 }
-
 void Controller::deleteRoom(std::string name){
     roExpert->deleteRoom(name);
 }
+std::vector<std::string> Controller::getRoomNames() {
+  return roExpert->roomNameGetter();
+}
 
+std::vector<std::string> Controller::getRoomArts() {
+  return roExpert->roomArtGetter();
+}
+
+int Controller::getRoomlistSize() {
+  return roExpert->getRooms().size();
+}
 //  ResidentExpert
 
 void Controller::addResident(std::string name, int password){
     rsExpert->createResident(name, password);
 }
-
 void Controller::deleteResident(std::string name){
     rsExpert->deleteResident(name);
 }
-
 void Controller::editResident(std::string username,int newPassword){
     rsExpert->editResident(username, newPassword);
 }
-
 bool Controller::searchResident(std::string username, int password) {
     if(rsExpert->verifyLogInData(username, password)) {
         user = username;
@@ -43,6 +50,12 @@ bool Controller::searchResident(std::string username, int password) {
 }
 bool Controller::searchNameResident(std::string username){
     return rsExpert->verifyName(username);
+}
+std::vector<std::string> Controller::getUserNames(){
+    return rsExpert->userNameGetter();
+}
+int Controller::getUserlistSize(){
+    return rsExpert->userNameGetter().size();
 }
 
 // EventExpert
@@ -63,40 +76,6 @@ void Controller::editEvent(std::string time, std::string date, std::string descr
     evExpert->editEvent(time, date, description, user, newtime, newdate, newdescription);
 }
 */
-
-//TaskExpert
-
-void Controller::addTask(std::string name, std::string room, std::string frequency) {
-    taExpert->createTask(name, room, frequency);
-}
-
-void Controller::deleteTask(std::string name, std::string room) {
-    taExpert->deleteTask(name, room);
-}
-//editTask
-
-
-
-//Getter -> TaskGetter!!
-std::vector<std::string> Controller::getRoomNames() {
-  return roExpert->roomNameGetter();
-}
-
-std::vector<std::string> Controller::getRoomArts() {
-  return roExpert->roomArtGetter();
-}
-
-int Controller::getRoomlistSize() {
-  return roExpert->getRooms().size();
-}
-
-std::vector<std::string> Controller::getUserNames(){
-    return rsExpert->userNameGetter();
-}
-int Controller::getUserlistSize(){
-    return rsExpert->userNameGetter().size();
-}
-
 std::vector<std::string> Controller::getEventTime(std::string user, std::string date){
     return evExpert->eventTimeGetter(user, date);
 }
@@ -114,6 +93,17 @@ int Controller::getSizeEvent(std::string user, std::string date){
     return evExpert->getEventSize(user, date);
 }
 
+//TaskExpert
+
+void Controller::addTask(std::string name, std::string room, std::string frequency) {
+    taExpert->createTask(name, room, frequency);
+}
+
+void Controller::deleteTask(std::string name, std::string room) {
+    taExpert->deleteTask(name, room);
+}
+//editTask
+
 std::vector<std::string> Controller::getTaskName(){
     return taExpert->taskNameGetter();
 }
@@ -125,6 +115,26 @@ std::vector<std::string> Controller::getTaskFrequency(){
 }
 int Controller::getTasklistSize(){
     return taExpert->getTasks().size();
+}
+
+//ShoppingExpert
+
+void Controller::addItem(std::string itemname, int number) {
+    shExpert->createItem(itemname, number);
+}
+
+void Controller::deleteItem(std::string itemname) {
+    shExpert->deleteItem(itemname);
+}
+
+std::vector<std::string> Controller::getItemNames() {
+    return shExpert->itemNameGetter();
+}
+std::vector<int> Controller::getItemNumbers() {
+    return shExpert->itemNumberGetter();
+}
+int Controller::getItemlistSize() {
+    return shExpert->getItems().size();
 }
 
 //Current User Methods

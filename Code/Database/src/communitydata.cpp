@@ -148,11 +148,11 @@ void CommunityData::addToCleaningplan(std::string task, std::string resident, st
 }
 
 //add Shoppinglist item
-void CommunityData::addItem(std::string item, int number) {
+void CommunityData::addItem(Shoppingitem si) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("INSERT INTO Shoppinglist(Item, Number) VALUES (?,?)");
-    stmt->setString(1,item);
-    stmt->setInt(2, number);
+    stmt->setString(1,si.getItemName());
+    stmt->setInt(2, si.getNumber());
     stmt->execute();
     delete stmt;
 }
@@ -406,6 +406,23 @@ std::vector<Task> CommunityData::getAllTasks(){
     return list;
 }
 
+//get all shoppinglist items
+std::vector<Shoppingitem> CommunityData::getAllItems() {
+    std::vector<Shoppingitem> list;
+    ResultSet* resultSet = NULL;
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("SELECT * FROM Shoppinglist");
+    resultSet = stmt->executeQuery();
+    while(resultSet->next()) {
+        Shoppingitem si;
+        si.setItemName(resultSet->getString("Item"));
+        si.setNumber(resultSet->getInt("Number"));
+        list.push_back(si);
+    }
+    delete stmt;
+    delete resultSet;
+    return list;
+}
 //verifying the log in data by username and password
  bool CommunityData::verifyLogInData(std::string username, int password) {
      PreparedStatement* stmt = con->prepareStatement("SELECT * FROM Residents WHERE Firstname = ? AND Password = ?");

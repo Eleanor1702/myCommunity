@@ -16,6 +16,7 @@
 #include "lib/room.h"
 #include "lib/event.h"
 #include "lib/Task.h"
+#include "lib/shoppingitem.h"
 #include <time.h>
 
 class CommunityData {
@@ -48,7 +49,7 @@ public:
     void addEvent(Event ev);
     void addTask(Task ta);
     void addToCleaningplan(std::string task, std::string resident, std::string week);
-    void addItem(std::string item, int number);
+    void addItem(Shoppingitem si);
 
     void updatePassword(std::string user, int password);
     void updateEvent(Event ev, std::string timedate,std::string description);
@@ -56,6 +57,7 @@ public:
     void deleteResident(std::string name);
     void deleteRoom(std::string name);
     void deleteEvent(Event ev);
+    void deleteShoppinglistItem(std::string item);
 
     void deleteAllTaskOfRoom(std::string room);
     void deleteTaskByName(std::string taskname, std::string room );
@@ -66,14 +68,13 @@ public:
     void deleteResidentCleaningplan(std::string resident);
     void deleteRoomCleaningplan(std::string room);
 
-    void deleteShoppinglistItem(std::string item);
-
     std::vector<std::string> getAllResidents();
     std::vector<Room> getAllRooms();
     std::vector<Event> getAllEventsOfUser(std::string user, std::string datetime);
     std::vector<Event> getAllCommunityEvents();
     std::vector<Event> getAllEvents(std::string user, std::string date);
     std::vector<Task> getAllTasks();
+    std::vector<Shoppingitem> getAllItems();
 
     // getCleaningPlan()
 

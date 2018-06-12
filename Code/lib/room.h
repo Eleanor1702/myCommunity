@@ -10,6 +10,7 @@ private:
 
 public:
     Room();
+    ~Room();
     void setName(std::string eingabe);
     void setArt(std::string eingabe);
     std::string getName();
