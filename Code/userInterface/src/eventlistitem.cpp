@@ -4,7 +4,7 @@ EventListItem::EventListItem(QString eventTime, QString eventDateStr, QString ev
 {
 
     this->newEventLayout = new QHBoxLayout();
-    this->eventLabel = new QLabel (eventDateStr + "\n" + eventTime + "Uhr" + "\n" + eventDescription);
+    this->eventLabel = new QLabel (eventDateStr + "\n" + eventTime + " Uhr" + "\n" + eventDescription);
     this->editEventButton = new QPushButton(QString::fromUtf8("Bearbeiten"));
     this->deleteEventButton = new QPushButton(QString::fromUtf8("Löschen"));
 

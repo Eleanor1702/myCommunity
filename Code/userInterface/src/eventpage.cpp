@@ -173,14 +173,7 @@ void EventPage::setMainLayoutDesign(){
                                     "border-radius: 5px; background-color: #00b300; "
                                     "color: white; font-weight: bold;}");
 }
-/*
-std::string EventPage::getEventHourInput(){
-    return this->chooseHourCombo->currentText().toStdString();
-}
 
-std::string EventPage::getEventMinInput(){
-    return this->chooseMinuteCombo->currentText().toStdString();
-}*/
 
 //get Input -> turn to std::string
 std::string EventPage::getEventTimeInput(){
@@ -193,9 +186,9 @@ std::string EventPage::getEventTimeInput(){
 
 std::string EventPage::getEventDateInput(){
    QDate Date_select = calendar->selectedDate();
-   QString Date_select_str = Date_select.toString("dd.MM.yy");
+   QString date = Date_select.toString("yyyy.MM.dd");
 
-   return Date_select_str.toStdString();
+   return date.toStdString();
 }
 
 std::string EventPage::getEventDescriptionInput(){
@@ -221,18 +214,21 @@ void EventPage::appear(std::vector<std::string> timeVec,
         }
 
         EventListItemPubList.clear();
-
         for(int i = 0; i < size; i++){
-            newPubEvent = new EventListItem(QString::fromStdString(timeVec[i]),
+           newPubEvent = new EventListItem(QString::fromStdString(timeVec[i]),
                                                  QString::fromStdString(dateVec[i]),
                                                  QString::fromStdString(descrVec[i]),
                                                  QString::fromStdString(userVec[i]));
+
             connect(newPubEvent, SIGNAL(deleteEventSignal(QString, QString, QString, QString)),this,
                     SLOT(deleteEventCalled(QString, QString, QString, QString)));
 
             EventListItemPubList.push_back(newPubEvent);
+
             scrollLayoutPub->addWidget(newPubEvent);
+
         }
+        checkPub->setChecked(false);
     }else{
         for(unsigned int i = 0; i<EventListItemPrivList.size(); i++){
             scrollLayout->removeWidget(EventListItemPrivList[i]);
@@ -248,8 +244,7 @@ void EventPage::appear(std::vector<std::string> timeVec,
 
             EventListItemPrivList.push_back(newPrivEvent);
             scrollLayout->addWidget(newPrivEvent);
-        }
-        checkPub->setChecked(false);
+        }  
     }
     giveNameEdit->clear();
     chooseHourCombo->setCurrentText("00");

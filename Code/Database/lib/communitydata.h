@@ -70,9 +70,9 @@ public:
 
     std::vector<std::string> getAllResidents();
     std::vector<Room> getAllRooms();
-    std::vector<Event> getAllEventsOfUser(std::string user);
+    std::vector<Event> getAllEventsOfUser(std::string user, std::string datetime);
     std::vector<Event> getAllCommunityEvents();
-    std::vector<Event> getAllEvents();
+    std::vector<Event> getAllEvents(std::string user, std::string date);
     std::vector<Task> getAllTasks();
 
     // getCleaningPlan()
