@@ -27,6 +27,14 @@ SignIn::SignIn(QWidget *parent) : QWidget (parent){
 
     this->setMainWindowDesign();
     this->setMainLayoutDesign();
+    this->setGeometry(        // To center window
+        QStyle::alignedRect(
+            Qt::LeftToRight,
+            Qt::AlignCenter,
+            this->size(),
+            qApp->desktop()->availableGeometry()
+        )
+    );
 
     QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(startPageCalled()));
     QObject::connect(logInButton, SIGNAL(clicked()), this, SLOT(userLogedIn()));

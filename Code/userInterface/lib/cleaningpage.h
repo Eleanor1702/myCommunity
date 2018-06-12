@@ -4,6 +4,10 @@
 #include <QBoxLayout>
 #include <QLabel>
 #include <QPushButton>
+#include <QApplication>
+
+#include <QStyle>
+#include <QDesktopWidget>
 
 class CleaningPage : public QWidget
 {

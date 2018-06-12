@@ -46,6 +46,14 @@ EventPage::EventPage(QWidget *parent) : QWidget(parent)
 
     this->setMainWindowDesign();
     this->setMainLayoutDesign();
+    this->setGeometry(        // To center window
+        QStyle::alignedRect(
+            Qt::LeftToRight,
+            Qt::AlignCenter,
+            this->size(),
+            qApp->desktop()->availableGeometry()
+        )
+    );
 
     QObject::connect(addEventButton,SIGNAL(clicked()),this,SLOT(setNewEventCalled()));
     QObject::connect(saveEventButton,SIGNAL(clicked()),this,SLOT(homePageCalled()));

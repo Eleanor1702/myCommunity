@@ -18,6 +18,15 @@ CleaningPage::CleaningPage(QWidget *parent) : QWidget(parent) {
     this->setMainWindowDesign();
     this->setMainLayoutDesign();
 
+    this->setGeometry(        // To center window
+        QStyle::alignedRect(
+            Qt::LeftToRight,
+            Qt::AlignCenter,
+            this->size(),
+            qApp->desktop()->availableGeometry()
+        )
+    );
+
     QObject::connect(setuptaskButton, SIGNAL(clicked()), this, SLOT(taskCalled()));
     QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(homePageCalled()));
 }

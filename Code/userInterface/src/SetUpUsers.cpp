@@ -24,6 +24,15 @@ SetUpUsers::SetUpUsers(QWidget *parent) : QWidget(parent){
 
   QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(homePageCalled()));
   QObject::connect(changepwButton, SIGNAL(clicked()), this, SLOT(pwpageCalled()));
+
+  this->setGeometry(        // To center window
+      QStyle::alignedRect(
+          Qt::LeftToRight,
+          Qt::AlignCenter,
+          this->size(),
+          qApp->desktop()->availableGeometry()
+      )
+  );
 }
 
 void SetUpUsers::setMainWindowDesign() {

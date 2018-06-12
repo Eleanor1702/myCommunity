@@ -12,9 +12,8 @@
 #include <QStringList>
 #include <QList>
 
-#include <QCalendarWidget>
-#include <QDate>
-#include <QGridLayout>
+#include <QStyle>
+#include <QDesktopWidget>
 
 class changePwPage : public QWidget
 {

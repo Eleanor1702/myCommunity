@@ -19,6 +19,14 @@ changePwPage::changePwPage(QWidget *parent) : QWidget(parent){
 
     this->setMainWindowDesign();
     this->setMainLayoutDesign();
+    this->setGeometry(        // To center window
+        QStyle::alignedRect(
+            Qt::LeftToRight,
+            Qt::AlignCenter,
+            this->size(),
+            qApp->desktop()->availableGeometry()
+        )
+    );
 
     QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(changepwCalled()));
     QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(setupusersCalled()));

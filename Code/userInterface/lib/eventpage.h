@@ -13,11 +13,16 @@
 #include <QStringList>
 #include <QList>
 
+#include <QStyle>
+#include <QDesktopWidget>
+
 #include <QCalendarWidget>
 #include <QDate>
 #include <QGridLayout>
 #include <QCheckBox>
 #include "eventlistitem.h"
+
+
 
 
 
