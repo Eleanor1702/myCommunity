@@ -60,7 +60,7 @@ GuiController::GuiController(Controller* con) : QWidget() {
 
     //PwPage Events
     connect(pwpage, SIGNAL(changepwSignal()), this, SLOT(changePW()));
-    connect(pwpage, SIGNAL(setupusersCalled()), this, SLOT(callUserSettings()));
+    connect(pwpage, SIGNAL(setupusersSignal()), this, SLOT(callUserSettingsFromPwPage()));
 
 
     //EventPage Events
@@ -156,6 +156,15 @@ void GuiController::callUserSettings() {
     home->hide();
 }
 
+void GuiController::callUserSettingsFromPwPage(){
+    users->appear(con->getUserNames(), con->getUserlistSize(), con->getCurrentUser());
+    pwpage->giveOldpwEdit->clear();
+    pwpage->giveNewpwEdit->clear();
+    pwpage->hide();
+}
+
+
+
 //SetUpUser Events
 void GuiController::newUserSet() {
     /*QString userName = users->giveNameEdit->text();
@@ -198,6 +207,8 @@ void GuiController::changePW(){
     if(con->rsExpert->verifyLogInData(con->rsExpert->getCurrentUser(), std::stoi(pwpage->getOldPwInput()))){    //old pw = pw
         con->editResident(con->rsExpert->getCurrentUser(), std::stoi(pwpage->getNewPwInput()));
         users->show();
+        pwpage->giveOldpwEdit->clear();
+        pwpage->giveNewpwEdit->clear();
         pwpage->hide();
 
     }
