@@ -19,6 +19,11 @@ macx: {
     INCLUDEPATH += /usr/local/opt/mysql-connector-c++/include/cppconn /usr/local/opt/boost/include /usr/local/opt/mysql-connector-c++/include
 }
 
+#windows: {
+    #LIBS += C:\Program Files\MySQL\Connector C++ 1.1\lib\opt -lmysqlcppconn.lib
+    #INCLUDEPATH += C:\Program Files\MySQL\Connector C++ 1.1\include
+#}
+
 SOURCES += \
     main.cpp \
     src/controller.cpp \
@@ -32,7 +37,6 @@ SOURCES += \
     userInterface/src/SignIn.cpp \
     userInterface/src/SignUp.cpp \
     userInterface/src/StartPage.cpp \
-    userInterface/src/UserList.cpp \
     userInterface/src/RoomListItem.cpp \
     Database/src/communitydata.cpp \
     userInterface/src/eventpage.cpp \
@@ -45,6 +49,8 @@ SOURCES += \
     src/RoomExpert.cpp \
     src/EventExpert.cpp \
     src/Task.cpp \
+    userInterface/src/UserListItem.cpp \
+    userInterface/src/changepwpage.cpp
 
 HEADERS += \
     lib/controller.h \
@@ -58,7 +64,6 @@ HEADERS += \
     userInterface/lib/SignIn.h \
     userInterface/lib/SignUp.h \
     userInterface/lib/StartPage.h \
-    userInterface/lib/UserList.h \
     userInterface/lib/RoomListItem.h \
     Database/lib/communitydata.h \
     userInterface/lib/eventpage.h \
@@ -70,7 +75,9 @@ HEADERS += \
     lib/ResidentExpert.h \
     lib/RoomExpert.h \
     lib/EventExpert.h \
-    lib/Task.h
+    lib/Task.h \
+    userInterface/lib/UserListItem.h \
+    userInterface/lib/changepwpage.h
 
 RESOURCES = \
     media/application.qrc \

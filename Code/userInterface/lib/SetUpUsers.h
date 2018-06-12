@@ -13,7 +13,7 @@
 #include <QStringList>
 #include <QList>
 
-#include <userInterface/lib/UserList.h>
+#include <userInterface/lib/UserListItem.h>
 
 //Inheritance from QWidget allows the class itself to react on events
 //example (Button clicks.. etc)
@@ -23,7 +23,7 @@ class SetUpUsers : public QWidget{
 private:
    friend class GuiController;
 
-   UserList *newUser;
+   UserListItem *newUser;
 
    QBoxLayout *mainLayout;
    QBoxLayout *mainLabelRow;
@@ -38,24 +38,27 @@ private:
 
    QBoxLayout *mainButtonsRow;
    QPushButton *backButton;
+   QPushButton *changepwButton;
 
     void setMainWindowDesign();
     void setMainLayoutDesign();
+    void deepDeleteLayout(QLayout* layout);
 
 private slots:
     void homePageCalled();
     void deleteUserCalled(QString name);
+    void pwpageCalled();
 
 signals:
-    void newUserSignUpSignal(std::string name, int password);
+    void newUserSig4nUpSignal(std::string name, int password);
     void homePageCallSignal();
     void deleteUserSignal(QString);
+    void pwpageSignal();
 
 public:
     //the constructor build the window
     //the parameter *parent is here to nest widgets in widgets
     explicit SetUpUsers(QWidget *parent = NULL);
-    std::vector<UserList*> UserLList;
 
     void appear(std::vector<std::string> nameVec, int size, std::string username);
 };

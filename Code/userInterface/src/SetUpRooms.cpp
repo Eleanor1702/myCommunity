@@ -101,43 +101,37 @@ std::string SetUpRooms::getRoomNameInput() {
     return this->giveNameEdit->text().toStdString();
 }
 
-void SetUpRooms::appear(std::vector<std::string> nameVec, std::vector<std::string> typeVec, int size) {
-    if(scrollLayout->count() > 0) {
-        QLayoutItem* item = NULL;
+void SetUpRooms::deepDeleteLayout(QLayout *layout) {
+    QLayoutItem* item;
 
-        while((item = scrollLayout->takeAt(0)) != 0) {
-            //scrollLayout->removeItem(item);
+    while((item = layout->takeAt(0))) {
+        if(item->layout()){
+            deepDeleteLayout(item->layout());
+            delete item->layout();
+        }
+
+        if(item->widget()) {
             delete item->widget();
         }
 
-        roomLabelList.clear();
+        delete item;
     }
+}
 
-    /*QLayoutItem* child;
+void SetUpRooms::appear(std::vector<std::string> nameVec, std::vector<std::string> typeVec, int size) {
+    deepDeleteLayout(scrollLayout);
 
-    while((child = scrollLayout->takeAt(0)) != 0) {
-        delete child;
-    }*/
-
-    /*for(QList<RoomListItem*>::iterator it  = roomLabelList.begin(); it != roomLabelList.end(); ++it) {
-        delete *it;
-    }
-
-    roomLabelList.clear();*/
-
-     for(int i = 0; i < size; i++) {
+    for(int i = 0; i < size; i++) {
         newRoom = new RoomListItem(QString::fromStdString(nameVec[i]), QString::fromStdString(typeVec[i]));
 
         // so every RoomListItem is connected..
         connect(newRoom, SIGNAL(deleteRoomSignal(QString)), this, SLOT(deleteRoomCalled(QString)));
 
-        roomLabelList.push_back(newRoom);
         scrollLayout->addWidget(newRoom);
-     }
+    }
 
-    giveNameEdit->clear();
-
-    this->show();
+     giveNameEdit->clear();
+     this->show();
 }
 
 void SetUpRooms::setNewRoomCalled() {

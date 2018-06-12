@@ -21,6 +21,7 @@ GuiController::GuiController(Controller* con) : QWidget() {
     this->home = new HomePage();
     this->rooms = new SetUpRooms();
     this->users = new SetUpUsers();
+    this->pwpage = new changePwPage();
     this->events = new EventPage();
     this->clean = new CleaningPage();
     this->task = new SetUpTasks();
@@ -55,6 +56,12 @@ GuiController::GuiController(Controller* con) : QWidget() {
     //QObject::connect(users->addButton,SIGNAL(clicked()),this,SLOT(addUserButtonClicked()));
     connect(users, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
     connect(users, SIGNAL(deleteUserSignal(QString)), this, SLOT(userDeleted(QString)));    //n
+    connect(users, SIGNAL(pwpageSignal()), this, SLOT(callPwPage()));
+
+    //PwPage Events
+    connect(pwpage, SIGNAL(changepwSignal()), this, SLOT(changePW()));
+    connect(pwpage, SIGNAL(setupusersCalled()), this, SLOT(callUserSettings()));
+
 
     //EventPage Events
     connect(events, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
@@ -68,7 +75,7 @@ GuiController::GuiController(Controller* con) : QWidget() {
 
     //SetUpTask Events
     connect(task, SIGNAL(newTaskSignal()), this, SLOT(newTaskSet()));
-    connect(task, SIGNAL(deleteTaskSignal(QString)), this, SLOT(taskDeleted(QString)));
+    connect(task, SIGNAL(deleteTaskSignal(QString)), this, SLOT(taskDeleted(QString, QString)));
     connect(task, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
 
     //show main page
@@ -86,7 +93,7 @@ void GuiController::signUpNewUser(std::string name, int password) {
     if( !(con->searchNameResident(name)) ) {
         con->addResident(name, password);
 
-        in->show();
+        in->appear();
         up->hide();
     }else{
         up->usernameExist();
@@ -141,7 +148,6 @@ void GuiController::newRoomSet() {
 void GuiController::roomDeleted(QString room) {
     // delete room from Databank
     con->deleteRoom(room.toStdString());
-
     rooms->appear(con->getRoomNames(), con->getRoomArts(), con->getRoomlistSize());
 }
 
@@ -180,6 +186,23 @@ void GuiController::userDeleted(QString name) {
    main->show();
     //users->appear(con->getUserNames(), con->getRoomlistSize(), con->getCurrentUser());
 }
+
+void GuiController::callPwPage(){
+    users->hide();
+    pwpage->show();
+}
+
+//PWPage Events
+
+void GuiController::changePW(){
+    if(con->rsExpert->verifyLogInData(con->rsExpert->getCurrentUser(), std::stoi(pwpage->getOldPwInput()))){    //old pw = pw
+        con->editResident(con->rsExpert->getCurrentUser(), std::stoi(pwpage->getNewPwInput()));
+        users->show();
+        pwpage->hide();
+
+    }
+}
+
 
 //All back Events to HomePage
 void GuiController::callHomePage() {
@@ -243,16 +266,16 @@ void GuiController::newTaskSet(){
       return;
   }else{
       //databank connection
-      //con->addTask(task->getTaskNameInput(), task->getSelectedRoomTask(), task->getSelectedTaskFrequency());
+      con->addTask(task->getTaskNameInput(), task->getSelectedRoomTask(), task->getSelectedTaskFrequency());
   }
 
   //update task list in Gui
   //task->appear(con->getTaskName(), con->getRoomTask(), con->getTaskFrequency(), con->getRoomlistSize());
 }
 
-void GuiController::taskDeleted(QString task){
+void GuiController::taskDeleted(QString task, QString room){
     // delete task from Databank
-    //con->deleteTask(task.toStdString());
+    con->deleteTask(task.toStdString(), room.toStdString());
 
     //task->appear(con->getTaskName(), con->getRoomTask(), con->getTaskFrequency(), con->getTaskListSize());
 }

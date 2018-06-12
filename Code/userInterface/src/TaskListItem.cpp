@@ -35,5 +35,4 @@ void TaskListItem::setItemStyle() {
 
 void TaskListItem::deleteTask() {
   emit deleteTaskSignal(name);
-  this->close();
 }

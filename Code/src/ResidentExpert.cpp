@@ -26,48 +26,31 @@ void ResidentExpert::deleteResident(std::string name){
 }
 
 void ResidentExpert::editResident(std::string username, int newPassword){
-    for(unsigned int i = 0; i < getResidents().size(); i++) {
-        if(getResidents()[i].getFirstname() == username) {
-            getResidents()[i].setPassword(newPassword);
             data->updatePassword(username, newPassword);
-            break;
-        }
-    }
 }
 
 bool ResidentExpert::verifyLogInData(std::string username, int password){
-    for(unsigned int i = 0; i < getResidents().size(); i++) {
-        if(getResidents()[i].getFirstname() == username && getResidents()[i].getPassword() == password) {
             return data->verifyLogInData(username, password);
-        }
-    }
-
-    return false;
 }
 
 bool ResidentExpert::verifyName(std::string username){
-    for(unsigned int i = 0; i < getResidents().size(); i++) {
-        if(getResidents()[i].getFirstname() == username) {
-            return true;
-        }
-    }
-
-    return false;
+    return data->verifyName(username);
 }
 
 std::vector<std::string> ResidentExpert::userNameGetter() {
-  std::vector<std::string> nameVector;
+  /*std::vector<std::string> nameVector;
 
   for(unsigned int i = 0; i < data->getAllResidents().size(); i++){
       nameVector.push_back(data->getAllResidents()[i].getFirstname());
   }
-  return nameVector;
+  return nameVector;*/
+    return data->getAllResidents();
 }
-
+/*
 std::vector<Resident> ResidentExpert::getResidents(){
     return data->getAllResidents();
 }
-
+*/
 void ResidentExpert::setCurrentUser(std::string newUser){
     currentUser = newUser;
 }
@@ -75,3 +58,4 @@ void ResidentExpert::setCurrentUser(std::string newUser){
 std::string ResidentExpert::getCurrentUser(){
     return currentUser;
 }
+

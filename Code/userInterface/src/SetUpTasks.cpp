@@ -77,6 +77,7 @@ void SetUpTasks::setMainLayoutDesign() {
 
     //Muss Liste der Räume aus Datenbank holen!
     QStringList rooms;
+
     rooms << "Bad" << "Küche";
     chooseTaskRoomCombo->addItems(rooms);
 
@@ -117,30 +118,38 @@ std::string SetUpTasks::getTaskNameInput() {
     return giveNameEdit->text().toStdString();
 }
 
-void SetUpTasks::appear(std::vector<std::string> nameVec, std::vector<std::string> roomVec, std::vector<std::string> frequencyVec, int size) {
-    this->show();
+void SetUpTasks::deepDeleteLayout(QLayout *layout) {
+    QLayoutItem* item;
 
-    for(auto i = 0; i < TaskListItemList.size(); i++) {
-        scrollLayout->removeWidget(TaskListItemList[i]);
+    while((item = layout->takeAt(0))) {
+        if(item->layout()){
+            deepDeleteLayout(item->layout());
+            delete item->layout();
+        }
+
+        if(item->widget()) {
+            delete item->widget();
+        }
+
+        delete item;
     }
+}
 
-    TaskListItemList.clear();
+void SetUpTasks::appear(std::vector<std::string> nameVec, std::vector<std::string> roomVec, std::vector<std::string> frequencyVec, int size) {
+    deepDeleteLayout(scrollLayout);
 
-    for(auto i = 0; i < size; i++) {
+    for(int i = 0; i < size; i++) {
         newTask = new TaskListItem(QString::fromStdString(nameVec[i]), QString::fromStdString(roomVec[i]), QString::fromStdString(frequencyVec[i]));
 
-        // so every TaskListItem is connected..
+        // so every RoomListItem is connected..
         connect(newTask, SIGNAL(deleteTaskSignal(QString)), this, SLOT(deleteTaskCalled(QString)));
 
-        TaskListItemList.push_back(newTask);
         scrollLayout->addWidget(newTask);
     }
 
-    giveNameEdit->clear();
-
-    this->show();
+     giveNameEdit->clear();
+     this->show();
 }
-
 
 void SetUpTasks::setNewTaskCalled() {
   emit newTaskSignal();

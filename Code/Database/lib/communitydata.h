@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include <cppconn/connection.h>
+//#include <cppconn/connection.h>
 #include <cppconn/prepared_statement.h>
 #include <cppconn/driver.h>
 #include <cppconn/exception.h>
@@ -57,8 +57,8 @@ public:
     void deleteRoom(std::string name);
     void deleteEvent(Event ev);
 
-    void deleteTaskByRoom(std::string room);
-    void deleteTaskByName(std::string taskname);
+    void deleteAllTaskOfRoom(std::string room);
+    void deleteTaskByName(std::string taskname, std::string room );
 
     void deleteCalendar(std::string user);
 
@@ -68,10 +68,11 @@ public:
 
     void deleteShoppinglistItem(std::string item);
 
-    std::vector<Resident> getAllResidents();
+    std::vector<std::string> getAllResidents();
     std::vector<Room> getAllRooms();
     std::vector<Event> getAllEventsOfUser(std::string user);
     std::vector<Event> getAllCommunityEvents();
+    std::vector<Event> getAllEvents();
     std::vector<Task> getAllTasks();
 
     // getCleaningPlan()

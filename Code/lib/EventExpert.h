@@ -10,7 +10,7 @@ private:
     friend class Controller;
 
     static EventExpert* instance;
-    std::vector<Event> Eventlist;
+    //std::vector<Event> Eventlist;
     CommunityData* data;
 
 protected:
@@ -29,6 +29,7 @@ public:
     std::vector<std::string> eventUserGetter();
     std::vector<Event> getUserEvents(std::string user);
     std::vector<Event> getCommunityEvents();
+    unsigned int getEventSize();
 
     static EventExpert* getInstance(CommunityData* data);
 };
