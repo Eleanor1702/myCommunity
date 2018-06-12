@@ -38,6 +38,7 @@ private:
 
    QBoxLayout *mainButtonsRow;
    QPushButton *backButton;
+   QPushButton *changepwButton;
 
     void setMainWindowDesign();
     void setMainLayoutDesign();
@@ -46,11 +47,13 @@ private:
 private slots:
     void homePageCalled();
     void deleteUserCalled(QString name);
+    void pwpageCalled();
 
 signals:
     void newUserSig4nUpSignal(std::string name, int password);
     void homePageCallSignal();
     void deleteUserSignal(QString);
+    void pwpageSignal();
 
 public:
     //the constructor build the window

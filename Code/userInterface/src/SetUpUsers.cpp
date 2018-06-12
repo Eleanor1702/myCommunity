@@ -17,11 +17,13 @@ SetUpUsers::SetUpUsers(QWidget *parent) : QWidget(parent){
 
   mainButtonsRow = new QBoxLayout(QBoxLayout::LeftToRight);
   backButton = new QPushButton ("Zurück zum Hauptmenü");
+  changepwButton = new QPushButton ("Accountpasswort ändern");
 
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
 
   QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(homePageCalled()));
+  QObject::connect(changepwButton, SIGNAL(clicked()), this, SLOT(pwpageCalled()));
 }
 
 void SetUpUsers::setMainWindowDesign() {
@@ -54,7 +56,11 @@ void SetUpUsers::setMainLayoutDesign() {
     backButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
                               "border-radius: 5px; background-color: #00b300; "
                               "color: white; font-weight: bold;}");
-
+    this->mainButtonsRow->addWidget(changepwButton);
+    changepwButton->setFixedSize(200, 50);
+    changepwButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
+                              "border-radius: 5px; background-color: #00b300; "
+                              "color: white; font-weight: bold;}");
 }
 
 void SetUpUsers::homePageCalled() {
@@ -63,6 +69,10 @@ void SetUpUsers::homePageCalled() {
 
 void SetUpUsers::deleteUserCalled(QString name){
     emit deleteUserSignal(name);
+}
+
+void SetUpUsers::pwpageCalled(){
+    emit pwpageSignal();
 }
 
 void SetUpUsers::deepDeleteLayout(QLayout *layout) {

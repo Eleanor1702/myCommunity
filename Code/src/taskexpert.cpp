@@ -2,30 +2,27 @@
 
 TaskExpert* TaskExpert::instance = NULL;
 
-TaskExpert::TaskExpert(CommunityData data){
+TaskExpert::TaskExpert(CommunityData* data){
     this->data = data;
 }
 
-void TaskExpert::createTask(std::string name, std::string room, int frequency){
+
+//create a new cleaning task
+void TaskExpert::createTask(std::string taskname, std::string room, std::string frequency){
     Task ta;
-    ta.Task::setName(name);
-    ta.Task::setRoom(room);
-    ta.Task::setFrequency(frequency);
+    ta.setName(taskname);
+    ta.setRoom(room);
+    ta.setFrequency(frequency);
     data->addTask(ta);
 }
 
-
-void TaskExpert::deleteTask(std::string name, std::string room, int frequency){
-    Task ta;
-    ta.Task::setName(name);
-    ta.Task::setRoom(room);
-    ta.Task::setFrequency(frequency);
-    data->deleteTaskCleaningplan(ta);
+//delete a task
+void TaskExpert::deleteTask(std::string taskname, std::string room) {
+    data->deleteTaskByName(taskname, room);
 }
 
-void TaskExpert::editTask(std::string name, std::string room, int frequency) {       //Nur Zeit und Häufigkeit sollen veränderbar sein
+//edit a task
 
-}
 
 TaskExpert* TaskExpert::getInstance(CommunityData* data){
     if(instance == NULL){
