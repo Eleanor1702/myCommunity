@@ -39,6 +39,7 @@ HomePage::HomePage(QWidget *parent) : QWidget(parent) {
   QObject::connect(calendar, SIGNAL(clicked()), this, SLOT(calendarCalled()));
   QObject::connect(cleanPlan, SIGNAL(clicked()), this, SLOT(cleanPlanCalled()));
   QObject::connect(logOut, SIGNAL(clicked()), this, SLOT(logOutCalled()));
+  QObject::connect(shoppingList, SIGNAL(clicked()), this, SLOT(shoppingListCalled()));
 }
 
 void HomePage::setMainScreenDesign(){
@@ -137,4 +138,8 @@ void HomePage::cleanPlanCalled() {
 
 void HomePage::logOutCalled() {
   emit logOutCallSignal();
+}
+
+void HomePage::shoppingListCalled() {
+    emit shoppingListCallSignal();
 }
