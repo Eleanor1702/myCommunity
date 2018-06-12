@@ -51,6 +51,7 @@ private slots:
   void calendarCalled();
   void cleanPlanCalled();
   void logOutCalled();
+  void shoppingListCalled();
 
 signals:
   void roomSettingsCallSignal();
@@ -58,6 +59,7 @@ signals:
   void calendarCallSignal();
   void cleanPlanCallSignal();
   void logOutCallSignal();
+  void shoppingListCallSignal();
 
 };
 #endif // HOMEPAGE_H

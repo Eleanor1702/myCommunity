@@ -25,6 +25,7 @@ GuiController::GuiController(Controller* con) : QWidget() {
     this->events = new EventPage();
     this->clean = new CleaningPage();
     this->task = new SetUpTasks();
+    this->shop = new SetUpShoppinglist();
 
     this->con = con;
 
@@ -46,6 +47,7 @@ GuiController::GuiController(Controller* con) : QWidget() {
     connect(home, SIGNAL(calendarCallSignal()), this, SLOT(callCalendar()));
     connect(home, SIGNAL(cleanPlanCallSignal()), this, SLOT(callCleanPlan()));
     connect(home, SIGNAL(logOutCallSignal()), this, SLOT(callLogOut()));
+    connect(home, SIGNAL(shoppingListCallSignal()), this, SLOT(callShoppingList()));
 
     //SetUpRoomsEvents
     connect(rooms, SIGNAL(setNewRoomSignal()), this, SLOT(newRoomSet()));
@@ -62,7 +64,6 @@ GuiController::GuiController(Controller* con) : QWidget() {
     connect(pwpage, SIGNAL(changepwSignal()), this, SLOT(changePW()));
     connect(pwpage, SIGNAL(setupusersSignal()), this, SLOT(callUserSettingsFromPwPage()));
 
-
     //EventPage Events
     connect(events, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
     connect(events, SIGNAL(setNewEventSignal()), this, SLOT(newEventSet()));
@@ -77,6 +78,10 @@ GuiController::GuiController(Controller* con) : QWidget() {
     connect(task, SIGNAL(newTaskSignal()), this, SLOT(newTaskSet()));
     connect(task, SIGNAL(deleteTaskSignal(QString, QString)), this, SLOT(taskDeleted(QString, QString)));
     connect(task, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
+
+    //SetUpShoppinglist Events
+    connect(shop, SIGNAL(setNewItemSignal()), this, SLOT(newItemSet()));
+    connect(shop, SIGNAL(deleteItemSignal(QString)), this, SLOT(ItemDeleted(QString)));
 
     //show main page
     this->main->show();
@@ -223,6 +228,7 @@ void GuiController::callHomePage() {
     events->hide();
     rooms->hide();
     users->hide();
+    shop->hide();
 }
 
 //EventPage Events
@@ -259,13 +265,12 @@ void GuiController::callCalendar() {
     events->show();
     home->hide();
 }
-
+//CleaningPage Events
 void GuiController::callCleanPlan(){
     clean->show();
     home->hide();
 }
 
-//CleaningPage Events
 void GuiController::callTask(){
     task->appear(con->getTaskName(), con->getTaskRoom(), con->getTaskFrequency(), con->getTasklistSize());
     task->setRoomCombobox(con->getRoomNames());
@@ -294,4 +299,29 @@ void GuiController::taskDeleted(QString taskname, QString room){
     // delete task from Databank
     con->deleteTask(taskname.toStdString(), room.toStdString());
     task->appear(con->getTaskName(), con->getTaskRoom(), con->getTaskFrequency(), con->getTasklistSize());
+}
+
+//SetUpShoppinglist Events
+void GuiController::callShoppingList() {
+    shop->show();
+    main->hide();
+}
+
+void GuiController::newItemSet() {
+    if(shop->getItemNameInput() == "Error") {
+        return;
+    }
+    else {
+        //database connection
+        con->addItem(shop->getItemNameInput(), shop->getItemNumberInput());
+    }
+    //update list in Gui
+    shop->appear(con->getItemNames(), con->getItemNumbers(), con->getItemlistSize());
+}
+
+void GuiController::ItemDeleted(QString name) {
+    //delete item from database
+    con->deleteItem(name.toStdString());
+    //update gui
+    shop->appear(con->getItemNames(), con->getItemNumbers(), con->getItemlistSize());
 }

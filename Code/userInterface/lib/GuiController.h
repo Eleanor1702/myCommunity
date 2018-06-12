@@ -14,6 +14,7 @@
 #include "userInterface/lib/SetUpTasks.h"
 #include "userInterface/lib/cleaningpage.h"
 #include "userInterface/lib/changepwpage.h"
+#include "userInterface/lib/setupshoppinglist.h"
 
 #include "lib/controller.h"
 
@@ -32,11 +33,12 @@ private:
   SetUpUsers *users;
   changePwPage *pwpage;
 
-
   EventPage *events;
 
   CleaningPage *clean;
   SetUpTasks *task;
+
+  SetUpShoppinglist* shop;
 
   Controller* con;
 
@@ -65,11 +67,11 @@ public slots:
   void callCalendar();
   void callCleanPlan();
   void callLogOut();
+  void callShoppingList();
 
   //SetUpRooms Slots
   void newRoomSet();
   void roomDeleted(QString room);
-
 
   //SetUpUsers Slots:
   void newUserSet();
@@ -79,7 +81,6 @@ public slots:
 
   //PwPage Slots
   void changePW();
-
 
   //Back To HomePage Slot:
   void callHomePage();
@@ -96,6 +97,10 @@ public slots:
   //SetUpTask Slots:
   void taskDeleted(QString task, QString room);
   void newTaskSet();
+
+  //SetUpShoppinglist Slots:
+  void newItemSet();
+  void ItemDeleted(QString name);
 
 public:
     static void startApplication(Controller* con);
