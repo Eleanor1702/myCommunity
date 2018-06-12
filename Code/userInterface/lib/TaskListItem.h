@@ -17,6 +17,7 @@ private:
   QHBoxLayout *newTaskLayout;
 
   QString name;
+  QString room;
 
   void setItemStyle();
 
@@ -24,13 +25,12 @@ private slots:
   void deleteTask();
 
 signals:
-  void deleteTaskSignal(QString name);
+  void deleteTaskSignal(QString name, QString room);
 
 public:
   //QFrame ist ein QWidget
   explicit TaskListItem(QString taskName, QString taskRoom, QString taskFrequency, QWidget *parent = NULL);
 
-public slots:
 
 };
 

@@ -129,7 +129,7 @@ void CommunityData::addEvent(Event ev) {
 //add a new cleaning task
 void CommunityData::addTask(Task ta){
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("INSERT INTO Tasks(Name, Room, Frequency) VALUES(?, ?)");
+    stmt = con->prepareStatement("INSERT INTO Tasks(Name, Room, Frequency) VALUES(?, ?, ?)");
     stmt->setString(1, ta.getName());
     stmt->setString(2, ta.getRoom());
     stmt->setString(3, ta.getFrequency());
@@ -378,6 +378,25 @@ std::vector<Event> CommunityData::getAllEvents(){
         ev.setUser(resultSet->getString("User"));
         ev.setDatetime(resultSet->getString("Datetime"));
         list.push_back(ev);
+    }
+    delete stmt;
+    delete resultSet;
+    return list;
+}
+
+//get all tasks
+std::vector<Task> CommunityData::getAllTasks(){
+    std::vector<Task> list;
+    ResultSet* resultSet = NULL;
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("SELECT * FROM Tasks");
+    resultSet = stmt->executeQuery();
+    while(resultSet->next()) {
+        Task ta;
+        ta.setName(resultSet->getString("Name"));
+        ta.setRoom(resultSet->getString("Room"));
+        ta.setFrequency(resultSet->getString("Frequency"));
+        list.push_back(ta);
     }
     delete stmt;
     delete resultSet;

@@ -28,8 +28,8 @@ void RoomExpert::deleteRoom(std::string name){
 std::vector<std::string> RoomExpert::roomNameGetter() {
   std::vector<std::string> nameVector;
 
-  for(unsigned int i = 0; i < data->getAllRooms().size(); i++){
-      nameVector.push_back(data->getAllRooms()[i].getName());
+  for(unsigned int i = 0; i < getRooms().size(); i++){
+      nameVector.push_back(getRooms()[i].getName());
   }
   return nameVector;
 }
@@ -37,8 +37,8 @@ std::vector<std::string> RoomExpert::roomNameGetter() {
 std::vector<std::string> RoomExpert::roomArtGetter() {
   std::vector<std::string> artVector;
 
-  for(unsigned int i = 0; i < data->getAllRooms().size(); i++){
-      artVector.push_back(data->getAllRooms()[i].getArt());
+  for(unsigned int i = 0; i < getRooms().size(); i++){
+      artVector.push_back(getRooms()[i].getArt());
   }
   return artVector;
 }

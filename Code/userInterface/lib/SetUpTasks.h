@@ -34,11 +34,11 @@ private:
    QWidget *scrollWidget;
    QBoxLayout *scrollLayout;
 
-   QBoxLayout *addTasksRow; //geänderter Name
+   QBoxLayout *addTasksRow;
 
    QBoxLayout *mainButtonsRow;
-   QLabel *TaskFrequencyLabel; //geänderterName
-   QComboBox *chooseTaskFrequencyCombo; //geänderter Name
+   QLabel *TaskFrequencyLabel;
+   QComboBox *chooseTaskFrequencyCombo;
    QLabel *TaskRoomLabel;
    QComboBox *chooseTaskRoomCombo;
    QLabel *nameLabel;
@@ -52,12 +52,12 @@ private:
 
 private slots:
     void setNewTaskCalled();
-    void deleteTaskCalled(QString name);
+    void deleteTaskCalled(QString name, QString room);
     void homePageCalled();
 
 signals:
     void newTaskSignal();
-    void deleteTaskSignal(QString);
+    void deleteTaskSignal(QString name, QString room);
     void homePageCallSignal();
 
 public:

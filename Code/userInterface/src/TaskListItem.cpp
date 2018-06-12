@@ -5,6 +5,7 @@ TaskListItem::TaskListItem(QString taskName, QString taskRoom, QString taskFrequ
   this->task = new QLabel(taskName + " - " + taskRoom + " - " + taskFrequency);
   this->deleteButton = new QPushButton(QString::fromUtf8("Löschen"));
   name = taskName;
+  room = taskRoom;
 
   setItemStyle();
 
@@ -34,5 +35,5 @@ void TaskListItem::setItemStyle() {
 }
 
 void TaskListItem::deleteTask() {
-  emit deleteTaskSignal(name);
+  emit deleteTaskSignal(name, room);
 }
