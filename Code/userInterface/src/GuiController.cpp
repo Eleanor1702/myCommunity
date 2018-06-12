@@ -21,8 +21,7 @@ GuiController::GuiController(Controller* con) : QWidget() {
     this->home = new HomePage();
     this->rooms = new SetUpRooms();
     this->users = new SetUpUsers();
-    this->pwpage = new changePwPage();
-    this->events = new EventPage();
+    this->events = new SetUpEvents();
     this->clean = new CleaningPage();
     this->task = new SetUpTasks();
 
@@ -56,14 +55,8 @@ GuiController::GuiController(Controller* con) : QWidget() {
     //QObject::connect(users->addButton,SIGNAL(clicked()),this,SLOT(addUserButtonClicked()));
     connect(users, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
     connect(users, SIGNAL(deleteUserSignal(QString)), this, SLOT(userDeleted(QString)));    //n
-    connect(users, SIGNAL(pwpageSignal()), this, SLOT(callPwPage()));
 
-    //PwPage Events
-    connect(pwpage, SIGNAL(changepwSignal()), this, SLOT(changePW()));
-    connect(pwpage, SIGNAL(setupusersSignal()), this, SLOT(callUserSettingsFromPwPage()));
-
-
-    //EventPage Events
+    //SetUpEvents Events
     connect(events, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
     connect(events, SIGNAL(setNewEventSignal()), this, SLOT(newEventSet()));
     connect(events, SIGNAL(deleteEventSignal(QString, QString, QString, QString)), this, SLOT(eventDeleted(QString, QString, QString, QString)));
@@ -75,7 +68,7 @@ GuiController::GuiController(Controller* con) : QWidget() {
 
     //SetUpTask Events
     connect(task, SIGNAL(newTaskSignal()), this, SLOT(newTaskSet()));
-    connect(task, SIGNAL(deleteTaskSignal(QString, QString)), this, SLOT(taskDeleted(QString, QString)));
+    connect(task, SIGNAL(deleteTaskSignal(QString)), this, SLOT(taskDeleted(QString)));
     connect(task, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
 
     //show main page
@@ -156,15 +149,6 @@ void GuiController::callUserSettings() {
     home->hide();
 }
 
-void GuiController::callUserSettingsFromPwPage(){
-    users->appear(con->getUserNames(), con->getUserlistSize(), con->getCurrentUser());
-    pwpage->giveOldpwEdit->clear();
-    pwpage->giveNewpwEdit->clear();
-    pwpage->hide();
-}
-
-
-
 //SetUpUser Events
 void GuiController::newUserSet() {
     /*QString userName = users->giveNameEdit->text();
@@ -196,25 +180,6 @@ void GuiController::userDeleted(QString name) {
     //users->appear(con->getUserNames(), con->getRoomlistSize(), con->getCurrentUser());
 }
 
-void GuiController::callPwPage(){
-    users->hide();
-    pwpage->show();
-}
-
-//PWPage Events
-
-void GuiController::changePW(){
-    if(con->rsExpert->verifyLogInData(con->rsExpert->getCurrentUser(), std::stoi(pwpage->getOldPwInput()))){    //old pw = pw
-        con->editResident(con->rsExpert->getCurrentUser(), std::stoi(pwpage->getNewPwInput()));
-        users->show();
-        pwpage->giveOldpwEdit->clear();
-        pwpage->giveNewpwEdit->clear();
-        pwpage->hide();
-
-    }
-}
-
-
 //All back Events to HomePage
 void GuiController::callHomePage() {
     home->show();
@@ -225,7 +190,7 @@ void GuiController::callHomePage() {
     users->hide();
 }
 
-//EventPage Events
+//SetUpEvents Events
 void GuiController::newEventSet(){
     if(events->getEventDescriptionInput() == "Error"){
         //Exception
@@ -236,22 +201,16 @@ void GuiController::newEventSet(){
                       events->getEventDescriptionInput(), events->getEventUserInput());
     }
     //udate eventlist in Gui
-    events->appear(con->getEventTime(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventDate(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventDescription(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventUser(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getSizeEvent(events->getEventUserInput(), events->getEventDateInput()));
+    events->appear(con->getEventTime(), con->getEventDate(), con->getEventDescription(),
+                   con->getEventUser(), con->getSizeEvent());
 }
-
 void GuiController::eventDeleted(QString time, QString date, QString description, QString user){
     //delete event from database
     con->deleteEvent(time.toStdString(), date.toStdString(), description.toStdString(), user.toStdString());
 
-    events->appear(con->getEventTime(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventDate(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventDescription(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventUser(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getSizeEvent(events->getEventUserInput(), events->getEventDateInput()));
+    events->appear(con->getEventTime(), con->getEventDate(),
+                   con->getEventDescription(), con->getEventUser(),
+                   con->getSizeEvent());
 }
 
 
@@ -267,8 +226,7 @@ void GuiController::callCleanPlan(){
 
 //CleaningPage Events
 void GuiController::callTask(){
-    task->appear(con->getTaskName(), con->getTaskRoom(), con->getTaskFrequency(), con->getTasklistSize());
-    task->setRoomCombobox(con->getRoomNames());
+    task->show();
     clean->hide();
 }
 
@@ -284,14 +242,17 @@ void GuiController::newTaskSet(){
       return;
   }else{
       //databank connection
-      con->addTask(task->getTaskNameInput(), task->getSelectedRoomTask(), task->getSelectedTaskFrequency());
+      //con->addTask(task->getTaskNameInput(), task->getSelectedRoomTask(), task->getSelectedTaskFrequency());
   }
+
   //update task list in Gui
-  task->appear(con->getTaskName(), con->getTaskRoom(), con->getTaskFrequency(), con->getTasklistSize());
+  //task->appear(con->getTaskName(), con->getRoomTask(), con->getTaskFrequency(), con->getRoomlistSize());
 }
 
-void GuiController::taskDeleted(QString taskname, QString room){
+void GuiController::taskDeleted(QString task){
     // delete task from Databank
-    con->deleteTask(taskname.toStdString(), room.toStdString());
-    task->appear(con->getTaskName(), con->getTaskRoom(), con->getTaskFrequency(), con->getTasklistSize());
+    //con->deleteTask(task.toStdString());
+
+    //task->appear(con->getTaskName(), con->getRoomTask(), con->getTaskFrequency(), con->getTaskListSize());
 }
+

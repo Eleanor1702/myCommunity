@@ -10,7 +10,7 @@
 #include "userInterface/lib/HomePage.h"
 #include "userInterface/lib/SetUpRooms.h"
 #include "userInterface/lib/SetUpUsers.h"
-#include "userInterface/lib/eventpage.h"
+#include "userInterface/lib/SetUpEvents.h"
 #include "userInterface/lib/SetUpTasks.h"
 #include "userInterface/lib/cleaningpage.h"
 #include "userInterface/lib/changepwpage.h"
@@ -33,7 +33,7 @@ private:
   changePwPage *pwpage;
 
 
-  EventPage *events;
+  SetUpEvents *events;
 
   CleaningPage *clean;
   SetUpTasks *task;
@@ -84,7 +84,7 @@ public slots:
   //Back To HomePage Slot:
   void callHomePage();
 
-  //EventPage Slots:
+  //SetUpEvents Slots:
   void newEventSet();
   void eventDeleted(QString time, QString date, QString description, QString user);
   //void eventEdited();

@@ -39,7 +39,6 @@ SOURCES += \
     userInterface/src/StartPage.cpp \
     userInterface/src/RoomListItem.cpp \
     Database/src/communitydata.cpp \
-    userInterface/src/eventpage.cpp \
     userInterface/src/cleaningpage.cpp \
     src/taskexpert.cpp \
     userInterface/src/SetUpTasks.cpp \
@@ -50,13 +49,9 @@ SOURCES += \
     src/EventExpert.cpp \
     src/Task.cpp \
     userInterface/src/UserListItem.cpp \
-    src/concretetask.cpp \
-    userInterface/src/changepwpage.cpp \
-    src/shoppingitem.cpp \
-    src/shoppingexpert.cpp \
-    userInterface/src/shoppinglistitem.cpp \
-    setupshoppinglist.cpp
-    userInterface/src/changepwpage.cpp
+    userInterface/src/SetUpEvents.cpp \
+    Database/src/DatabaseConfig.cpp \
+    userInterface/src/SetUpConfiguration.cpp
 
 HEADERS += \
     lib/controller.h \
@@ -72,7 +67,6 @@ HEADERS += \
     userInterface/lib/StartPage.h \
     userInterface/lib/RoomListItem.h \
     Database/lib/communitydata.h \
-    userInterface/lib/eventpage.h \
     userInterface/lib/cleaningpage.h \
     lib/taskexpert.h \
     userInterface/lib/SetUpTasks.h \
@@ -83,14 +77,9 @@ HEADERS += \
     lib/EventExpert.h \
     lib/Task.h \
     userInterface/lib/UserListItem.h \
-    lib/concretetask.h \
-    userInterface/lib/changepwpage.h \
-    lib/shoppingitem.h \
-    lib/shoppingexpert.h \
-    userInterface/lib/shoppinglistitem.h \
-    userInterface/lib/setupshoppinglist.h
-    userInterface/lib/changepwpage.h
-
+    userInterface/lib/SetUpEvents.h \
+    Database/lib/DatabaseConfig.h \
+    userInterface/lib/SetUpConfiguration.h
 
 RESOURCES = \
     media/application.qrc \
