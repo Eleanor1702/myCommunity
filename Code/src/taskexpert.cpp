@@ -6,6 +6,7 @@ TaskExpert::TaskExpert(CommunityData* data){
     this->data = data;
 }
 
+
 //create a new cleaning task
 void TaskExpert::createTask(std::string taskname, std::string room, std::string frequency){
     Task ta;
@@ -56,6 +57,7 @@ std::vector<std::string> TaskExpert::taskFrequencyGetter() {
     }
     return frequencyVector;
 }
+
 TaskExpert* TaskExpert::getInstance(CommunityData* data){
     if(instance == NULL){
         instance = new TaskExpert(data);
