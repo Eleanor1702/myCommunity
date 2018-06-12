@@ -51,7 +51,11 @@ SOURCES += \
     src/Task.cpp \
     userInterface/src/UserListItem.cpp \
     src/concretetask.cpp \
-    userInterface/src/changepwpage.cpp
+    userInterface/src/changepwpage.cpp \
+    src/shoppingitem.cpp \
+    src/shoppingexpert.cpp \
+    userInterface/src/shoppinglistitem.cpp \
+    setupshoppinglist.cpp
     userInterface/src/changepwpage.cpp
 
 HEADERS += \
@@ -80,7 +84,11 @@ HEADERS += \
     lib/Task.h \
     userInterface/lib/UserListItem.h \
     lib/concretetask.h \
-    userInterface/lib/changepwpage.h
+    userInterface/lib/changepwpage.h \
+    lib/shoppingitem.h \
+    lib/shoppingexpert.h \
+    userInterface/lib/shoppinglistitem.h \
+    userInterface/lib/setupshoppinglist.h
     userInterface/lib/changepwpage.h
 
 
