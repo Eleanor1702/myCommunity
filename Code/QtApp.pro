@@ -49,7 +49,8 @@ SOURCES += \
     src/RoomExpert.cpp \
     src/EventExpert.cpp \
     src/Task.cpp \
-    userInterface/src/UserListItem.cpp
+    userInterface/src/UserListItem.cpp \
+    src/concretetask.cpp
 
 HEADERS += \
     lib/controller.h \
@@ -75,7 +76,8 @@ HEADERS += \
     lib/RoomExpert.h \
     lib/EventExpert.h \
     lib/Task.h \
-    userInterface/lib/UserListItem.h
+    userInterface/lib/UserListItem.h \
+    lib/concretetask.h
 
 RESOURCES = \
     media/application.qrc \

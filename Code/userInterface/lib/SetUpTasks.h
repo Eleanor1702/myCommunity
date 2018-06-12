@@ -69,6 +69,7 @@ public:
     std::string getSelectedRoomTask();
     std::string getTaskNameInput();
     void appear(std::vector<std::string> nameVec, std::vector<std::string> roomVec, std::vector<std::string> frequencyVec, int size);
+    void setRoomCombobox(std::vector<std::string> Rooms);
 };
 
 #endif // SETUPTASKS_H
