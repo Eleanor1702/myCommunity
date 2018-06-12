@@ -36,10 +36,8 @@ public:
         void deleteTask(std::string name, std::string room);
         void editTask();
 
-        void addEvent (std::string time, std::string date,
-                       std::string description, std::string user);
-        void deleteEvent(std::string time, std::string date,
-                         std::string descpription, std::string user);
+        void addEvent (std::string time, std::string date, std::string description, std::string user);
+        void deleteEvent(std::string time, std::string date, std::string descpription, std::string user);
         void editEvent(std::string time, std::string date, std::string description, std::string user, std::string newtime, std::string newdate, std::string newdescription);
 
         //Methods currentUser
@@ -58,6 +56,11 @@ public:
         std::vector<std::string>getEventDescription();
         std::vector<std::string>getEventUser();
         int getSizeEvent();
+
+        std::vector<std::string>getTaskName();
+        std::vector<std::string>getTaskRoom();
+        std::vector<std::string>getTaskFrequency();
+        int getTasklistSize();
 
         static Controller* getInstance(CommunityData* data);
 };

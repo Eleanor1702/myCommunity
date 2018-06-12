@@ -142,7 +142,7 @@ void SetUpTasks::appear(std::vector<std::string> nameVec, std::vector<std::strin
         newTask = new TaskListItem(QString::fromStdString(nameVec[i]), QString::fromStdString(roomVec[i]), QString::fromStdString(frequencyVec[i]));
 
         // so every RoomListItem is connected..
-        connect(newTask, SIGNAL(deleteTaskSignal(QString)), this, SLOT(deleteTaskCalled(QString)));
+        connect(newTask, SIGNAL(deleteTaskSignal(QString, QString)), this, SLOT(deleteTaskCalled(QString, QString)));
 
         scrollLayout->addWidget(newTask);
     }
@@ -159,6 +159,6 @@ void SetUpTasks::homePageCalled() {
   emit homePageCallSignal();
 }
 
-void SetUpTasks::deleteTaskCalled(QString name) {
-  emit deleteTaskSignal(name);
+void SetUpTasks::deleteTaskCalled(QString name, QString room) {
+  emit deleteTaskSignal(name,room);
 }

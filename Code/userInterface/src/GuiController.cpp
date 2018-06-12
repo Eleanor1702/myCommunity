@@ -75,7 +75,7 @@ GuiController::GuiController(Controller* con) : QWidget() {
 
     //SetUpTask Events
     connect(task, SIGNAL(newTaskSignal()), this, SLOT(newTaskSet()));
-    connect(task, SIGNAL(deleteTaskSignal(QString)), this, SLOT(taskDeleted(QString, QString)));
+    connect(task, SIGNAL(deleteTaskSignal(QString, QString)), this, SLOT(taskDeleted(QString, QString)));
     connect(task, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
 
     //show main page
@@ -250,7 +250,7 @@ void GuiController::callCleanPlan(){
 
 //CleaningPage Events
 void GuiController::callTask(){
-    task->show();
+    task->appear(con->getTaskName(), con->getTaskRoom(), con->getTaskFrequency(), con->getTasklistSize());
     clean->hide();
 }
 
@@ -268,14 +268,12 @@ void GuiController::newTaskSet(){
       //databank connection
       con->addTask(task->getTaskNameInput(), task->getSelectedRoomTask(), task->getSelectedTaskFrequency());
   }
-
   //update task list in Gui
-  //task->appear(con->getTaskName(), con->getRoomTask(), con->getTaskFrequency(), con->getRoomlistSize());
+  task->appear(con->getTaskName(), con->getTaskRoom(), con->getTaskFrequency(), con->getRoomlistSize());
 }
 
-void GuiController::taskDeleted(QString task, QString room){
+void GuiController::taskDeleted(QString taskname, QString room){
     // delete task from Databank
-    con->deleteTask(task.toStdString(), room.toStdString());
-
-    //task->appear(con->getTaskName(), con->getRoomTask(), con->getTaskFrequency(), con->getTaskListSize());
+    con->deleteTask(taskname.toStdString(), room.toStdString());
+    task->appear(con->getTaskName(), con->getTaskRoom(), con->getTaskFrequency(), con->getTasklistSize());
 }
