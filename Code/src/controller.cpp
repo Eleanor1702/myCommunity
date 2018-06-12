@@ -114,6 +114,19 @@ int Controller::getSizeEvent(std::string user, std::string date){
     return evExpert->getEventSize(user, date);
 }
 
+std::vector<std::string> Controller::getTaskName(){
+    return taExpert->taskNameGetter();
+}
+std::vector<std::string> Controller::getTaskRoom(){
+    return taExpert->taskRoomGetter();
+}
+std::vector<std::string> Controller::getTaskFrequency(){
+    return taExpert->taskFrequencyGetter();
+}
+int Controller::getTasklistSize(){
+    return taExpert->getTasks().size();
+}
+
 //Current User Methods
 
 void Controller::setCurrentUser(std::string user){

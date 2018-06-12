@@ -27,6 +27,7 @@ public:
 
     void setCurrentUser(std::string newUser);
     std::string getCurrentUser();
+    std::string getCurrentUserPassword();
 
     std::vector<std::string> userNameGetter();
     std::vector<Resident> getResidents();

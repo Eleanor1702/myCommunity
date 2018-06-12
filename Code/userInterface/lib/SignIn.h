@@ -8,6 +8,9 @@
 #include <QPushButton>
 #include <QIntValidator>
 
+#include <QStyle>
+#include <QDesktopWidget>
+
 class SignIn : public QWidget {
   //enable creation of slots and signals
   Q_OBJECT

@@ -30,6 +30,15 @@ SetUpTasks::SetUpTasks(QWidget *parent) : QWidget(parent){
 
     QObject::connect(addButton, SIGNAL(clicked()), this, SLOT(setNewTaskCalled()));
     QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(homePageCalled()));
+
+    this->setGeometry(          //To Center Window
+        QStyle::alignedRect(
+            Qt::LeftToRight,
+            Qt::AlignCenter,
+            this->size(),
+            qApp->desktop()->availableGeometry()
+        )
+    );
 }
 
 void SetUpTasks::setMainWindowDesign() {
@@ -77,8 +86,6 @@ void SetUpTasks::setMainLayoutDesign() {
 
     //Muss Liste der Räume aus Datenbank holen!
     QStringList rooms;
-
-    rooms << "Bad" << "Küche";
     chooseTaskRoomCombo->addItems(rooms);
 
     this->addTasksRow->addWidget(nameLabel);
@@ -142,7 +149,7 @@ void SetUpTasks::appear(std::vector<std::string> nameVec, std::vector<std::strin
         newTask = new TaskListItem(QString::fromStdString(nameVec[i]), QString::fromStdString(roomVec[i]), QString::fromStdString(frequencyVec[i]));
 
         // so every RoomListItem is connected..
-        connect(newTask, SIGNAL(deleteTaskSignal(QString)), this, SLOT(deleteTaskCalled(QString)));
+        connect(newTask, SIGNAL(deleteTaskSignal(QString, QString)), this, SLOT(deleteTaskCalled(QString, QString)));
 
         scrollLayout->addWidget(newTask);
     }
@@ -159,6 +166,15 @@ void SetUpTasks::homePageCalled() {
   emit homePageCallSignal();
 }
 
-void SetUpTasks::deleteTaskCalled(QString name) {
-  emit deleteTaskSignal(name);
+void SetUpTasks::deleteTaskCalled(QString name, QString room) {
+  emit deleteTaskSignal(name,room);
+}
+
+void SetUpTasks::setRoomCombobox(std::vector<std::string> Rooms) {
+    QStringList rooms;
+    for(unsigned int i = 0; i < Rooms.size(); i++) {
+        rooms.push_back(QString::fromStdString(Rooms[i]));
+    }
+    chooseTaskRoomCombo->clear();
+    chooseTaskRoomCombo->addItems(rooms);
 }

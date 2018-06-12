@@ -13,6 +13,9 @@
 #include <QStringList>
 #include <QList>
 
+#include <QStyle>
+#include <QDesktopWidget>
+
 #include "TaskListItem.h"
 
 //Inheritance from QWidget allows the class itself to react on events
@@ -34,11 +37,11 @@ private:
    QWidget *scrollWidget;
    QBoxLayout *scrollLayout;
 
-   QBoxLayout *addTasksRow; //geänderter Name
+   QBoxLayout *addTasksRow;
 
    QBoxLayout *mainButtonsRow;
-   QLabel *TaskFrequencyLabel; //geänderterName
-   QComboBox *chooseTaskFrequencyCombo; //geänderter Name
+   QLabel *TaskFrequencyLabel;
+   QComboBox *chooseTaskFrequencyCombo;
    QLabel *TaskRoomLabel;
    QComboBox *chooseTaskRoomCombo;
    QLabel *nameLabel;
@@ -52,12 +55,12 @@ private:
 
 private slots:
     void setNewTaskCalled();
-    void deleteTaskCalled(QString name);
+    void deleteTaskCalled(QString name, QString room);
     void homePageCalled();
 
 signals:
     void newTaskSignal();
-    void deleteTaskSignal(QString);
+    void deleteTaskSignal(QString name, QString room);
     void homePageCallSignal();
 
 public:
@@ -69,6 +72,7 @@ public:
     std::string getSelectedRoomTask();
     std::string getTaskNameInput();
     void appear(std::vector<std::string> nameVec, std::vector<std::string> roomVec, std::vector<std::string> frequencyVec, int size);
+    void setRoomCombobox(std::vector<std::string> Rooms);
 };
 
 #endif // SETUPTASKS_H
