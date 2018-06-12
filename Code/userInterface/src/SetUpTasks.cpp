@@ -86,8 +86,6 @@ void SetUpTasks::setMainLayoutDesign() {
 
     //Muss Liste der Räume aus Datenbank holen!
     QStringList rooms;
-
-    rooms << "Bad" << "Küche";
     chooseTaskRoomCombo->addItems(rooms);
 
     this->addTasksRow->addWidget(nameLabel);
@@ -170,4 +168,13 @@ void SetUpTasks::homePageCalled() {
 
 void SetUpTasks::deleteTaskCalled(QString name, QString room) {
   emit deleteTaskSignal(name,room);
+}
+
+void SetUpTasks::setRoomCombobox(std::vector<std::string> Rooms) {
+    QStringList rooms;
+    for(unsigned int i = 0; i < Rooms.size(); i++) {
+        rooms.push_back(QString::fromStdString(Rooms[i]));
+    }
+    chooseTaskRoomCombo->clear();
+    chooseTaskRoomCombo->addItems(rooms);
 }

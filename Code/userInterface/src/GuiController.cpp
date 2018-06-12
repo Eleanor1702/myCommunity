@@ -262,6 +262,7 @@ void GuiController::callCleanPlan(){
 //CleaningPage Events
 void GuiController::callTask(){
     task->appear(con->getTaskName(), con->getTaskRoom(), con->getTaskFrequency(), con->getTasklistSize());
+    task->setRoomCombobox(con->getRoomNames());
     clean->hide();
 }
 
@@ -280,7 +281,7 @@ void GuiController::newTaskSet(){
       con->addTask(task->getTaskNameInput(), task->getSelectedRoomTask(), task->getSelectedTaskFrequency());
   }
   //update task list in Gui
-  task->appear(con->getTaskName(), con->getTaskRoom(), con->getTaskFrequency(), con->getRoomlistSize());
+  task->appear(con->getTaskName(), con->getTaskRoom(), con->getTaskFrequency(), con->getTasklistSize());
 }
 
 void GuiController::taskDeleted(QString taskname, QString room){
