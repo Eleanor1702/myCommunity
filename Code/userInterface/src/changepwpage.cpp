@@ -1,6 +1,5 @@
 #include "userInterface/lib/changepwpage.h"
 
-
 changePwPage::changePwPage(QWidget *parent) : QWidget(parent){
     //declerations of window contents
     mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, this);
@@ -103,3 +102,4 @@ void changePwPage::setupusersCalled(){
 void changePwPage::changepwCalled(){
     emit changepwSignal();
 }
+

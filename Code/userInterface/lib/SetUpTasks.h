@@ -16,7 +16,7 @@
 #include <QStyle>
 #include <QDesktopWidget>
 
-#include "userInterface/lib/TaskListItem.h"
+#include "TaskListItem.h"
 
 //Inheritance from QWidget allows the class itself to react on events
 //example (Button clicks.. etc)
@@ -76,3 +76,4 @@ public:
 };
 
 #endif // SETUPTASKS_H
+
