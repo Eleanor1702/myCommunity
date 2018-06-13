@@ -82,6 +82,7 @@ GuiController::GuiController(Controller* con) : QWidget() {
     //SetUpShoppinglist Events
     connect(shop, SIGNAL(setNewItemSignal()), this, SLOT(newItemSet()));
     connect(shop, SIGNAL(deleteItemSignal(QString)), this, SLOT(ItemDeleted(QString)));
+    connect(shop, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
 
     //show main page
     this->main->show();
@@ -303,7 +304,7 @@ void GuiController::taskDeleted(QString taskname, QString room){
 
 //SetUpShoppinglist Events
 void GuiController::callShoppingList() {
-    shop->show();
+    shop->appear(con->getItemNames(), con->getItemNumbers(), con->getItemlistSize());
     main->hide();
 }
 

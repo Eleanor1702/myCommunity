@@ -2,7 +2,7 @@
 
 ShoppinglistItem::ShoppinglistItem(QString itemName, int number, QWidget *parent) : QFrame(parent){
     this->newItemLayout = new QHBoxLayout();
-    this->item = new QLabel(itemName); // + number
+    this->item = new QLabel(itemName + "  -  " + QString::fromStdString(std::to_string(number)) + " Mal"); // + number
     this->deleteButton = new QPushButton(QString::fromStdString("Löschen"));
     name = itemName;
 
