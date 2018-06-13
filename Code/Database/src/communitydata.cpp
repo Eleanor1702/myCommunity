@@ -150,7 +150,7 @@ void CommunityData::addToCleaningplan(std::string task, std::string resident, st
 //add Shoppinglist item
 void CommunityData::addItem(Shoppingitem si) {
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("INSERT INTO Shoppinglist(Item, Number) VALUES (?,?)");
+    stmt = con->prepareStatement("INSERT INTO ShoppingList(Item, Number) VALUES (?,?)");
     stmt->setString(1,si.getItemName());
     stmt->setInt(2, si.getNumber());
     stmt->execute();
@@ -287,7 +287,7 @@ void CommunityData::deleteResidentCleaningplan(std::string resident){
 //delete an item from shoppinglist
 void CommunityData::deleteShoppinglistItem(std::string item) {
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("DELETE FROM Shoppinglist WHERE Item = ?");
+    stmt = con->prepareStatement("DELETE FROM ShoppingList WHERE Item = ?");
     stmt->setString(1, item);
     stmt->execute();
     delete stmt;
@@ -411,7 +411,7 @@ std::vector<Shoppingitem> CommunityData::getAllItems() {
     std::vector<Shoppingitem> list;
     ResultSet* resultSet = NULL;
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("SELECT * FROM Shoppinglist");
+    stmt = con->prepareStatement("SELECT * FROM ShoppingList");
     resultSet = stmt->executeQuery();
     while(resultSet->next()) {
         Shoppingitem si;
