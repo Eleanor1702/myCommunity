@@ -41,6 +41,9 @@ SignUp::SignUp(QWidget *parent) : QWidget(parent) {
 
     QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(startPageCalled()));
     QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(saveClicked()));
+    QObject::connect(giveNameEdit, SIGNAL(returnPressed()), this, SLOT(startPageCalled()));         //Enter as conformation
+    QObject::connect(givePasswordEdit, SIGNAL(returnPressed()), this, SLOT(startPageCalled()));         //Enter as conformation
+
 }
 
 void SignUp::setMainWindowDesign() {

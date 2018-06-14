@@ -38,6 +38,9 @@ SignIn::SignIn(QWidget *parent) : QWidget (parent){
 
     QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(startPageCalled()));
     QObject::connect(logInButton, SIGNAL(clicked()), this, SLOT(userLogedIn()));
+    QObject::connect(givePasswordEdit, SIGNAL(returnPressed()), this, SLOT(userLogedIn()));     //Enter as confirmation
+    QObject::connect(giveNameEdit, SIGNAL(returnPressed()), this, SLOT(userLogedIn()));         //Enter as conformation
+
 }
 
 void SignIn::setMainWindowDesign() {

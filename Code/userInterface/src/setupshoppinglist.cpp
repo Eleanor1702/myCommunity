@@ -29,6 +29,9 @@ SetUpShoppinglist::SetUpShoppinglist(QWidget *parent) : QWidget(parent) {
 
     QObject::connect(addButton, SIGNAL(clicked()), this, SLOT(setNewItemCalled()));
     QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(homepageCalled()));
+    QObject::connect(giveNameEdit, SIGNAL(returnPressed()), this, SLOT(setNewItemCalled()));         //Enter as conformation
+    QObject::connect(giveNumberEdit, SIGNAL(returnPressed()), this, SLOT(setNewItemCalled()));         //Enter as conformation
+
 
     this->setGeometry(
         QStyle::alignedRect(

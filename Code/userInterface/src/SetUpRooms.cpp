@@ -29,6 +29,7 @@ SetUpRooms::SetUpRooms(QWidget *parent) : QWidget(parent) {
 
   QObject::connect(addButton, SIGNAL(clicked()), this, SLOT(setNewRoomCalled()));
   QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(homePageCalled()));
+  QObject::connect(giveNameEdit, SIGNAL(returnPressed()), this, SLOT(setNewRoomCalled()));         //Enter as conformation
 
   this->setGeometry(
       QStyle::alignedRect(

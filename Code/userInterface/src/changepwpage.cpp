@@ -33,6 +33,8 @@ changePwPage::changePwPage(QWidget *parent) : QWidget(parent){
 
     QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(changepwCalled()));
     QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(setupusersCalled()));
+    QObject::connect(giveOldpwEdit, SIGNAL(returnPressed()), this, SLOT(changepwCalled()));         //Enter as conformation
+    QObject::connect(giveNewpwEdit, SIGNAL(returnPressed()), this, SLOT(changepwCalled()));         //Enter as conformation
 
 
 

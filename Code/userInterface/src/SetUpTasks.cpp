@@ -30,6 +30,8 @@ SetUpTasks::SetUpTasks(QWidget *parent) : QWidget(parent){
 
     QObject::connect(addButton, SIGNAL(clicked()), this, SLOT(setNewTaskCalled()));
     QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(CleanPlanCalled()));
+    QObject::connect(giveNameEdit, SIGNAL(returnPressed()), this, SLOT(setNewTaskCalled()));         //Enter as conformation
+
 
     this->setGeometry(          //To Center Window
         QStyle::alignedRect(
