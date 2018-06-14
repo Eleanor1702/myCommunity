@@ -259,9 +259,9 @@ void EventPage::appearAll(std::vector<std::string> timeVec,
 void EventPage::appear(std::vector<std::string> timeVec,
                        std::vector<std::string> dateVec,
                        std::vector<std::string> descrVec,
-                       std::vector<std::string> userVec, int size){
+                       std::string user, int size){
     //this->show();
-    if(this->getEventUserInput() == "gemeinschaftlich"){
+    if(user == "gemeinschaftlich"){
         deepDeleteLayout(scrollLayoutPub);
 
 
@@ -270,7 +270,7 @@ void EventPage::appear(std::vector<std::string> timeVec,
            newPubEvent = new EventListItem(QString::fromStdString(timeVec[i]),
                                                  QString::fromStdString(dateVec[i]),
                                                  QString::fromStdString(descrVec[i]),
-                                                 QString::fromStdString(userVec[i]));
+                                                 QString::fromStdString(user));
 
             connect(newPubEvent, SIGNAL(deleteEventSignal(QString, QString, QString, QString)),this,
                     SLOT(deleteEventCalled(QString, QString, QString, QString)));
@@ -288,7 +288,7 @@ void EventPage::appear(std::vector<std::string> timeVec,
             newPrivEvent = new EventListItem(QString::fromStdString(timeVec[i]),
                                                  QString::fromStdString(dateVec[i]),
                                                  QString::fromStdString(descrVec[i]),
-                                                 QString::fromStdString(userVec[i]));
+                                                 QString::fromStdString(user));
             connect(newPrivEvent, SIGNAL(deleteEventSignal(QString, QString, QString, QString)),this,
                     SLOT(deleteEventCalled(QString, QString, QString, QString)));
 

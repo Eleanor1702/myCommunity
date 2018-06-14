@@ -101,7 +101,7 @@ public:
     void appear(std::vector<std::string> timeVec,
                 std::vector<std::string> dateVec,
                 std::vector<std::string> descrVec,
-                std::vector<std::string> userVec, int size);
+                std::string user, int size);
 
     void appearAll(std::vector<std::string> timeVec,
                    std::vector<std::string> dateVec,

@@ -223,30 +223,46 @@ void GuiController::newEventSet(){
                       events->getEventDescriptionInput(), events->getEventUserInput());
     }
     //udate eventlist in Gui
-    events->appear(con->getEventTime(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventDate(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventDescription(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventUser(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getSizeEvent(events->getEventUserInput(), events->getEventDateInput()));
+    std::string user;
+    if(events->getEventUserInput() == "privat") {
+        user = con->getCurrentUser();
+    }
+    else user = "gemeinschaftlich";
+
+    events->appear(con->getEventTime(user, events->getEventDateInput()),
+                   con->getEventDate(user, events->getEventDateInput()),
+                   con->getEventDescription(user, events->getEventDateInput()),
+                   user,
+                   con->getSizeEvent(user, events->getEventDateInput()));
 }
 
 void GuiController::eventAppeared(){
-    events->appearAll(con->getEventTime(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventDate(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventDescription(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventUser(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getSizeEvent(events->getEventUserInput(), events->getEventDateInput()));
+
+    std::string user = con->getCurrentUser();
+    events->appear(con->getEventTime(user, events->getEventDateInput()),
+                   con->getEventDate(user, events->getEventDateInput()),
+                   con->getEventDescription(user, events->getEventDateInput()),
+                   user,
+                   con->getSizeEvent(user, events->getEventDateInput()));
+    user = "gemeinschaftlich";
+    events->appear(con->getEventTime(user, events->getEventDateInput()),
+                   con->getEventDate(user, events->getEventDateInput()),
+                   con->getEventDescription(user, events->getEventDateInput()),
+                   user,
+                   con->getSizeEvent(user, events->getEventDateInput()));
+
+
 }
 
-void GuiController::eventDeleted(QString time, QString date, QString description, QString user){
+void GuiController::eventDeleted(QString time, QString date, QString description, QString username){
     //delete event from database
-    con->deleteEvent(time.toStdString(), date.toStdString(), description.toStdString(), user.toStdString());
-
-    events->appear(con->getEventTime(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventDate(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventDescription(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventUser(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getSizeEvent(events->getEventUserInput(), events->getEventDateInput()));
+    con->deleteEvent(time.toStdString(), date.toStdString(), description.toStdString(), username.toStdString());
+    std::string user = username.toStdString();
+    events->appear(con->getEventTime(user, events->getEventDateInput()),
+                   con->getEventDate(user, events->getEventDateInput()),
+                   con->getEventDescription(user, events->getEventDateInput()),
+                   user,
+                   con->getSizeEvent(user, events->getEventDateInput()));
 }
 
 
