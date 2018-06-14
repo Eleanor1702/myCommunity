@@ -56,12 +56,12 @@ private:
 private slots:
     void setNewTaskCalled();
     void deleteTaskCalled(QString name, QString room);
-    void homePageCalled();
+    void CleanPlanCalled();
 
 signals:
     void newTaskSignal();
     void deleteTaskSignal(QString name, QString room);
-    void homePageCallSignal();
+    void CleanPlanCallSignal();
 
 public:
     //the constructor build the window

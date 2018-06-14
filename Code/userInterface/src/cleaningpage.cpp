@@ -13,7 +13,7 @@ CleaningPage::CleaningPage(QWidget *parent) : QWidget(parent) {
     buttonRow = new QBoxLayout(QBoxLayout::LeftToRight);
     setuptaskButton = new QPushButton ("Aufgaben \n verwalten");
     createPlanButton = new QPushButton ("Plan erstellen");
-    backButton = new QPushButton ("Zurück");
+    backButton = new QPushButton ("Zurück zum Hauptmenü");
 
     this->setMainWindowDesign();
     this->setMainLayoutDesign();

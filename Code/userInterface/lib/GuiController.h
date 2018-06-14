@@ -74,10 +74,8 @@ public slots:
   void roomDeleted(QString room);
 
   //SetUpUsers Slots:
-  void newUserSet();
   void userDeleted(QString name);
   void callPwPage();
-  //void deleteUserButtonClicked(QString name);
 
   //PwPage Slots
   void changePW();

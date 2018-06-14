@@ -55,7 +55,6 @@ GuiController::GuiController(Controller* con) : QWidget() {
     connect(rooms, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
 
     //SetUpUsers Events
-    //QObject::connect(users->addButton,SIGNAL(clicked()),this,SLOT(addUserButtonClicked()));
     connect(users, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
     connect(users, SIGNAL(deleteUserSignal(QString)), this, SLOT(userDeleted(QString)));    //n
     connect(users, SIGNAL(pwpageSignal()), this, SLOT(callPwPage()));
@@ -78,7 +77,7 @@ GuiController::GuiController(Controller* con) : QWidget() {
     //SetUpTask Events
     connect(task, SIGNAL(newTaskSignal()), this, SLOT(newTaskSet()));
     connect(task, SIGNAL(deleteTaskSignal(QString, QString)), this, SLOT(taskDeleted(QString, QString)));
-    connect(task, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
+    connect(task, SIGNAL(CleanPlanCallSignal()), this, SLOT(callCleanPlan()));
 
     //SetUpShoppinglist Events
     connect(shop, SIGNAL(setNewItemSignal()), this, SLOT(newItemSet()));
@@ -173,28 +172,6 @@ void GuiController::callUserSettingsFromPwPage(){
 
 
 //SetUpUser Events
-void GuiController::newUserSet() {
-    /*QString userName = users->giveNameEdit->text();
-    if(userName.size() == 0 || userName[0] == ' '){
-        return;
-    }
-
-    QString userPassword = users->givePasswordEdit->text();
-    if(userPassword.size() == 0 || userPassword[0] == ' '){
-        return;
-    }
-
-    this->users->newUser = new UserList(userName);
-
-    this->users->scrollLayout->addWidget(users->newUser);
-
-    this->users->giveNameEdit->clear();
-    this->users->givePasswordEdit->clear();
-
-    connect(this->users->newUser,SIGNAL(deleteUserButtonClickedSignal(QString)),this,SLOT(deleteUserButtonClicked(QString)));*/
-}
-
-
 void GuiController::userDeleted(QString name) {
     // delete user from Databank
     con->deleteResident(name.toStdString());

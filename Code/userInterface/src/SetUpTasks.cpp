@@ -23,13 +23,13 @@ SetUpTasks::SetUpTasks(QWidget *parent) : QWidget(parent){
     nameLabel = new QLabel("Name:");
     giveNameEdit = new QLineEdit();
     addButton = new QPushButton (QString::fromUtf8("Aufgabe hinzufügen"), this);
-    saveButton = new QPushButton ("Speichern");
+    saveButton = new QPushButton ("Zurück zum Putzplan");
 
     this->setMainWindowDesign();
     this->setMainLayoutDesign();
 
     QObject::connect(addButton, SIGNAL(clicked()), this, SLOT(setNewTaskCalled()));
-    QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(homePageCalled()));
+    QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(CleanPlanCalled()));
 
     this->setGeometry(          //To Center Window
         QStyle::alignedRect(
@@ -162,8 +162,8 @@ void SetUpTasks::setNewTaskCalled() {
   emit newTaskSignal();
 }
 
-void SetUpTasks::homePageCalled() {
-  emit homePageCallSignal();
+void SetUpTasks::CleanPlanCalled() {
+  emit CleanPlanCallSignal();
 }
 
 void SetUpTasks::deleteTaskCalled(QString name, QString room) {

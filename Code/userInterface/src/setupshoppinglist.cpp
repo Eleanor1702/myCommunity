@@ -7,7 +7,7 @@ SetUpShoppinglist::SetUpShoppinglist(QWidget *parent) : QWidget(parent) {
     //declaration of window contents
     mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, this);
     mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
-    mainLabel = new QLabel("Let's create a shoppinglist..");
+    mainLabel = new QLabel("Einkaufsliste");
 
     scrollAreaRow = new QBoxLayout(QBoxLayout::LeftToRight);
     scrollArea = new QScrollArea(this);
