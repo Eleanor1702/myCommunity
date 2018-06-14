@@ -30,14 +30,6 @@ SOURCES += \
     src/room.cpp \
     src/event.cpp \
     src/resident.cpp \
-    src/taskexpert.cpp \
-    src/ResidentExpert.cpp \
-    src/RoomExpert.cpp \
-    src/EventExpert.cpp \
-    src/Task.cpp \
-    src/concretetask.cpp \
-    src/shoppingitem.cpp \
-    src/shoppingexpert.cpp \
     userInterface/src/GuiController.cpp \
     userInterface/src/HomePage.cpp \
     userInterface/src/SetUpRooms.cpp \
@@ -46,32 +38,30 @@ SOURCES += \
     userInterface/src/SignUp.cpp \
     userInterface/src/StartPage.cpp \
     userInterface/src/RoomListItem.cpp \
+    Database/src/communitydata.cpp \
+    userInterface/src/eventpage.cpp \
     userInterface/src/cleaningpage.cpp \
+    src/taskexpert.cpp \
     userInterface/src/SetUpTasks.cpp \
     userInterface/src/TaskListItem.cpp \
     userInterface/src/eventlistitem.cpp \
+    src/ResidentExpert.cpp \
+    src/RoomExpert.cpp \
+    src/EventExpert.cpp \
+    src/Task.cpp \
     userInterface/src/UserListItem.cpp \
-    userInterface/src/SetUpEvents.cpp \
-    userInterface/src/SetUpConfiguration.cpp \
-    userInterface/src/shoppinglistitem.cpp \
+    src/concretetask.cpp \
     userInterface/src/changepwpage.cpp \
+    src/shoppingitem.cpp \
+    src/shoppingexpert.cpp \
+    userInterface/src/shoppinglistitem.cpp \
     userInterface/src/setupshoppinglist.cpp \
-    Database/src/DatabaseConfig.cpp \
-    Database/src/communitydata.cpp \
 
 HEADERS += \
     lib/controller.h \
     lib/resident.h \
     lib/room.h \
     lib/event.h \
-    lib/taskexpert.h \
-    lib/ResidentExpert.h \
-    lib/RoomExpert.h \
-    lib/EventExpert.h \
-    lib/Task.h \
-    lib/concretetask.h \
-    lib/shoppingitem.h \
-    lib/shoppingexpert.h \
     userInterface/lib/GuiController.h \
     userInterface/lib/HomePage.h \
     userInterface/lib/SetUpRooms.h \
@@ -80,18 +70,26 @@ HEADERS += \
     userInterface/lib/SignUp.h \
     userInterface/lib/StartPage.h \
     userInterface/lib/RoomListItem.h \
+    Database/lib/communitydata.h \
+    userInterface/lib/eventpage.h \
     userInterface/lib/cleaningpage.h \
+    lib/taskexpert.h \
     userInterface/lib/SetUpTasks.h \
     userInterface/lib/TaskListItem.h \
     userInterface/lib/eventlistitem.h \
+    lib/ResidentExpert.h \
+    lib/RoomExpert.h \
+    lib/EventExpert.h \
+    lib/Task.h \
     userInterface/lib/UserListItem.h \
-    userInterface/lib/SetUpEvents.h \
-    userInterface/lib/SetUpConfiguration.h \
+    lib/concretetask.h \
     userInterface/lib/changepwpage.h \
+    lib/shoppingitem.h \
+    lib/shoppingexpert.h \
     userInterface/lib/shoppinglistitem.h \
-    userInterface/lib/setupshoppinglist.h \
-    Database/lib/DatabaseConfig.h \
-    Database/lib/communitydata.h \
+    userInterface/lib/setupshoppinglist.h
+
+
 
 RESOURCES = \
     media/application.qrc \
