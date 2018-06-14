@@ -19,10 +19,11 @@ void UserListItem::setItemStyle(std::string currentUser, QString userName) {
 
     //Layout Design
     this->setLayout(newUserLayout);
-    newUserLayout->addWidget(user);
+    newUserLayout->addWidget(user, 40, Qt::AlignLeft);
 
     if(currentUser == userName.toUtf8().constData()){       //User should only be able to delete himself
-        newUserLayout->addWidget(deleteButton);
+        newUserLayout->addWidget(deleteButton, 50, Qt::AlignRight);
+
     }
 
     //User Design
@@ -31,6 +32,7 @@ void UserListItem::setItemStyle(std::string currentUser, QString userName) {
 
     //Button Design
     deleteButton->setFixedHeight(30);
+    deleteButton->setFixedWidth(70);
     deleteButton->setStyleSheet(".QPushButton{border: 1px solid red;"
                                     "border-radius: 5px; background-color: red;"
                                     " color: white; font-weight: bold;}");

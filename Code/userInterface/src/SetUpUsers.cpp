@@ -16,8 +16,8 @@ SetUpUsers::SetUpUsers(QWidget *parent) : QWidget(parent){
   addUserRow = new QBoxLayout(QBoxLayout::LeftToRight);
 
   mainButtonsRow = new QBoxLayout(QBoxLayout::LeftToRight);
-  backButton = new QPushButton ("Zurück zum Hauptmenü");
   changepwButton = new QPushButton ("Accountpasswort ändern");
+  backButton = new QPushButton ("Zurück zum Hauptmenü");
 
   this->setMainWindowDesign();
   this->setMainLayoutDesign();
@@ -59,15 +59,14 @@ void SetUpUsers::setMainLayoutDesign() {
     this->scrollLayout->setAlignment(Qt::AlignTop);
     this->scrollArea->setWidgetResizable(true);
 
-
+    this->mainButtonsRow->addWidget(changepwButton);
+    changepwButton->setFixedSize(200, 50);
+    changepwButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
+                              "border-radius: 5px; background-color: #3399ff; "
+                              "color: white; font-weight: bold;}");
     this->mainButtonsRow->addWidget(backButton);
     backButton->setFixedSize(200, 50);
     backButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
-                              "border-radius: 5px; background-color: #00b300; "
-                              "color: white; font-weight: bold;}");
-    this->mainButtonsRow->addWidget(changepwButton);
-    changepwButton->setFixedSize(200, 50);
-    changepwButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
                               "border-radius: 5px; background-color: #00b300; "
                               "color: white; font-weight: bold;}");
 }

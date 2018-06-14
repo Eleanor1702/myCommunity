@@ -166,8 +166,8 @@ void EventPage::setMainLayoutDesign(){
     this->ButtonRow->addWidget(addEventButton, 3, Qt::AlignLeft);
     this->ButtonRow->addWidget(saveEventButton, 3, Qt::AlignRight);
     this->addEventButton->setFixedSize(200, 50);
-    this->addEventButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
-                                        "border-radius: 5px; background-color: #00b300; "
+    this->addEventButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
+                                        "border-radius: 5px; background-color: #3399ff; "
                                         "color: white; font-weight: bold;}");
     this->saveEventButton->setFixedSize(200, 50);
     this->saveEventButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
