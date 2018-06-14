@@ -5,18 +5,18 @@ ConcreteTask::ConcreteTask()
 
 }
 //set Task
-void ConcreteTask::setTask(Task task){
-    this->task = task;
+void ConcreteTask::setTask(Task newTask){
+    this->task = newTask;
 }
 
 //set resident
-void ConcreteTask::setResident(std::string resident) {
-    this->resident = resident;
+void ConcreteTask::setResident(std::string newResident) {
+    this->resident = newResident;
 }
 
 //set calendar week
-void ConcreteTask::setCalendarweek(int cw){
-    this->cw = cw;
+void ConcreteTask::setCalendarweek(int newCw){
+    this->cw = newCw;
 }
 
 //get task

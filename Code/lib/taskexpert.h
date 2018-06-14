@@ -2,7 +2,9 @@
 #define TASKEXPERT_H
 
 #include <vector>
+
 #include "Task.h"
+#include "concretetask.h"
 #include "Database/lib/communitydata.h"
 
 class TaskExpert{
@@ -29,6 +31,11 @@ public:
     //Concrete Task methods
     void createConcreteTask(Task task, std::string resident, int cw);
     void deleteConcreteTask(Task task, std::string resident, int cw);
+    std::vector<ConcreteTask> getConcreteTasks();
+    std::vector<ConcreteTask> showConcreteTasks(int cw, std::string user);
+
+
+
 };
 
 #endif // TASKEXPERT_H
