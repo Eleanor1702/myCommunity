@@ -84,6 +84,7 @@ public slots:
 
   //SetUpEvents Slots:
   void newEventSet();
+  void eventAppeared();
   void eventDeleted(QString time, QString date, QString description, QString user);
   //void eventEdited();
 

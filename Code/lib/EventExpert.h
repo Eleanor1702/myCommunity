@@ -29,7 +29,7 @@ public:
     std::vector<std::string> eventUserGetter(std::string user, std::string date);
     std::vector<Event> getUserEvents(std::string user, std::string datetime);
     std::vector<Event> getCommunityEvents();
-    unsigned int getEventSize(std::string user, std::string date);
+    unsigned int eventSizeGetter(std::string user, std::string date);
 
     static EventExpert* getInstance(CommunityData* data);
 };

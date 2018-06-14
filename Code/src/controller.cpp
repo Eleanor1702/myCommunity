@@ -90,7 +90,7 @@ std::vector<std::string> Controller::getEventUser(std::string user, std::string 
 }
 
 int Controller::getSizeEvent(std::string user, std::string date){
-    return evExpert->getEventSize(user, date);
+    return evExpert->eventSizeGetter(user, date);
 }
 
 //TaskExpert

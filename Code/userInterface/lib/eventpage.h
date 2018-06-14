@@ -80,11 +80,13 @@ private slots:
     void setNewEventCalled();
     void deleteEventCalled(QString time, QString date, QString description, QString user);
     void homePageCalled();
+    void appearCalled();
 
 signals:
     void deleteEventSignal(QString, QString, QString, QString);
     void homePageCallSignal();
     void setNewEventSignal();
+    void appearCalledSignal();
 
 
 public:
@@ -95,10 +97,16 @@ public:
     std::string getEventDateInput();
     std::string getEventDescriptionInput();
     std::string getEventUserInput();
+    void deepDeleteLayout (QLayout *layout);
     void appear(std::vector<std::string> timeVec,
                 std::vector<std::string> dateVec,
                 std::vector<std::string> descrVec,
                 std::vector<std::string> userVec, int size);
+
+    void appearAll(std::vector<std::string> timeVec,
+                   std::vector<std::string> dateVec,
+                   std::vector<std::string> descrVec,
+                   std::vector<std::string> userVec, int size);
 
 
 };

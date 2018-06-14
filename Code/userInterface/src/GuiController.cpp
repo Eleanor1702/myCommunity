@@ -66,6 +66,7 @@ GuiController::GuiController(Controller* con) : QWidget() {
     //SetUpEvents Events
     connect(events, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
     connect(events, SIGNAL(setNewEventSignal()), this, SLOT(newEventSet()));
+    connect(events, SIGNAL(appearCalledSignal()), this,SLOT(eventAppeared()));
     connect(events, SIGNAL(deleteEventSignal(QString, QString, QString, QString)), this, SLOT(eventDeleted(QString, QString, QString, QString)));
     //connect event edit
 
@@ -237,6 +238,14 @@ void GuiController::newEventSet(){
     }
     //udate eventlist in Gui
     events->appear(con->getEventTime(events->getEventUserInput(), events->getEventDateInput()),
+                   con->getEventDate(events->getEventUserInput(), events->getEventDateInput()),
+                   con->getEventDescription(events->getEventUserInput(), events->getEventDateInput()),
+                   con->getEventUser(events->getEventUserInput(), events->getEventDateInput()),
+                   con->getSizeEvent(events->getEventUserInput(), events->getEventDateInput()));
+}
+
+void GuiController::eventAppeared(){
+    events->appearAll(con->getEventTime(events->getEventUserInput(), events->getEventDateInput()),
                    con->getEventDate(events->getEventUserInput(), events->getEventDateInput()),
                    con->getEventDescription(events->getEventUserInput(), events->getEventDateInput()),
                    con->getEventUser(events->getEventUserInput(), events->getEventDateInput()),

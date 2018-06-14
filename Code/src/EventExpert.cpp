@@ -41,7 +41,7 @@ void EventExpert::editEvent(std::string time, std::string date, std::string desc
     data->updateEvent(ev, (newdate+newtime), newdescription);
 }
 
-unsigned int EventExpert::getEventSize(std::string user, std::string date){
+unsigned int EventExpert::eventSizeGetter(std::string user, std::string date){
     return (data->getAllEvents(user, date)).size();
 }
 
