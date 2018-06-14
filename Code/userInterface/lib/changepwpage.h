@@ -29,7 +29,8 @@ private:
     QBoxLayout *mainLabelRow;
     QLabel *mainLabel;
 
-    QBoxLayout *changePwRow;
+    QBoxLayout *oldPwRow;
+    QBoxLayout *newPwRow;
 
     QBoxLayout *mainButtonsRow;
     QLabel *oldpwLabel;
@@ -37,11 +38,16 @@ private:
     QLabel *newpwLabel;
     QLineEdit *giveNewpwEdit;
 
+    QBoxLayout* errorMsgRow;
+    QLabel* errorMsgLabel;
+
     QPushButton *saveButton;
     QPushButton *backButton;
 
     void setMainWindowDesign();
     void setMainLayoutDesign();
+    void falseData();
+    void validate();
 
 private slots:
     void setupusersCalled();    //go back to SetUpUsers interface
@@ -57,6 +63,8 @@ public:
     std::string getOldPwInput();
     std::string getNewPwInput();
 
+    void appear();
+    void clearContent();
 };
 
 

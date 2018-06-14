@@ -6,15 +6,19 @@ changePwPage::changePwPage(QWidget *parent) : QWidget(parent){
     mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
     mainLabel = new QLabel("Passwort ändern");
 
-    changePwRow = new QBoxLayout(QBoxLayout::LeftToRight);
+    oldPwRow = new QBoxLayout(QBoxLayout::LeftToRight);
+    newPwRow = new QBoxLayout(QBoxLayout::LeftToRight);
 
     mainButtonsRow = new QBoxLayout(QBoxLayout::LeftToRight);
     oldpwLabel = new QLabel("Altes Passwort:");
     giveOldpwEdit = new QLineEdit();
     newpwLabel = new QLabel("Neues Passwort");
     giveNewpwEdit = new QLineEdit();
-    saveButton = new QPushButton(QString::fromUtf8("Neues Passwort speichern"), this);
-    backButton = new QPushButton("Zurück ohne Passwortänderung");
+    saveButton = new QPushButton(QString::fromUtf8("Neues Passwort \n speichern"), this);
+    backButton = new QPushButton("Zurück ohne \n Passwortänderung");
+
+    errorMsgRow = new QBoxLayout(QBoxLayout::LeftToRight);
+    errorMsgLabel = new QLabel();
 
     this->setMainWindowDesign();
     this->setMainLayoutDesign();
@@ -35,13 +39,15 @@ changePwPage::changePwPage(QWidget *parent) : QWidget(parent){
 }
 
 void changePwPage::setMainWindowDesign(){
-    this->setFixedSize(800, 600);
+    this->setFixedSize(400, 300);
     this->setStyleSheet("background-color: white;");
     this->setWindowTitle(QString::fromUtf8("Passwort ändern"));
 
     mainLayout->addLayout(mainLabelRow);
-    mainLayout->addLayout(changePwRow);
+    mainLayout->addLayout(oldPwRow);
+    mainLayout->addLayout(newPwRow);
     mainLayout->addLayout(mainButtonsRow);
+    mainLayout->addLayout(errorMsgRow);
 
 
     this->setLayout(mainLayout);
@@ -52,27 +58,35 @@ void changePwPage::setMainLayoutDesign(){
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
                                    "font-weight: bold; margin-top: 5px; color: #aaa;");
 
-    this->changePwRow->addWidget(oldpwLabel);
-    this->changePwRow->addWidget(giveOldpwEdit);
+    this->oldPwRow->addWidget(oldpwLabel);
+    this->oldPwRow->addWidget(giveOldpwEdit);
     this->giveOldpwEdit->setMaxLength(4);
     this->giveOldpwEdit->setEchoMode(QLineEdit::Password);
-    this->changePwRow->addWidget(newpwLabel);
-    this->changePwRow->addWidget(giveNewpwEdit);
+    this->giveOldpwEdit->setValidator(new QIntValidator(0, 10000, this));
+
+    this->newPwRow->addWidget(newpwLabel);
+    this->newPwRow->addWidget(giveNewpwEdit);
     this->giveNewpwEdit->setMaxLength(4);
     this->giveNewpwEdit->setEchoMode(QLineEdit::Password);
+    this->giveNewpwEdit->setValidator(new QIntValidator(0, 10000, this));
+
 
     this->mainButtonsRow->addWidget(saveButton);
-    saveButton->setFixedSize(230, 50);
+    saveButton->setFixedSize(180, 50);
     saveButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                              "border-radius: 5px; background-color: #3399ff; "
                              "color: white; font-weight: bold;}");
 
 
     this->mainButtonsRow->addWidget(backButton);
-    backButton->setFixedSize(230, 50);
+    backButton->setFixedSize(180, 50);
     backButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
                               "border-radius: 5px; background-color: #00b300; "
                               "color: white; font-weight: bold;}");
+
+    errorMsgRow->addWidget(errorMsgLabel, 0, Qt::AlignCenter);
+    errorMsgLabel->setStyleSheet("font-weight: bold; color:red");
+    errorMsgLabel->hide();
 
 
 }
@@ -95,11 +109,55 @@ std::string changePwPage::getNewPwInput(){
 
 }
 
+void changePwPage::falseData() {
+    giveOldpwEdit->clear();
+    giveNewpwEdit->clear();
+    errorMsgLabel->setText("invalid password");
+    errorMsgLabel->show();
+}
+
+
+void changePwPage::validate() {
+    QString password = giveNewpwEdit->text();
+
+    bool shortpasswordError = password.size() < 4 || password[0] == ' ';
+
+
+        if(shortpasswordError) {
+            throw std::string("Password does not meet password policy requirements");
+        }
+        //else if()
+          //  {throw std::string("Falsches Passwot!");
+
+
+    //}
+}
+
+
+void changePwPage::clearContent() {
+    giveNewpwEdit->clear();
+    giveOldpwEdit->clear();
+    errorMsgLabel->hide();
+}
+
+void changePwPage::appear() {
+    this->clearContent();
+    this->show();
+}
+
 void changePwPage::setupusersCalled(){
     emit setupusersSignal();
 }
 
 void changePwPage::changepwCalled(){
+    try{
+        validate();
+    }
+    catch (std::string error) {
+        errorMsgLabel->setText(QString::fromStdString(error));
+        errorMsgLabel->show();
+        return;
+    }
     emit changepwSignal();
 }
 

@@ -204,8 +204,7 @@ void GuiController::userDeleted(QString name) {
 }
 
 void GuiController::callPwPage(){
-    users->hide();
-    pwpage->show();
+    pwpage->appear();
 }
 
 //PWPage Events
@@ -214,10 +213,12 @@ void GuiController::changePW(){
     if(con->rsExpert->verifyLogInData(con->rsExpert->getCurrentUser(), std::stoi(pwpage->getOldPwInput()))){    //old pw = pw
         con->editResident(con->rsExpert->getCurrentUser(), std::stoi(pwpage->getNewPwInput()));
         users->show();
-        pwpage->giveOldpwEdit->clear();
-        pwpage->giveNewpwEdit->clear();
+        pwpage->clearContent();
         pwpage->hide();
 
+    }
+    else{
+        pwpage->falseData();
     }
 }
 
@@ -230,6 +231,7 @@ void GuiController::callHomePage() {
     events->hide();
     rooms->hide();
     users->hide();
+    pwpage->hide();
     shop->hide();
 }
 
