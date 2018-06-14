@@ -53,6 +53,5 @@ void EventListItem::editEvent(){
 
 void EventListItem::deleteEvent(){
     emit deleteEventSignal(time, date, description, user);
-    this->close();
 }
 
