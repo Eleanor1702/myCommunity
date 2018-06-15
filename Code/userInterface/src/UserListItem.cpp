@@ -19,10 +19,10 @@ void UserListItem::setItemStyle(std::string currentUser, QString userName) {
 
     //Layout Design
     this->setLayout(newUserLayout);
-    newUserLayout->addWidget(user, 40, Qt::AlignLeft);
+    newUserLayout->addWidget(user, 0, Qt::AlignLeft);
 
     if(currentUser == userName.toUtf8().constData()){       //User should only be able to delete himself
-        newUserLayout->addWidget(deleteButton, 50, Qt::AlignRight);
+        newUserLayout->addWidget(deleteButton, 0, Qt::AlignRight);
 
     }
 

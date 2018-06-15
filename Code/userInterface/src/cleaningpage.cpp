@@ -28,6 +28,7 @@ CleaningPage::CleaningPage(QWidget *parent) : QWidget(parent) {
     );
 
     QObject::connect(setuptaskButton, SIGNAL(clicked()), this, SLOT(taskCalled()));
+    QObject::connect(createPlanButton,SIGNAL(clicked()),this,SLOT(createPlanCalled()));
     QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(homePageCalled()));
 }
 
@@ -76,6 +77,10 @@ void CleaningPage::setMainLayoutDesign(){
 
 void CleaningPage::taskCalled() {
   emit taskCallSignal();
+}
+
+void CleaningPage::createPlanCalled(){
+    emit createPlanSignal();
 }
 
 void CleaningPage::homePageCalled() {

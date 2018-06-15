@@ -56,6 +56,7 @@ SOURCES += \
     src/shoppingexpert.cpp \
     userInterface/src/shoppinglistitem.cpp \
     userInterface/src/setupshoppinglist.cpp \
+    userInterface/src/setupcleaningplan.cpp \
 
 HEADERS += \
     lib/controller.h \
@@ -87,7 +88,8 @@ HEADERS += \
     lib/shoppingitem.h \
     lib/shoppingexpert.h \
     userInterface/lib/shoppinglistitem.h \
-    userInterface/lib/setupshoppinglist.h
+    userInterface/lib/setupshoppinglist.h \
+    userInterface/lib/setupcleaningplan.h \
 
 
 

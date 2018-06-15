@@ -23,9 +23,6 @@
 #include "eventlistitem.h"
 
 
-
-
-
 class EventPage : public QWidget
 {
     Q_OBJECT

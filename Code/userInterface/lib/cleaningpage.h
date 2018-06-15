@@ -35,10 +35,12 @@ private:
 
 private slots:
     void taskCalled();
+    void createPlanCalled();
     void homePageCalled();
 
 signals:
     void taskCallSignal();
+    void createPlanSignal();
     void homePageCallSignal();
 };
 

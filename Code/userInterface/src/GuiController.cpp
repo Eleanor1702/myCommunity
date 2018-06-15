@@ -25,6 +25,7 @@ GuiController::GuiController(Controller* con) : QWidget() {
     this->events = new EventPage();
     this->clean = new CleaningPage();
     this->task = new SetUpTasks();
+    this->plan = new SetUpCleaningPlan();
     this->shop = new SetUpShoppinglist();
 
     this->con = con;
@@ -73,11 +74,15 @@ GuiController::GuiController(Controller* con) : QWidget() {
     //CleaningPage Events
     connect(clean, SIGNAL(taskCallSignal()), this, SLOT(callTask()));
     connect(clean, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
+    connect(clean, SIGNAL(createPlanSignal()),this,SLOT(callCreatePlan()));
 
     //SetUpTask Events
     connect(task, SIGNAL(newTaskSignal()), this, SLOT(newTaskSet()));
     connect(task, SIGNAL(deleteTaskSignal(QString, QString)), this, SLOT(taskDeleted(QString, QString)));
     connect(task, SIGNAL(CleanPlanCallSignal()), this, SLOT(callCleanPlan()));
+
+    //SetUpPlan Events
+    connect(plan, SIGNAL(CleanPlanCallSignal()), this,SLOT(callCleanPlan()));
 
     //SetUpShoppinglist Events
     connect(shop, SIGNAL(setNewItemSignal()), this, SLOT(newItemSet()));
@@ -152,6 +157,8 @@ void GuiController::callCleanPlan(){
     //Show cleaningplan
     clean->show();
     home->hide();
+    task->hide();
+    plan->hide();
 }
 
 void GuiController::callShoppingList() {
@@ -292,6 +299,11 @@ void GuiController::eventDeleted(QString time, QString date, QString description
 void GuiController::callTask(){
     task->appear(con->getTaskName(), con->getTaskRoom(), con->getTaskFrequency(), con->getTasklistSize());
     task->setRoomCombobox(con->getRoomNames());
+    clean->hide();
+}
+
+void GuiController::callCreatePlan(){
+    plan->show();
     clean->hide();
 }
 

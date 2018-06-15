@@ -15,6 +15,7 @@
 #include "userInterface/lib/cleaningpage.h"
 #include "userInterface/lib/changepwpage.h"
 #include "userInterface/lib/setupshoppinglist.h"
+#include "userInterface/lib/setupcleaningplan.h"
 
 #include "lib/controller.h"
 
@@ -37,6 +38,7 @@ private:
 
   CleaningPage *clean;
   SetUpTasks *task;
+  SetUpCleaningPlan *plan;
 
   SetUpShoppinglist* shop;
 
@@ -91,7 +93,7 @@ public slots:
 
   //Cleaning Plan Slots:
   void callTask();
-  //void createPlanButtonClicked();
+  void callCreatePlan();
 
   //SetUpTask Slots:
   void taskDeleted(QString task, QString room);
