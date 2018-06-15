@@ -152,7 +152,6 @@ void CommunityData::addItem(Shoppingitem si) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("INSERT INTO ShoppingList(Item, Number) VALUES (?,?)");
     stmt->setString(1,si.getItemName());
-    //stmt->setInt(2, si.getNumber());
     stmt->setString(2, si.getNumber());
     stmt->execute();
     delete stmt;
@@ -352,7 +351,7 @@ std::vector<Event> CommunityData::getAllEventsOfUser(std::string user, std::stri
 std::vector<Event> CommunityData::getAllCommunityEvents() {
     std::vector<Event> list;
     ResultSet* resultSet = NULL;
-    PreparedStatement* stmt;
+    PreparedStatement* stmt; //si.setNumber(resultSet->getInt("Number"));
     stmt = con->prepareStatement("SELECT * FROM CommunityEvent");
     resultSet = stmt->executeQuery();
     while(resultSet->next()) {
@@ -417,7 +416,6 @@ std::vector<Shoppingitem> CommunityData::getAllItems() {
     while(resultSet->next()) {
         Shoppingitem si;
         si.setItemName(resultSet->getString("Item"));
-        //si.setNumber(resultSet->getInt("Number"));
         si.setNumber(resultSet->getString("Number"));
         list.push_back(si);
     }

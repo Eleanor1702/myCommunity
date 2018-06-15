@@ -1,5 +1,6 @@
 #include "userInterface/lib/shoppinglistitem.h"
 
+//shoppinglist item
 ShoppinglistItem::ShoppinglistItem(QString itemName, std::string number, QWidget *parent) : QFrame(parent){
     this->newItemLayout = new QHBoxLayout();
     this->item = new QLabel(QString::fromStdString(number) + " "+ itemName);
@@ -33,6 +34,7 @@ void ShoppinglistItem::setItemStyle() {
                                       " color: white; font-weight: bold;}");
 }
 
+//delete item
 void ShoppinglistItem::deleteShopItem() {
     emit deleteShopItemSignal(name);
 }

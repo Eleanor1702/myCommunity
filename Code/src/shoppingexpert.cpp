@@ -2,6 +2,7 @@
 
 ShoppingExpert* ShoppingExpert::instance = NULL;
 
+//Singleton, so only one Instance can exist
 ShoppingExpert* ShoppingExpert::getInstance(CommunityData *data) {
     if(instance == NULL){
         instance = new ShoppingExpert(data);
