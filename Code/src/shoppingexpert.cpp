@@ -14,7 +14,7 @@ ShoppingExpert::ShoppingExpert(CommunityData *data) {
 }
 
 //create a new shoppingitem
-void ShoppingExpert::createItem(std::string name, int number) {
+void ShoppingExpert::createItem(std::string name, std::string number) {
     Shoppingitem si;
     si.setItemName(name);
     si.setNumber(number);
@@ -36,8 +36,8 @@ std::vector<std::string> ShoppingExpert::itemNameGetter() {
 }
 
 //get all item numbers
-std::vector<int> ShoppingExpert::itemNumberGetter() {
-    std::vector<int> numberVector;
+std::vector<std::string> ShoppingExpert::itemNumberGetter() {
+    std::vector<std::string> numberVector;
     for(unsigned int i = 0; i< getItems().size(); i++) {
         numberVector.push_back(getItems()[i].getNumber());
     }

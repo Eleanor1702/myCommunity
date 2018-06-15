@@ -119,7 +119,7 @@ int Controller::getTasklistSize(){
 
 //ShoppingExpert
 
-void Controller::addItem(std::string itemname, int number) {
+void Controller::addItem(std::string itemname, std::string number) {
     shExpert->createItem(itemname, number);
 }
 
@@ -130,7 +130,7 @@ void Controller::deleteItem(std::string itemname) {
 std::vector<std::string> Controller::getItemNames() {
     return shExpert->itemNameGetter();
 }
-std::vector<int> Controller::getItemNumbers() {
+std::vector<std::string> Controller::getItemNumbers() {
     return shExpert->itemNumberGetter();
 }
 int Controller::getItemlistSize() {

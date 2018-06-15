@@ -15,11 +15,11 @@ protected:
     ShoppingExpert(CommunityData* data);
 
 public:
-    void createItem(std::string itemname, int number);
+    void createItem(std::string itemname, std::string number);
     void deleteItem(std::string);
 
     std::vector<std::string> itemNameGetter();
-    std::vector<int> itemNumberGetter();
+    std::vector<std::string> itemNumberGetter();
 
     std::vector<Shoppingitem> getItems();
 

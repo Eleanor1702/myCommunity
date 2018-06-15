@@ -309,7 +309,7 @@ void GuiController::taskDeleted(QString taskname, QString room){
 //SetUpShoppinglist Events
 void GuiController::callShoppingList() {
     shop->appear(con->getItemNames(), con->getItemNumbers(), con->getItemlistSize());
-    main->hide();
+    home->hide();
 }
 
 void GuiController::newItemSet() {

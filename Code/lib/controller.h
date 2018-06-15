@@ -62,10 +62,10 @@ public:
         int getSizeEvent(std::string user, std::string date);
 
         //Shopping items
-        void addItem(std::string itemname, int number);
+        void addItem(std::string itemname, std::string number);
         void deleteItem(std::string itemname);
         std::vector<std::string> getItemNames();
-        std::vector<int> getItemNumbers();
+        std::vector<std::string> getItemNumbers();
         int getItemlistSize();
 
         //Methods currentUser

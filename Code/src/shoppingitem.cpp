@@ -7,7 +7,7 @@ void Shoppingitem::setItemName(std::string name) {
     this->itemname = name;
 }
 
-void Shoppingitem::setNumber(int number) {
+void Shoppingitem::setNumber(std::string number) {
     this->number = number;
 }
 
@@ -15,6 +15,6 @@ std::string Shoppingitem::getItemName() {
     return itemname;
 }
 
-int Shoppingitem::getNumber() {
+std::string Shoppingitem::getNumber() {
     return number;
 }

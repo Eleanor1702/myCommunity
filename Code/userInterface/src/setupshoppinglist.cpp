@@ -19,7 +19,7 @@ SetUpShoppinglist::SetUpShoppinglist(QWidget *parent) : QWidget(parent) {
     mainButtonsRow = new QBoxLayout(QBoxLayout::LeftToRight);
     ItemNameLabel = new QLabel("Produkt:");
     giveNameEdit = new QLineEdit();
-    ItemNumberLabel = new QLabel("Anzahl");
+    ItemNumberLabel = new QLabel("Menge");
     giveNumberEdit = new QLineEdit();
     addButton = new QPushButton ("Produkt hinzufügen");
     saveButton = new QPushButton("Zurück zum Hauptmenü");
@@ -92,7 +92,6 @@ void SetUpShoppinglist::setMainLayoutDesign() {
 }
 
 std::string SetUpShoppinglist::getItemNameInput() {
-    //proceed only with a room name
     if(this->giveNameEdit->text().size() == 0 || this->giveNameEdit->text()[0] == ' '){
         return "Error";
     }
@@ -100,13 +99,12 @@ std::string SetUpShoppinglist::getItemNameInput() {
     return this->giveNameEdit->text().toStdString();
 }
 
-int SetUpShoppinglist::getItemNumberInput() {
-    //proceed only with a room name
+std::string SetUpShoppinglist::getItemNumberInput() {
     if(this->giveNumberEdit->text().size() == 0 || this->giveNumberEdit->text()[0] == ' '){
-        return 1;
+        return "Error";
     }
 
-    return this->giveNumberEdit->text().toInt();
+    return this->giveNumberEdit->text().toStdString();
 }
 
 void SetUpShoppinglist::deepDeleteLayout(QLayout *layout) {
@@ -126,7 +124,7 @@ void SetUpShoppinglist::deepDeleteLayout(QLayout *layout) {
     }
 }
 
-void SetUpShoppinglist::appear(std::vector<std::string>nameVec, std::vector<int> numberVec, int size) {
+void SetUpShoppinglist::appear(std::vector<std::string>nameVec, std::vector<std::string> numberVec, int size) {
     deepDeleteLayout(scrollLayout);
 
     for(int i = 0; i < size; i++) {

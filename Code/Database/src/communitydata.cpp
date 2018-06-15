@@ -92,7 +92,7 @@ void CommunityData::createTaskTable(){
 void CommunityData::createShoppinglistTable(){
     Statement* stmt;
     stmt = con->createStatement();
-    stmt->execute("CREATE TABLE IF NOT EXISTS ShoppingList (Item VARCHAR(50), Number INT)");
+    stmt->execute("CREATE TABLE IF NOT EXISTS ShoppingList (Item VARCHAR(50), Number VARCHAR(20))");
     delete stmt;
 }
 
@@ -152,7 +152,8 @@ void CommunityData::addItem(Shoppingitem si) {
     PreparedStatement* stmt;
     stmt = con->prepareStatement("INSERT INTO ShoppingList(Item, Number) VALUES (?,?)");
     stmt->setString(1,si.getItemName());
-    stmt->setInt(2, si.getNumber());
+    //stmt->setInt(2, si.getNumber());
+    stmt->setString(2, si.getNumber());
     stmt->execute();
     delete stmt;
 }
@@ -416,7 +417,8 @@ std::vector<Shoppingitem> CommunityData::getAllItems() {
     while(resultSet->next()) {
         Shoppingitem si;
         si.setItemName(resultSet->getString("Item"));
-        si.setNumber(resultSet->getInt("Number"));
+        //si.setNumber(resultSet->getInt("Number"));
+        si.setNumber(resultSet->getString("Number"));
         list.push_back(si);
     }
     delete stmt;
