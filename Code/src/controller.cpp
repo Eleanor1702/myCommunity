@@ -117,6 +117,11 @@ int Controller::getTasklistSize(){
     return taExpert->getTasks().size();
 }
 
+/*void Controller::addConcreteTask(std::string taskname, std::string room, std::string resident, int week) {
+
+    taExpert->createConcreteTask();
+}
+*/
 //ShoppingExpert
 
 void Controller::addItem(std::string itemname, std::string number) {

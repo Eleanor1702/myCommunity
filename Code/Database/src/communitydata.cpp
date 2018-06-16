@@ -127,7 +127,7 @@ void CommunityData::deleteResident(std::string name) {
     stmt->setString(1, name);
     stmt->execute();
     deleteCalendar(name); //delete calendar of deleted resident
-    //deleteResidentCleaningplan(name); //delete his cleaning tasks
+    deleteResidentCleaningplan(name); //delete his cleaning tasks
     delete stmt;
 }
 //get all residents from database
@@ -315,22 +315,24 @@ std::vector<Event> CommunityData::getAllEvents(std::string user, std::string dat
 void CommunityData::createCleaningTable(){
     Statement* stmt;
     stmt = con->createStatement();
-    stmt->execute("CREATE TABLE IF NOT EXISTS Cleaning (Task VARCHAR(50), Resident VARCHAR(50), Week DATE)");
+    stmt->execute("CREATE TABLE IF NOT EXISTS Cleaning (Task VARCHAR(50), Resident VARCHAR(50), Week INT)");
 }
-void CommunityData::addToCleaningplan(std::string task, std::string resident, std::string week){
+void CommunityData::addToCleaningplan(ConcreteTask ctask){
     PreparedStatement* stmt;
     stmt = con->prepareStatement("INSERT INTO Cleaning(Task, Resident, Week) VALUES(?, ?, ?)");
-    stmt->setString(1, task);
-    stmt->setString(2, resident);
-    stmt->setDateTime(3, week);
+    stmt->setString(1, ctask.getTask().getName());
+    stmt->setString(2, ctask.getResident());
+    stmt->setInt(3, ctask.getCalendarweek());
     stmt->execute();
     delete stmt;
 }
-//update cleaningplan by task
-void CommunityData::deleteTaskCleaningplan(std::string task){
+//delete a concrete task
+void CommunityData::deleteConcreteTask(Task ta, std::string resident, int week){
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("DELETE FROM Cleaning WHERE Task = ?");
-    stmt->setString(1, task);
+    stmt = con->prepareStatement("DELETE FROM Cleaning WHERE Task = ? AND Resident = ? AND Week = ?");
+    stmt->setString(1, ta.getName());
+    stmt->setString(2, resident);
+    stmt->setInt(3,week);
     stmt->execute();
     delete stmt;
 }
@@ -351,6 +353,31 @@ void CommunityData::deleteResidentCleaningplan(std::string resident){
     delete stmt;
 }*/
 
+//update cleaningplan by task
+void CommunityData::deleteTaskCleaningplan(std::string name, std::string room) {
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("DELETE FROM Cleaning WHERE Task = ?");
+    stmt->setString(1, name);
+    stmt->execute();
+    delete stmt;
+}
+
+std::vector<ConcreteTask> CommunityData::getAllConcreteTasks() {
+    std::vector<ConcreteTask> list;
+    ResultSet* resultSet = NULL;
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("SELECT * FROM Cleaning");
+    resultSet = stmt->executeQuery();
+    while(resultSet->next()) {
+        ConcreteTask ctask;
+        ctask.setResident(resultSet->getString("Resident"));
+        ctask.setCalendarweek(resultSet->getInt("Week"));
+
+    }
+    delete stmt;
+    delete resultSet;
+    return list;
+}
 
 //****Tasks*****
 
@@ -379,7 +406,7 @@ void CommunityData::deleteTaskByName(std::string taskname, std::string room){
     stmt->setString(2, room);
     stmt->execute();
     //update cleaning plan
-
+    deleteTaskCleaningplan(taskname, room);
     delete stmt;
 }
 //delete all tasks of a room

@@ -17,7 +17,8 @@
 #include "lib/event.h"
 #include "lib/Task.h"
 #include "lib/shoppingitem.h"
-#include <time.h>
+#include "lib/concretetask.h"
+
 
 class CommunityData {
 private:
@@ -35,51 +36,54 @@ public:
     ~CommunityData();
 
     bool connect(std::string user, std::string password, std::string host, std::string database);
+    //Rooms
     void createRoomTable();
+    void addRoom(Room ro);
+    void deleteRoom(std::string name);
+    std::vector<Room> getAllRooms();
+
+    //Residents
     void createResidentTable();
+    void addResident(Resident re);
+    void updatePassword(std::string user, int password);
+    void deleteResident(std::string name);
+    std::vector<std::string> getAllResidents();
+    bool verifyLogInData(std::string, int);
+    bool verifyName(std::string);
+
+    //Calendar
     void createCalendarTable();
     //void createEventUserView(string user);
     void createEventCommunityView();
-    void createCleaningTable();
-    void createTaskTable();
-    void createShoppinglistTable();
-
-    void addResident(Resident re);
-    void addRoom(Room ro);
     void addEvent(Event ev);
-    void addTask(Task ta);
-    void addToCleaningplan(std::string task, std::string resident, std::string week);
-    void addItem(Shoppingitem si);
-
-    void updatePassword(std::string user, int password);
     void updateEvent(Event ev, std::string timedate,std::string description);
-
-    void deleteResident(std::string name);
-    void deleteRoom(std::string name);
     void deleteEvent(Event ev);
-    void deleteShoppinglistItem(std::string item);
-
-    void deleteAllTaskOfRoom(std::string room);
-    void deleteTaskByName(std::string taskname, std::string room );
-
     void deleteCalendar(std::string user);
-
-    void deleteTaskCleaningplan(std::string task);
-    void deleteResidentCleaningplan(std::string resident);
-    void deleteRoomCleaningplan(std::string room);
-
-    std::vector<std::string> getAllResidents();
-    std::vector<Room> getAllRooms();
     std::vector<Event> getAllEventsOfUser(std::string user, std::string datetime);
     std::vector<Event> getAllCommunityEvents();
     std::vector<Event> getAllEvents(std::string user, std::string date);
+
+    //Cleaning plan
+    void createCleaningTable();
+    void addToCleaningplan(ConcreteTask ctask);
+    void deleteConcreteTask(Task ta, std::string resident, int week);
+    void deleteTaskCleaningplan(std::string name, std::string room);
+    void deleteResidentCleaningplan(std::string resident);
+    void deleteRoomCleaningplan(std::string room);
+    std::vector<ConcreteTask> getAllConcreteTasks();
+
+    //Tasks
+    void createTaskTable();
+    void addTask(Task ta);
+    void deleteAllTaskOfRoom(std::string room);
+    void deleteTaskByName(std::string taskname, std::string room );
     std::vector<Task> getAllTasks();
+
+    //Shoppinglist
+    void createShoppinglistTable();
+    void addItem(Shoppingitem si);
+    void deleteShoppinglistItem(std::string item);
     std::vector<Shoppingitem> getAllItems();
-
-    // getCleaningPlan()
-
-    bool verifyLogInData(std::string, int);
-    bool verifyName(std::string);
 };
 
 #endif // COMMUNITYDATA_H

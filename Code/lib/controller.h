@@ -42,15 +42,6 @@ public:
         std::vector<std::string>getUserNames();
         int getUserlistSize();
 
-        //Task
-        void addTask(std::string name, std::string room, std::string frequency);
-        void deleteTask(std::string name, std::string room);
-        void editTask();
-        std::vector<std::string>getTaskName();
-        std::vector<std::string>getTaskRoom();
-        std::vector<std::string>getTaskFrequency();
-        int getTasklistSize();
-
         //Event
         void addEvent (std::string time, std::string date, std::string description, std::string user);
         void deleteEvent(std::string time, std::string date, std::string descpription, std::string user);
@@ -60,6 +51,18 @@ public:
         std::vector<std::string>getEventDescription(std::string user, std::string date);
         std::vector<std::string>getEventUser(std::string user, std::string date);
         int getSizeEvent(std::string user, std::string date);
+
+        //Task
+        void addTask(std::string name, std::string room, std::string frequency);
+        void deleteTask(std::string name, std::string room);
+        void editTask();
+        std::vector<std::string>getTaskName();
+        std::vector<std::string>getTaskRoom();
+        std::vector<std::string>getTaskFrequency();
+        int getTasklistSize();
+
+        //Cleaning plan / Concrete Tasks
+        void addConcreteTask(std::string taskname, std::string taskroom, std::string room, int week);
 
         //Shopping items
         void addItem(std::string itemname, std::string number);

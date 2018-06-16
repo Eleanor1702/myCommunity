@@ -64,7 +64,7 @@ TaskExpert* TaskExpert::getInstance(CommunityData* data){
     }
     return instance;
 }
-/***************************ConcreteTasks
+//***************************ConcreteTasks
 
 //get all concretTasks
 std::vector<ConcreteTask> TaskExpert::getConcreteTasks(){
@@ -73,17 +73,18 @@ std::vector<ConcreteTask> TaskExpert::getConcreteTasks(){
 
 void TaskExpert::createConcreteTask(Task task, std::string resident, int cw){
     ConcreteTask cTask;
-        cTask.setTask(task);
-        cTask.setResident(resident);
-        cTask.setCalendarweek(cw);
-        data->addConcreteTask(cTask);   //TODO
+
+     cTask.setTask(task);
+     cTask.setResident(resident);
+     cTask.setCalendarweek(cw);
+     data->addToCleaningplan(cTask);
 
 }
 
 void TaskExpert::deleteConcreteTask(Task task, std::string resident, int cw){
     data->deleteConcreteTask(task,resident,cw);
 }
-
+/*
 std::vector<ConcreteTask> TaskExpert::showConcreteTasks(int cw, std::string user){
     std::vector<ConcreteTask> concreteTaskVector;
 
