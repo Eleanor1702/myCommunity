@@ -105,7 +105,7 @@ public slots:
 
 public:
     static void startApplication(Controller* con);
-    std::vector<std::string>getRooms();
+    //std::vector<std::string>getRooms();
 
 protected:
     static GuiController* getInstance(Controller* con);        //Singleton

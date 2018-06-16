@@ -54,6 +54,8 @@ private:
 public:
     explicit SetUpCleaningPlan(QWidget *parent = NULL);
 
+    void setTaskCombobox(std::vector<std::string> Tasks, std::vector<std::string> Rooms);
+    void setResidentCombobox(std::vector<std::string> Residents);
 private slots:
     void CleanPlanCalled();
 signals:

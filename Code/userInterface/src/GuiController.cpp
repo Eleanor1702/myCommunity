@@ -304,6 +304,8 @@ void GuiController::callTask(){
 
 void GuiController::callCreatePlan(){
     plan->show();
+    plan->setTaskCombobox(con->getTaskName(), con->getTaskRoom());
+    plan->setResidentCombobox(con->getUserNames());
     clean->hide();
 }
 

@@ -40,6 +40,15 @@ SetUpCleaningPlan::SetUpCleaningPlan(QWidget *parent) : QWidget(parent)
     this->setMainLayoutDesign();
 
     QObject::connect(backButton,SIGNAL(clicked()),this,SLOT(CleanPlanCalled()));
+
+    this->setGeometry(
+        QStyle::alignedRect(
+            Qt::LeftToRight,
+            Qt::AlignCenter,
+            this->size(),
+            qApp->desktop()->availableGeometry()
+         )
+    );
 }
 
 void SetUpCleaningPlan::setMainWindowDesign(){
@@ -121,4 +130,22 @@ void SetUpCleaningPlan::setMainLayoutDesign(){
 
 void SetUpCleaningPlan::CleanPlanCalled(){
     emit CleanPlanCallSignal();
+}
+
+void SetUpCleaningPlan::setTaskCombobox(std::vector<std::string> Tasks, std::vector<std::string> Rooms) {
+    QStringList tasks;
+    for(unsigned int i = 0; i< Tasks.size(); i++) {
+        tasks.push_back(QString::fromStdString(Rooms[i]) + " - " + QString::fromStdString(Tasks[i]));
+    }
+    selectTaskCombo->clear();
+    selectTaskCombo->addItems(tasks);
+}
+
+void SetUpCleaningPlan::setResidentCombobox(std::vector<std::string> Residents) {
+    QStringList res;
+    for(unsigned int i = 0; i< Residents.size(); i++) {
+        res.push_back(QString::fromStdString(Residents[i]));
+    }
+    selectResCombo->clear();
+    selectResCombo->addItems(res);
 }
