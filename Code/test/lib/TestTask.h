@@ -9,6 +9,8 @@ class TestTask : public QObject {
 
 private slots:
     void testName();
+    void testRoom();
+    void testFrequency();
 };
 
 #endif // TESTTASK_H

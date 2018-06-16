@@ -10,7 +10,7 @@ void TestResidentExpert::testCreateResident() {
     ResidentExpert* testResidentExpert = ResidentExpert::getInstance(testData);
 
     testResidentExpert->createResident("User", 1234);
-    QVERIFY(testResidentExpert->getResidents().size() == 1);
+    QVERIFY(testResidentExpert->userNameGetter().size() == 1);
     QVERIFY(testResidentExpert->userNameGetter()[0] == "User");
 }
 
@@ -20,7 +20,7 @@ void TestResidentExpert::testDeleteResident() {
 
     testResidentExpert->createResident("User", 1234);
     testResidentExpert->deleteResident("User");
-    QVERIFY(testResidentExpert->getResidents().size() == 0);
+    QVERIFY(testResidentExpert->userNameGetter().size() == 0);
 }
 
 void TestResidentExpert::testEditResident() {
@@ -29,8 +29,8 @@ void TestResidentExpert::testEditResident() {
 
     testResidentExpert->createResident("User", 1234);
     testResidentExpert->editResident("User", 4567);
-    QVERIFY(testResidentExpert->getResidents()[0].getFirstname() == "User");
-    QVERIFY(testResidentExpert->getResidents()[0].getPassword() == 4567);
+    QVERIFY(testResidentExpert->verifyLogInData("User", 1234) == false);
+    QVERIFY(testResidentExpert->verifyLogInData("User", 4567) == true);
 }
 
 void TestResidentExpert::testVerifyLogInData() {
@@ -40,14 +40,10 @@ void TestResidentExpert::testVerifyLogInData() {
     testResidentExpert->createResident("User", 1234);
 
     //if matched
-    testResidentExpert->verifyLogInData("User", 1234);
-    QVERIFY(testResidentExpert->getResidents()[0].getFirstname() == "User");
-    QVERIFY(testResidentExpert->getResidents()[0].getPassword() == 1234);
+    QVERIFY(testResidentExpert->verifyLogInData("User", 1234) == true);
 
     //if not matched
-    testResidentExpert->verifyLogInData("User", 4567);
-    QVERIFY(testResidentExpert->getResidents()[0].getFirstname() == "User");
-    QVERIFY(testResidentExpert->getResidents()[0].getPassword() != 4567);
+    QVERIFY(testResidentExpert->verifyLogInData("User", 4567) == false);
 }
 
 void TestResidentExpert::testVerifyName() {
@@ -55,7 +51,12 @@ void TestResidentExpert::testVerifyName() {
     ResidentExpert* testResidentExpert = ResidentExpert::getInstance(testData);
 
     testResidentExpert->createResident("User", 1234);
-    QVERIFY(testResidentExpert->getResidents()[0].getFirstname() == "User");
+
+    //if matched
+    QVERIFY(testResidentExpert->verifyName("User") == true);
+
+    //if not matched
+    QVERIFY(testResidentExpert->verifyName("test") == false);
 }
 
 void TestResidentExpert::testUserNameGetter() {
@@ -63,16 +64,11 @@ void TestResidentExpert::testUserNameGetter() {
     ResidentExpert* testResidentExpert = ResidentExpert::getInstance(testData);
 
     testResidentExpert->createResident("User", 1234);
-    QVERIFY(testResidentExpert->getResidents()[0].getFirstname()  == "User");
-}
+    testResidentExpert->createResident("test", 9999);
 
-void TestResidentExpert::testGetResidents() {
-    destroyer->cleanResidents();
-    ResidentExpert* testResidentExpert = ResidentExpert::getInstance(testData);
-
-    testResidentExpert->createResident("User", 1234);
-    QVERIFY(testResidentExpert->getResidents()[0].getFirstname() == "User");
-    QVERIFY(testResidentExpert->getResidents()[0].getPassword() == 1234);
+    //Data are alphabetic sorted in database
+    QVERIFY(testResidentExpert->userNameGetter().at(0) == "test");
+    QVERIFY(testResidentExpert->userNameGetter().at(1) == "User");
 }
 
 void TestResidentExpert::testCurrentUser() {
@@ -81,5 +77,6 @@ void TestResidentExpert::testCurrentUser() {
 
     testResidentExpert->createResident("User", 1234);
     testResidentExpert->setCurrentUser("User");
+
     QVERIFY(testResidentExpert->getCurrentUser() == "User");
 }

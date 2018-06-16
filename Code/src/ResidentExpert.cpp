@@ -26,11 +26,11 @@ void ResidentExpert::deleteResident(std::string name){
 }
 
 void ResidentExpert::editResident(std::string username, int newPassword){
-            data->updatePassword(username, newPassword);
+    data->updatePassword(username, newPassword);
 }
 
 bool ResidentExpert::verifyLogInData(std::string username, int password){
-            return data->verifyLogInData(username, password);
+    return data->verifyLogInData(username, password);
 }
 
 bool ResidentExpert::verifyName(std::string username){
@@ -38,19 +38,9 @@ bool ResidentExpert::verifyName(std::string username){
 }
 
 std::vector<std::string> ResidentExpert::userNameGetter() {
-  /*std::vector<std::string> nameVector;
+    return data->getAllResidents();
+}
 
-  for(unsigned int i = 0; i < data->getAllResidents().size(); i++){
-      nameVector.push_back(data->getAllResidents()[i].getFirstname());
-  }
-  return nameVector;*/
-    return data->getAllResidents();
-}
-/*
-std::vector<Resident> ResidentExpert::getResidents(){
-    return data->getAllResidents();
-}
-*/
 void ResidentExpert::setCurrentUser(std::string newUser){
     currentUser = newUser;
 }

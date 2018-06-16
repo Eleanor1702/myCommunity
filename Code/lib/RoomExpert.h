@@ -2,7 +2,7 @@
 #define ROOMEXPERT_H
 
 #include <vector>
-#include "room.h"
+#include "Room.h"
 #include "Database/lib/communitydata.h"
 
 class RoomExpert{

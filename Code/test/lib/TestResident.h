@@ -2,7 +2,7 @@
 #define TESTRESIDENT_H
 
 #include <QTest>
-#include "../../lib/resident.h"
+#include "../../lib/Resident.h"
 
 class TestResident : public QObject {
   Q_OBJECT

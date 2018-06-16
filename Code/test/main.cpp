@@ -1,8 +1,8 @@
 #include <QtTest>
 #include "Database/lib/communitydata.h"
 #include "test/lib/TestDatabaseDeleter.h"
-#include "lib/TestRoom.h"
 #include "lib/TestResident.h"
+#include "lib/TestRoom.h"
 #include "lib/TestTask.h"
 #include "lib/TestRoomExpert.h"
 #include "lib/TestResidentExpert.h"

@@ -22,7 +22,6 @@ private slots:
     void testVerifyLogInData();
     void testVerifyName();
     void testUserNameGetter();
-    void testGetResidents();
     void testCurrentUser();
 };
 

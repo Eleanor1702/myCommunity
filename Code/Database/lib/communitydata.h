@@ -12,8 +12,8 @@
 #include <mysql_driver.h>
 #include <mysql_connection.h>
 
-#include "lib/resident.h"
-#include "lib/room.h"
+#include "lib/Resident.h"
+#include "lib/Room.h"
 #include "lib/event.h"
 #include "lib/Task.h"
 #include "lib/shoppingitem.h"

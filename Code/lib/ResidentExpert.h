@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "resident.h"
+#include "Resident.h"
 #include "Database/lib/communitydata.h"
 
 class ResidentExpert{
@@ -30,7 +30,6 @@ public:
     std::string getCurrentUserPassword();
 
     std::vector<std::string> userNameGetter();
-    std::vector<Resident> getResidents();
 
     static ResidentExpert* getInstance(CommunityData* data);
 };

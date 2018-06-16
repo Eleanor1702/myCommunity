@@ -8,10 +8,7 @@ class Task{
 private:
     std::string name;
     std::string room;
-    std::string frequency;              //Wie oft muss die Aufgabe erledigt werden
-                                //z.B. frequency = 4 -> Aufgabe muss 4 mal
-                                //im Monat erledigt werden
-
+    std::string frequency;       //how often does the job have to be done
 
 public:
     Task();
