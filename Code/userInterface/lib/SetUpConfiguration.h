@@ -4,12 +4,20 @@
 #include <QBoxLayout>
 #include <QLabel>
 #include <QPushButton>
-#include <QLineEdit>
+
+#include "LocalHostConfig.h"
+#include "OwnServerConfig.h"
+#include "../../Database/lib/DatabaseConfig.h"
+#include "PopUpWindow.h"
 
 class SetUpConfiguration : public QWidget {
     Q_OBJECT
-
 private:
+    LocalHostConfig local;
+    OwnServerConfig server;
+    DatabaseConfig config;
+    PopUpWindow popUp;
+
     QBoxLayout* mainLayout;
 
     QBoxLayout* mainLabelRow;
@@ -19,34 +27,14 @@ private:
     QPushButton* localHost;
     QPushButton* ownServer;
 
-    //localHost Setup:
-    QBoxLayout* userRow;
-    QLabel* userLabel;
-    QLineEdit* userInput;
-
-    QBoxLayout* hostRow;
-    QLabel* hostLabel;
-    QLineEdit* hostInput;
-
-    QBoxLayout* passwordRow;
-    QLabel* passwordLabel;
-    QLineEdit* passwordInput;
-
-    QBoxLayout* databaseRow;
-    QLabel* databaseLabel;
-    QLineEdit* databaseInput;
-
-    QBoxLayout* localButtonRow;
-    QPushButton* confirmButton;
-    QPushButton* cancelButton;
-
     void setMainWindowDesign();
     void setMainLayoutDesign();
-    void setOwnServer();
 
 private slots:
-    void setLocalHost();
+    void callOwnServer();
+    void callLocalHost();
     void callConfigHome();
+    void saveCredentials(std::string user, std::string host, std::string password, std::string database);
 
 public:
     explicit SetUpConfiguration(QWidget* parent = NULL);

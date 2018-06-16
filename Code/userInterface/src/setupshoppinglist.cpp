@@ -2,12 +2,12 @@
 
 //calling the constructor, calls the parent constructor too
 //in this case QWidget
-//set up shopping list window
+
 SetUpShoppinglist::SetUpShoppinglist(QWidget *parent) : QWidget(parent) {
     //declaration of window contents
     mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, this);
     mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
-    mainLabel = new QLabel("Einkaufsliste");
+    mainLabel = new QLabel("Let's create a shoppinglist..");
 
     scrollAreaRow = new QBoxLayout(QBoxLayout::LeftToRight);
     scrollArea = new QScrollArea(this);
@@ -19,7 +19,7 @@ SetUpShoppinglist::SetUpShoppinglist(QWidget *parent) : QWidget(parent) {
     mainButtonsRow = new QBoxLayout(QBoxLayout::LeftToRight);
     ItemNameLabel = new QLabel("Produkt:");
     giveNameEdit = new QLineEdit();
-    ItemNumberLabel = new QLabel("Menge");
+    ItemNumberLabel = new QLabel("Anzahl");
     giveNumberEdit = new QLineEdit();
     addButton = new QPushButton ("Produkt hinzufügen");
     saveButton = new QPushButton("Zurück zum Hauptmenü");
@@ -29,9 +29,6 @@ SetUpShoppinglist::SetUpShoppinglist(QWidget *parent) : QWidget(parent) {
 
     QObject::connect(addButton, SIGNAL(clicked()), this, SLOT(setNewItemCalled()));
     QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(homepageCalled()));
-    QObject::connect(giveNameEdit, SIGNAL(returnPressed()), this, SLOT(setNewItemCalled()));
-    QObject::connect(giveNumberEdit, SIGNAL(returnPressed()), this, SLOT(setNewItemCalled()));
-
 
     this->setGeometry(
         QStyle::alignedRect(
@@ -91,8 +88,8 @@ void SetUpShoppinglist::setMainLayoutDesign() {
 
 }
 
-//get name of item
 std::string SetUpShoppinglist::getItemNameInput() {
+    //proceed only with a room name
     if(this->giveNameEdit->text().size() == 0 || this->giveNameEdit->text()[0] == ' '){
         return "Error";
     }
@@ -100,13 +97,13 @@ std::string SetUpShoppinglist::getItemNameInput() {
     return this->giveNameEdit->text().toStdString();
 }
 
-//get number of item
-std::string SetUpShoppinglist::getItemNumberInput() {
+int SetUpShoppinglist::getItemNumberInput() {
+    //proceed only with a room name
     if(this->giveNumberEdit->text().size() == 0 || this->giveNumberEdit->text()[0] == ' '){
-        return "Error";
+        return 1;
     }
 
-    return this->giveNumberEdit->text().toStdString();
+    return this->giveNumberEdit->text().toInt();
 }
 
 void SetUpShoppinglist::deepDeleteLayout(QLayout *layout) {
@@ -126,14 +123,13 @@ void SetUpShoppinglist::deepDeleteLayout(QLayout *layout) {
     }
 }
 
-//set up shoppinglist appear
-void SetUpShoppinglist::appear(std::vector<std::string>nameVec, std::vector<std::string> numberVec, int size) {
+void SetUpShoppinglist::appear(std::vector<std::string>nameVec, std::vector<int> numberVec, int size) {
     deepDeleteLayout(scrollLayout);
 
     for(int i = 0; i < size; i++) {
         newItem = new ShoppinglistItem(QString::fromStdString(nameVec[i]), numberVec[i]);
 
-        //connect every shoppinglist item
+        //connect every shopping list item
         connect(newItem, SIGNAL(deleteShopItemSignal(QString)), this, SLOT(deleteItemCalled(QString)));
         scrollLayout->addWidget(newItem);
     }
@@ -142,17 +138,14 @@ void SetUpShoppinglist::appear(std::vector<std::string>nameVec, std::vector<std:
     this->show();
 }
 
-//new item
 void SetUpShoppinglist::setNewItemCalled() {
     emit setNewItemSignal();
 }
 
-//back
 void SetUpShoppinglist::homepageCalled() {
     emit homePageCallSignal();
 }
 
-//delete item
 void SetUpShoppinglist::deleteItemCalled(QString name) {
     emit deleteItemSignal(name);
 }

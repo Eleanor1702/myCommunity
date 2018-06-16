@@ -27,7 +27,7 @@ signals:
 
 public:
     //QFrame ist ein QWidget
-    explicit ShoppinglistItem(QString itemName, std::string number, QWidget* parent = NULL);
+    explicit ShoppinglistItem(QString itemName, int number, QWidget* parent = NULL);
 
 };
 #endif // SHOPPINGLISTITEM_H

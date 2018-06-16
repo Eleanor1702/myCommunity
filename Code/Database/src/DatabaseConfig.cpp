@@ -1,9 +1,9 @@
 #include "../lib/DatabaseConfig.h"
+#include <QDebug>
 
 DatabaseConfig::DatabaseConfig() {
     //create config File path
     const char* home = std::getenv("HOME");
-
     this->path = (std::string(home) + "/.myCommunity");
 }
 

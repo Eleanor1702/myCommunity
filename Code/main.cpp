@@ -10,33 +10,19 @@ int main(int argc, char **argv){
 
     QApplication app (argc, argv);
 
-    /*//For an easier testing including databank
-    std::string user = "user";
-    std::string password = "bmns2018!!";
-    std::string host = "172.104.230.99";
-    std::string database ="MyCommunity";
-
-    CommunityData* data = CommunityData::getInstance(user, password, host, database);
-    Controller* con = Controller::getInstance(data);
-
-    GuiController::startApplication(con);
-
-    return app.exec();*/
-
     DatabaseConfig config;
-
     SetUpConfiguration startConfig;
 
-    startConfig.show();
+    if (config.exist()) {
+        config.read();
+        CommunityData* data = CommunityData::getInstance(config.getUser(), config.getPassword(),
+                                                         config.getHost(), config.getDatabase());
+        Controller* con = Controller::getInstance(data);
 
-    config.read();
-
-    qDebug() << QString::fromStdString(config.getUser()) << QString::fromStdString(config.getHost()) << QString::fromStdString(config.getPassword()) << QString::fromStdString(config.getDatabase());
-
-    CommunityData* data = CommunityData::getInstance(config.getUser(), config.getPassword(), config.getHost(), config.getDatabase());
-    Controller* con = Controller::getInstance(data);
-
-    GuiController::startApplication(con);
+        GuiController::startApplication(con);
+    }else{
+        startConfig.show();
+    }
 
     return app.exec();
 }

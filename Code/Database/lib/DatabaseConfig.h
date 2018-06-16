@@ -14,10 +14,11 @@ private:
 
 public:
     DatabaseConfig();
+    bool exist();
+
     void write(std::string user, std::string host, std::string password,
                std::string database);
     void read();
-    bool exist();
 
     std::string getUser();
     std::string getHost();

@@ -66,8 +66,8 @@
      explicit SetUpShoppinglist(QWidget* parent = NULL);
 
      std::string getItemNameInput();
-     std::string getItemNumberInput();
-     void appear(std::vector<std::string> nameVec, std::vector<std::string> numberVec, int size);
+     int getItemNumberInput();
+     void appear(std::vector<std::string> nameVec, std::vector<int> numberVec, int size);
 
  };
 
