@@ -1,6 +1,7 @@
 #include "lib/Room.h"
 
 Room::Room() {}
+
 Room::~Room(){}
 
 void Room::setArt(std::string eingabe){

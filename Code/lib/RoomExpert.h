@@ -24,6 +24,7 @@ public:
     std::vector<Room> getRooms();
 
     static RoomExpert* getInstance(CommunityData* data);
+    ~RoomExpert();
 };
 
 #endif // ROOMEXPERT_H

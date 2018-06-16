@@ -13,6 +13,8 @@ ResidentExpert::ResidentExpert(CommunityData* data){
     this->data = data;
 }
 
+ResidentExpert::~ResidentExpert() {}
+
 void ResidentExpert::createResident(std::string name, int password){
     Resident re;
 
@@ -48,4 +50,3 @@ void ResidentExpert::setCurrentUser(std::string newUser){
 std::string ResidentExpert::getCurrentUser(){
     return currentUser;
 }
-

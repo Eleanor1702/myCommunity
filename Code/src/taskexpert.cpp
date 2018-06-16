@@ -2,6 +2,13 @@
 
 TaskExpert* TaskExpert::instance = NULL;
 
+TaskExpert* TaskExpert::getInstance(CommunityData* data){
+    if(instance == NULL){
+        instance = new TaskExpert(data);
+    }
+    return instance;
+}
+
 TaskExpert::TaskExpert(CommunityData* data){
     this->data = data;
 }
@@ -56,13 +63,6 @@ std::vector<std::string> TaskExpert::taskFrequencyGetter() {
         frequencyVector.push_back(getTasks()[i].getFrequency());
     }
     return frequencyVector;
-}
-
-TaskExpert* TaskExpert::getInstance(CommunityData* data){
-    if(instance == NULL){
-        instance = new TaskExpert(data);
-    }
-    return instance;
 }
 //***************************ConcreteTasks
 

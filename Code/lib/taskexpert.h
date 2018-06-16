@@ -33,9 +33,6 @@ public:
     void deleteConcreteTask(Task task, std::string resident, int cw);
     std::vector<ConcreteTask> getConcreteTasks();
     std::vector<ConcreteTask> showConcreteTasks(int cw, std::string user);
-
-
-
 };
 
 #endif // TASKEXPERT_H

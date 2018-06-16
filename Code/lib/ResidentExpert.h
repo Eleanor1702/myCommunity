@@ -32,6 +32,7 @@ public:
     std::vector<std::string> userNameGetter();
 
     static ResidentExpert* getInstance(CommunityData* data);
+    ~ResidentExpert();
 };
 
 #endif // RESIDENTEXPERT_H

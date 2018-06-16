@@ -12,7 +12,7 @@ private:
 
 public:
     Task();
-    //~Task();
+    ~Task();
 
     void setName(std::string newName);
     void setRoom(std::string newRoom);
