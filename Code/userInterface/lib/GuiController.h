@@ -10,11 +10,12 @@
 #include "userInterface/lib/HomePage.h"
 #include "userInterface/lib/SetUpRooms.h"
 #include "userInterface/lib/SetUpUsers.h"
-#include "userInterface/lib/SetUpEvents.h"
+#include "userInterface/lib/eventpage.h"
 #include "userInterface/lib/SetUpTasks.h"
 #include "userInterface/lib/cleaningpage.h"
 #include "userInterface/lib/changepwpage.h"
 #include "userInterface/lib/setupshoppinglist.h"
+#include "userInterface/lib/setupcleaningplan.h"
 
 #include "lib/controller.h"
 
@@ -33,10 +34,11 @@ private:
   SetUpUsers *users;
   changePwPage *pwpage;
 
-  SetUpEvents *events;
+  EventPage *events;
 
   CleaningPage *clean;
   SetUpTasks *task;
+  SetUpCleaningPlan *plan;
 
   SetUpShoppinglist* shop;
 
@@ -74,10 +76,8 @@ public slots:
   void roomDeleted(QString room);
 
   //SetUpUsers Slots:
-  void newUserSet();
   void userDeleted(QString name);
   void callPwPage();
-  //void deleteUserButtonClicked(QString name);
 
   //PwPage Slots
   void changePW();
@@ -87,12 +87,13 @@ public slots:
 
   //SetUpEvents Slots:
   void newEventSet();
+  void eventAppeared();
   void eventDeleted(QString time, QString date, QString description, QString user);
   //void eventEdited();
 
   //Cleaning Plan Slots:
   void callTask();
-  //void createPlanButtonClicked();
+  void callCreatePlan();
 
   //SetUpTask Slots:
   void taskDeleted(QString task, QString room);
@@ -104,7 +105,7 @@ public slots:
 
 public:
     static void startApplication(Controller* con);
-    std::vector<std::string>getRooms();
+    //std::vector<std::string>getRooms();
 
 protected:
     static GuiController* getInstance(Controller* con);        //Singleton

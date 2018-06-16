@@ -21,10 +21,11 @@ GuiController::GuiController(Controller* con) : QWidget() {
     this->home = new HomePage();
     this->rooms = new SetUpRooms();
     this->users = new SetUpUsers();
-    this->events = new SetUpEvents();
+    this->events = new EventPage();
     this->pwpage = new changePwPage();
     this->clean = new CleaningPage();
     this->task = new SetUpTasks();
+    this->plan = new SetUpCleaningPlan();
     this->shop = new SetUpShoppinglist();
 
     this->con = con;
@@ -55,9 +56,8 @@ GuiController::GuiController(Controller* con) : QWidget() {
     connect(rooms, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
 
     //SetUpUsers Events
-    //QObject::connect(users->addButton,SIGNAL(clicked()),this,SLOT(addUserButtonClicked()));
     connect(users, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
-    connect(users, SIGNAL(deleteUserSignal(QString)), this, SLOT(userDeleted(QString)));    //n
+    connect(users, SIGNAL(deleteUserSignal(QString)), this, SLOT(userDeleted(QString)));
     connect(users, SIGNAL(pwpageSignal()), this, SLOT(callPwPage()));
 
     //PwPage Events
@@ -67,17 +67,22 @@ GuiController::GuiController(Controller* con) : QWidget() {
     //SetUpEvents Events
     connect(events, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
     connect(events, SIGNAL(setNewEventSignal()), this, SLOT(newEventSet()));
+    connect(events, SIGNAL(appearCalledSignal()), this,SLOT(eventAppeared()));
     connect(events, SIGNAL(deleteEventSignal(QString, QString, QString, QString)), this, SLOT(eventDeleted(QString, QString, QString, QString)));
     //connect event edit
 
     //CleaningPage Events
     connect(clean, SIGNAL(taskCallSignal()), this, SLOT(callTask()));
     connect(clean, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
+    connect(clean, SIGNAL(createPlanSignal()),this,SLOT(callCreatePlan()));
 
     //SetUpTask Events
     connect(task, SIGNAL(newTaskSignal()), this, SLOT(newTaskSet()));
     connect(task, SIGNAL(deleteTaskSignal(QString, QString)), this, SLOT(taskDeleted(QString, QString)));
-    connect(task, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
+    connect(task, SIGNAL(CleanPlanCallSignal()), this, SLOT(callCleanPlan()));
+
+    //SetUpPlan Events
+    connect(plan, SIGNAL(CleanPlanCallSignal()), this,SLOT(callCleanPlan()));
 
     //SetUpShoppinglist Events
     connect(shop, SIGNAL(setNewItemSignal()), this, SLOT(newItemSet()));
@@ -131,12 +136,42 @@ void GuiController::callStartPage() {
 
 //HomePage Events
 void GuiController::callRoomSettings() {
-    //Show SetUpRooms and update room List
+    //Show SetUpRooms and update room list
     rooms->appear(con->getRoomNames(), con->getRoomArts(), con->getRoomlistSize());
     home->hide();
 }
 
+void GuiController::callUserSettings() {
+    //Show SetUpUsers and update user list
+    users->appear(con->getUserNames(), con->getUserlistSize(), con->getCurrentUser());
+    home->hide();
+}
 
+void GuiController::callCalendar() {
+    //Show Calendar
+    events->show();
+    home->hide();
+}
+
+void GuiController::callCleanPlan(){
+    //Show cleaningplan
+    clean->show();
+    home->hide();
+    task->hide();
+    plan->hide();
+}
+
+void GuiController::callShoppingList() {
+    //Show shoppinglist and update item list
+    shop->appear(con->getItemNames(), con->getItemNumbers(), con->getItemlistSize());
+    home->hide();
+}
+
+void GuiController::callLogOut() {
+    //close homepage and show startpage
+    main->show();
+    home->hide();
+}
 //SetUpRooms Events
 void GuiController::newRoomSet() {
     if(rooms->getRoomNameInput() == "Error") {
@@ -157,9 +192,16 @@ void GuiController::roomDeleted(QString room) {
     rooms->appear(con->getRoomNames(), con->getRoomArts(), con->getRoomlistSize());
 }
 
-void GuiController::callUserSettings() {
-    users->appear(con->getUserNames(), con->getUserlistSize(), con->getCurrentUser());
-    home->hide();
+//SetUpUser Events
+void GuiController::userDeleted(QString name) {
+    //delete user from Databank
+   con->deleteResident(name.toStdString());
+   users->hide();
+   main->show();
+}
+
+void GuiController::callPwPage(){
+    pwpage->appear();
 }
 
 void GuiController::callUserSettingsFromPwPage(){
@@ -169,57 +211,20 @@ void GuiController::callUserSettingsFromPwPage(){
     pwpage->hide();
 }
 
-
-
-//SetUpUser Events
-void GuiController::newUserSet() {
-    /*QString userName = users->giveNameEdit->text();
-    if(userName.size() == 0 || userName[0] == ' '){
-        return;
-    }
-
-    QString userPassword = users->givePasswordEdit->text();
-    if(userPassword.size() == 0 || userPassword[0] == ' '){
-        return;
-    }
-
-    this->users->newUser = new UserList(userName);
-
-    this->users->scrollLayout->addWidget(users->newUser);
-
-    this->users->giveNameEdit->clear();
-    this->users->givePasswordEdit->clear();
-
-    connect(this->users->newUser,SIGNAL(deleteUserButtonClickedSignal(QString)),this,SLOT(deleteUserButtonClicked(QString)));*/
-}
-
-
-void GuiController::userDeleted(QString name) {
-    // delete user from Databank
-    con->deleteResident(name.toStdString());
-   users->hide();
-   main->show();
-    //users->appear(con->getUserNames(), con->getRoomlistSize(), con->getCurrentUser());
-}
-
-void GuiController::callPwPage(){
-    users->hide();
-    pwpage->show();
-}
-
 //PWPage Events
-
 void GuiController::changePW(){
+    //change password of current user
     if(con->rsExpert->verifyLogInData(con->rsExpert->getCurrentUser(), std::stoi(pwpage->getOldPwInput()))){    //old pw = pw
         con->editResident(con->rsExpert->getCurrentUser(), std::stoi(pwpage->getNewPwInput()));
         users->show();
-        pwpage->giveOldpwEdit->clear();
-        pwpage->giveNewpwEdit->clear();
+        pwpage->clearContent();
         pwpage->hide();
 
     }
+    else{
+        pwpage->falseData();
+    }
 }
-
 
 //All back Events to HomePage
 void GuiController::callHomePage() {
@@ -229,10 +234,13 @@ void GuiController::callHomePage() {
     events->hide();
     rooms->hide();
     users->hide();
+    pwpage->hide();
     shop->hide();
 }
 
 //SetUpEvents Events
+
+//add new event to calendar
 void GuiController::newEventSet(){
     if(events->getEventDescriptionInput() == "Error"){
         //Exception
@@ -243,47 +251,66 @@ void GuiController::newEventSet(){
                       events->getEventDescriptionInput(), events->getEventUserInput());
     }
     //udate eventlist in Gui
-    events->appear(con->getEventTime(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventDate(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventDescription(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventUser(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getSizeEvent(events->getEventUserInput(), events->getEventDateInput()));
+    std::string user;
+    if(events->getEventUserInput() == "privat") {
+        user = con->getCurrentUser();
+    }
+    else user = "gemeinschaftlich";
+
+    events->appear(con->getEventTime(user, events->getEventDateInput()),
+                   con->getEventDate(user, events->getEventDateInput()),
+                   con->getEventDescription(user, events->getEventDateInput()),
+                   user, con->getSizeEvent(user, events->getEventDateInput()));
 }
 
-void GuiController::eventDeleted(QString time, QString date, QString description, QString user){
+void GuiController::eventAppeared(){
+    //show all events for a specific date
+    std::string user = con->getCurrentUser();
+    //get private events
+    events->appear(con->getEventTime(user, events->getEventDateInput()),
+                   con->getEventDate(user, events->getEventDateInput()),
+                   con->getEventDescription(user, events->getEventDateInput()),
+                   user,
+                   con->getSizeEvent(user, events->getEventDateInput()));
+    //get community events
+    user = "gemeinschaftlich";
+    events->appear(con->getEventTime(user, events->getEventDateInput()),
+                   con->getEventDate(user, events->getEventDateInput()),
+                   con->getEventDescription(user, events->getEventDateInput()),
+                   user,
+                   con->getSizeEvent(user, events->getEventDateInput()));
+
+
+}
+
+void GuiController::eventDeleted(QString time, QString date, QString description, QString username){
     //delete event from database
-    con->deleteEvent(time.toStdString(), date.toStdString(), description.toStdString(), user.toStdString());
-
-    events->appear(con->getEventTime(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventDate(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventDescription(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getEventUser(events->getEventUserInput(), events->getEventDateInput()),
-                   con->getSizeEvent(events->getEventUserInput(), events->getEventDateInput()));
+    con->deleteEvent(time.toStdString(), date.toStdString(), description.toStdString(), username.toStdString());
+    std::string user = username.toStdString();
+    events->appear(con->getEventTime(user, events->getEventDateInput()),
+                   con->getEventDate(user, events->getEventDateInput()),
+                   con->getEventDescription(user, events->getEventDateInput()),
+                   user,
+                   con->getSizeEvent(user, events->getEventDateInput()));
 }
 
-
-void GuiController::callCalendar() {
-    events->show();
-    home->hide();
-}
 //CleaningPage Events
-void GuiController::callCleanPlan(){
-    clean->show();
-    home->hide();
-}
-
 void GuiController::callTask(){
     task->appear(con->getTaskName(), con->getTaskRoom(), con->getTaskFrequency(), con->getTasklistSize());
     task->setRoomCombobox(con->getRoomNames());
     clean->hide();
 }
 
-void GuiController::callLogOut() {
-    main->show();
-    home->hide();
+void GuiController::callCreatePlan(){
+    plan->show();
+    plan->setTaskCombobox(con->getTaskName(), con->getTaskRoom());
+    plan->setResidentCombobox(con->getUserNames());
+    clean->hide();
 }
 
 //SetUpTask Events
+
+//new cleaning task
 void GuiController::newTaskSet(){
   if(task->getTaskNameInput() == "Error") {
       //Exception
@@ -303,11 +330,8 @@ void GuiController::taskDeleted(QString taskname, QString room){
 }
 
 //SetUpShoppinglist Events
-void GuiController::callShoppingList() {
-    shop->appear(con->getItemNames(), con->getItemNumbers(), con->getItemlistSize());
-    main->hide();
-}
 
+//new item
 void GuiController::newItemSet() {
     if(shop->getItemNameInput() == "Error") {
         return;
@@ -320,6 +344,7 @@ void GuiController::newItemSet() {
     shop->appear(con->getItemNames(), con->getItemNumbers(), con->getItemlistSize());
 }
 
+//delete item
 void GuiController::ItemDeleted(QString name) {
     //delete item from database
     con->deleteItem(name.toStdString());

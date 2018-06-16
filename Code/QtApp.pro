@@ -51,7 +51,6 @@ SOURCES += \
     userInterface/src/TaskListItem.cpp \
     userInterface/src/eventlistitem.cpp \
     userInterface/src/UserListItem.cpp \
-    userInterface/src/SetUpEvents.cpp \
     userInterface/src/SetUpConfiguration.cpp \
     userInterface/src/shoppinglistitem.cpp \
     userInterface/src/changepwpage.cpp \
@@ -60,7 +59,9 @@ SOURCES += \
     Database/src/communitydata.cpp \
     userInterface/src/LocalHostConfig.cpp \
     userInterface/src/OwnServerConfig.cpp \
-    userInterface/src/PopUpWindow.cpp
+    userInterface/src/PopUpWindow.cpp \
+    userInterface/src/setupcleaningplan.cpp \
+    userInterface/src/eventpage.cpp \
 
 HEADERS += \
     lib/controller.h \
@@ -88,7 +89,6 @@ HEADERS += \
     userInterface/lib/TaskListItem.h \
     userInterface/lib/eventlistitem.h \
     userInterface/lib/UserListItem.h \
-    userInterface/lib/SetUpEvents.h \
     userInterface/lib/SetUpConfiguration.h \
     userInterface/lib/changepwpage.h \
     userInterface/lib/shoppinglistitem.h \
@@ -97,7 +97,9 @@ HEADERS += \
     Database/lib/communitydata.h \
     userInterface/lib/LocalHostConfig.h \
     userInterface/lib/OwnServerConfig.h \
-    userInterface/lib/PopUpWindow.h
+    userInterface/lib/PopUpWindow.h \
+    userInterface/lib/setupcleaningplan.h \
+    userInterface/lib/eventpage.h \
 
 RESOURCES = \
     media/application.qrc \
