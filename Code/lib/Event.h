@@ -14,9 +14,13 @@ private:
 
 public:
     Event();
-    //~Event();
+    ~Event();
 
     void setDescription(std::string newDescription);
+    void setUser(std::string newUser);
+    void setTime(std::string newTime);
+    void setDate(std::string newDate);
+    void setDatetime(std::string datetime);
    /* void setTime(tm timedate);
     void setDay(tm timedate);
     void setMonth(tm timedate);
@@ -24,11 +28,6 @@ public:
     void setMin(tm timedate);
     void setHour(tm timedate);
     */
-    void setUser(std::string newUser);
-
-    void setTime(std::string newTime);
-    void setDate(std::string newDate);
-    void setDatetime(std::string datetime);
 
     /*tm getTime();
     int getDay();

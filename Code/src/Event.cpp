@@ -2,6 +2,8 @@
 
 Event::Event() {}
 
+Event::~Event() {}
+
 void Event::setDescription(std::string newDescription){
     description = newDescription;
 }

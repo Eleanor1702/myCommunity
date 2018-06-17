@@ -2,7 +2,7 @@
 #define EVENTEXPERT_H
 
 #include <vector>
-#include "event.h"
+#include "Event.h"
 #include "Database/lib/communitydata.h"
 
 class EventExpert{

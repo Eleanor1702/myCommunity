@@ -27,7 +27,6 @@ macx: {
 SOURCES += \
     main.cpp \
     src/controller.cpp \
-    src/event.cpp \
     src/taskexpert.cpp \
     src/ResidentExpert.cpp \
     src/RoomExpert.cpp \
@@ -61,11 +60,11 @@ SOURCES += \
     userInterface/src/setupcleaningplan.cpp \
     userInterface/src/eventpage.cpp \
     src/Resident.cpp \
-    src/Room.cpp
+    src/Room.cpp \
+    src/Event.cpp
 
 HEADERS += \
     lib/controller.h \
-    lib/event.h \
     lib/taskexpert.h \
     lib/ResidentExpert.h \
     lib/RoomExpert.h \
@@ -99,7 +98,8 @@ HEADERS += \
     userInterface/lib/setupcleaningplan.h \
     userInterface/lib/eventpage.h \
     lib/Resident.h \
-    lib/Room.h
+    lib/Room.h \
+    lib/Event.h
 
 RESOURCES = \
     media/application.qrc \
@@ -122,6 +122,7 @@ test {
         test/lib/TestTask.h \
         test/lib/TestRoomExpert.h \
         test/lib/TestResidentExpert.h \
+        test/lib/TestEvent.h \
 
     SOURCES += \
         test/src/TestDatabaseDeleter.cpp \
@@ -131,5 +132,6 @@ test {
         test/src/TestTask.cpp \
         test/src/TestRoomExpert.cpp \
         test/src/TestResidentExpert.cpp \
+        test/src/TestEvent.cpp \
 }
 
