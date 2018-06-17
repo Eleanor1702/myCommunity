@@ -2,7 +2,7 @@
 
 Task::Task() {}
 
-Task::Task() {}
+Task::~Task() {}
 
 void Task::setName(std::string newName){
     name = newName;
