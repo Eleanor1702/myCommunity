@@ -214,7 +214,7 @@ void GuiController::callUserSettingsFromPwPage(){
 //PWPage Events
 void GuiController::changePW(){
     //change password of current user
-    if(con->rsExpert->verifyLogInData(con->rsExpert->getCurrentUser(), std::stoi(pwpage->getOldPwInput()))){    //old pw = pw
+    if(con->searchResident(con->getCurrentUser(), std::stoi(pwpage->getOldPwInput()))){    //old pw = pw
         con->editResident(con->rsExpert->getCurrentUser(), std::stoi(pwpage->getNewPwInput()));
         users->show();
         pwpage->clearContent();

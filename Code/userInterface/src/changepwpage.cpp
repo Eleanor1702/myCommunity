@@ -93,7 +93,6 @@ std::string changePwPage::getOldPwInput(){
     if(giveOldpwEdit->text().size() == 0 || giveOldpwEdit->text()[0] == ' '){
         return "Error";
     }
-    giveOldpwEdit->clear();
     return giveOldpwEdit->text().toStdString();
 }
 
@@ -101,7 +100,6 @@ std::string changePwPage::getNewPwInput(){
     if(giveNewpwEdit->text().size() == 0 || giveNewpwEdit->text()[0] == ' '){
         return "Error";
     }
-    giveNewpwEdit->clear();
     return giveNewpwEdit->text().toStdString();
 }
 
