@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="bower_components/fullpage.js/dist/jquery.fullpage.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/general.css">
+    <link rel="stylesheet" type="text/css" href="styles/home.css">
+
+    <title> MyCommunity - Software Projekt</title>
+  </head>
+
+  <body>
+    <div id="menu">
+      <li data-menuanchor="start"><a href="#start">Start</a></li>
+      <li data-menuanchor="software"><a href="#software">Software</a></li>
+      <li data-menuanchor="download"><a href="#download">Download</a></li>
+      <li data-menuanchor="about-us"><a href="#about-us">About us</a></li>
+    </div>
+
+    <div id="fullpage">
+
+      <div class="section section-one text-center">
+        <div class="container">
+          <h1 class="spacing-bottom">MyCommunity</h1>
+          <h2>Ein WG-Lebensplanung Begleiter</h2>
+        </div>
+      </div>
+
+      <div class="section section-two">
+        <div class="slide">
+          <div class="container">
+            <h1>ScreenShot of Software</h1>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="container">
+            <h1>Feature 1</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="section section-three">
+        <div class="container">
+          <h1>Download</h1>
+        </div>
+      </div>
+
+      <div class="section section-four">
+        <div class="container">
+          <h1>About us</h1>
+        </div>
+      </div>
+    </div>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/fullpage.js/dist/jquery.fullpage.min.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        $("#fullpage").fullpage({
+          anchors: ["start", "software", "download", "about-us"],
+          menu: "#menu"
+        });
+      });
+    </script>
+  </body>
+</html>

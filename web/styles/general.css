@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+.container {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.spacing-bottom {
+    margin-bottom: 20px;
+}
+
+h1,h2,h3,h4,h5,p {
+    color: #f1faee;
+}
+
+a {
+    color: #f1faee;
+    text-decoration: none;
+}
+
+#menu {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    z-index: 999;
+    text-decoration: none;
+}
+
+#menu li {
+    padding: 3px;
+    font-weight: 500;
+    margin-right: 20px;
+    display: inline;
+}
+
+#menu li.active {
+    border-bottom: 2px solid #f1faee;
+}
