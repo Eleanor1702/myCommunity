@@ -31,7 +31,9 @@ public:
     //Concrete Task methods
     void createConcreteTask(Task task, std::string resident, int cw);
     void deleteConcreteTask(Task task, std::string resident, int cw);
-    std::vector<ConcreteTask> concreteT();
+    std::vector<ConcreteTask> concreteTaskGetter();
+    std::vector<ConcreteTask> concreteTaskWeekGetter();
+    std::vector<ConcreteTask> concreteTaskResGetter();
     std::vector<ConcreteTask> showConcreteTasks(int cw, std::string user);
 };
 

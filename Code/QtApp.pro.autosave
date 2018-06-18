@@ -61,9 +61,9 @@ SOURCES += \
     userInterface/src/eventpage.cpp \
     src/Resident.cpp \
     src/Room.cpp \
-<<<<<<< HEAD
+
     userInterface/src/concretetasklistitem.cpp
-=======
+
     src/Event.cpp
 >>>>>>> 75508c5eecb190fa08931917be19cc7bfe287b3a
 
@@ -142,4 +142,3 @@ test {
         test/src/TestResidentExpert.cpp \
         test/src/TestEvent.cpp \
 }
-
