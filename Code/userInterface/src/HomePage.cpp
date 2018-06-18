@@ -70,32 +70,32 @@ void HomePage::setMainLayoutDesign(){
   this->buttonColumn->addWidget(saveFormat, 4, Qt::AlignCenter);
   this->buttonColumn->addWidget(logOut, 4, Qt::AlignBottom);
 
-  this->settings->setFixedSize(90, 90);
+  this->settings->setFixedSize(110, 90);
   this->settings->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                                 "border-radius: 5px; background-color: #3399ff; "
                                 "color: white; font-weight: bold;}");
 
-  this->calendar->setFixedSize(90, 90);
+  this->calendar->setFixedSize(110, 90);
   this->calendar->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                                 "border-radius: 5px; background-color: #3399ff; "
                                 "color: white; font-weight: bold;}");
 
-  this->shoppingList->setFixedSize(90, 90);
+  this->shoppingList->setFixedSize(110, 90);
   this->shoppingList->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                                 "border-radius: 5px; background-color: #3399ff; "
                                 "color: white; font-weight: bold;}");
 
-  this->cleanPlan->setFixedSize(90, 90);
+  this->cleanPlan->setFixedSize(110, 90);
   this->cleanPlan->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                                 "border-radius: 5px; background-color: #3399ff; "
                                 "color: white; font-weight: bold;}");
 
-  this->saveFormat->setFixedSize(90, 90);
+  this->saveFormat->setFixedSize(110, 90);
   this->saveFormat->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                                 "border-radius: 5px; background-color: #3399ff; "
                                 "color: white; font-weight: bold;}");
 
-  this->logOut->setFixedSize(90, 90);
+  this->logOut->setFixedSize(110, 90);
   this->logOut->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                                 "border-radius: 5px; background-color: #3399ff; "
                                 "color: white; font-weight: bold;}");
