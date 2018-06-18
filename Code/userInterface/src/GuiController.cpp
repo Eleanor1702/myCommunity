@@ -333,7 +333,7 @@ void GuiController::taskDeleted(QString taskname, QString room){
 
 //new item
 void GuiController::newItemSet() {
-    if(shop->getItemNameInput() == "Error") {
+    if(shop->getItemNameInput() == "Error" || shop->getItemNumberInput() == "Error") {
         return;
     }
     else {
