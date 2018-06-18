@@ -150,6 +150,8 @@ void GuiController::callUserSettings() {
 void GuiController::callCalendar() {
     //Show Calendar
     events->show();
+    events->calendar->setSelectedDate(QDate::currentDate());
+    eventAppeared();
     home->hide();
 }
 
