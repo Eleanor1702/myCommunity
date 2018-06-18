@@ -260,7 +260,7 @@ void EventPage::appear(std::vector<std::string> timeVec,
                        std::vector<std::string> dateVec,
                        std::vector<std::string> descrVec,
                        std::string user, int size){
-    //this->show();
+
     if(user == "gemeinschaftlich"){
         deepDeleteLayout(scrollLayoutPub);
 
@@ -274,6 +274,7 @@ void EventPage::appear(std::vector<std::string> timeVec,
 
             connect(newPubEvent, SIGNAL(deleteEventSignal(QString, QString, QString, QString)),this,
                     SLOT(deleteEventCalled(QString, QString, QString, QString)));
+            connect(newPubEvent, SIGNAL(editEventSignal(QString,QString,QString,QString)),this, SLOT(editEventCalled(QString,QString,QString,QString)));
 
             EventListItemPubList.push_back(newPubEvent);
 
@@ -291,6 +292,7 @@ void EventPage::appear(std::vector<std::string> timeVec,
                                                  QString::fromStdString(user));
             connect(newPrivEvent, SIGNAL(deleteEventSignal(QString, QString, QString, QString)),this,
                     SLOT(deleteEventCalled(QString, QString, QString, QString)));
+            connect(newPrivEvent, SIGNAL(editEventSignal(QString,QString,QString,QString)),this, SLOT(editEventCalled(QString,QString,QString,QString)));
 
             EventListItemPrivList.push_back(newPrivEvent);
             scrollLayout->addWidget(newPrivEvent);
@@ -317,4 +319,27 @@ void EventPage::deleteEventCalled(QString time , QString date, QString descripti
 
 void EventPage::appearCalled(){
     emit appearCalledSignal();
+}
+
+void EventPage::editEventCalled(QString time , QString date, QString description, QString user) {
+    //emit deleteEventSignal(time, date, description, user);
+    std::string stime = time.toStdString();
+    char min[2];
+    char hour[3];
+    std::size_t length = stime.copy(hour, 3, 0);
+    hour[length] = '\0';
+    int index = chooseHourCombo->findText(hour);
+    chooseHourCombo->setCurrentIndex(index);
+
+    length = stime.copy(min, 3, 4);
+    min[length] = '\0';
+    index = chooseMinuteCombo->findText(min);
+    chooseMinuteCombo->setCurrentIndex(index);
+
+
+    giveNameEdit->setText(description);
+    if(user == "gemeinschaftlich") {
+        checkPub->setChecked(true);
+    }
+
 }

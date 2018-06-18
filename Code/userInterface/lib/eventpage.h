@@ -78,12 +78,14 @@ private slots:
     void deleteEventCalled(QString time, QString date, QString description, QString user);
     void homePageCalled();
     void appearCalled();
+    void editEventCalled(QString time,QString date,QString description,QString user);
 
 signals:
     void deleteEventSignal(QString, QString, QString, QString);
     void homePageCallSignal();
     void setNewEventSignal();
     void appearCalledSignal();
+
 
 
 public:

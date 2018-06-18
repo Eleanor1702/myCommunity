@@ -28,14 +28,11 @@ private:
 
 private slots:
     void deleteEvent();
-
-//    void editEvent();
-
-//      void deleteEventButtonClicked();
+    void editEvent();
 
 signals:
     void deleteEventSignal(QString time, QString date, QString description, QString user);
-//    void editEventSignal(QString hour, QString min, QString description);
+    void editEventSignal(QString time, QString date, QString description, QString user);
 
 
 public:

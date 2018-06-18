@@ -371,8 +371,11 @@ std::vector<ConcreteTask> CommunityData::getAllConcreteTasks() {
     resultSet = stmt->executeQuery();
     while(resultSet->next()) {
         ConcreteTask ctask;
+        Task ta;
         ctask.setResident(resultSet->getString("Resident"));
         ctask.setCalendarweek(resultSet->getInt("Week"));
+        ta.setName(resultSet->getString("Task"));
+        ctask.setTask(ta);
 
     }
     delete stmt;

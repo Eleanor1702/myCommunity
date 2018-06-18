@@ -69,7 +69,6 @@ GuiController::GuiController(Controller* con) : QWidget() {
     connect(events, SIGNAL(setNewEventSignal()), this, SLOT(newEventSet()));
     connect(events, SIGNAL(appearCalledSignal()), this,SLOT(eventAppeared()));
     connect(events, SIGNAL(deleteEventSignal(QString, QString, QString, QString)), this, SLOT(eventDeleted(QString, QString, QString, QString)));
-    //connect event edit
 
     //CleaningPage Events
     connect(clean, SIGNAL(taskCallSignal()), this, SLOT(callTask()));

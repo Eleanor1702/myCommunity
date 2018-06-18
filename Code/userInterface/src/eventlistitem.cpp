@@ -16,7 +16,7 @@ EventListItem::EventListItem(QString eventTime, QString eventDateStr, QString ev
 
     setItemStyle();
 
-//    QObject::connect(editEventButton,SIGNAL(clicked()),this,SLOT(editEvent()));
+    QObject::connect(editEventButton,SIGNAL(clicked()),this,SLOT(editEvent()));
     QObject::connect(deleteEventButton,SIGNAL(clicked()),this,SLOT(deleteEvent()));
 }
 
@@ -43,13 +43,11 @@ void EventListItem::setItemStyle(){
                                            " color: white; font-weight: bold;}");
 }
 
-/*
+
 void EventListItem::editEvent(){
-    emit editEventSignal(this->time, this->date, this->description, this->user, );
-    //Name wieder in eingabezeile ??
-    this->close();
+    emit editEventSignal(this->time, this->date, this->description, this->user);
 }
-*/
+
 
 void EventListItem::deleteEvent(){
     emit deleteEventSignal(time, date, description, user);
