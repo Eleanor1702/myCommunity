@@ -220,7 +220,7 @@ void EventPage::deepDeleteLayout(QLayout *layout) {
         delete item;
     }
 }
-
+/*
 void EventPage::appearAll(std::vector<std::string> timeVec,
                           std::vector<std::string> dateVec,
                           std::vector<std::string> descrVec,
@@ -254,7 +254,7 @@ void EventPage::appearAll(std::vector<std::string> timeVec,
          EventListItemPrivList.push_back(newPrivEvent);
          scrollLayout->addWidget(newPrivEvent);
     }
-}
+}*/
 
 void EventPage::appear(std::vector<std::string> timeVec,
                        std::vector<std::string> dateVec,
@@ -322,11 +322,12 @@ void EventPage::appearCalled(){
 }
 
 void EventPage::editEventCalled(QString time , QString date, QString description, QString user) {
-    //emit deleteEventSignal(time, date, description, user);
+    emit deleteEventSignal(time, date, description, user);
+
     std::string stime = time.toStdString();
     char min[2];
     char hour[3];
-    std::size_t length = stime.copy(hour, 3, 0);
+    std::size_t length = stime.copy(hour, 2, 1);
     hour[length] = '\0';
     int index = chooseHourCombo->findText(hour);
     chooseHourCombo->setCurrentIndex(index);

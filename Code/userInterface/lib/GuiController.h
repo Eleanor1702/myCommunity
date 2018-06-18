@@ -89,7 +89,7 @@ public slots:
   void newEventSet();
   void eventAppeared();
   void eventDeleted(QString time, QString date, QString description, QString user);
-  //void eventEdited();
+  void eventEdited(QString time, QString date, QString description, QString user);
 
   //Cleaning Plan Slots:
   void callTask();
