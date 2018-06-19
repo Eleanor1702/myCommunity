@@ -121,11 +121,11 @@ int Controller::getTasklistSize(){
 void Controller::addConcreteTask(int week, std::string task, std::string res, std::string room) {
     taExpert->createConcreteTask(task, res, week, room);
 }
-/*
-void Controller::deleteConcreteTask(std::string week, std::string task, std::string res){
-    taExpert->deleteConcreteTask(task, res, week);
-}
 
+void Controller::deleteConcreteTask(int week, std::string task, std::string res, std::string room){
+    taExpert->deleteConcreteTask(task, res, week, room);
+}
+/*
 void Controller::editConcreteTask(std::string week, std::string task, std::string res){
     taExpert->editConcreteTask(week, task, res);
 }*/

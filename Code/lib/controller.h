@@ -63,8 +63,8 @@ public:
 
         //Cleaning plan / Concrete Tasks
         void addConcreteTask(int week, std::string task, std::string res, std::string room);
-        void deleteConcreteTask(std::string week, std::string task, std::string res);
-        void editConcreteTask(std::string week, std::string task, std::string res);
+        void deleteConcreteTask(int week, std::string task, std::string res, std::string room);
+        void editConcreteTask(int week, std::string task, std::string res);
         std::vector<int>getConcreteTaskWeek();
         std::vector<std::string>getConcreteTaskName();
         std::vector<std::string>getConcreteTaskRes();

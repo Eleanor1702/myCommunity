@@ -82,8 +82,8 @@ GuiController::GuiController(Controller* con) : QWidget() {
 
     //SetUpPlan Events
     connect(plan, SIGNAL(CleanPlanCallSignal()), this,SLOT(callCleanPlan()));
-    connect(plan, SIGNAL(setNewTaskSignal()),this,SLOT(callNewConcreteTask()));
- //   connect(plan,SIGNAL(deleteTaskSignal(QString,QString,QString)), this,SLOT(callConcreteTaskDeleted(QString,QString,QString)));
+    connect(plan, SIGNAL(NewConcreteTaskSignal()),this,SLOT(callNewConcreteTask()));
+    connect(plan,SIGNAL(deleteConcreteTaskSignal(QString,QString,QString,QString)), this,SLOT(callConcreteTaskDeleted(QString,QString,QString, QString)));
  //   connect(plan, SIGNAL(editTaskSignal(QString,QString,QString)),this,SLOT(callConcreteTaskEdited(QString,QString,QString)));
 
 
@@ -317,6 +317,11 @@ void GuiController::callCreatePlan(){
 void GuiController::callNewConcreteTask(){
     con->addConcreteTask(plan->getTaskWeekInput(), plan->getTaskNameInput(), plan->getResInput(), plan->getTaskRoomInput());
 
+    plan->appear(con->getConcreteTaskWeek(), con->getConcreteTaskName(), con->getConcreteTaskRes(), con->getConcreteTaskRoom(), con->getConcreteTaskListSize());
+}
+
+void GuiController::callConcreteTaskDeleted(QString week, QString task, QString res, QString room) {
+    con->deleteConcreteTask(week.toInt(), task.toStdString(), res.toStdString(), room.toStdString());
     plan->appear(con->getConcreteTaskWeek(), con->getConcreteTaskName(), con->getConcreteTaskRes(), con->getConcreteTaskRoom(), con->getConcreteTaskListSize());
 }
 

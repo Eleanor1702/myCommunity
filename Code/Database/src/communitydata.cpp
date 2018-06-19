@@ -370,12 +370,13 @@ void CommunityData::addToCleaningplan(ConcreteTask ctask){
     delete stmt;
 }
 //delete a concrete task
-void CommunityData::deleteConcreteTask(Task ta, std::string resident, int week){
+void CommunityData::deleteConcreteTask(std::string task, std::string resident, int week, std::string room){
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("DELETE FROM Cleaning WHERE Task = ? AND Resident = ? AND Week = ?");
-    stmt->setString(1, ta.getName());
+    stmt = con->prepareStatement("DELETE FROM Cleaning WHERE Task = ? AND Resident = ? AND Week = ? AND CRoom = ?");
+    stmt->setString(1, task);
     stmt->setString(2, resident);
     stmt->setInt(3,week);
+    stmt->setString(4, room);
     stmt->execute();
     delete stmt;
 }

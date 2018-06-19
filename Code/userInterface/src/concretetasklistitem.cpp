@@ -45,6 +45,6 @@ void ConcreteTaskListItem::editConcreteTask(){
 }
 
 void ConcreteTaskListItem::deleteConcreteTask(){
-    emit deleteConcreteTaskSignal(week, task, res);
+    emit deleteConcreteTaskSignal(week, task, res, room);
 }
 

@@ -140,6 +140,7 @@ void SetUpCleaningPlan::CleanPlanCalled(){
     emit CleanPlanCallSignal();
 }
 
+//update tasks
 void SetUpCleaningPlan::setTaskCombobox(std::vector<std::string> Tasks, std::vector<std::string> Rooms) {
     QStringList tasks;
     for(unsigned int i = 0; i< Tasks.size(); i++) {
@@ -149,6 +150,7 @@ void SetUpCleaningPlan::setTaskCombobox(std::vector<std::string> Tasks, std::vec
     selectTaskCombo->addItems(tasks);
 }
 
+//update residents
 void SetUpCleaningPlan::setResidentCombobox(std::vector<std::string> Residents) {
     QStringList res;
     for(unsigned int i = 0; i< Residents.size(); i++) {
@@ -167,7 +169,7 @@ std::string SetUpCleaningPlan::getTaskNameInput(){
     std::string task_str;
     std::string task_name = "";
     task_str = this->selectTaskCombo->currentText().toStdString();
-    for(int i = 0; i<task_str.size(); i++){
+    for(unsigned int i = 0; i<task_str.size(); i++){
         if(task_str[i+1] != '-'){
             task_name= task_name + task_str[i];
         }else{
@@ -180,11 +182,9 @@ std::string SetUpCleaningPlan::getTaskRoomInput(){
     std::string task_str;
     std::string task_room;
     task_str = this->selectTaskCombo->currentText().toStdString();
-    for(int i = 0; i<task_str.size(); i++){
+    for(unsigned int i = 2; i<task_str.size()+2; i++){
         if(task_str[i-2] == '-'){
-            task_room=task_room + task_str[i];
-        }else{
-            break;
+            task_room=task_room + task_str[i]; //ausbessern! ab hier kopieren, nicht nur einen char
         }
     }
     return task_room;
@@ -226,7 +226,7 @@ void SetUpCleaningPlan::appear(std::vector<int> weekVec,
                                                    QString::fromStdString(taskVec[i]),
                                                    QString::fromStdString(resVec[i]),
                                                    QString::fromStdString(roomVec[i]));
-        connect(newConcreteTask,SIGNAL(deleteConcreteTaskSignal(QString, QString, QString)),this,SLOT(deleteTaskCalled(QString,QString,QString)));
+        connect(newConcreteTask,SIGNAL(deleteConcreteTaskSignal(QString, QString, QString, QString)),this,SLOT(deleteTaskCalled(QString,QString,QString,QString)));
 
         ConcreteTaskListItemList.push_back(newConcreteTask);
         scrollLayout->addWidget(newConcreteTask);
@@ -234,14 +234,14 @@ void SetUpCleaningPlan::appear(std::vector<int> weekVec,
 }
 
 void SetUpCleaningPlan::setNewTaskCalled(){
-    emit setNewTaskSignal();
+    emit NewConcreteTaskSignal();
 }
 
-void SetUpCleaningPlan::deleteTaskCalled(QString week, QString task, QString res){
-    emit deleteTaskSignal(week, task, res);
+void SetUpCleaningPlan::deleteTaskCalled(QString week, QString task, QString res, QString room){
+    emit deleteConcreteTaskSignal(week, task, res, room);
 }
 
 void SetUpCleaningPlan::editTaskCalled(QString week, QString task, QString res){
-    emit editTaskSignal(week, task, res);
+    emit editConcreteTaskSignal(week, task, res);
 }
 

@@ -72,7 +72,7 @@ public:
     //Cleaning plan
     void createCleaningTable();
     void addToCleaningplan(ConcreteTask ctask);
-    void deleteConcreteTask(Task ta, std::string resident, int week);
+    void deleteConcreteTask(std::string task, std::string resident, int week, std::string room);
     void deleteTaskCleaningplan(std::string name, std::string room);
     void deleteResidentCleaningplan(std::string resident);
     void deleteRoomCleaningplan(std::string room);

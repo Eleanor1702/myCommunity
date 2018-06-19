@@ -82,14 +82,14 @@ public:
 
 private slots:
     void CleanPlanCalled();
-    void deleteTaskCalled(QString week, QString task, QString res);
+    void deleteTaskCalled(QString week, QString task, QString res, QString room);
     void editTaskCalled(QString week, QString task, QString res);
     void setNewTaskCalled();
 signals:
     void CleanPlanCallSignal();
-    void deleteTaskSignal(QString, QString, QString);
-    void editTaskSignal(QString, QString, QString);
-    void setNewTaskSignal();
+    void deleteConcreteTaskSignal(QString, QString, QString, QString);
+    void editConcreteTaskSignal(QString, QString, QString);
+    void NewConcreteTaskSignal();
 
 };
 

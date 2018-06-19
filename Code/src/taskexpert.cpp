@@ -84,11 +84,11 @@ void TaskExpert::createConcreteTask(std::string taskname, std::string resident, 
     data->addToCleaningplan(cTask);
 
 }
-/*
-void TaskExpert::deleteConcreteTask(Task task, std::string resident, int cw){
-    data->deleteConcreteTask(task,resident,cw);
-}
 
+void TaskExpert::deleteConcreteTask(std::string task, std::string resident, int cw, std::string room){
+    data->deleteConcreteTask(task, resident, cw, room);
+}
+/*
 void TaskExpert::editConcreteTask(Task task, std::string resident, int cw){
     data->editConcreteTask(taks, resident, cw);
 }

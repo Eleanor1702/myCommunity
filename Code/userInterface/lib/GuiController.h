@@ -89,7 +89,6 @@ public slots:
   void newEventSet();
   void eventAppeared();
   void eventDeleted(QString time, QString date, QString description, QString user);
-  //void eventEdited(QString time, QString date, QString description, QString user);
 
   //Cleaning Plan Slots:
   void callTask();
@@ -97,10 +96,9 @@ public slots:
 
   //ConcreteTask Slots:
   void callNewConcreteTask();
-  /*
-  void callConcreteTaskDeleted(QString week, QString task, QString res);
-  void callConcreteTaskEdited(QString week, QString task, QString res);
-*/
+  void callConcreteTaskDeleted(QString week, QString task, QString res, QString room);
+  //void callConcreteTaskEdited(QString week, QString task, QString res);
+
   //SetUpTask Slots:
   void taskDeleted(QString task, QString room);
   void newTaskSet();

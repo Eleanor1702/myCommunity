@@ -26,7 +26,7 @@ private slots:
     void editConcreteTask();
 
 signals:
-    void deleteConcreteTaskSignal(QString week, QString task, QString res);
+    void deleteConcreteTaskSignal(QString week, QString task, QString res, QString room);
     void editConcreteTaskSignal(QString week, QString task, QString res);
 
 public:
