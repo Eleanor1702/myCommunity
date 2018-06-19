@@ -42,7 +42,7 @@ void Controller::editResident(std::string username,int newPassword){
 }
 bool Controller::searchResident(std::string username, int password) {
     if(rsExpert->verifyLogInData(username, password)) {
-        user = username;
+        //user = username;
         return true;
     }else{
         return false;

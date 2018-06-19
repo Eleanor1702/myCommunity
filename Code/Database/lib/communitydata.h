@@ -50,6 +50,8 @@ public:
     std::vector<std::string> getAllResidents();
     bool verifyLogInData(std::string, int);
     bool verifyName(std::string);
+    //CurrentUser
+    std::string getDbUser(std::string user);
 
     //Calendar
     void createCalendarTable();
@@ -84,6 +86,7 @@ public:
     void addItem(Shoppingitem si);
     void deleteShoppinglistItem(std::string item);
     std::vector<Shoppingitem> getAllItems();
+
 };
 
 #endif // COMMUNITYDATA_H

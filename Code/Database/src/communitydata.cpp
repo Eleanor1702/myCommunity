@@ -149,7 +149,8 @@ std::vector<std::string> CommunityData::getAllResidents() {
 }
 //verifying the log in data by username and password
  bool CommunityData::verifyLogInData(std::string username, int password) {
-     PreparedStatement* stmt = con->prepareStatement("SELECT * FROM Residents WHERE Firstname = ? AND Password = ?");
+     PreparedStatement* stmt = con->prepareStatement("SELECT * FROM Residents WHERE Firstname = ? "
+                                                     "AND Password = ?");
      ResultSet* resultSet = NULL;
      stmt->setString(1, username);
      stmt->setInt(2, password);
@@ -183,6 +184,24 @@ std::vector<std::string> CommunityData::getAllResidents() {
          return false;
      }
  }
+//Get Username from database (username is not case sensitive)
+ std::string CommunityData::getDbUser(std::string user){
+     PreparedStatement* stmt = con->prepareStatement("SELECT * FROM Residents WHERE Firstname = ?");
+     ResultSet* resultSet = NULL;
+     std::string res;
+     stmt->setString(1, user);
+     resultSet = stmt->executeQuery();
+     if(resultSet->next()){
+         res = resultSet->getString("Firstname");
+         return res;
+     }
+     else{
+     return "Fehler";
+        }
+  }
+
+
+
 
 
 //****Calendar****

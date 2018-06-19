@@ -20,7 +20,7 @@ private:
 
         static Controller* instance;                         //Singleton
 
-        std::string user;                                    //aktueller User, der angemeldet ist
+       // std::string user;                                    //aktueller User, der angemeldet ist
 
 protected:
         Controller(CommunityData* data);

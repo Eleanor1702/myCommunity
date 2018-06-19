@@ -16,10 +16,12 @@ SignUp::SignUp(QWidget *parent) : QWidget(parent) {
     nameRow = new QBoxLayout(QBoxLayout::LeftToRight);
     nameLabel = new QLabel("Name:");
     giveNameEdit = new QLineEdit();
+    giveNameEdit->setToolTip("Groß- und Kleinschreibung wird nicht beachtet!");
 
     passwordRow = new QBoxLayout(QBoxLayout::LeftToRight);
     passwordLabel = new QLabel("Passwort:");
     givePasswordEdit = new QLineEdit();
+    givePasswordEdit->setToolTip("Passwort muss genau 4 Ziffern enthalten!");
 
     errorMsgRow = new QBoxLayout(QBoxLayout::LeftToRight);
     errorMsgLabel = new QLabel();

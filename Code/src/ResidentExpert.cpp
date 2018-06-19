@@ -44,7 +44,7 @@ std::vector<std::string> ResidentExpert::userNameGetter() {
 }
 
 void ResidentExpert::setCurrentUser(std::string newUser){
-    currentUser = newUser;
+    currentUser = data->getDbUser(newUser);
 }
 
 std::string ResidentExpert::getCurrentUser(){
