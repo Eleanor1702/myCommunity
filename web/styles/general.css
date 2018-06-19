@@ -1,6 +1,7 @@
 * {
     margin: 0;
     font-family: "Roboto", sans-serif;
+    color: #fff;
 }
 
 .container {
@@ -14,6 +15,7 @@
 
 .spacing-bottom {
     margin-bottom: 20px;
+    font-size: 100px;
 }
 
 h1,h2,h3,h4,h5,p {
@@ -25,12 +27,26 @@ a {
     text-decoration: none;
 }
 
+li, ul {
+  padding: 0;
+  margin: 0;
+}
+
 #menu {
     position: absolute;
     top: 40px;
     right: 40px;
     z-index: 999;
     text-decoration: none;
+}
+
+#download {
+
+}
+
+#download  a{
+    background: #ff5964;
+    color: #fff;
 }
 
 #menu li {
