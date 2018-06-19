@@ -342,5 +342,4 @@ void EventPage::editEventCalled(QString time , QString date, QString description
     if(user == "gemeinschaftlich") {
         checkPub->setChecked(true);
     }
-
 }
