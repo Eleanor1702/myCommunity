@@ -357,14 +357,15 @@ std::vector<std::string> CommunityData::getAllEventsString(std::string cuser, st
 void CommunityData::createCleaningTable(){
     Statement* stmt;
     stmt = con->createStatement();
-    stmt->execute("CREATE TABLE IF NOT EXISTS Cleaning (Task VARCHAR(50), Resident VARCHAR(50), Week INT)");
+    stmt->execute("CREATE TABLE IF NOT EXISTS Cleaning (Task VARCHAR(50), CRoom VARCHAR(50), Resident VARCHAR(50), Week INT)");
 }
 void CommunityData::addToCleaningplan(ConcreteTask ctask){
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("INSERT INTO Cleaning(Task, Resident, Week) VALUES(?, ?, ?)");
+    stmt = con->prepareStatement("INSERT INTO Cleaning(Task, CRoom, Resident, Week) VALUES(?, ?, ?, ?)");
     stmt->setString(1, ctask.getTask().getName());
-    stmt->setString(2, ctask.getResident());
-    stmt->setInt(3, ctask.getCalendarweek());
+    stmt->setString(2, ctask.getTask().getRoom());
+    stmt->setString(3, ctask.getResident());
+    stmt->setInt(4, ctask.getCalendarweek());
     stmt->execute();
     delete stmt;
 }
@@ -408,16 +409,18 @@ std::vector<ConcreteTask> CommunityData::getAllConcreteTasks() {
     std::vector<ConcreteTask> list;
     ResultSet* resultSet = NULL;
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("SELECT * FROM Cleaning");
+    stmt = con->prepareStatement("SELECT * FROM Cleaning JOIN Tasks ON Tasks.Name = Cleaning.Task");
     resultSet = stmt->executeQuery();
     while(resultSet->next()) {
         ConcreteTask ctask;
         Task ta;
+        ta.setName(resultSet->getString("Task"));
+        ta.setRoom(resultSet->getString("CRoom"));
+        ta.setFrequency(resultSet->getString("Frequency"));
         ctask.setResident(resultSet->getString("Resident"));
         ctask.setCalendarweek(resultSet->getInt("Week"));
-        ta.setName(resultSet->getString("Task"));
         ctask.setTask(ta);
-
+        list.push_back(ctask);
     }
     delete stmt;
     delete resultSet;

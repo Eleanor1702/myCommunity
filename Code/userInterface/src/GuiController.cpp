@@ -82,6 +82,10 @@ GuiController::GuiController(Controller* con) : QWidget() {
 
     //SetUpPlan Events
     connect(plan, SIGNAL(CleanPlanCallSignal()), this,SLOT(callCleanPlan()));
+    connect(plan, SIGNAL(setNewTaskSignal()),this,SLOT(callNewConcreteTask()));
+ //   connect(plan,SIGNAL(deleteTaskSignal(QString,QString,QString)), this,SLOT(callConcreteTaskDeleted(QString,QString,QString)));
+ //   connect(plan, SIGNAL(editTaskSignal(QString,QString,QString)),this,SLOT(callConcreteTaskEdited(QString,QString,QString)));
+
 
     //SetUpShoppinglist Events
     connect(shop, SIGNAL(setNewItemSignal()), this, SLOT(newItemSet()));
@@ -310,6 +314,11 @@ void GuiController::callCreatePlan(){
 }
 
 //SetUpTask Events
+void GuiController::callNewConcreteTask(){
+    con->addConcreteTask(plan->getTaskWeekInput(), plan->getTaskNameInput(), plan->getResInput(), plan->getTaskRoomInput());
+
+    plan->appear(con->getConcreteTaskWeek(), con->getConcreteTaskName(), con->getConcreteTaskRes(), con->getConcreteTaskRoom(), con->getConcreteTaskListSize());
+}
 
 //new cleaning task
 void GuiController::newTaskSet(){

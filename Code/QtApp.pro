@@ -61,8 +61,8 @@ SOURCES += \
     userInterface/src/eventpage.cpp \
     src/Resident.cpp \
     src/Room.cpp \
+    userInterface/src/concretetasklistitem.cpp \
     src/Event.cpp \
-    src/exporter.cpp
 
 HEADERS += \
     lib/controller.h \
@@ -100,8 +100,8 @@ HEADERS += \
     userInterface/lib/eventpage.h \
     lib/Resident.h \
     lib/Room.h \
+    userInterface/lib/concretetasklistitem.h \
     lib/Event.h \
-    lib/exporter.h
 
 RESOURCES = \
     media/application.qrc \

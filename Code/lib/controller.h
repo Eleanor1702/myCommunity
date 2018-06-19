@@ -62,7 +62,14 @@ public:
         int getTasklistSize();
 
         //Cleaning plan / Concrete Tasks
-        void addConcreteTask(std::string taskname, std::string taskroom, std::string room, int week);
+        void addConcreteTask(int week, std::string task, std::string res, std::string room);
+        void deleteConcreteTask(std::string week, std::string task, std::string res);
+        void editConcreteTask(std::string week, std::string task, std::string res);
+        std::vector<int>getConcreteTaskWeek();
+        std::vector<std::string>getConcreteTaskName();
+        std::vector<std::string>getConcreteTaskRes();
+        std::vector<std::string>getConcreteTaskRoom();
+        int getConcreteTaskListSize();
 
         //Shopping items
         void addItem(std::string itemname, std::string number);

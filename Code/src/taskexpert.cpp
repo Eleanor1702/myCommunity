@@ -67,22 +67,65 @@ std::vector<std::string> TaskExpert::taskFrequencyGetter() {
 //***************************ConcreteTasks
 
 //get all concretTasks
-std::vector<ConcreteTask> TaskExpert::getConcreteTasks(){
+std::vector<ConcreteTask> TaskExpert::concreteTaskGetter(){
     return data->getAllConcreteTasks();     //TODO
 }
 
-void TaskExpert::createConcreteTask(Task task, std::string resident, int cw){
-    ConcreteTask cTask;
 
-     cTask.setTask(task);
-     cTask.setResident(resident);
-     cTask.setCalendarweek(cw);
-     data->addToCleaningplan(cTask);
+void TaskExpert::createConcreteTask(std::string taskname, std::string resident, int cw, std::string room){
+    ConcreteTask cTask;
+    Task task;
+    task.setName(taskname);
+    task.setRoom(room);
+    task.setFrequency("");
+    cTask.setTask(task);
+    cTask.setResident(resident);
+    cTask.setCalendarweek(cw);
+    data->addToCleaningplan(cTask);
 
 }
-
+/*
 void TaskExpert::deleteConcreteTask(Task task, std::string resident, int cw){
     data->deleteConcreteTask(task,resident,cw);
+}
+
+void TaskExpert::editConcreteTask(Task task, std::string resident, int cw){
+    data->editConcreteTask(taks, resident, cw);
+}
+*/
+std::vector<int> TaskExpert::concreteTaskWeekGetter(){
+    std::vector<int> weekVector;
+
+    for(unsigned int i = 0; i < concreteTaskGetter().size(); i++) {
+        weekVector.push_back((concreteTaskGetter()[i].getCalendarweek()));
+    }
+    return weekVector;
+}
+
+std::vector<std::string> TaskExpert::concreteTaskResGetter(){
+    std::vector<std::string> residentVector;
+
+    for(unsigned int i = 0; i < concreteTaskGetter().size(); i++) {
+        residentVector.push_back((concreteTaskGetter()[i].getResident()));
+    }
+    return residentVector;
+}
+
+std::vector<std::string> TaskExpert::concreteTaskNameGetter(){
+    std::vector<std::string> nameVector;
+
+    for(unsigned int i= 0; i<concreteTaskGetter().size();i++){
+        nameVector.push_back(concreteTaskGetter()[i].getTask().getName());
+    }
+    return nameVector;
+}
+std::vector<std::string> TaskExpert::concreteTaskRoomGetter(){
+    std::vector<std::string> roomVector;
+
+    for(unsigned int i= 0; i<concreteTaskGetter().size();i++){
+        roomVector.push_back(concreteTaskGetter()[i].getTask().getRoom());
+    }
+    return roomVector;
 }
 /*
 std::vector<ConcreteTask> TaskExpert::showConcreteTasks(int cw, std::string user){

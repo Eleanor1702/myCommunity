@@ -1,6 +1,5 @@
 #include "userInterface/lib/setupcleaningplan.h"
 #include <QWidget>
-#include <QTextCharFormat>
 
 SetUpCleaningPlan::SetUpCleaningPlan(QWidget *parent) : QWidget(parent)
 {
@@ -20,8 +19,8 @@ SetUpCleaningPlan::SetUpCleaningPlan(QWidget *parent) : QWidget(parent)
 
     ListArea = new QVBoxLayout();
     selectedTasksLabel = new QLabel("Hinzugefügte Aufgaben:");
-    scrollArea = new QScrollArea();
-    scrollWidget = new QWidget();
+    scrollArea = new QScrollArea(this);
+    scrollWidget = new QWidget(this);
     scrollLayout = new QBoxLayout(QBoxLayout::TopToBottom);
 
     addTaskLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
@@ -40,8 +39,6 @@ SetUpCleaningPlan::SetUpCleaningPlan(QWidget *parent) : QWidget(parent)
     this->setMainWindowDesign();
     this->setMainLayoutDesign();
 
-    QObject::connect(backButton,SIGNAL(clicked()),this,SLOT(CleanPlanCalled()));
-
     this->setGeometry(
         QStyle::alignedRect(
             Qt::LeftToRight,
@@ -50,6 +47,10 @@ SetUpCleaningPlan::SetUpCleaningPlan(QWidget *parent) : QWidget(parent)
             qApp->desktop()->availableGeometry()
          )
     );
+
+    QObject::connect(addTaskButton,SIGNAL(clicked()),this,SLOT(setNewTaskCalled()));
+    QObject::connect(backButton,SIGNAL(clicked()),this,SLOT(CleanPlanCalled()));
+
 }
 
 void SetUpCleaningPlan::setMainWindowDesign(){
@@ -82,15 +83,16 @@ void SetUpCleaningPlan::setMainLayoutDesign(){
     this->selectWeekArea->addWidget(this->giveCWEdit, 1, Qt::AlignTop);
     this->giveCWEdit->setFixedWidth(80);
     this->giveCWEdit->setMaxLength(2);
+    this->giveCWEdit->setValidator(new QIntValidator(0, 54, this));
     this->calendarArea->addWidget(this->calendar, 0, Qt::AlignBottom);
     this->calendar->showToday();
     this->calendar->setSelectionMode(calendar->NoSelection);
     this->calendar->setFixedSize(300, 290);
-    this->calendar->setStyleSheet("font-family: URW Bookman L; font-size:12px; color: black"
-                                  ".VerticalHeaderText{background-color: #f30000;}");
+    this->calendar->setStyleSheet("font-family: URW Bookman L; font-size:12px; color: black");
 
-    this->frmt.setForeground(Qt::red);
+/*    this->frmt.setForeground(Qt::red);
     this->calendar->setHeaderTextFormat(frmt);
+*/
 
     this->ListArea->addWidget(this->selectedTasksLabel, 0, Qt::AlignTop);
     this->selectedTasksLabel->setStyleSheet("font-family: URW Bookman L; font-size: 12px;"
@@ -141,7 +143,7 @@ void SetUpCleaningPlan::CleanPlanCalled(){
 void SetUpCleaningPlan::setTaskCombobox(std::vector<std::string> Tasks, std::vector<std::string> Rooms) {
     QStringList tasks;
     for(unsigned int i = 0; i< Tasks.size(); i++) {
-        tasks.push_back(QString::fromStdString(Rooms[i]) + " - " + QString::fromStdString(Tasks[i]));
+        tasks.push_back(QString::fromStdString(Tasks[i]) + " - " + QString::fromStdString(Rooms[i]));
     }
     selectTaskCombo->clear();
     selectTaskCombo->addItems(tasks);
@@ -155,3 +157,91 @@ void SetUpCleaningPlan::setResidentCombobox(std::vector<std::string> Residents) 
     selectResCombo->clear();
     selectResCombo->addItems(res);
 }
+
+
+int SetUpCleaningPlan::getTaskWeekInput(){
+    return this->giveCWEdit->text().toInt();
+}
+
+std::string SetUpCleaningPlan::getTaskNameInput(){
+    std::string task_str;
+    std::string task_name = "";
+    task_str = this->selectTaskCombo->currentText().toStdString();
+    for(int i = 0; i<task_str.size(); i++){
+        if(task_str[i+1] != '-'){
+            task_name= task_name + task_str[i];
+        }else{
+            break;
+        }
+    }
+    return task_name;
+}
+std::string SetUpCleaningPlan::getTaskRoomInput(){
+    std::string task_str;
+    std::string task_room;
+    task_str = this->selectTaskCombo->currentText().toStdString();
+    for(int i = 0; i<task_str.size(); i++){
+        if(task_str[i-2] == '-'){
+            task_room=task_room + task_str[i];
+        }else{
+            break;
+        }
+    }
+    return task_room;
+}
+
+std::string SetUpCleaningPlan::getResInput(){
+    return this->selectResCombo->currentText().toStdString();
+}
+
+void SetUpCleaningPlan::deepDeleteLayout(QLayout *layout){
+    QLayoutItem* item;
+
+    while((item = layout->takeAt(0))) {
+        if(item->layout()){
+            deepDeleteLayout(item->layout());
+            delete item->layout();
+        }
+
+        if(item->widget()) {
+            delete item->widget();
+        }
+
+        delete item;
+    }
+}
+
+void SetUpCleaningPlan::appear(std::vector<int> weekVec,
+                               std::vector<std::string> taskVec,
+                               std::vector<std::string> resVec,
+                               std::vector<std::string> roomVec,
+                               int size){
+    for(unsigned int i= 0; i<ConcreteTaskListItemList.size(); i++){
+        deepDeleteLayout(scrollLayout);
+    }
+    ConcreteTaskListItemList.clear();
+
+    for(int i=0; i<size; i++){
+        newConcreteTask = new ConcreteTaskListItem(QString::number(weekVec[i]),
+                                                   QString::fromStdString(taskVec[i]),
+                                                   QString::fromStdString(resVec[i]),
+                                                   QString::fromStdString(roomVec[i]));
+        connect(newConcreteTask,SIGNAL(deleteConcreteTaskSignal(QString, QString, QString)),this,SLOT(deleteTaskCalled(QString,QString,QString)));
+
+        ConcreteTaskListItemList.push_back(newConcreteTask);
+        scrollLayout->addWidget(newConcreteTask);
+    }
+}
+
+void SetUpCleaningPlan::setNewTaskCalled(){
+    emit setNewTaskSignal();
+}
+
+void SetUpCleaningPlan::deleteTaskCalled(QString week, QString task, QString res){
+    emit deleteTaskSignal(week, task, res);
+}
+
+void SetUpCleaningPlan::editTaskCalled(QString week, QString task, QString res){
+    emit editTaskSignal(week, task, res);
+}
+

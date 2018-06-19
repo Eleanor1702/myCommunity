@@ -95,6 +95,12 @@ public slots:
   void callTask();
   void callCreatePlan();
 
+  //ConcreteTask Slots:
+  void callNewConcreteTask();
+  /*
+  void callConcreteTaskDeleted(QString week, QString task, QString res);
+  void callConcreteTaskEdited(QString week, QString task, QString res);
+*/
   //SetUpTask Slots:
   void taskDeleted(QString task, QString room);
   void newTaskSet();
