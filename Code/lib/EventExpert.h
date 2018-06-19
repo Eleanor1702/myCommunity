@@ -18,7 +18,7 @@ protected:
 
 public:
     void createEvent(std::string time, std::string date,
-                     std::string description, std::string user);             // time und date als t_time
+                     std::string description, std::string user);
     void deleteEvent(std::string time, std::string date,
                      std::string description, std::string user);
     void editEvent(std::string time, std::string date, std::string description, std::string user, std::string newtime, std::string newdate, std::string newdescription);

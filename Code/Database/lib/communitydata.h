@@ -19,6 +19,8 @@
 #include "lib/shoppingitem.h"
 #include "lib/concretetask.h"
 
+#include <string>
+
 
 class CommunityData {
 private:
@@ -64,6 +66,8 @@ public:
     std::vector<Event> getAllEventsOfUser(std::string user, std::string datetime);
     std::vector<Event> getAllCommunityEvents();
     std::vector<Event> getAllEvents(std::string user, std::string date);
+    std::vector<std::string> getAllEventsString(std::string cuser, std::string datetime);
+
 
     //Cleaning plan
     void createCleaningTable();
@@ -73,6 +77,7 @@ public:
     void deleteResidentCleaningplan(std::string resident);
     void deleteRoomCleaningplan(std::string room);
     std::vector<ConcreteTask> getAllConcreteTasks();
+    std::vector<std::string> getAllConcreteTasksString();
 
     //Tasks
     void createTaskTable();
@@ -86,6 +91,7 @@ public:
     void addItem(Shoppingitem si);
     void deleteShoppinglistItem(std::string item);
     std::vector<Shoppingitem> getAllItems();
+    std::vector<std::string> getAllItemsString();
 
 };
 

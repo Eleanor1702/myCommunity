@@ -61,11 +61,8 @@ SOURCES += \
     userInterface/src/eventpage.cpp \
     src/Resident.cpp \
     src/Room.cpp \
-<<<<<<< HEAD
-    userInterface/src/concretetasklistitem.cpp
-=======
-    src/Event.cpp
->>>>>>> 75508c5eecb190fa08931917be19cc7bfe287b3a
+    src/Event.cpp \
+    src/exporter.cpp
 
 HEADERS += \
     lib/controller.h \
@@ -103,11 +100,8 @@ HEADERS += \
     userInterface/lib/eventpage.h \
     lib/Resident.h \
     lib/Room.h \
-<<<<<<< HEAD
-    userInterface/lib/concretetasklistitem.h
-=======
-    lib/Event.h
->>>>>>> 75508c5eecb190fa08931917be19cc7bfe287b3a
+    lib/Event.h \
+    lib/exporter.h
 
 RESOURCES = \
     media/application.qrc \

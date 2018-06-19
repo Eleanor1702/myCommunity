@@ -328,6 +328,28 @@ std::vector<Event> CommunityData::getAllEvents(std::string user, std::string dat
     return list;
 }
 
+std::vector<std::string> CommunityData::getAllEventsString(std::string cuser, std::string datetime){
+    std::vector<std::string> stringlist;
+    std::string name;
+    std::string user;
+    std::string date;
+    std::string time;
+    std::string info; //name,user,datetime
+
+    std::vector<Event> list = this->getAllEvents(cuser, datetime);
+
+    for(std::vector<Event>::iterator it = list.begin(); it != list.end(); it++)    {
+                  name = it->getDescription();
+                  user = it->getUser();
+                  date = it->getDate();
+                  time = it->getTime();
+                  info = name + "," + user + "," + date + "," + time + "\n";
+                  stringlist.push_back(info);
+     }
+    return stringlist;
+}
+
+
 
 //*****Cleaningplan*****
 
@@ -400,6 +422,25 @@ std::vector<ConcreteTask> CommunityData::getAllConcreteTasks() {
     delete stmt;
     delete resultSet;
     return list;
+}
+
+std::vector<std::string> CommunityData::getAllConcreteTasksString(){
+    std::vector<std::string> stringlist;
+    std::string taskname;
+    std::string resident;
+    std::string cw;   //calendarweek
+    std::string info; //taskname,resident,cw
+
+    std::vector<ConcreteTask> list = this->getAllConcreteTasks();
+
+    for(std::vector<ConcreteTask>::iterator it = list.begin(); it != list.end(); it++)    {
+                  taskname = it->getTask().getName();
+                  resident = it->getResident();
+                  cw = it->getCalendarweek();
+                  info = taskname + "," + resident + "," + cw + "\n";
+                  stringlist.push_back(info);
+     }
+    return stringlist;
 }
 
 //****Tasks*****
@@ -507,4 +548,25 @@ std::vector<Shoppingitem> CommunityData::getAllItems() {
     delete resultSet;
     return list;
 }
+//get ShopingList as String
+std::vector<std::string> CommunityData::getAllItemsString(){
+    std::vector<std::string> stringlist;
+    std::string amount;
+    std::string name;
+    std::string info;   //"amaount,name"
+
+    std::vector<Shoppingitem> list = this->getAllItems();
+
+    for(std::vector<Shoppingitem>::iterator it = list.begin(); it != list.end(); it++)    {
+                  amount = it->getNumber();
+                  name = it->getItemName();
+                  info = amount + "," + name + "\n";
+                  stringlist.push_back(info);
+     }
+    return stringlist;
+}
+
+
+
+
 
