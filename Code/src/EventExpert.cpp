@@ -85,6 +85,6 @@ std::vector<Event> EventExpert::getUserEvents(std::string user, std::string date
   return data->getAllEventsOfUser(user, datetime);
 }
 
-std::vector<Event> EventExpert::getCommunityEvents() {
-  return data->getAllCommunityEvents();
-}
+
+
+

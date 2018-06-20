@@ -220,41 +220,6 @@ void EventPage::deepDeleteLayout(QLayout *layout) {
         delete item;
     }
 }
-/*
-void EventPage::appearAll(std::vector<std::string> timeVec,
-                          std::vector<std::string> dateVec,
-                          std::vector<std::string> descrVec,
-                          std::vector<std::string> userVec, int size){
-    for (unsigned int i = 0; i<EventListItemPubList.size(); i++){
-        deepDeleteLayout(scrollLayout);
-        deepDeleteLayout(scrollLayoutPub);
-    }
-    EventListItemPubList.clear();
-    EventListItemPrivList.clear();
-    for(int i=0; i<size; i++){
-        newPubEvent = new EventListItem(QString::fromStdString(timeVec[i]),
-                                              QString::fromStdString(dateVec[i]),
-                                              QString::fromStdString(descrVec[i]),
-                                              QString::fromStdString(userVec[i]));
-
-         connect(newPubEvent, SIGNAL(deleteEventSignal(QString, QString, QString, QString)),this,
-                 SLOT(deleteEventCalled(QString, QString, QString, QString)));
-
-         EventListItemPubList.push_back(newPubEvent);
-
-         scrollLayoutPub->addWidget(newPubEvent);
-
-         newPrivEvent = new EventListItem(QString::fromStdString(timeVec[i]),
-                                              QString::fromStdString(dateVec[i]),
-                                              QString::fromStdString(descrVec[i]),
-                                              QString::fromStdString(userVec[i]));
-         connect(newPrivEvent, SIGNAL(deleteEventSignal(QString, QString, QString, QString)),this,
-                 SLOT(deleteEventCalled(QString, QString, QString, QString)));
-
-         EventListItemPrivList.push_back(newPrivEvent);
-         scrollLayout->addWidget(newPrivEvent);
-    }
-}*/
 
 void EventPage::appear(std::vector<std::string> timeVec,
                        std::vector<std::string> dateVec,
