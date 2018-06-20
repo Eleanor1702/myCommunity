@@ -180,11 +180,14 @@ std::string SetUpCleaningPlan::getTaskNameInput(){
 }
 std::string SetUpCleaningPlan::getTaskRoomInput(){
     std::string task_str;
-    std::string task_room;
     task_str = this->selectTaskCombo->currentText().toStdString();
-    for(unsigned int i = 2; i<task_str.size()+2; i++){
-        if(task_str[i-2] == '-'){
-            task_room=task_room + task_str[i]; //ausbessern! ab hier kopieren, nicht nur einen char
+    char task_room [task_str.size()];
+
+    for(unsigned int i = 0; i<task_str.size(); i++){
+        if(task_str[i] == '-'){
+            std::size_t length = task_str.copy(task_room, task_str.size(), i+2 );
+            task_room[length] = '\0';
+            break;
         }
     }
     return task_room;
@@ -227,10 +230,14 @@ void SetUpCleaningPlan::appear(std::vector<int> weekVec,
                                                    QString::fromStdString(resVec[i]),
                                                    QString::fromStdString(roomVec[i]));
         connect(newConcreteTask,SIGNAL(deleteConcreteTaskSignal(QString, QString, QString, QString)),this,SLOT(deleteTaskCalled(QString,QString,QString,QString)));
+        connect(newConcreteTask, SIGNAL(editConcreteTaskSignal(QString,QString,QString,QString)), this, SLOT(editTaskCalled(QString,QString,QString,QString)));
 
         ConcreteTaskListItemList.push_back(newConcreteTask);
         scrollLayout->addWidget(newConcreteTask);
     }
+    giveCWEdit->clear();
+    selectTaskCombo->setCurrentIndex(0);
+    selectResCombo->setCurrentIndex(0);
 }
 
 void SetUpCleaningPlan::setNewTaskCalled(){
@@ -241,7 +248,17 @@ void SetUpCleaningPlan::deleteTaskCalled(QString week, QString task, QString res
     emit deleteConcreteTaskSignal(week, task, res, room);
 }
 
-void SetUpCleaningPlan::editTaskCalled(QString week, QString task, QString res){
-    emit editConcreteTaskSignal(week, task, res);
+void SetUpCleaningPlan::editTaskCalled(QString week, QString task, QString res, QString room){
+    emit deleteConcreteTaskSignal(week, task, res, room);
+
+
+    int index = selectTaskCombo->findText(task+" - "+room);
+    selectTaskCombo->setCurrentIndex(index);
+
+    index = selectResCombo->findText(res);
+    selectResCombo->setCurrentIndex(index);
+
+    giveCWEdit->setText(week);
+
 }
 

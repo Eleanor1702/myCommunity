@@ -57,14 +57,11 @@ public:
 
     //Calendar
     void createCalendarTable();
-    //void createEventUserView(string user);
-    void createEventCommunityView();
     void addEvent(Event ev);
     void updateEvent(Event ev, std::string timedate,std::string description);
     void deleteEvent(Event ev);
     void deleteCalendar(std::string user);
     std::vector<Event> getAllEventsOfUser(std::string user, std::string datetime);
-    std::vector<Event> getAllCommunityEvents();
     std::vector<Event> getAllEvents(std::string user, std::string date);
     std::vector<std::string> getAllEventsString(std::string cuser, std::string datetime);
 

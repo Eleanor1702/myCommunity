@@ -84,8 +84,6 @@ GuiController::GuiController(Controller* con) : QWidget() {
     connect(plan, SIGNAL(CleanPlanCallSignal()), this,SLOT(callCleanPlan()));
     connect(plan, SIGNAL(NewConcreteTaskSignal()),this,SLOT(callNewConcreteTask()));
     connect(plan,SIGNAL(deleteConcreteTaskSignal(QString,QString,QString,QString)), this,SLOT(callConcreteTaskDeleted(QString,QString,QString, QString)));
- //   connect(plan, SIGNAL(editTaskSignal(QString,QString,QString)),this,SLOT(callConcreteTaskEdited(QString,QString,QString)));
-
 
     //SetUpShoppinglist Events
     connect(shop, SIGNAL(setNewItemSignal()), this, SLOT(newItemSet()));
@@ -314,18 +312,21 @@ void GuiController::callCreatePlan(){
 }
 
 //SetUpTask Events
+
+//new concrete cleaning task
 void GuiController::callNewConcreteTask(){
     con->addConcreteTask(plan->getTaskWeekInput(), plan->getTaskNameInput(), plan->getResInput(), plan->getTaskRoomInput());
 
     plan->appear(con->getConcreteTaskWeek(), con->getConcreteTaskName(), con->getConcreteTaskRes(), con->getConcreteTaskRoom(), con->getConcreteTaskListSize());
 }
 
+//delete concrete cleaning task
 void GuiController::callConcreteTaskDeleted(QString week, QString task, QString res, QString room) {
     con->deleteConcreteTask(week.toInt(), task.toStdString(), res.toStdString(), room.toStdString());
     plan->appear(con->getConcreteTaskWeek(), con->getConcreteTaskName(), con->getConcreteTaskRes(), con->getConcreteTaskRoom(), con->getConcreteTaskListSize());
 }
 
-//new cleaning task
+//new cleaning task (description)
 void GuiController::newTaskSet(){
   if(task->getTaskNameInput() == "Error") {
       //Exception

@@ -223,13 +223,6 @@ void CommunityData::addEvent(Event ev) {
     stmt->execute();
     delete stmt;
 }
-//create a View to get only community events
-void CommunityData::createEventCommunityView() {
-    PreparedStatement* stmt;
-    stmt = con->prepareStatement("CREATE OR REPLACE VIEW CommunityEvent AS SELECT * FROM Calendar WHERE Username = 'community'");
-    stmt->execute();
-    delete stmt;
-}
 
 //change time or description of an event
 void CommunityData::updateEvent(Event ev, std::string newtimedate, std::string newdescription) {
@@ -289,30 +282,13 @@ std::vector<Event> CommunityData::getAllEventsOfUser(std::string user, std::stri
     delete resultSet;
     return list;
 }
-//get all Community Events
-std::vector<Event> CommunityData::getAllCommunityEvents() {
-    std::vector<Event> list;
-    ResultSet* resultSet = NULL;
-    PreparedStatement* stmt; //si.setNumber(resultSet->getInt("Number"));
-    stmt = con->prepareStatement("SELECT * FROM CommunityEvent");
-    resultSet = stmt->executeQuery();
-    while(resultSet->next()) {
-        Event ev;
-        ev.setDescription(resultSet->getString("Event"));
-        ev.setUser("community");
-        ev.setDatetime(resultSet->getString("Datetime"));
-        list.push_back(ev);
-    }
-    delete stmt;
-    delete resultSet;
-    return list;
-}
+
 //get all Events
 std::vector<Event> CommunityData::getAllEvents(std::string user, std::string date){
     std::vector<Event> list;
     ResultSet* resultSet = NULL;
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("SELECT * FROM Calendar WHERE User = ? AND DATE(Datetime) = ?");
+    stmt = con->prepareStatement("SELECT * FROM Calendar WHERE User = ? AND DATE(Datetime) = ? ORDER BY Datetime");
     stmt->setString(1, user);
     stmt->setString(2, date);
     resultSet = stmt->executeQuery();
@@ -400,8 +376,9 @@ void CommunityData::deleteResidentCleaningplan(std::string resident){
 //update cleaningplan by task
 void CommunityData::deleteTaskCleaningplan(std::string name, std::string room) {
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("DELETE FROM Cleaning WHERE Task = ?");
+    stmt = con->prepareStatement("DELETE FROM Cleaning WHERE Task = ? AND CRoom = ?");
     stmt->setString(1, name);
+    stmt->setString(2, room);
     stmt->execute();
     delete stmt;
 }
@@ -410,7 +387,7 @@ std::vector<ConcreteTask> CommunityData::getAllConcreteTasks() {
     std::vector<ConcreteTask> list;
     ResultSet* resultSet = NULL;
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("SELECT * FROM Cleaning JOIN Tasks ON Tasks.Name = Cleaning.Task");
+    stmt = con->prepareStatement("SELECT * FROM Cleaning JOIN Tasks ON Tasks.Name = Cleaning.Task ORDER BY Week");
     resultSet = stmt->executeQuery();
     while(resultSet->next()) {
         ConcreteTask ctask;
@@ -428,6 +405,7 @@ std::vector<ConcreteTask> CommunityData::getAllConcreteTasks() {
     return list;
 }
 
+/*
 std::vector<std::string> CommunityData::getAllConcreteTasksString(){
     std::vector<std::string> stringlist;
     std::string taskname;
@@ -446,7 +424,7 @@ std::vector<std::string> CommunityData::getAllConcreteTasksString(){
      }
     return stringlist;
 }
-
+*/
 //****Tasks*****
 
 //Table to store cleaning Tasks
