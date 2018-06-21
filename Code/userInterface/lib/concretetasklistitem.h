@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QHBoxLayout>
+#include <QLayout>
 
 class ConcreteTaskListItem : public QFrame {
   Q_OBJECT
