@@ -174,7 +174,7 @@ std::string SetUpCleaningPlan::getTaskNameInput(){
     task_str = this->selectTaskCombo->currentText().toStdString();
     for(unsigned int i = 0; i<task_str.size(); i++){
         if(task_str[i+1] != '-'){
-            task_name= task_name + task_str[i];
+            task_name = task_name + task_str[i];
         }else{
             break;
         }
@@ -184,13 +184,16 @@ std::string SetUpCleaningPlan::getTaskNameInput(){
 std::string SetUpCleaningPlan::getTaskRoomInput(){
     std::string task_str;
     task_str = this->selectTaskCombo->currentText().toStdString();
-    char task_room [task_str.size()];
+    std::string task_room;
 
     for(unsigned int i = 0; i<task_str.size(); i++){
         if(task_str[i] == '-'){
-            std::size_t length = task_str.copy(task_room, task_str.size(), i+2 );
-            task_room[length] = '\0';
-            break;
+            for(int j = i+2; j < task_str.size(); j++) {
+                if(task_str[j+1] != '-') {
+                    task_room = task_room + task_str[j];
+                }
+                else return task_room;
+            }
         }
     }
     return task_room;
