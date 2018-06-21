@@ -59,7 +59,7 @@ void SetUpTasks::setMainLayoutDesign() {
 
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
-                                   "font-weight: bold; margin-top: 5px; color: #aaa;");
+                                   "font-weight: bold; margin-top: 5px; color: #555;");
 
     this->scrollAreaRow->addWidget(scrollArea);
     this->scrollArea->setWidget(this->scrollWidget);
@@ -71,7 +71,7 @@ void SetUpTasks::setMainLayoutDesign() {
     this->addTasksRow->addWidget(TaskFrequencyLabel);
     this->addTasksRow->addWidget(chooseTaskFrequencyCombo);
     this->chooseTaskFrequencyCombo->setFixedWidth(120);
-    this->TaskFrequencyLabel->setStyleSheet("color: #aaa; font-weight: bold;");
+    this->TaskFrequencyLabel->setStyleSheet("color: #555; font-weight: bold;");
     this->chooseTaskFrequencyCombo->setStyleSheet("selection-color: white; selection-background-color: #1aa3ff;"
                                              " color: black; background-color: White;");
 
@@ -82,7 +82,7 @@ void SetUpTasks::setMainLayoutDesign() {
     this->addTasksRow->addWidget(TaskRoomLabel);
     this->addTasksRow->addWidget(chooseTaskRoomCombo);
     this->chooseTaskRoomCombo->setFixedWidth(120);
-    this->TaskRoomLabel->setStyleSheet("color: #aaa; font-weight: bold;");
+    this->TaskRoomLabel->setStyleSheet("color: #555; font-weight: bold;");
     this->chooseTaskRoomCombo->setStyleSheet("selection-color: white; selection-background-color: #1aa3ff;"
                                              "color: black; background-color: white;");
 
@@ -93,7 +93,7 @@ void SetUpTasks::setMainLayoutDesign() {
     this->addTasksRow->addWidget(nameLabel);
     this->addTasksRow->addWidget(giveNameEdit);
     this->giveNameEdit->setMaxLength(18);
-    this->nameLabel->setStyleSheet("color: #aaa; font-weight: bold;");
+    this->nameLabel->setStyleSheet("color: #555; font-weight: bold;");
     this->giveNameEdit->setStyleSheet("color: black;");
 
     this->mainButtonsRow->addWidget(addButton);

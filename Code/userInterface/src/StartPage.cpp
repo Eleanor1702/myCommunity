@@ -42,7 +42,7 @@ void StartPage::setMainLayoutDesign() {
 
   this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
   this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 50px;"
-                                 "font-weight: bold; color: #aaa;");
+                                 "font-weight: bold; color: #555;");
 
   this->ButtonsRow->addWidget(signUpButton, 0, Qt::AlignCenter);
   this->signUpButton->setFixedSize(200, 50);

@@ -47,11 +47,11 @@ void CleaningPage::setMainWindowDesign(){
 void CleaningPage::setMainLayoutDesign(){
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
-                                   "font-weight: bold; margin-top: 30px; color: #aaa;");
+                                   "font-weight: bold; margin-top: 30px; color: #555;");
 
     this->planRow->addWidget(this->plan, 1, Qt::AlignLeft);
     this->plan->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
-                              "font-weight: bold; margin-top: 30px; color: #aaa;");
+                              "font-weight: bold; margin-top: 30px; color: #555;");
 
     this->buttonRow->addWidget(setuptaskButton, 2, Qt::AlignLeft);
     this->buttonRow->addWidget(createPlanButton, 2, Qt::AlignCenter);

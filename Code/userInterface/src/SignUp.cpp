@@ -65,7 +65,7 @@ void SignUp::setMainWindowDesign() {
 void SignUp::setMainLayoutDesign() {
     mainLabelRow->addWidget(mainLabel, 0, Qt::AlignCenter);
     mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
-                                   "font-weight: bold; margin-top: 30px; color: #aaa;");
+                                   "font-weight: bold; margin-top: 30px; color: #555;");
 
     imageRow->addWidget(picLabel, 0, Qt::AlignVCenter);
     scaled = pic->scaled(130, 130, Qt::IgnoreAspectRatio, Qt::FastTransformation);
@@ -77,7 +77,7 @@ void SignUp::setMainLayoutDesign() {
     nameRow->addWidget(giveNameEdit, 11, Qt::AlignLeft);
     giveNameEdit->setMaxLength(18);
     giveNameEdit->setFixedWidth(300);
-    nameLabel->setStyleSheet("color: #aaa; font-weight: bold;");
+    nameLabel->setStyleSheet("color: #555; font-weight: bold;");
     giveNameEdit->setStyleSheet("margin-left: 10px; color: black;");
 
     passwordRow->addWidget(passwordLabel, 4, Qt::AlignRight);
@@ -87,7 +87,7 @@ void SignUp::setMainLayoutDesign() {
     givePasswordEdit->setFixedWidth(300);
     givePasswordEdit->setValidator(new QIntValidator(0, 10000, this));
     givePasswordEdit->setStyleSheet("margin-left: 10px; margin-bottom: 0px; color: black;");
-    passwordLabel->setStyleSheet("margin-top: 0px; margin-bottom: 10px; color: #aaa; "
+    passwordLabel->setStyleSheet("margin-top: 0px; margin-bottom: 10px; color: #555; "
                                  "font-weight: bold;");
 
     errorMsgRow->addWidget(errorMsgLabel, 0, Qt::AlignCenter);
