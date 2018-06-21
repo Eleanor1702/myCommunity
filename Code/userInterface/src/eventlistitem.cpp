@@ -23,7 +23,7 @@ EventListItem::EventListItem(QString eventTime, QString eventDateStr, QString ev
 void EventListItem::setItemStyle(){
     this->setFixedHeight(65);
     this->setFixedWidth(315);
-    this->setStyleSheet("border: 0.5px solid #aaa; border-radius: 2px");
+    this->setStyleSheet("border: 0.5px solid #555; border-radius: 2px");
 
     this->setLayout(this->newEventLayout);
     this->newEventLayout->addWidget(this->eventLabel); //, 40, Qt::AlignLeft);
@@ -31,7 +31,7 @@ void EventListItem::setItemStyle(){
     this->newEventLayout->addWidget(this->deleteEventButton);
 
     this->eventLabel->setFixedSize(100, 50);
-    this->eventLabel->setStyleSheet("text-align: top; font-size 10px; border: 0px; color: #aaa;");
+    this->eventLabel->setStyleSheet("text-align: top; font-size 10px; border: 0px; color: #555;");
     this->editEventButton->setFixedHeight(40);
     this->editEventButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff;"
                                          "border-radius: 5px; background-color: #3399ff;"

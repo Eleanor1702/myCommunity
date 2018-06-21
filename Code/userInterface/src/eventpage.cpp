@@ -74,7 +74,7 @@ void EventPage::setMainWindowDesign() {
 void EventPage::setMainLayoutDesign(){
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
-                                   "font-weight: bold; margin-top: 30px; color: #aaa;");
+                                   "font-weight: bold; margin-top: 30px; color: #555;");
 
 
 
@@ -83,7 +83,7 @@ void EventPage::setMainLayoutDesign(){
     //set Layout Design for ListArea --> List of Private and Public Events
     this->ListArea->addWidget(this->PrivLabel, 0, Qt::AlignTop);
     this->PrivLabel->setStyleSheet("font-family: URW Bookman L; font-size: 10px;"
-                                   "font-weight: bold; color: #aaa;");
+                                   "font-weight: bold; color: #555;");
     this->ListArea->addWidget(this->scrollArea, 1, Qt::AlignTop);
     this->scrollArea->setWidget(this->scrollWidget);
     this->scrollArea->setWidgetResizable(true);
@@ -94,7 +94,7 @@ void EventPage::setMainLayoutDesign(){
 
     this->ListArea->addWidget(this->PubLabel, 2, Qt::AlignBottom);
     this->PubLabel->setStyleSheet("font-family: URW Bookman L; font-size: 10px;"
-                                  "font-weight: bold; color: #aaa;");
+                                  "font-weight: bold; color: #555;");
     this->ListArea->addWidget(this->scrollAreaPub, 3, Qt::AlignBottom);
     this->scrollAreaPub->setWidget(this->scrolLWidgetPub);
     this->scrollAreaPub->setWidgetResizable(true);
@@ -115,7 +115,7 @@ void EventPage::setMainLayoutDesign(){
 
     //set Layout Design for Time Selection
     this->addEventRow->addWidget(this->TimeLabel, 2, Qt::AlignRight);
-    this->TimeLabel->setStyleSheet("color: #aaa; font-weight: bold");
+    this->TimeLabel->setStyleSheet("color: #555; font-weight: bold");
     this->addEventRow->addWidget(this->chooseHourCombo, 2, Qt::AlignRight);
     this->chooseHourCombo->setFixedWidth(50);
     this->chooseHourCombo->setStyleSheet("selection-color: white; selection-background-color: #1aa3ff;"
@@ -130,7 +130,7 @@ void EventPage::setMainLayoutDesign(){
     chooseHourCombo->addItems(hour);
 
     this->addEventRow->addWidget(this->hourLabel, 2, Qt::AlignCenter);
-    this->hourLabel->setStyleSheet("color: #aaa; font-weight: bold");
+    this->hourLabel->setStyleSheet("color: #555; font-weight: bold");
     this->addEventRow->addWidget(this->chooseMinuteCombo, 2, Qt::AlignLeft);
     this->chooseMinuteCombo->setFixedWidth(50);
     this->chooseMinuteCombo->setStyleSheet("selection-color: white; selection-background-color: #1aa3ff;"
@@ -147,17 +147,17 @@ void EventPage::setMainLayoutDesign(){
     chooseMinuteCombo->addItems(minute);
 
     this->addEventRow->addWidget(this->chosenTimeLabel, 2, Qt::AlignLeft);
-    this->chosenTimeLabel->setStyleSheet("color: #aaa; font-weight:bold;");
+    this->chosenTimeLabel->setStyleSheet("color: #555; font-weight:bold;");
 
     //set Layout Design for adding event Description and CheckBox
     this->addEventRow->addWidget(this->eventDescriptionLabel, 2, Qt::AlignRight);
-    this->eventDescriptionLabel->setStyleSheet("color: #aaa; font-weight: bold;");
+    this->eventDescriptionLabel->setStyleSheet("color: #555; font-weight: bold;");
     this->addEventRow->addWidget(this->giveNameEdit, 2, Qt::AlignLeft);
     this->giveNameEdit->setMaxLength(18);
     this->giveNameEdit->setFixedWidth(200);
     this->addEventRow->addWidget(this->checkLabel, 2, Qt::AlignRight);
     this->checkLabel->setStyleSheet("font-family: URW Bookman L; font-size: 10px;"
-                                    "font-weight: bold; color: #aaa;");
+                                    "font-weight: bold; color: #555;");
     this->addEventRow->addWidget(this->checkPub, 2, Qt::AlignLeft);
 
 

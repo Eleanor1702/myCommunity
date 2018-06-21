@@ -16,7 +16,7 @@ TaskListItem::TaskListItem(QString taskName, QString taskRoom, QString taskFrequ
 void TaskListItem::setItemStyle() {
   //Frame Design
   this->setFixedHeight(50);
-  this->setStyleSheet("border: 1px solid #aaa; border-radius: 5px;");
+  this->setStyleSheet("border: 1px solid #555; border-radius: 5px;");
 
   //Layout Design
   this->setLayout(this->newTaskLayout);
@@ -25,7 +25,7 @@ void TaskListItem::setItemStyle() {
 
   //Task Design
   this->task->setFixedSize(550, 30);
-  this->task->setStyleSheet("text-align: center; font-size: 20px; border: 0px; color: #aaa;");
+  this->task->setStyleSheet("text-align: center; font-size: 20px; border: 0px; color: #555;");
 
   //Button Design
   this->deleteButton->setFixedHeight(30);

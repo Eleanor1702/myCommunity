@@ -51,7 +51,7 @@ void SetUpUsers::setMainLayoutDesign() {
 
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
-                                   "font-weight: bold; margin-top: 5px; color: #aaa;");
+                                   "font-weight: bold; margin-top: 5px; color: #555;");
 
     this->scrollAreaRow->addWidget(scrollArea);
     this->scrollArea->setWidget(this->scrollWidget);

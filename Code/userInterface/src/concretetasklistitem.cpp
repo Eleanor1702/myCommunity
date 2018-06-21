@@ -24,7 +24,6 @@ void ConcreteTaskListItem::setItemStyle(){
     this->setStyleSheet("border: 0.5px solid #aaa; border-radius: 2px");
 
     this->setLayout(this->newConcreteTaskLayout);
- //   this->newConcreteTaskLayout->setAlignment(Qt::AlignRight);
     this->newConcreteTaskLayout->addWidget(this->concreteTaskLabel);
     this->newConcreteTaskLayout->addWidget(this->editButton);
     this->newConcreteTaskLayout->addWidget(this->deleteButton);

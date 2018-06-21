@@ -57,7 +57,7 @@ void SetUpRooms::setMainLayoutDesign() {
 
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
-                                   "font-weight: bold; margin-top: 5px; color: #aaa;");
+                                   "font-weight: bold; margin-top: 5px; color: #555;");
 
     this->scrollAreaRow->addWidget(scrollArea);
     this->scrollArea->setWidget(this->scrollWidget);
@@ -69,7 +69,7 @@ void SetUpRooms::setMainLayoutDesign() {
     this->addRoomsRow->addWidget(roomTypeLabel);
     this->addRoomsRow->addWidget(chooseRoomTypeCombo);
     this->chooseRoomTypeCombo->setFixedWidth(120);
-    this->roomTypeLabel->setStyleSheet("color: #aaa; font-weight: bold;");
+    this->roomTypeLabel->setStyleSheet("color: #555; font-weight: bold;");
     this->chooseRoomTypeCombo->setStyleSheet("selection-color: white; selection-background-color: #1aa3ff;"
                                              " color: black; background-color: White;");
 
@@ -80,7 +80,7 @@ void SetUpRooms::setMainLayoutDesign() {
     this->addRoomsRow->addWidget(nameLabel);
     this->addRoomsRow->addWidget(giveNameEdit);
     this->giveNameEdit->setMaxLength(18);
-    this->nameLabel->setStyleSheet("color: #aaa; font-weight: bold;");
+    this->nameLabel->setStyleSheet("color: #555; font-weight: bold;");
     this->giveNameEdit->setStyleSheet("color: black;");
 
     this->mainButtonsRow->addWidget(addButton);

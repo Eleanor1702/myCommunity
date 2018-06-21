@@ -60,7 +60,7 @@ void SignIn::setMainWindowDesign() {
 void SignIn::setMainLayoutDesign() {
     mainLabelRow->addWidget(mainLabel, 0, Qt::AlignCenter);
     mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
-                                   "font-weight: bold; margin-top: 30px; color: #aaa;");
+                                   "font-weight: bold; margin-top: 30px; color: #555;");
 
     imageRow->addWidget(picLabel, 0, Qt::AlignVCenter);
     scaled = pic->scaled(130, 130, Qt::IgnoreAspectRatio, Qt::FastTransformation);
@@ -69,7 +69,7 @@ void SignIn::setMainLayoutDesign() {
     picLabel->setAlignment(Qt::AlignCenter);
 
     nameRow->addWidget(nameLabel, 4 , Qt::AlignRight);
-    nameLabel->setStyleSheet("font-weight: bold; color: #aaa;");
+    nameLabel->setStyleSheet("font-weight: bold; color: #555;");
     nameRow->addWidget(giveNameEdit, 11, Qt::AlignLeft);
     giveNameEdit->setMaxLength(18);
     giveNameEdit->setFixedWidth(300);
@@ -78,7 +78,7 @@ void SignIn::setMainLayoutDesign() {
 
 
     passwordRow->addWidget(passwordLabel, 4, Qt::AlignRight);
-    passwordLabel->setStyleSheet("margin-top: 0px; margin-bottom: 10px; color: #aaa; "
+    passwordLabel->setStyleSheet("margin-top: 0px; margin-bottom: 10px; color: #555; "
                                  "font-weight: bold;");
     passwordRow->addWidget(givePasswordEdit, 11 , Qt::AlignLeft);
     givePasswordEdit->setEchoMode(QLineEdit::Password);
