@@ -306,7 +306,7 @@ void GuiController::callTask(){
 
 void GuiController::callCreatePlan(){
     plan->show();
-    plan->setTaskCombobox(con->getTaskName(), con->getTaskRoom());
+    plan->setTaskCombobox(con->getTaskName(), con->getTaskRoom(), con->getTaskFrequency());
     plan->setResidentCombobox(con->getUserNames());
     clean->hide();
 }
@@ -315,9 +315,15 @@ void GuiController::callCreatePlan(){
 
 //new concrete cleaning task
 void GuiController::callNewConcreteTask(){
-    con->addConcreteTask(plan->getTaskWeekInput(), plan->getTaskNameInput(), plan->getResInput(), plan->getTaskRoomInput());
+    //if no calendarweek input, task will not be added
+    if(plan->getTaskWeekInput() == -1) {
+        return;
+    }
+    else {
+        con->addConcreteTask(plan->getTaskWeekInput(), plan->getTaskNameInput(), plan->getResInput(), plan->getTaskRoomInput());
 
-    plan->appear(con->getConcreteTaskWeek(), con->getConcreteTaskName(), con->getConcreteTaskRes(), con->getConcreteTaskRoom(), con->getConcreteTaskListSize());
+        plan->appear(con->getConcreteTaskWeek(), con->getConcreteTaskName(), con->getConcreteTaskRes(), con->getConcreteTaskRoom(), con->getConcreteTaskListSize());
+    }
 }
 
 //delete concrete cleaning task

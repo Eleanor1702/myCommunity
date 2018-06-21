@@ -141,10 +141,10 @@ void SetUpCleaningPlan::CleanPlanCalled(){
 }
 
 //update tasks
-void SetUpCleaningPlan::setTaskCombobox(std::vector<std::string> Tasks, std::vector<std::string> Rooms) {
+void SetUpCleaningPlan::setTaskCombobox(std::vector<std::string> Tasks, std::vector<std::string> Rooms, std::vector<std::string> Frequency) {
     QStringList tasks;
     for(unsigned int i = 0; i< Tasks.size(); i++) {
-        tasks.push_back(QString::fromStdString(Tasks[i]) + " - " + QString::fromStdString(Rooms[i]));
+        tasks.push_back(QString::fromStdString(Tasks[i]) + " - " + QString::fromStdString(Rooms[i]) + " - " + QString::fromStdString(Frequency[i]));
     }
     selectTaskCombo->clear();
     selectTaskCombo->addItems(tasks);
@@ -162,6 +162,9 @@ void SetUpCleaningPlan::setResidentCombobox(std::vector<std::string> Residents) 
 
 
 int SetUpCleaningPlan::getTaskWeekInput(){
+    if(this->giveCWEdit->text().size() == 0) {
+        return -1;
+    }
     return this->giveCWEdit->text().toInt();
 }
 
