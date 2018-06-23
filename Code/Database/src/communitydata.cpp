@@ -419,7 +419,7 @@ std::vector<std::string> CommunityData::getAllConcreteTasksString(int week){
     for(std::vector<ConcreteTask>::iterator it = list.begin(); it != list.end(); it++)    {
                   taskname = it->getTask().getName();
                   resident = it->getResident();
-                  cw = it->getCalendarweek();
+                  cw = std::to_string(it->getCalendarweek());
                   info = taskname + "," + resident + "," + cw + "\n";
                   stringlist.push_back(info);
      }

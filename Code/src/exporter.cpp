@@ -8,8 +8,11 @@ Exporter::Exporter(CommunityData* data){
 
 void Exporter::exportShopinglist(){
     std::vector<std::string> list = data->getAllItemsString();
-    exportFile.open("shopinglist.csv");
-    exportFile << "Einkaufsliste";
+    const char* home = std::getenv("HOME");
+
+    std::string path = std::string(home) + "/shoppinglist.csv";
+    exportFile.open(path);
+    exportFile << "Einkaufsliste\n\n";
     exportFile << "Anzahl, Produktname \n";
 
 
@@ -21,10 +24,12 @@ void Exporter::exportShopinglist(){
 
 void Exporter::exportCleaningplan(int week){
     std::vector<std::string> list = data->getAllConcreteTasksString(week);
-    exportFile.open("cleaningplan.csv");
+    const char* home = std::getenv("HOME");
+    std::string path = std::string(home) + "/cleaningplan.csv";
+    exportFile.open(path);
     exportFile << "Putzplan \n" ;
-    exportFile << "Taskname, Bewohner, Kalenderwoche";
-    for(unsigned int i; i != list.size(); i++){
+    exportFile << "Taskname, Bewohner, Kalenderwoche\n\n";
+    for(unsigned int i = 0; i != list.size(); i++){
         exportFile << list[i] ;
     }
 
