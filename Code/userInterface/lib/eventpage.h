@@ -102,10 +102,7 @@ public:
                 std::vector<std::string> descrVec,
                 std::string user, int size);
 
-    void appearAll(std::vector<std::string> timeVec,
-                   std::vector<std::string> dateVec,
-                   std::vector<std::string> descrVec,
-                   std::vector<std::string> userVec, int size);
+    void appearDate(std::vector<std::string> dateVec);
 
 
 };

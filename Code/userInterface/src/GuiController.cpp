@@ -160,6 +160,7 @@ void GuiController::callCalendar() {
     events->show();
     events->calendar->setSelectedDate(QDate::currentDate());
     eventAppeared();
+    events->appearDate(con->getEventDate(con->getCurrentUser(), events->getEventDateInput()));
     home->hide();
 }
 

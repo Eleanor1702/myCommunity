@@ -57,7 +57,7 @@ EventPage::EventPage(QWidget *parent) : QWidget(parent)
 
     QObject::connect(addEventButton,SIGNAL(clicked()),this,SLOT(setNewEventCalled()));
     QObject::connect(saveEventButton,SIGNAL(clicked()),this,SLOT(homePageCalled()));
-    QObject::connect(calendar,SIGNAL(selectionChanged()),this,SLOT(appearCalled()));
+    QObject::connect(calendar,SIGNAL(selectionChanged()),this,SLOT(appearCalled())); //changes shown events, if another date was selected
 }
 void EventPage::setMainWindowDesign() {
     this->setFixedSize(800, 600);
@@ -247,6 +247,7 @@ void EventPage::appear(std::vector<std::string> timeVec,
             EventListItemPubList.push_back(newPubEvent);
 
             scrollLayoutPub->addWidget(newPubEvent);
+            this->calendar->setDateTextFormat(QDate::fromString(QString::fromStdString(dateVec[i]), "yyyy-MM-dd"), fmt);
 
         }
         checkPub->setChecked(false);
@@ -264,12 +265,20 @@ void EventPage::appear(std::vector<std::string> timeVec,
 
             EventListItemPrivList.push_back(newPrivEvent);
             scrollLayout->addWidget(newPrivEvent);
+            this->calendar->setDateTextFormat(QDate::fromString(QString::fromStdString(dateVec[i]), "yyyy-MM-dd"), fmt);
         }  
     }
+
     giveNameEdit->clear();
     chooseHourCombo->setCurrentText("00");
     chooseMinuteCombo->setCurrentText("00");
 
+}
+
+void EventPage::appearDate(std::vector<std::string> dateVec){
+    for(int i=0; i<dateVec.size(); i++){
+        this->calendar->setDateTextFormat(QDate::fromString(QString::fromStdString(dateVec[i]), "yyyy-MM-dd"), fmt);
+    }
 }
 
 

@@ -11,6 +11,9 @@ Controller::Controller(CommunityData* data){
    expo = expo->getInstance(data);
 }
 
+
+
+
 //  RoomExpert
 
 void Controller::addRoom(std::string art, std::string name){
@@ -30,6 +33,10 @@ std::vector<std::string> Controller::getRoomArts() {
 int Controller::getRoomlistSize() {
   return roExpert->getRooms().size();
 }
+
+
+
+
 //  ResidentExpert
 
 void Controller::addResident(std::string name, int password){
@@ -59,6 +66,9 @@ int Controller::getUserlistSize(){
     return rsExpert->userNameGetter().size();
 }
 
+
+
+
 // EventExpert
 
 void Controller::addEvent(std::string time, std::string date,std::string description, std::string user){
@@ -72,11 +82,7 @@ void Controller::addEvent(std::string time, std::string date,std::string descrip
 void Controller::deleteEvent(std::string time, std::string date, std::string descpription, std::string user){
     evExpert->deleteEvent(time, date, descpription, user);
 }
-/*
-void Controller::editEvent(std::string time, std::string date, std::string description, std::string user, std::string newtime, std::string newdate, std::string newdescription ){
-    evExpert->editEvent(time, date, description, user, newtime, newdate, newdescription);
-}
-*/
+
 std::vector<std::string> Controller::getEventTime(std::string user, std::string date){
     return evExpert->eventTimeGetter(user, date);
 }
@@ -94,6 +100,8 @@ int Controller::getSizeEvent(std::string user, std::string date){
     return evExpert->eventSizeGetter(user, date);
 }
 
+
+
 //TaskExpert
 
 void Controller::addTask(std::string name, std::string room, std::string frequency) {
@@ -103,7 +111,6 @@ void Controller::addTask(std::string name, std::string room, std::string frequen
 void Controller::deleteTask(std::string name, std::string room) {
     taExpert->deleteTask(name, room);
 }
-//editTask
 
 std::vector<std::string> Controller::getTaskName(){
     return taExpert->taskNameGetter();
@@ -143,6 +150,10 @@ int Controller::getConcreteTaskListSize(){
     return taExpert->concreteTaskGetter(getCurrentCW()).size();
 }
 
+
+
+
+
 //ShoppingExpert
 
 void Controller::addItem(std::string itemname, std::string number) {
@@ -163,6 +174,9 @@ int Controller::getItemlistSize() {
     return shExpert->getItems().size();
 }
 
+
+
+
 //Exporter
 
 void Controller::exportCleaningPlan(){
@@ -172,6 +186,9 @@ void Controller::exportCleaningPlan(){
 void Controller::exportShoppingList(){
     expo->exportShopinglist();
 }
+
+
+
 
 //Current User Methods
 

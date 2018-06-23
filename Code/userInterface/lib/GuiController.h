@@ -96,6 +96,7 @@ public slots:
   void eventAppeared();
   void eventDeleted(QString time, QString date, QString description, QString user);
 
+  //********CLEANING PLAN SLOTS
   //Cleaning Plan Slots:
   void callTask();
   void callCreatePlan();

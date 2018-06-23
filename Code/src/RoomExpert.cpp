@@ -29,6 +29,7 @@ void RoomExpert::deleteRoom(std::string name){
      data->deleteRoom(name);
 }
 
+//Getter Functions
 //get all names of rooms as strings
 std::vector<std::string> RoomExpert::roomNameGetter() {
   std::vector<std::string> nameVector;

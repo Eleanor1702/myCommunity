@@ -16,6 +16,7 @@ void CleaningPageItem::setItemStyle(){
     this->setFixedSize(160, 85);
     this->setStyleSheet("border: 0.5px solid #555; border-radius: 1px;");
 
+    //Layout for concrete Tasks in Cleaning Plan
     this->setLayout(this->newPlanLayout);
     this->newPlanLayout->addWidget(this->taskLabel);
     this->taskLabel->setFixedSize(140, 40);

@@ -7,13 +7,14 @@ CleaningPage::CleaningPage(QWidget *parent) : QWidget(parent) {
     mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
     mainLabel = new QLabel("Putzplan");
 
-
+    //Shows next 4 Calendarweeks
     weekRow = new QBoxLayout(QBoxLayout::LeftToRight);
     w1Label = new QLabel("");
     w2Label = new QLabel("");
     w3Label = new QLabel("");
     w4Label = new QLabel("");
 
+    //Shows concrete Tasks sorted by Residents
     planRow = new QBoxLayout(QBoxLayout::LeftToRight);
     ScrollAreaW1 = new QScrollArea;
     scrollWidgetW1 = new QWidget(this);
@@ -29,6 +30,7 @@ CleaningPage::CleaningPage(QWidget *parent) : QWidget(parent) {
     scrollLayoutW4 = new QBoxLayout(QBoxLayout::TopToBottom);
 
 
+    //Buttons added
     buttonRow = new QBoxLayout(QBoxLayout::LeftToRight);
     setuptaskButton = new QPushButton ("Aufgaben \n verwalten");
     createPlanButton = new QPushButton ("Plan erstellen");
@@ -67,7 +69,7 @@ void CleaningPage::setMainWindowDesign(){
 void CleaningPage::setMainLayoutDesign(){
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
-                                   "font-weight: bold; margin-top: 30px; color: #555;");
+                                   "font-weight: bold; margin-bottom: 20px; color: #555;");
 
     this->weekRow->addWidget(w1Label, 0, Qt::AlignLeft);
     this->w1Label->setStyleSheet("text-align: center; font-family: URW Bookman L;"
@@ -161,7 +163,8 @@ void CleaningPage::deepDeleteLayout(QLayout *layout) {
         delete item;
     }
 }
-
+//Shows next 4 calendarweeks, with concrete Tasks, ordered by Resident
+//Tasks of current User are highlighted
 void CleaningPage::appear(std::vector<int> weekVec, std::vector<std::string>roomVec, std::vector<std::string> taskVec,
                           std::vector<std::string> resVec, int size, int week, std::string user){
     deepDeleteLayout(scrollLayoutW1);
@@ -183,7 +186,7 @@ void CleaningPage::appear(std::vector<int> weekVec, std::vector<std::string>room
 
         if(resVec[i]==user){
             newCPageItem->setStyleSheet("background-color: #af8;"
-                                        "border: 0.5 px solid #555; border-radius: 1px;");
+                                        "border: 1px solid #555; border-radius: 1px;");
         }
 
         if(weekVec[i]==week){

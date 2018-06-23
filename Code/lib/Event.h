@@ -21,21 +21,7 @@ public:
     void setTime(std::string newTime);
     void setDate(std::string newDate);
     void setDatetime(std::string datetime);
-   /* void setTime(tm timedate);
-    void setDay(tm timedate);
-    void setMonth(tm timedate);
-    void setYear(tm timedate);
-    void setMin(tm timedate);
-    void setHour(tm timedate);
-    */
 
-    /*tm getTime();
-    int getDay();
-    int getMonth();
-    int getYear();
-    int getMin();
-    int getHour();
-    */
 
     std::string getDescription();
     std::string getUser();

@@ -10,7 +10,6 @@ private:
     friend class Controller;
 
     static EventExpert* instance;
-    //std::vector<Event> Eventlist;
     CommunityData* data;
 
 protected:
