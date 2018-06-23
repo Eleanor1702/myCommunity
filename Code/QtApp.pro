@@ -64,6 +64,7 @@ SOURCES += \
     userInterface/src/concretetasklistitem.cpp \
     src/Event.cpp \
     src/exporter.cpp \
+    src/exportpage.cpp
 
 
 HEADERS += \
@@ -105,6 +106,7 @@ HEADERS += \
     userInterface/lib/concretetasklistitem.h \
     lib/Event.h \
     lib/exporter.h \
+    userInterface/lib/exportpage.h
 
 RESOURCES = \
     media/application.qrc \
