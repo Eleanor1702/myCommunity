@@ -7,8 +7,31 @@ CleaningPage::CleaningPage(QWidget *parent) : QWidget(parent) {
     mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
     mainLabel = new QLabel("Putzplan");
 
-    planRow = new QBoxLayout(QBoxLayout::TopToBottom);
-    plan = new QLabel ("hier Plan einfügen");
+ /*   planRow = new QBoxLayout;
+    weekRow = new QVBoxLayout;
+    weekLabel = new QLabel;
+    ScrollAreaRow = new QVBoxLayout;
+    ScrollAreaW1 = new QScrollArea;
+    ScrollAreaW2 = new QScrollArea;
+    ScrollAreaW3 = new QScrollArea;
+    ScrollAreaW4 = new QScrollArea;
+    scrollLayout = new QVBoxLayout;
+    */
+
+    planRow = new QBoxLayout(QBoxLayout::LeftToRight);
+    ScrollAreaW1 = new QScrollArea;
+    scrollWidgetW1 = new QWidget(this);
+    ScrollAreaW2 = new QScrollArea;
+    scrollWidgetW2 = new QWidget(this);
+    ScrollAreaW3 = new QScrollArea;
+    scrollWidgetW3 = new QWidget(this);
+    ScrollAreaW4 = new QScrollArea;
+    scrollWidgetW4 = new QWidget(this);
+    scrollLayoutW1 = new QBoxLayout(QBoxLayout::TopToBottom);
+    scrollLayoutW2 = new QBoxLayout(QBoxLayout::TopToBottom);
+    scrollLayoutW3 = new QBoxLayout(QBoxLayout::TopToBottom);
+    scrollLayoutW4 = new QBoxLayout(QBoxLayout::TopToBottom);
+
 
     buttonRow = new QBoxLayout(QBoxLayout::LeftToRight);
     setuptaskButton = new QPushButton ("Aufgaben \n verwalten");
@@ -49,9 +72,34 @@ void CleaningPage::setMainLayoutDesign(){
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
                                    "font-weight: bold; margin-top: 30px; color: #555;");
 
-    this->planRow->addWidget(this->plan, 1, Qt::AlignLeft);
-    this->plan->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
-                              "font-weight: bold; margin-top: 30px; color: #555;");
+
+  //  this->planRow->addLayout(this->weekRow, 0, 1, 50, 110, Qt::AlignRight);
+  //  this->planRow->addWidget(this->ScrollAreaRow, 1, Qt::AlignTop);
+
+    this->planRow->addWidget(ScrollAreaW1, 0, Qt::AlignLeft);
+    this->ScrollAreaW1->setWidget(this->scrollWidgetW1);
+    this->ScrollAreaW1->setFixedWidth(190);
+    this->ScrollAreaW1->setWidgetResizable(true);
+    this->scrollWidgetW1->setLayout(this->scrollLayoutW1);
+
+    this->planRow->addWidget(ScrollAreaW2, 1, Qt::AlignLeft);
+    this->ScrollAreaW2->setWidget(this->scrollWidgetW2);
+    this->ScrollAreaW2->setFixedWidth(190);
+    this->ScrollAreaW2->setWidgetResizable(true);
+    this->scrollWidgetW2->setLayout(this->scrollLayoutW2);
+
+    this->planRow->addWidget(ScrollAreaW3, 2, Qt::AlignRight);
+    this->ScrollAreaW3->setWidget(this->scrollWidgetW3);
+    this->ScrollAreaW3->setFixedWidth(190);
+    this->ScrollAreaW3->setWidgetResizable(true);
+    this->scrollWidgetW3->setLayout(this->scrollLayoutW3);
+
+    this->planRow->addWidget(ScrollAreaW4, 3, Qt::AlignRight);
+    this->ScrollAreaW4->setWidget(this->scrollWidgetW4);
+    this->ScrollAreaW4->setFixedWidth(190);
+    this->ScrollAreaW4->setWidgetResizable(true);
+    this->scrollWidgetW4->setLayout(this->scrollLayoutW4);
+
 
     this->buttonRow->addWidget(setuptaskButton, 2, Qt::AlignLeft);
     this->buttonRow->addWidget(createPlanButton, 2, Qt::AlignCenter);
@@ -86,3 +134,51 @@ void CleaningPage::createPlanCalled(){
 void CleaningPage::homePageCalled() {
   emit homePageCallSignal();
 }
+
+void CleaningPage::deepDeleteLayout(QLayout *layout) {
+    QLayoutItem* item;
+
+    while((item = layout->takeAt(0))) {
+        if(item->layout()){
+            deepDeleteLayout(item->layout());
+            delete item->layout();
+        }
+
+        if(item->widget()) {
+            delete item->widget();
+        }
+
+        delete item;
+    }
+}
+
+void CleaningPage::appear(std::vector<int> weekVec, std::vector<std::string>roomVec, std::vector<std::string> taskVec,
+                          std::vector<std::string> resVec, int size, int week){
+    deepDeleteLayout(scrollLayoutW1);
+    deepDeleteLayout(scrollLayoutW2);
+    deepDeleteLayout(scrollLayoutW3);
+    deepDeleteLayout(scrollLayoutW4);
+
+
+    for(int i = 0; i<size; i++) {
+        newCPageItem = new CleaningPageItem(QString::fromStdString(roomVec[i]),
+                                            QString::fromStdString(taskVec[i]),
+                                            QString::fromStdString(resVec[i]));
+
+
+
+        if(weekVec[i]==week){
+            scrollLayoutW1->addWidget(newCPageItem, Qt::AlignTop);
+        } else if(weekVec[i]== week+1){
+            scrollLayoutW2->addWidget(newCPageItem, Qt::AlignTop);
+        }else if(weekVec[i]== week+2){
+            scrollLayoutW3->addWidget(newCPageItem, Qt::AlignTop);
+        }else if(weekVec[i]== week+3){
+            scrollLayoutW4->addWidget(newCPageItem, Qt::AlignTop);
+        }
+
+        //CleaningPageItemList.push_back(newCPageItem);
+    }
+
+}
+

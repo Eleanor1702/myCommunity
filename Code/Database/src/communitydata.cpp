@@ -387,7 +387,7 @@ std::vector<ConcreteTask> CommunityData::getAllConcreteTasks() {
     std::vector<ConcreteTask> list;
     ResultSet* resultSet = NULL;
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("SELECT * FROM Cleaning JOIN Tasks ON Tasks.Name = Cleaning.Task ORDER BY Week");
+    stmt = con->prepareStatement("SELECT * FROM Cleaning JOIN Tasks ON Tasks.Name = Cleaning.Task ORDER BY Resident");
     resultSet = stmt->executeQuery();
     while(resultSet->next()) {
         ConcreteTask ctask;

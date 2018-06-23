@@ -140,3 +140,12 @@ std::vector<ConcreteTask> TaskExpert::showConcreteTasks(int cw, std::string user
 }
 
 */
+
+int TaskExpert::getCurrentCW(){
+    time_t the_time;
+    time(&the_time);
+    tm *t = localtime(&the_time);
+    char week_string[3];
+    strftime(week_string, 3, "%W", t);
+    return atoi(week_string);
+}
