@@ -67,5 +67,17 @@ void exportPage::setMainLayoutDesign(){
                                             "color: white; font-weight: bold;}");
 }
 
+void exportPage::homePageCalled(){
+    emit homePageCallSignal();
+}
+
+void exportPage::shoppingExportCalled(){
+    emit shoppingExportSignal();
+}
+
+void exportPage::cleaningExportCalled(){
+    emit cleaningExportSignal();
+}
+
 
 

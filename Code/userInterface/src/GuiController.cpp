@@ -27,6 +27,7 @@ GuiController::GuiController(Controller* con) : QWidget() {
     this->task = new SetUpTasks();
     this->plan = new SetUpCleaningPlan();
     this->shop = new SetUpShoppinglist();
+    this->exporter = new exportPage();
 
     this->con = con;
 
@@ -49,6 +50,7 @@ GuiController::GuiController(Controller* con) : QWidget() {
     connect(home, SIGNAL(cleanPlanCallSignal()), this, SLOT(callCleanPlan()));
     connect(home, SIGNAL(logOutCallSignal()), this, SLOT(callLogOut()));
     connect(home, SIGNAL(shoppingListCallSignal()), this, SLOT(callShoppingList()));
+    connect(home, SIGNAL(exporterCallSignal()), this, SLOT(callExporter()));
 
     //SetUpRoomsEvents
     connect(rooms, SIGNAL(setNewRoomSignal()), this, SLOT(newRoomSet()));
@@ -89,6 +91,11 @@ GuiController::GuiController(Controller* con) : QWidget() {
     connect(shop, SIGNAL(setNewItemSignal()), this, SLOT(newItemSet()));
     connect(shop, SIGNAL(deleteItemSignal(QString)), this, SLOT(ItemDeleted(QString)));
     connect(shop, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
+
+    //Exporter Events
+    connect(exporter, SIGNAL(homePageCallSignal()), this, SLOT(callHomePage()));
+    connect(exporter, SIGNAL(shoppingExportSignal()), this, SLOT(exportShopping()));
+    connect(exporter, SIGNAL(cleaningExportSignal()), this, SLOT(exportCleaning()));
 
     //show main page
     this->main->show();
@@ -175,6 +182,12 @@ void GuiController::callLogOut() {
     main->show();
     home->hide();
 }
+
+void GuiController::callExporter(){
+    exporter->show();
+    home->hide();
+}
+
 //SetUpRooms Events
 void GuiController::newRoomSet() {
     if(rooms->getRoomNameInput() == "Error") {
@@ -239,6 +252,7 @@ void GuiController::callHomePage() {
     users->hide();
     pwpage->hide();
     shop->hide();
+    exporter->hide();
 }
 
 //SetUpEvents Events
@@ -374,3 +388,13 @@ void GuiController::ItemDeleted(QString name) {
     shop->appear(con->getItemNames(), con->getItemNumbers(), con->getItemlistSize());
 }
 
+//Exporter Events
+
+void GuiController::exportShopping(){
+    con->exportShoppingList();
+}
+
+void GuiController::exportCleaning()
+{
+    con->exportCleaningPlan();
+}

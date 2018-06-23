@@ -16,6 +16,7 @@
 #include "userInterface/lib/changepwpage.h"
 #include "userInterface/lib/setupshoppinglist.h"
 #include "userInterface/lib/setupcleaningplan.h"
+#include "userInterface/lib/exportpage.h"
 
 #include "lib/controller.h"
 
@@ -41,6 +42,9 @@ private:
   SetUpCleaningPlan *plan;
 
   SetUpShoppinglist* shop;
+
+  exportPage* exporter;
+
 
   Controller* con;
 
@@ -70,6 +74,7 @@ public slots:
   void callCleanPlan();
   void callLogOut();
   void callShoppingList();
+  void callExporter();
 
   //SetUpRooms Slots
   void newRoomSet();
@@ -105,6 +110,11 @@ public slots:
   //SetUpShoppinglist Slots:
   void newItemSet();
   void ItemDeleted(QString name);
+
+  //Exporter Slots:
+  void exportShopping();
+  void exportCleaning();
+
 
 public:
     static void startApplication(Controller* con);

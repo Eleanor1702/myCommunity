@@ -6,6 +6,7 @@
 #include "EventExpert.h"
 #include "taskexpert.h"
 #include "shoppingexpert.h"
+#include "exporter.h"
 
 //Connector between GUI and Logic
 class Controller{
@@ -17,6 +18,8 @@ private:
         EventExpert* evExpert;
         TaskExpert* taExpert;
         ShoppingExpert* shExpert;
+        Exporter* expo;
+
 
         static Controller* instance;                         //Singleton
 
@@ -77,6 +80,11 @@ public:
         std::vector<std::string> getItemNames();
         std::vector<std::string> getItemNumbers();
         int getItemlistSize();
+
+        //Exporter
+        void exportCleaningPlan();
+        void exportShoppingList();
+
 
         //Methods currentUser
         void setCurrentUser(std::string user);
