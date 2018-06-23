@@ -59,7 +59,7 @@ void SetUpShoppinglist::setMainLayoutDesign() {
 
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
-                                   "font-weight: bold; margin-top: 5px; color: #aaa;");
+                                   "font-weight: bold; margin-top: 5px; color: #555;");
 
     this->scrollAreaRow->addWidget(scrollArea);
     this->scrollArea->setWidget(this->scrollWidget);
@@ -69,11 +69,11 @@ void SetUpShoppinglist::setMainLayoutDesign() {
 
     this->addItemsRow->addWidget(ItemNameLabel);
     this->addItemsRow->addWidget(giveNameEdit);
-    this->ItemNameLabel->setStyleSheet("color: #aaa; font-weight: bold;");
+    this->ItemNameLabel->setStyleSheet("color: #555; font-weight: bold;");
     this->giveNameEdit->setStyleSheet("color: black;");
     this->addItemsRow->addWidget(ItemNumberLabel);
     this->addItemsRow->addWidget(giveNumberEdit);
-    this->ItemNumberLabel->setStyleSheet("color: #aaa; font-weight: bold;");
+    this->ItemNumberLabel->setStyleSheet("color: #555; font-weight: bold;");
     this->giveNumberEdit->setStyleSheet("color: black;");
 
     this->mainButtonsRow->addWidget(addButton);

@@ -28,12 +28,15 @@ void ConcreteTaskListItem::setItemStyle(){
     this->newConcreteTaskLayout->addWidget(this->editButton);
     this->newConcreteTaskLayout->addWidget(this->deleteButton);
 
-    this->concreteTaskLabel->setFixedSize(110, 50);;
-    this->concreteTaskLabel->setStyleSheet("text-align: top; font-size: 10px; border: 0px; color: #aaa;");
+    this->concreteTaskLabel->setFixedSize(110, 50);
+    this->concreteTaskLabel->setAlignment(Qt::AlignLeft);
+    this->concreteTaskLabel->setStyleSheet("text-align: top; font-size: 11px; border: 0px; color: #555;");
+    this->editButton->setFixedSize(80, 40);
     this->editButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff;"
                                     "border-radius: 5px; background-color: #3399ff;"
                                     " color: white; font-weight: bold}");
 
+    this->deleteButton->setFixedSize(80, 40);
     this->deleteButton->setStyleSheet(".QPushButton{border: 1px solid red;"
                                       "border-radius: 5px; background-color: red;"
                                       " color: white; font-weight: bold}");

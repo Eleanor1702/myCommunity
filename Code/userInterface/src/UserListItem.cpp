@@ -15,7 +15,7 @@ void UserListItem::setItemStyle(std::string currentUser, QString userName) {
     //Frame Design
 
     this->setFixedHeight(50);
-    this->setStyleSheet("border: 1px solid #aaa; border-radius: 5px;");
+    this->setStyleSheet("border: 1px solid #555; border-radius: 5px;");
 
     //Layout Design
     this->setLayout(newUserLayout);
@@ -28,7 +28,7 @@ void UserListItem::setItemStyle(std::string currentUser, QString userName) {
 
     //User Design
     user->setFixedSize(550, 30);
-    user->setStyleSheet("text-align: center; font-size: 20px; border: 0px; color: #aaa;");
+    user->setStyleSheet("text-align: center; font-size: 20px; border: 0px; color: #555;");
 
     //Button Design
     deleteButton->setFixedHeight(30);

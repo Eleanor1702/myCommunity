@@ -64,7 +64,7 @@ public:
 
     std::vector<ConcreteTaskListItem*> ConcreteTaskListItemList;
 
-    void setTaskCombobox(std::vector<std::string> Tasks, std::vector<std::string> Rooms);
+    void setTaskCombobox(std::vector<std::string> Tasks, std::vector<std::string> Rooms, std::vector<std::string> Frequency);
     void setResidentCombobox(std::vector<std::string> Residents);
 
     int getTaskWeekInput();
