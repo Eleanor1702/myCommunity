@@ -193,6 +193,9 @@ std::string EventPage::getEventDateInput(){
 }
 
 std::string EventPage::getEventDescriptionInput(){
+    if (this->giveNameEdit->text().size() == 0 || this->giveNameEdit->text()[0] == ' '){
+        return "Error";
+    }
     return this->giveNameEdit->text().toStdString();
 }
 
