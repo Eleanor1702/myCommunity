@@ -82,6 +82,9 @@ public:
         void setCurrentUser(std::string user);
         std::string getCurrentUser();
 
+        //Methods currentCW;
+        int getCurrentCW();
+
         static Controller* getInstance(CommunityData* data);
 };
 

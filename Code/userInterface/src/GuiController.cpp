@@ -159,6 +159,7 @@ void GuiController::callCalendar() {
 void GuiController::callCleanPlan(){
     //Show cleaningplan
     clean->show();
+    clean->appear(con->getConcreteTaskWeek(), con->getConcreteTaskName(), con->getConcreteTaskRes(), con->getConcreteTaskListSize(), con->getCurrentCW());
     home->hide();
     task->hide();
     plan->hide();

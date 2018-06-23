@@ -1,4 +1,4 @@
- #include "userInterface/lib/RoomListItem.h"
+#include "userInterface/lib/RoomListItem.h"
 
 RoomListItem::RoomListItem(QString roomName, QString roomType, QWidget *parent) : QFrame(parent) {
   this->newRoomLayout = new QHBoxLayout();

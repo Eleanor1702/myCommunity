@@ -2,6 +2,7 @@
 #define TASKEXPERT_H
 
 #include <vector>
+#include <ctime>
 
 #include "Task.h"
 #include "concretetask.h"
@@ -38,7 +39,10 @@ public:
     std::vector<int> concreteTaskWeekGetter();
     std::vector<std::string> concreteTaskResGetter();
 
-    std::vector<ConcreteTask> showConcreteTasks(int cw, std::string user);
+    //current CW methods
+    int getCurrentCW();
+
+ //   std::vector<ConcreteTask> showConcreteTasks(int cw, std::string user);
 };
 
 #endif // TASKEXPERT_H

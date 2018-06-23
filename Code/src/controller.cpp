@@ -176,6 +176,11 @@ std::string Controller::getCurrentUser(){
     return rsExpert->getCurrentUser();
 }
 
+int Controller::getCurrentCW(){
+    return taExpert->getCurrentCW();
+}
+
+
 Controller* Controller::getInstance(CommunityData* data){
     if(instance == NULL){
         instance = new Controller(data);
