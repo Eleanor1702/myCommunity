@@ -20,7 +20,7 @@ protected:
 
 public:
     void exportShopinglist();
-    void exportCleaningplan();
+    void exportCleaningplan(int week);
     void exportCalendar();
 
     static Exporter* getInstance(CommunityData* data);

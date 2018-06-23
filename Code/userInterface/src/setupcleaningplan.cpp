@@ -24,7 +24,7 @@ SetUpCleaningPlan::SetUpCleaningPlan(QWidget *parent) : QWidget(parent)
     scrollLayout = new QBoxLayout(QBoxLayout::TopToBottom);
 
     addTaskLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
-    addTaskLabel = new QLabel("Aufgabe hinzufügen:");
+    addTaskLabel = new QLabel("Aufgabe \n hinzufügen:");
 
     selectionArea = new QBoxLayout(QBoxLayout::LeftToRight);
     selectTaskLabel = new QLabel("Aufgabe:");
@@ -33,8 +33,8 @@ SetUpCleaningPlan::SetUpCleaningPlan(QWidget *parent) : QWidget(parent)
     selectResCombo = new QComboBox();
 
     buttonRow = new QBoxLayout(QBoxLayout::LeftToRight);
-    addTaskButton = new QPushButton("Aufgabe hinzufügen");
-    backButton = new QPushButton("Zum Putzplan \n hinzufügen");
+    addTaskButton = new QPushButton("Diese Aufgabe \n hinzufügen");
+    backButton = new QPushButton("Alle zum Putzplan \n hinzufügen");
 
     this->setMainWindowDesign();
     this->setMainLayoutDesign();

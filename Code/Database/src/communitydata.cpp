@@ -387,7 +387,7 @@ std::vector<ConcreteTask> CommunityData::getAllConcreteTasks(int week) {
     std::vector<ConcreteTask> list;
     ResultSet* resultSet = NULL;
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("SELECT * FROM Cleaning JOIN Tasks ON Week = ? AND Tasks.Name = Cleaning.Task AND Tasks.Room = Cleaning.CRoom ORDER BY Resident");
+    stmt = con->prepareStatement("SELECT * FROM Cleaning JOIN Tasks ON Week >= ? AND Tasks.Name = Cleaning.Task AND Tasks.Room = Cleaning.CRoom ORDER BY Resident");
     stmt->setInt(1, week);
     resultSet = stmt->executeQuery();
     while(resultSet->next()) {
@@ -407,14 +407,14 @@ std::vector<ConcreteTask> CommunityData::getAllConcreteTasks(int week) {
 }
 
 
-std::vector<std::string> CommunityData::getAllConcreteTasksString(){
+std::vector<std::string> CommunityData::getAllConcreteTasksString(int week){
     std::vector<std::string> stringlist;
     std::string taskname;
     std::string resident;
     std::string cw;   //calendarweek
     std::string info; //taskname,resident,cw
 
-    std::vector<ConcreteTask> list = this->getAllConcreteTasks();
+    std::vector<ConcreteTask> list = this->getAllConcreteTasks(week);
 
     for(std::vector<ConcreteTask>::iterator it = list.begin(); it != list.end(); it++)    {
                   taskname = it->getTask().getName();

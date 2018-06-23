@@ -19,8 +19,8 @@ void Exporter::exportShopinglist(){
     exportFile.close();
 }
 
-void Exporter::exportCleaningplan(){
-    std::vector<std::string> list = data->getAllConcreteTasksString();
+void Exporter::exportCleaningplan(int week){
+    std::vector<std::string> list = data->getAllConcreteTasksString(week);
     exportFile.open("cleaningplan.csv");
     exportFile << "Putzplan \n" ;
     exportFile << "Taskname, Bewohner, Kalenderwoche";

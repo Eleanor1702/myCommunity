@@ -165,7 +165,7 @@ int Controller::getItemlistSize() {
 //Exporter
 
 void Controller::exportCleaningPlan(){
-    expo->exportCleaningplan();
+    expo->exportCleaningplan(getCurrentCW());
 }
 
 void Controller::exportShoppingList(){
