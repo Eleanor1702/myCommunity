@@ -323,6 +323,7 @@ void GuiController::callCreatePlan(){
     plan->show();
     plan->setTaskCombobox(con->getTaskName(), con->getTaskRoom(), con->getTaskFrequency());
     plan->setResidentCombobox(con->getUserNames());
+    plan->appear(con->getConcreteTaskWeek(), con->getConcreteTaskName(), con->getConcreteTaskRes(), con->getConcreteTaskRoom(), con->getConcreteTaskListSize());
     clean->hide();
 }
 
