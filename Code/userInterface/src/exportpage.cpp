@@ -50,20 +50,20 @@ void exportPage::setMainLayoutDesign(){
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
                                        "font-weight: bold; margin-top: 5px; color: #aaa;");
-    this->cleaningButtonRow->addWidget(cleaningExportButton);
+    this->cleaningButtonRow->addWidget(cleaningExportButton, 1, Qt::AlignBottom);
         cleaningExportButton->setFixedSize(200,50);
         cleaningExportButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                                             "border-radius: 5px; background-color: #3399ff; "
                                             "color: white; font-weight: bold;}");
-    this->shoppingButtonRow->addWidget(shoppingExportButton);
+    this->shoppingButtonRow->addWidget(shoppingExportButton, 1, Qt::AlignTop);
         shoppingExportButton->setFixedSize(200,50);
         shoppingExportButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                                             "border-radius: 5px; background-color: #3399ff; "
                                             "color: white; font-weight: bold;}");
-    this->backButtonRow->addWidget(backButton);
+    this->backButtonRow->addWidget(backButton, 1, Qt::AlignTop);
         backButton->setFixedSize(200,50);
-        backButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
-                                            "border-radius: 5px; background-color: #3399ff; "
+        backButton->setStyleSheet(".QPushButton{border: 1px solid #00b300; "
+                                            "border-radius: 5px; background-color: #00b300; "
                                             "color: white; font-weight: bold;}");
 }
 

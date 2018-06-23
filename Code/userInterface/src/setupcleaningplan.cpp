@@ -24,7 +24,7 @@ SetUpCleaningPlan::SetUpCleaningPlan(QWidget *parent) : QWidget(parent)
     scrollLayout = new QBoxLayout(QBoxLayout::TopToBottom);
 
     addTaskLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
-    addTaskLabel = new QLabel("Aufgabe \n hinzufügen:");
+    addTaskLabel = new QLabel("Aufgabe hinzufügen:");
 
     selectionArea = new QBoxLayout(QBoxLayout::LeftToRight);
     selectTaskLabel = new QLabel("Aufgabe:");
