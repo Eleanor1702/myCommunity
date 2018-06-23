@@ -35,12 +35,14 @@ private:
     QBoxLayout *mainLabelRow;
     QLabel *mainLabel;
 
+    //next 4 Calendarweeks
     QBoxLayout *weekRow;
     QLabel *w1Label;
     QLabel *w2Label;
     QLabel *w3Label;
     QLabel *w4Label;
 
+    //actual Cleaning Plan, sorted by Resident
     QBoxLayout *planRow;
     QScrollArea *ScrollAreaW1;
     QBoxLayout *scrollLayoutW1;
@@ -56,7 +58,7 @@ private:
     QBoxLayout *scrollLayoutW4;
 
 
-
+    //Buttons
     QBoxLayout *buttonRow;
     QPushButton *setuptaskButton;
     QPushButton *createPlanButton;

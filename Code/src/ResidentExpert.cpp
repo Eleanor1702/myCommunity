@@ -39,6 +39,8 @@ bool ResidentExpert::verifyName(std::string username){
     return data->verifyName(username);
 }
 
+
+//Getter Functions
 std::vector<std::string> ResidentExpert::userNameGetter() {
     return data->getAllResidents();
 }

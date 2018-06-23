@@ -57,7 +57,7 @@ EventPage::EventPage(QWidget *parent) : QWidget(parent)
 
     QObject::connect(addEventButton,SIGNAL(clicked()),this,SLOT(setNewEventCalled()));
     QObject::connect(saveEventButton,SIGNAL(clicked()),this,SLOT(homePageCalled()));
-    QObject::connect(calendar,SIGNAL(selectionChanged()),this,SLOT(appearCalled()));
+    QObject::connect(calendar,SIGNAL(selectionChanged()),this,SLOT(appearCalled())); //changes shown events, if another date was selected
 }
 void EventPage::setMainWindowDesign() {
     this->setFixedSize(800, 600);

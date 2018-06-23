@@ -13,6 +13,7 @@ TaskExpert::TaskExpert(CommunityData* data){
     this->data = data;
 }
 
+
 //**************************************Tasks
 //create a new cleaning task
 void TaskExpert::createTask(std::string taskname, std::string room, std::string frequency){
@@ -28,7 +29,7 @@ void TaskExpert::deleteTask(std::string taskname, std::string room) {
     data->deleteTaskByName(taskname, room);
 }
 
-
+//Getter Functions Task
 //get all tasks
 std::vector<Task> TaskExpert::getTasks(){
     return data->getAllTasks();
@@ -63,6 +64,8 @@ std::vector<std::string> TaskExpert::taskFrequencyGetter() {
     }
     return frequencyVector;
 }
+
+
 //***************************ConcreteTasks
 
 //get all concretTasks
@@ -88,6 +91,7 @@ void TaskExpert::deleteConcreteTask(std::string task, std::string resident, int 
     data->deleteConcreteTask(task, resident, cw, room);
 }
 
+//Getter Functions concrete Task
 std::vector<int> TaskExpert::concreteTaskWeekGetter(int week){
     std::vector<int> weekVector;
     std::vector<ConcreteTask> tasklist = concreteTaskGetter(week);
@@ -124,6 +128,7 @@ std::vector<std::string> TaskExpert::concreteTaskRoomGetter(int week){
 }
 
 
+//Returns current calendarweek as int
 int TaskExpert::getCurrentCW(){
     time_t the_time;
     time(&the_time);

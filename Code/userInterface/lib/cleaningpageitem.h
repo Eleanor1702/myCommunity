@@ -12,8 +12,6 @@ class CleaningPageItem : public QFrame
 {
     Q_OBJECT
 private:
-    QLabel *weekLabel;
- //   QLabel *resLabel;
     QLabel *taskLabel;
     QGridLayout *newPlanLayout;
 

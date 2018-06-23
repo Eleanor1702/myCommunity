@@ -27,6 +27,7 @@ void ShoppingExpert::deleteItem(std::string name) {
     data->deleteShoppinglistItem(name);
 }
 
+//Getter Functions
 //get all item names as strings
 std::vector<std::string> ShoppingExpert::itemNameGetter() {
     std::vector<std::string> nameVector;
