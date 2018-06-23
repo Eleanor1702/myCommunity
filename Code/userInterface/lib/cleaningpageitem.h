@@ -18,13 +18,14 @@ private:
     QGridLayout *newPlanLayout;
 
     QString week;
+    QString room;
     QString res;
     QString task;
 
     void setItemStyle();
 
 public:
-    explicit CleaningPageItem(QString weekClean, QString taskClean, QString resClean, QWidget *parent = NULL);
+    explicit CleaningPageItem(QString roomClean, QString taskClean, QString resClean, QWidget *parent = NULL);
 };
 
 #endif // CLEANINGPAGEITEM_H

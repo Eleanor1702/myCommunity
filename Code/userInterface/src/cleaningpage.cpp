@@ -152,7 +152,8 @@ void CleaningPage::deepDeleteLayout(QLayout *layout) {
     }
 }
 
-void CleaningPage::appear(std::vector<int> weekVec, std::vector<std::string> resVec, std::vector<std::string> taskVec, int size, int week){
+void CleaningPage::appear(std::vector<int> weekVec, std::vector<std::string>roomVec, std::vector<std::string> taskVec,
+                          std::vector<std::string> resVec, int size, int week){
     deepDeleteLayout(scrollLayoutW1);
     deepDeleteLayout(scrollLayoutW2);
     deepDeleteLayout(scrollLayoutW3);
@@ -160,8 +161,10 @@ void CleaningPage::appear(std::vector<int> weekVec, std::vector<std::string> res
 
 
     for(int i = 0; i<size; i++) {
-        newCPageItem = new CleaningPageItem(QString::number(weekVec[i]), QString::fromStdString(resVec[i]),
-                                            QString::fromStdString(taskVec[i]));
+        newCPageItem = new CleaningPageItem(QString::fromStdString(roomVec[i]),
+                                            QString::fromStdString(taskVec[i]),
+                                            QString::fromStdString(resVec[i]));
+
 
 
         if(weekVec[i]==week){

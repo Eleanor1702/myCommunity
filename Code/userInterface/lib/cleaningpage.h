@@ -22,8 +22,9 @@ public:
     std::vector<CleaningPageItem*> CleaningPageItemList;
     void deepDeleteLayout(QLayout *layout);
     void appear(std::vector<int> weekVec,
-                std::vector<std::string> resVec,
-                std::vector<std::string> taskVec, int size, int week);
+                std::vector<std::string> roomVec,
+                std::vector<std::string> taskVec,
+                std::vector<std::string> resVec, int size, int week);
 private:
     friend class GuiController;
 
