@@ -17,7 +17,7 @@ HomePage::HomePage(QWidget *parent) : QWidget(parent) {
   this->calendar = new QPushButton ("Kalender");
   this->shoppingList = new QPushButton("Einkaufsliste");
   this->cleanPlan = new QPushButton("Putzplan");
-  this->saveFormat = new QPushButton("Export");
+  this->exporter = new QPushButton("Export");
   this->logOut = new QPushButton("Ausloggen");
 
   this->setMainScreenDesign();
@@ -40,6 +40,7 @@ HomePage::HomePage(QWidget *parent) : QWidget(parent) {
   QObject::connect(cleanPlan, SIGNAL(clicked()), this, SLOT(cleanPlanCalled()));
   QObject::connect(logOut, SIGNAL(clicked()), this, SLOT(logOutCalled()));
   QObject::connect(shoppingList, SIGNAL(clicked()), this, SLOT(shoppingListCalled()));
+  QObject::connect(exporter, SIGNAL(clicked()), this, SLOT(exporterCalled()));
 }
 
 void HomePage::setMainScreenDesign(){
@@ -67,7 +68,7 @@ void HomePage::setMainLayoutDesign(){
   this->buttonColumn->addWidget(calendar, 4, Qt::AlignCenter);
   this->buttonColumn->addWidget(shoppingList, 4, Qt::AlignCenter);
   this->buttonColumn->addWidget(cleanPlan, 4, Qt::AlignCenter);
-  this->buttonColumn->addWidget(saveFormat, 4, Qt::AlignCenter);
+  this->buttonColumn->addWidget(exporter, 4, Qt::AlignCenter);
   this->buttonColumn->addWidget(logOut, 4, Qt::AlignBottom);
 
   this->settings->setFixedSize(110, 90);
@@ -90,8 +91,8 @@ void HomePage::setMainLayoutDesign(){
                                 "border-radius: 5px; background-color: #3399ff; "
                                 "color: white; font-weight: bold;}");
 
-  this->saveFormat->setFixedSize(110, 90);
-  this->saveFormat->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
+  this->exporter->setFixedSize(110, 90);
+  this->exporter->setStyleSheet(".QPushButton{border: 1px solid #3399ff; "
                                 "border-radius: 5px; background-color: #3399ff; "
                                 "color: white; font-weight: bold;}");
 
@@ -142,4 +143,8 @@ void HomePage::logOutCalled() {
 
 void HomePage::shoppingListCalled() {
     emit shoppingListCallSignal();
+}
+
+void HomePage::exporterCalled(){
+    emit exporterCallSignal();
 }

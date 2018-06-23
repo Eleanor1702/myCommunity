@@ -7,16 +7,12 @@ CleaningPage::CleaningPage(QWidget *parent) : QWidget(parent) {
     mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
     mainLabel = new QLabel("Putzplan");
 
- /*   planRow = new QBoxLayout;
-    weekRow = new QVBoxLayout;
-    weekLabel = new QLabel;
-    ScrollAreaRow = new QVBoxLayout;
-    ScrollAreaW1 = new QScrollArea;
-    ScrollAreaW2 = new QScrollArea;
-    ScrollAreaW3 = new QScrollArea;
-    ScrollAreaW4 = new QScrollArea;
-    scrollLayout = new QVBoxLayout;
-    */
+
+    weekRow = new QBoxLayout(QBoxLayout::LeftToRight);
+    w1Label = new QLabel("");
+    w2Label = new QLabel("");
+    w3Label = new QLabel("");
+    w4Label = new QLabel("");
 
     planRow = new QBoxLayout(QBoxLayout::LeftToRight);
     ScrollAreaW1 = new QScrollArea;
@@ -61,6 +57,7 @@ void CleaningPage::setMainWindowDesign(){
     this->setWindowTitle(QString::fromUtf8("Putzplan"));
 
     mainLayout->addLayout(this->mainLabelRow);
+    mainLayout->addLayout(this->weekRow);
     mainLayout->addLayout(this->planRow);
     mainLayout->addLayout(this->buttonRow);
 
@@ -72,9 +69,22 @@ void CleaningPage::setMainLayoutDesign(){
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
                                    "font-weight: bold; margin-top: 30px; color: #555;");
 
-
-  //  this->planRow->addLayout(this->weekRow, 0, 1, 50, 110, Qt::AlignRight);
-  //  this->planRow->addWidget(this->ScrollAreaRow, 1, Qt::AlignTop);
+    this->weekRow->addWidget(w1Label, 0, Qt::AlignLeft);
+    this->w1Label->setStyleSheet("text-align: center; font-family: URW Bookman L;"
+                                 "font-size: 12px; border: 0px; color: #555;"
+                                 "font-weight: bold; margin-top: 0px;");
+    this->weekRow->addWidget(w2Label, 0, Qt::AlignLeft);
+    this->w2Label->setStyleSheet("text-align: center; font-family: URW Bookman L;"
+                                 "font-size: 12px; border: 0px; color: #555;"
+                                 "font-weight: bold; margin-top: 0px;");
+    this->weekRow->addWidget(w3Label, 0, Qt::AlignLeft);
+    this->w3Label->setStyleSheet("text-align: center; font-family: URW Bookman L;"
+                                 "font-size: 12px; border: 0px; color: #555;"
+                                 "font-weight: bold; margin-top: 0px;");
+    this->weekRow->addWidget(w4Label, 0, Qt::AlignLeft);
+    this->w4Label->setStyleSheet("text-align: center; font-family: URW Bookman L;"
+                                 "font-size: 12px; border: 0px; color: #555;"
+                                 "font-weight: bold; margin-top: 0px;");
 
     this->planRow->addWidget(ScrollAreaW1, 0, Qt::AlignLeft);
     this->ScrollAreaW1->setWidget(this->scrollWidgetW1);
@@ -153,12 +163,16 @@ void CleaningPage::deepDeleteLayout(QLayout *layout) {
 }
 
 void CleaningPage::appear(std::vector<int> weekVec, std::vector<std::string>roomVec, std::vector<std::string> taskVec,
-                          std::vector<std::string> resVec, int size, int week){
+                          std::vector<std::string> resVec, int size, int week, std::string user){
     deepDeleteLayout(scrollLayoutW1);
     deepDeleteLayout(scrollLayoutW2);
     deepDeleteLayout(scrollLayoutW3);
     deepDeleteLayout(scrollLayoutW4);
 
+    this->w1Label->setText("Kalenderwoche: " + QString::number(week));
+    this->w2Label->setText("Kalenderwoche: " + QString::number(week+1));
+    this->w3Label->setText("Kalenderwoche: " + QString::number(week+2));
+    this->w4Label->setText("Kalenderwoche: " + QString::number(week+3));
 
     for(int i = 0; i<size; i++) {
         newCPageItem = new CleaningPageItem(QString::fromStdString(roomVec[i]),
@@ -166,6 +180,11 @@ void CleaningPage::appear(std::vector<int> weekVec, std::vector<std::string>room
                                             QString::fromStdString(resVec[i]));
 
 
+
+        if(resVec[i]==user){
+            newCPageItem->setStyleSheet("background-color: #af8;"
+                                        "border: 0.5 px solid #555; border-radius: 1px;");
+        }
 
         if(weekVec[i]==week){
             scrollLayoutW1->addWidget(newCPageItem, Qt::AlignTop);

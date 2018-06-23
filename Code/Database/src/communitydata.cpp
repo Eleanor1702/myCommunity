@@ -406,7 +406,7 @@ std::vector<ConcreteTask> CommunityData::getAllConcreteTasks(int week) {
     return list;
 }
 
-/*
+
 std::vector<std::string> CommunityData::getAllConcreteTasksString(){
     std::vector<std::string> stringlist;
     std::string taskname;
@@ -425,7 +425,7 @@ std::vector<std::string> CommunityData::getAllConcreteTasksString(){
      }
     return stringlist;
 }
-*/
+
 //****Tasks*****
 
 //Table to store cleaning Tasks

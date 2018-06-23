@@ -13,16 +13,20 @@ void Exporter::exportShopinglist(){
     exportFile << "Anzahl, Produktname \n";
 
 
-    for(std::vector<std::string>::iterator it = list.begin(); it != list.end(); it++)    {
-    //   std::cout<< it ;
+    for(unsigned int i = 0; i != list.size(); i++)    {
+       exportFile << list[i] ;
      }
     exportFile.close();
 }
 
 void Exporter::exportCleaningplan(){
+    std::vector<std::string> list = data->getAllConcreteTasksString();
     exportFile.open("cleaningplan.csv");
     exportFile << "Putzplan \n" ;
-
+    exportFile << "Taskname, Bewohner, Kalenderwoche";
+    for(unsigned int i; i != list.size(); i++){
+        exportFile << list[i] ;
+    }
 
 
 

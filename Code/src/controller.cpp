@@ -162,6 +162,16 @@ int Controller::getItemlistSize() {
     return shExpert->getItems().size();
 }
 
+//Exporter
+
+void Controller::exportCleaningPlan(){
+    expo->exportCleaningplan();
+}
+
+void Controller::exportShoppingList(){
+    expo->exportShopinglist();
+}
+
 //Current User Methods
 
 void Controller::setCurrentUser(std::string user){

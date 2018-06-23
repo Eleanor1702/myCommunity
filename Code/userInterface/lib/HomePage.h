@@ -35,7 +35,7 @@ private:
   QPushButton *calendar;
   QPushButton *shoppingList;
   QPushButton *cleanPlan;
-  QPushButton *saveFormat;
+  QPushButton *exporter;
   QPushButton *logOut;
 
   void setMainScreenDesign();
@@ -52,6 +52,7 @@ private slots:
   void cleanPlanCalled();
   void logOutCalled();
   void shoppingListCalled();
+  void exporterCalled();
 
 signals:
   void roomSettingsCallSignal();
@@ -60,6 +61,7 @@ signals:
   void cleanPlanCallSignal();
   void logOutCallSignal();
   void shoppingListCallSignal();
+  void exporterCallSignal();
 
 };
 #endif // HOMEPAGE_H

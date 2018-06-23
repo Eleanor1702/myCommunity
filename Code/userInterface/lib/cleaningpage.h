@@ -24,7 +24,7 @@ public:
     void appear(std::vector<int> weekVec,
                 std::vector<std::string> roomVec,
                 std::vector<std::string> taskVec,
-                std::vector<std::string> resVec, int size, int week);
+                std::vector<std::string> resVec, int size, int week, std::string user);
 private:
     friend class GuiController;
 
@@ -35,17 +35,12 @@ private:
     QBoxLayout *mainLabelRow;
     QLabel *mainLabel;
 
-    //Hier muss der Plan eingefügt werden
-/*    QBoxLayout *planRow;
-    QVBoxLayout *weekRow;
-    QLabel *weekLabel;
-    QVBoxLayout *ScrollAreaRow;
-    QScrollArea *ScrollAreaW1;
-    QScrollArea *ScrollAreaW2;
-    QScrollArea *ScrollAreaW3;
-    QScrollArea *ScrollAreaW4;
-    QVBoxLayout *scrollLayout;
-*/
+    QBoxLayout *weekRow;
+    QLabel *w1Label;
+    QLabel *w2Label;
+    QLabel *w3Label;
+    QLabel *w4Label;
+
     QBoxLayout *planRow;
     QScrollArea *ScrollAreaW1;
     QBoxLayout *scrollLayoutW1;
