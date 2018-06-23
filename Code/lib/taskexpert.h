@@ -20,7 +20,7 @@ public:
     //Task methods
     void createTask(std::string name, std::string room, std::string frequency);
     void deleteTask(std::string name, std::string room);
-    void editTask(std::string name, std::string frequency, std::string room);       //was darf alles verändert werden?
+    void editTask(std::string name, std::string frequency, std::string room);
 
     std::vector<std::string> taskNameGetter();
     std::vector<std::string> taskRoomGetter();
@@ -32,17 +32,14 @@ public:
     //Concrete Task methods
     void createConcreteTask(std::string task, std::string resident, int cw, std::string room);
     void deleteConcreteTask(std::string task, std::string resident, int cw, std::string room);
-    void editConcreteTask(Task task, std::string resident, int cw);
-    std::vector<ConcreteTask> concreteTaskGetter();
-    std::vector<std::string> concreteTaskNameGetter();
-    std::vector<std::string> concreteTaskRoomGetter();
-    std::vector<int> concreteTaskWeekGetter();
-    std::vector<std::string> concreteTaskResGetter();
+    std::vector<ConcreteTask> concreteTaskGetter(int week);
+    std::vector<std::string> concreteTaskNameGetter(int week);
+    std::vector<std::string> concreteTaskRoomGetter(int week);
+    std::vector<int> concreteTaskWeekGetter(int week);
+    std::vector<std::string> concreteTaskResGetter(int week);
 
     //current CW methods
     int getCurrentCW();
-
- //   std::vector<ConcreteTask> showConcreteTasks(int cw, std::string user);
 };
 
 #endif // TASKEXPERT_H

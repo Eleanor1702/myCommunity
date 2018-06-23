@@ -73,7 +73,7 @@ public:
     void deleteTaskCleaningplan(std::string name, std::string room);
     void deleteResidentCleaningplan(std::string resident);
     void deleteRoomCleaningplan(std::string room);
-    std::vector<ConcreteTask> getAllConcreteTasks();
+    std::vector<ConcreteTask> getAllConcreteTasks(int week);
     std::vector<std::string> getAllConcreteTasksString();
 
     //Tasks

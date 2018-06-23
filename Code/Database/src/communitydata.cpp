@@ -383,11 +383,12 @@ void CommunityData::deleteTaskCleaningplan(std::string name, std::string room) {
     delete stmt;
 }
 
-std::vector<ConcreteTask> CommunityData::getAllConcreteTasks() {
+std::vector<ConcreteTask> CommunityData::getAllConcreteTasks(int week) {
     std::vector<ConcreteTask> list;
     ResultSet* resultSet = NULL;
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("SELECT * FROM Cleaning JOIN Tasks ON Tasks.Name = Cleaning.Task ORDER BY Resident");
+    stmt = con->prepareStatement("SELECT * FROM Cleaning JOIN Tasks ON Week = ? AND Tasks.Name = Cleaning.Task AND Tasks.Room = Cleaning.CRoom ORDER BY Resident");
+    stmt->setInt(1, week);
     resultSet = stmt->executeQuery();
     while(resultSet->next()) {
         ConcreteTask ctask;

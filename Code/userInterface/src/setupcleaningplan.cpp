@@ -69,7 +69,7 @@ void SetUpCleaningPlan::setMainWindowDesign(){
 void SetUpCleaningPlan::setMainLayoutDesign(){
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
     this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
-                                   "font-weight: bold; margin-top: 30px; color: #aaa");
+                                   "font-weight: bold; margin-top: 30px; color: #555");
 
 
     this->selectedRow->addLayout(this->selectWeekArea, 0, 0, 450, 100, Qt::AlignJustify);
@@ -78,7 +78,7 @@ void SetUpCleaningPlan::setMainLayoutDesign(){
 
     this->selectWeekArea->addWidget(this->selectWeekLabel, 0, Qt::AlignTop);
     this->selectWeekLabel->setStyleSheet("font-family: URW Bookman L; font-size: 12px;"
-                                         "font-weight: bold; color: #aaa; margin-right: -80px;"
+                                         "font-weight: bold; color: #555; margin-right: -80px;"
                                          "margin-left: 15px;");
     this->selectWeekArea->addWidget(this->giveCWEdit, 1, Qt::AlignTop);
     this->giveCWEdit->setFixedWidth(80);
@@ -96,7 +96,7 @@ void SetUpCleaningPlan::setMainLayoutDesign(){
 
     this->ListArea->addWidget(this->selectedTasksLabel, 0, Qt::AlignTop);
     this->selectedTasksLabel->setStyleSheet("font-family: URW Bookman L; font-size: 12px;"
-                                            "font-weight: bold; color: #aaa;");
+                                            "font-weight: bold; color: #555;");
     this->ListArea->addWidget(this->scrollArea,1, Qt::AlignTop);
     this->scrollArea->setWidget(this->scrollWidget);
     this->scrollArea->setWidgetResizable(true);
@@ -106,18 +106,18 @@ void SetUpCleaningPlan::setMainLayoutDesign(){
 
     this->addTaskLabelRow->addWidget(this->addTaskLabel,0, Qt::AlignLeft);
     this->addTaskLabel->setStyleSheet("font-family: URW Bookman L; font-size: 13px;"
-                                      "font-weight: bold; color: #aaa;");
+                                      "font-weight: bold; color: #555;");
 
     this->selectionArea->addWidget(this->selectTaskLabel,1, Qt::AlignTop);
     this->selectTaskLabel->setStyleSheet("font-family: URW Bookman L; font-size: 12px;"
-                                         "font-weight: bold; color: #aaa;");
+                                         "font-weight: bold; color: #555;");
     this->selectionArea->addWidget(this->selectTaskCombo, 2, Qt::AlignTop);
     this->selectTaskCombo->setFixedWidth(350);
     this->selectTaskCombo->setStyleSheet("selection-color: white; selection-background-color: #1aa3ff;"
                                          "color: black; background-color: White;");
     this->selectionArea->addWidget(this->selectResLabel,3,Qt::AlignTop);
     this->selectResLabel->setStyleSheet("font-family: URW Bookman L; font-size: 12px;"
-                                        "font-weight: bold; color: #aaa;");
+                                        "font-weight: bold; color: #555;");
     this->selectionArea->addWidget(this->selectResCombo, 4, Qt::AlignTop);
     this->selectResCombo->setFixedWidth(280);
     this->selectResCombo->setStyleSheet("selection-color: white; selection-background-color: #1aa3ff;"

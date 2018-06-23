@@ -125,25 +125,21 @@ void Controller::addConcreteTask(int week, std::string task, std::string res, st
 void Controller::deleteConcreteTask(int week, std::string task, std::string res, std::string room){
     taExpert->deleteConcreteTask(task, res, week, room);
 }
-/*
-void Controller::editConcreteTask(std::string week, std::string task, std::string res){
-    taExpert->editConcreteTask(week, task, res);
-}*/
 
 std::vector<int> Controller::getConcreteTaskWeek(){
-    return taExpert->concreteTaskWeekGetter();
+    return taExpert->concreteTaskWeekGetter(getCurrentCW());
 }
 std::vector<std::string> Controller::getConcreteTaskName(){
-    return taExpert->concreteTaskNameGetter();
+    return taExpert->concreteTaskNameGetter(getCurrentCW());
 }
 std::vector<std::string> Controller::getConcreteTaskRes(){
-    return taExpert->concreteTaskResGetter();
+    return taExpert->concreteTaskResGetter(getCurrentCW());
 }
 std::vector<std::string> Controller::getConcreteTaskRoom(){
-    return taExpert->concreteTaskRoomGetter();
+    return taExpert->concreteTaskRoomGetter(getCurrentCW());
 }
 int Controller::getConcreteTaskListSize(){
-    return taExpert->concreteTaskGetter().size();
+    return taExpert->concreteTaskGetter(getCurrentCW()).size();
 }
 
 //ShoppingExpert

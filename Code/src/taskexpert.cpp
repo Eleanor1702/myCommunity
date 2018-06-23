@@ -28,7 +28,6 @@ void TaskExpert::deleteTask(std::string taskname, std::string room) {
     data->deleteTaskByName(taskname, room);
 }
 
-//edit a task
 
 //get all tasks
 std::vector<Task> TaskExpert::getTasks(){
@@ -67,8 +66,8 @@ std::vector<std::string> TaskExpert::taskFrequencyGetter() {
 //***************************ConcreteTasks
 
 //get all concretTasks
-std::vector<ConcreteTask> TaskExpert::concreteTaskGetter(){
-    return data->getAllConcreteTasks();     //TODO
+std::vector<ConcreteTask> TaskExpert::concreteTaskGetter(int week){
+    return data->getAllConcreteTasks(week);
 }
 
 
@@ -88,58 +87,42 @@ void TaskExpert::createConcreteTask(std::string taskname, std::string resident, 
 void TaskExpert::deleteConcreteTask(std::string task, std::string resident, int cw, std::string room){
     data->deleteConcreteTask(task, resident, cw, room);
 }
-/*
-void TaskExpert::editConcreteTask(Task task, std::string resident, int cw){
-    data->editConcreteTask(taks, resident, cw);
-}
-*/
-std::vector<int> TaskExpert::concreteTaskWeekGetter(){
-    std::vector<int> weekVector;
 
-    for(unsigned int i = 0; i < concreteTaskGetter().size(); i++) {
-        weekVector.push_back((concreteTaskGetter()[i].getCalendarweek()));
+std::vector<int> TaskExpert::concreteTaskWeekGetter(int week){
+    std::vector<int> weekVector;
+    std::vector<ConcreteTask> tasklist = concreteTaskGetter(week);
+    for(unsigned int i = 0; i < tasklist.size(); i++) {
+        weekVector.push_back((tasklist[i].getCalendarweek()));
     }
     return weekVector;
 }
 
-std::vector<std::string> TaskExpert::concreteTaskResGetter(){
+std::vector<std::string> TaskExpert::concreteTaskResGetter(int week){
     std::vector<std::string> residentVector;
-
-    for(unsigned int i = 0; i < concreteTaskGetter().size(); i++) {
-        residentVector.push_back((concreteTaskGetter()[i].getResident()));
+    std::vector<ConcreteTask> tasklist = concreteTaskGetter(week);
+    for(unsigned int i = 0; i < tasklist.size(); i++) {
+        residentVector.push_back((tasklist[i].getResident()));
     }
     return residentVector;
 }
 
-std::vector<std::string> TaskExpert::concreteTaskNameGetter(){
+std::vector<std::string> TaskExpert::concreteTaskNameGetter(int week){
     std::vector<std::string> nameVector;
-
-    for(unsigned int i= 0; i<concreteTaskGetter().size();i++){
-        nameVector.push_back(concreteTaskGetter()[i].getTask().getName());
+    std::vector<ConcreteTask> tasklist = concreteTaskGetter(week);
+    for(unsigned int i= 0; i<tasklist.size();i++){
+        nameVector.push_back(tasklist[i].getTask().getName());
     }
     return nameVector;
 }
-std::vector<std::string> TaskExpert::concreteTaskRoomGetter(){
+std::vector<std::string> TaskExpert::concreteTaskRoomGetter(int week){
     std::vector<std::string> roomVector;
-
-    for(unsigned int i= 0; i<concreteTaskGetter().size();i++){
-        roomVector.push_back(concreteTaskGetter()[i].getTask().getRoom());
+    std::vector<ConcreteTask> tasklist = concreteTaskGetter(week);
+    for(unsigned int i= 0; i<tasklist.size();i++){
+        roomVector.push_back(tasklist[i].getTask().getRoom());
     }
     return roomVector;
 }
-/*
-std::vector<ConcreteTask> TaskExpert::showConcreteTasks(int cw, std::string user){
-    std::vector<ConcreteTask> concreteTaskVector;
 
-    for(unsigned int i = 0; i < getConcreteTasks().size(); i++ ){
-        if(getConcreteTasks()[i].getCalendarweek() == cw && getConcreteTasks()[i].getResident() == user){
-            concreteTaskVector.push_back(getConcreteTasks()[i]);
-        }
-    }
-    return concreteTaskVector;
-}
-
-*/
 
 int TaskExpert::getCurrentCW(){
     time_t the_time;

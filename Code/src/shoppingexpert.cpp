@@ -30,8 +30,9 @@ void ShoppingExpert::deleteItem(std::string name) {
 //get all item names as strings
 std::vector<std::string> ShoppingExpert::itemNameGetter() {
     std::vector<std::string> nameVector;
-    for(unsigned int i = 0; i< getItems().size(); i++) {
-        nameVector.push_back(getItems()[i].getItemName());
+    std::vector<Shoppingitem> list = getItems();
+    for(unsigned int i = 0; i< list.size(); i++) {
+        nameVector.push_back(list[i].getItemName());
     }
     return nameVector;
 }
@@ -39,8 +40,9 @@ std::vector<std::string> ShoppingExpert::itemNameGetter() {
 //get all item numbers
 std::vector<std::string> ShoppingExpert::itemNumberGetter() {
     std::vector<std::string> numberVector;
-    for(unsigned int i = 0; i< getItems().size(); i++) {
-        numberVector.push_back(getItems()[i].getNumber());
+    std::vector<Shoppingitem> list = getItems();
+    for(unsigned int i = 0; i< list.size(); i++) {
+        numberVector.push_back(list[i].getNumber());
     }
     return numberVector;
 }
