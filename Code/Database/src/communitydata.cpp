@@ -262,6 +262,7 @@ void CommunityData::deleteCalendar(std::string user) {
     stmt->execute();
     delete stmt;
 }
+/*
 //get all events from calendar of a user
 std::vector<Event> CommunityData::getAllEventsOfUser(std::string user, std::string datetime) {
     std::vector<Event> list;
@@ -282,7 +283,7 @@ std::vector<Event> CommunityData::getAllEventsOfUser(std::string user, std::stri
     delete resultSet;
     return list;
 }
-
+*/
 //get all Events
 std::vector<Event> CommunityData::getAllEvents(std::string user, std::string date){
     std::vector<Event> list;
@@ -323,6 +324,23 @@ std::vector<std::string> CommunityData::getAllEventsString(std::string cuser, st
                   stringlist.push_back(info);
      }
     return stringlist;
+}
+
+//gets All Dates
+std::vector<std::string> CommunityData::getAllDates(std::string user){
+    std::vector<std::string> list;
+    ResultSet* resultSet = NULL;
+    PreparedStatement* stmt;
+    stmt = con->prepareStatement("SELECT CONVERT(Datetime, Date) AS Datetime FROM Calendar WHERE User = ? OR User = 'gemeinschaftlich' ORDER BY Datetime");
+    stmt->setString(1, user);
+    resultSet = stmt->executeQuery();
+    while(resultSet->next()) {
+        std::string date = resultSet->getString("Datetime");
+        list.push_back(date);
+    }
+    delete stmt;
+    delete resultSet;
+    return list;
 }
 
 

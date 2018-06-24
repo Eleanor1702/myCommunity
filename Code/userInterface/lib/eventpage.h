@@ -69,6 +69,7 @@ private:
     QPushButton *saveEventButton;
 
     QTextCharFormat fmt;
+    QTextCharFormat date_fmt;
 
     void setMainWindowDesign();
     void setMainLayoutDesign();

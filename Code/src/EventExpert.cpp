@@ -82,11 +82,13 @@ std::vector<std::string>EventExpert::eventUserGetter(std::string user, std::stri
     }
     return userVec;
 }
-
+/*
 std::vector<Event> EventExpert::getUserEvents(std::string user, std::string datetime) {
   return data->getAllEventsOfUser(user, datetime);
 }
-
-
+*/
+std::vector<std::string>EventExpert::getAllDates(std::string user){
+    return data->getAllDates(user);
+}
 
 

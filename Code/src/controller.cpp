@@ -100,6 +100,9 @@ int Controller::getSizeEvent(std::string user, std::string date){
     return evExpert->eventSizeGetter(user, date);
 }
 
+std::vector<std::string> Controller::getAllDates(std::string user){
+    return evExpert->getAllDates(user);
+}
 
 
 //TaskExpert

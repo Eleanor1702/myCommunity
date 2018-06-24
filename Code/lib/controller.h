@@ -54,6 +54,7 @@ public:
         std::vector<std::string>getEventDescription(std::string user, std::string date);
         std::vector<std::string>getEventUser(std::string user, std::string date);
         int getSizeEvent(std::string user, std::string date);
+        std::vector<std::string>getAllDates(std::string user);
 
         //Task
         void addTask(std::string name, std::string room, std::string frequency);

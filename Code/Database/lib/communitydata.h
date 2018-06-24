@@ -61,9 +61,10 @@ public:
     void updateEvent(Event ev, std::string timedate,std::string description);
     void deleteEvent(Event ev);
     void deleteCalendar(std::string user);
-    std::vector<Event> getAllEventsOfUser(std::string user, std::string datetime);
+ //   std::vector<Event> getAllEventsOfUser(std::string user, std::string datetime);
     std::vector<Event> getAllEvents(std::string user, std::string date);
     std::vector<std::string> getAllEventsString(std::string cuser, std::string datetime);
+    std::vector<std::string> getAllDates(std::string user);
 
 
     //Cleaning plan

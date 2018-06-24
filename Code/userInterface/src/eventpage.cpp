@@ -229,9 +229,9 @@ void EventPage::appear(std::vector<std::string> timeVec,
                        std::vector<std::string> descrVec,
                        std::string user, int size){
 
+    this->date_fmt.setFontUnderline(true);
     if(user == "gemeinschaftlich"){
         deepDeleteLayout(scrollLayoutPub);
-
 
         EventListItemPubList.clear();
         for(int i = 0; i < size; i++){
@@ -247,7 +247,7 @@ void EventPage::appear(std::vector<std::string> timeVec,
             EventListItemPubList.push_back(newPubEvent);
 
             scrollLayoutPub->addWidget(newPubEvent);
-            this->calendar->setDateTextFormat(QDate::fromString(QString::fromStdString(dateVec[i]), "yyyy-MM-dd"), fmt);
+            this->calendar->setDateTextFormat(QDate::fromString(QString::fromStdString(dateVec[i]), "yyyy-MM-dd"), date_fmt);
 
         }
         checkPub->setChecked(false);
@@ -265,7 +265,7 @@ void EventPage::appear(std::vector<std::string> timeVec,
 
             EventListItemPrivList.push_back(newPrivEvent);
             scrollLayout->addWidget(newPrivEvent);
-            this->calendar->setDateTextFormat(QDate::fromString(QString::fromStdString(dateVec[i]), "yyyy-MM-dd"), fmt);
+            this->calendar->setDateTextFormat(QDate::fromString(QString::fromStdString(dateVec[i]), "yyyy-MM-dd"), date_fmt);
         }  
     }
 
@@ -276,8 +276,9 @@ void EventPage::appear(std::vector<std::string> timeVec,
 }
 
 void EventPage::appearDate(std::vector<std::string> dateVec){
+    this->date_fmt.setFontUnderline(true);
     for(int i=0; i<dateVec.size(); i++){
-        this->calendar->setDateTextFormat(QDate::fromString(QString::fromStdString(dateVec[i]), "yyyy-MM-dd"), fmt);
+        this->calendar->setDateTextFormat(QDate::fromString(QString::fromStdString(dateVec[i]), "yyyy-MM-dd"), date_fmt);
     }
 }
 
