@@ -258,7 +258,7 @@ void SetUpCleaningPlan::editTaskCalled(QString week, QString task, QString res, 
     emit deleteConcreteTaskSignal(week, task, res, room);
 
 
-    int index = selectTaskCombo->findText(task+" - "+room);
+    int index = selectTaskCombo->findText(task+" - "+room, Qt::MatchContains);
     selectTaskCombo->setCurrentIndex(index);
 
     index = selectResCombo->findText(res);
