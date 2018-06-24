@@ -52,7 +52,7 @@ void changePwPage::setMainWindowDesign(){
 
 void changePwPage::setMainLayoutDesign(){
     mainLabelRow->addWidget(mainLabel, 0, Qt::AlignCenter);
-    mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 20px;"
+    mainLabel->setStyleSheet("font-family: Arial; font-size: 20px;"
                              "font-weight: bold; margin-top: 5px; color: #555;");
 
     oldPwRow->addWidget(oldpwLabel, 0, Qt::AlignCenter);

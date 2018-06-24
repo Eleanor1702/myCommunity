@@ -35,7 +35,7 @@ exportPage::exportPage(QWidget *parent) : QWidget(parent){
 }
 
 void exportPage::setMainWindowDesign(){
-    this->setFixedSize(500,400);
+    this->setFixedSize(800,600);
     this->setStyleSheet("background-color: white;");
     this->setWindowTitle(QString::fromUtf8("Pläne Exportiern"));
 
@@ -52,7 +52,7 @@ void exportPage::setMainWindowDesign(){
 void exportPage::setMainLayoutDesign(){
 
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
-    this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
+    this->mainLabel->setStyleSheet("font-family: Arial; font-size: 30px;"
                                        "font-weight: bold; margin-top: 5px; color: #aaa;");
     this->cleaningButtonRow->addWidget(cleaningExportButton, 1, Qt::AlignBottom);
     this->cleaningExportButton->setFixedSize(200,50);

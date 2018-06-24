@@ -60,7 +60,7 @@ void HomePage::setMainLayoutDesign(){
   this->mainLabelRow->setAlignment(Qt::AlignTop);
 
   this->mainLabelRow->addWidget(mainLabel, 4, Qt::AlignCenter);
-  this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
+  this->mainLabel->setStyleSheet("font-family: Arial; font-size: 30px;"
                                  "color: #555; font-weight: bold; margin-top: 5px;"
                                  "margin-right: 20px;");
 

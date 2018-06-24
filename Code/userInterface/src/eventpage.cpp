@@ -73,7 +73,7 @@ void EventPage::setMainWindowDesign() {
 
 void EventPage::setMainLayoutDesign(){
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
-    this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
+    this->mainLabel->setStyleSheet("font-family: Arial; font-size: 30px;"
                                    "font-weight: bold; margin-top: 30px; color: #555;");
 
 
@@ -82,7 +82,7 @@ void EventPage::setMainLayoutDesign(){
     this->calendarRow->addLayout(this->calendarArea, 0, 1, 450, 500, Qt::AlignRight);
     //set Layout Design for ListArea --> List of Private and Public Events
     this->ListArea->addWidget(this->PrivLabel, 0, Qt::AlignTop);
-    this->PrivLabel->setStyleSheet("font-family: URW Bookman L; font-size: 10px;"
+    this->PrivLabel->setStyleSheet("font-family: Arial; font-size: 10px;"
                                    "font-weight: bold; color: #555;");
     this->ListArea->addWidget(this->scrollArea, 1, Qt::AlignTop);
     this->scrollArea->setWidget(this->scrollWidget);
@@ -93,7 +93,7 @@ void EventPage::setMainLayoutDesign(){
     this->scrollLayout->setAlignment(Qt::AlignTop);
 
     this->ListArea->addWidget(this->PubLabel, 2, Qt::AlignBottom);
-    this->PubLabel->setStyleSheet("font-family: URW Bookman L; font-size: 10px;"
+    this->PubLabel->setStyleSheet("font-family: Arial; font-size: 10px;"
                                   "font-weight: bold; color: #555;");
     this->ListArea->addWidget(this->scrollAreaPub, 3, Qt::AlignBottom);
     this->scrollAreaPub->setWidget(this->scrolLWidgetPub);
@@ -108,7 +108,7 @@ void EventPage::setMainLayoutDesign(){
     this->calendar->showToday();
     this->calendar->setFixedWidth(400);
     this->calendar->setFixedHeight(380);
-    this->calendar->setStyleSheet("font-family: URW Bookman L; font-size: 17px; color: black");
+    this->calendar->setStyleSheet("font-family: Arial; font-size: 17px; color: black");
     this->fmt.setBackground(Qt::lightGray);
     this->calendar->setDateTextFormat(QDate::currentDate(), fmt);
 
@@ -156,7 +156,7 @@ void EventPage::setMainLayoutDesign(){
     this->giveNameEdit->setMaxLength(18);
     this->giveNameEdit->setFixedWidth(200);
     this->addEventRow->addWidget(this->checkLabel, 2, Qt::AlignRight);
-    this->checkLabel->setStyleSheet("font-family: URW Bookman L; font-size: 10px;"
+    this->checkLabel->setStyleSheet("font-family: Arial; font-size: 10px;"
                                     "font-weight: bold; color: #555;");
     this->addEventRow->addWidget(this->checkPub, 2, Qt::AlignLeft);
 

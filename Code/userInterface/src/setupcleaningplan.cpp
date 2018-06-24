@@ -68,7 +68,7 @@ void SetUpCleaningPlan::setMainWindowDesign(){
 
 void SetUpCleaningPlan::setMainLayoutDesign(){
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
-    this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
+    this->mainLabel->setStyleSheet("font-family: Arial; font-size: 30px;"
                                    "font-weight: bold; margin-top: 30px; color: #555");
 
 
@@ -77,7 +77,7 @@ void SetUpCleaningPlan::setMainLayoutDesign(){
     this->selectedRow->addLayout(this->ListArea, 0, 1, 450, 300, Qt::AlignRight);
 
     this->selectWeekArea->addWidget(this->selectWeekLabel, 0, Qt::AlignTop);
-    this->selectWeekLabel->setStyleSheet("font-family: URW Bookman L; font-size: 12px;"
+    this->selectWeekLabel->setStyleSheet("font-family: Arial; font-size: 12px;"
                                          "font-weight: bold; color: #555; margin-right: -80px;"
                                          "margin-left: 15px;");
     this->selectWeekArea->addWidget(this->giveCWEdit, 1, Qt::AlignTop);
@@ -88,14 +88,14 @@ void SetUpCleaningPlan::setMainLayoutDesign(){
     this->calendar->showToday();
     this->calendar->setSelectionMode(calendar->NoSelection);
     this->calendar->setFixedSize(300, 290);
-    this->calendar->setStyleSheet("font-family: URW Bookman L; font-size:12px; color: black");
+    this->calendar->setStyleSheet("font-family: Arial; font-size:12px; color: black");
 
 /*    this->frmt.setForeground(Qt::red);
     this->calendar->setHeaderTextFormat(frmt);
 */
 
     this->ListArea->addWidget(this->selectedTasksLabel, 0, Qt::AlignTop);
-    this->selectedTasksLabel->setStyleSheet("font-family: URW Bookman L; font-size: 12px;"
+    this->selectedTasksLabel->setStyleSheet("font-family: Arial; font-size: 12px;"
                                             "font-weight: bold; color: #555;");
     this->ListArea->addWidget(this->scrollArea,1, Qt::AlignTop);
     this->scrollArea->setWidget(this->scrollWidget);
@@ -105,18 +105,18 @@ void SetUpCleaningPlan::setMainLayoutDesign(){
     this->scrollLayout->setAlignment(Qt::AlignTop);
 
     this->addTaskLabelRow->addWidget(this->addTaskLabel,0, Qt::AlignLeft);
-    this->addTaskLabel->setStyleSheet("font-family: URW Bookman L; font-size: 13px;"
+    this->addTaskLabel->setStyleSheet("font-family: Arial; font-size: 13px;"
                                       "font-weight: bold; color: #555;");
 
     this->selectionArea->addWidget(this->selectTaskLabel,1, Qt::AlignTop);
-    this->selectTaskLabel->setStyleSheet("font-family: URW Bookman L; font-size: 12px;"
+    this->selectTaskLabel->setStyleSheet("font-family: Arial; font-size: 12px;"
                                          "font-weight: bold; color: #555;");
     this->selectionArea->addWidget(this->selectTaskCombo, 2, Qt::AlignTop);
     this->selectTaskCombo->setFixedWidth(350);
     this->selectTaskCombo->setStyleSheet("selection-color: white; selection-background-color: #1aa3ff;"
                                          "color: black; background-color: White;");
     this->selectionArea->addWidget(this->selectResLabel,3,Qt::AlignTop);
-    this->selectResLabel->setStyleSheet("font-family: URW Bookman L; font-size: 12px;"
+    this->selectResLabel->setStyleSheet("font-family: Arial; font-size: 12px;"
                                         "font-weight: bold; color: #555;");
     this->selectionArea->addWidget(this->selectResCombo, 4, Qt::AlignTop);
     this->selectResCombo->setFixedWidth(280);

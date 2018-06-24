@@ -64,7 +64,7 @@ void SignUp::setMainWindowDesign() {
 
 void SignUp::setMainLayoutDesign() {
     mainLabelRow->addWidget(mainLabel, 0, Qt::AlignCenter);
-    mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
+    mainLabel->setStyleSheet("font-family: Arial; font-size: 30px;"
                                    "font-weight: bold; margin-top: 30px; color: #555;");
 
     imageRow->addWidget(picLabel, 0, Qt::AlignVCenter);

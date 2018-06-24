@@ -7,7 +7,7 @@ SetUpRooms::SetUpRooms(QWidget *parent) : QWidget(parent) {
   //declarations of window contents
   mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, this);
   mainLabelRow = new QBoxLayout(QBoxLayout::LeftToRight);
-  mainLabel = new QLabel("Let's add your WG Rooms..");
+  mainLabel = new QLabel("WG-Räume");
 
   scrollAreaRow = new QBoxLayout(QBoxLayout::LeftToRight);
   scrollArea = new QScrollArea(this);
@@ -56,7 +56,7 @@ void SetUpRooms::setMainWindowDesign() {
 void SetUpRooms::setMainLayoutDesign() {
 
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
-    this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
+    this->mainLabel->setStyleSheet("font-family: Arial; font-size: 30px;"
                                    "font-weight: bold; margin-top: 5px; color: #555;");
 
     this->scrollAreaRow->addWidget(scrollArea);

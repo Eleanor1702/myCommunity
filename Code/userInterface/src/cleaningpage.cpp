@@ -68,23 +68,23 @@ void CleaningPage::setMainWindowDesign(){
 
 void CleaningPage::setMainLayoutDesign(){
     this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
-    this->mainLabel->setStyleSheet("font-family: URW Bookman L; font-size: 30px;"
+    this->mainLabel->setStyleSheet("font-family: Arial; font-size: 30px;"
                                    "font-weight: bold; margin-bottom: 20px; color: #555;");
 
     this->weekRow->addWidget(w1Label, 0, Qt::AlignLeft);
-    this->w1Label->setStyleSheet("text-align: center; font-family: URW Bookman L;"
+    this->w1Label->setStyleSheet("text-align: center; font-family: Arial;"
                                  "font-size: 12px; border: 0px; color: #555;"
                                  "font-weight: bold; margin-top: 0px;");
     this->weekRow->addWidget(w2Label, 0, Qt::AlignLeft);
-    this->w2Label->setStyleSheet("text-align: center; font-family: URW Bookman L;"
+    this->w2Label->setStyleSheet("text-align: center; font-family: Arial;"
                                  "font-size: 12px; border: 0px; color: #555;"
                                  "font-weight: bold; margin-top: 0px;");
     this->weekRow->addWidget(w3Label, 0, Qt::AlignLeft);
-    this->w3Label->setStyleSheet("text-align: center; font-family: URW Bookman L;"
+    this->w3Label->setStyleSheet("text-align: center; font-family: Arial;"
                                  "font-size: 12px; border: 0px; color: #555;"
                                  "font-weight: bold; margin-top: 0px;");
     this->weekRow->addWidget(w4Label, 0, Qt::AlignLeft);
-    this->w4Label->setStyleSheet("text-align: center; font-family: URW Bookman L;"
+    this->w4Label->setStyleSheet("text-align: center; font-family: Arial;"
                                  "font-size: 12px; border: 0px; color: #555;"
                                  "font-weight: bold; margin-top: 0px;");
 
