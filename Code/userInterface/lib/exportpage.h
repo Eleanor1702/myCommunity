@@ -30,6 +30,9 @@ private:
     QPushButton *cleaningExportButton;
     QPushButton *shoppingExportButton;
 
+    QBoxLayout* MsgRow;
+    QLabel* MsgLabel;
+
     void setMainWindowDesign();
     void setMainLayoutDesign();
 
