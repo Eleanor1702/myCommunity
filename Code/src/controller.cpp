@@ -208,6 +208,7 @@ int Controller::getCurrentCW(){
 }
 
 
+
 Controller* Controller::getInstance(CommunityData* data){
     if(instance == NULL){
         instance = new Controller(data);

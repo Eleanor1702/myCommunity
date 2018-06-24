@@ -21,9 +21,9 @@ private:
         Exporter* expo;
 
 
-        static Controller* instance;                         //Singleton
+        //Singleton
+        static Controller* instance;
 
-       // std::string user;                                    //aktueller User, der angemeldet ist
 
 protected:
         Controller(CommunityData* data);
