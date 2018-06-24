@@ -20,7 +20,7 @@ void CleaningPageItem::setItemStyle(){
     this->setLayout(this->newPlanLayout);
     this->newPlanLayout->addWidget(this->taskLabel);
     this->taskLabel->setFixedSize(140, 40);
-    this->taskLabel->setStyleSheet("text-align: center; font-family: URW Bookman L;"
+    this->taskLabel->setStyleSheet("text-align: center; font-family: Arial;"
                                    "font-size: 12px; border: 0px; color: #555;"
                                    "font-weight: bold; margin-top: 0px; ");
 
