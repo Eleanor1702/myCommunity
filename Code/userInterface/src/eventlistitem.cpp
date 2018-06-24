@@ -27,12 +27,12 @@ void EventListItem::setItemStyle(){
 
     this->setLayout(this->newEventLayout);
     this->newEventLayout->addWidget(this->eventLabel, 0,  Qt::AlignLeft);
+
     this->newEventLayout->addWidget(this->editEventButton, 0, Qt::AlignRight);
     this->newEventLayout->addWidget(this->deleteEventButton, 0, Qt::AlignRight);
 
     this->eventLabel->setFixedSize(100, 50);
-    this->eventLabel->setStyleSheet("text-align: top; font-size 10px; border: 0px; color: #555;"
-                                    "margin-right: -20px");
+    this->eventLabel->setStyleSheet("text-align: top; font-size 10px; border: 0px; color: #555;");
     this->editEventButton->setFixedSize(80, 40);
     this->editEventButton->setStyleSheet(".QPushButton{border: 1px solid #3399ff;"
                                          "border-radius: 5px; background-color: #3399ff;"

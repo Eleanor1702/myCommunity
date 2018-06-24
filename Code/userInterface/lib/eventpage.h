@@ -70,6 +70,7 @@ private:
 
     QTextCharFormat fmt;
     QTextCharFormat date_fmt;
+    QTextCharFormat dateNot_fmt;
 
     void setMainWindowDesign();
     void setMainLayoutDesign();
