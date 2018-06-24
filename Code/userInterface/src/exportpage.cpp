@@ -35,7 +35,7 @@ exportPage::exportPage(QWidget *parent) : QWidget(parent){
 }
 
 void exportPage::setMainWindowDesign(){
-    this->setFixedSize(800,600);
+    this->setFixedSize(500,400);
     this->setStyleSheet("background-color: white;");
     this->setWindowTitle(QString::fromUtf8("Pläne Exportiern"));
 
