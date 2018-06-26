@@ -13,6 +13,10 @@ EventExpert* EventExpert::getInstance(CommunityData* data){
     return instance;
 }
 
+EventExpert::~EventExpert() {
+    instance = NULL;
+}
+
 //Funktion für String datetime
 void EventExpert::createEvent(std::string time, std::string date, std::string description, std::string user){
     Event ev;
@@ -82,11 +86,7 @@ std::vector<std::string>EventExpert::eventUserGetter(std::string user, std::stri
     }
     return userVec;
 }
-/*
-std::vector<Event> EventExpert::getUserEvents(std::string user, std::string datetime) {
-  return data->getAllEventsOfUser(user, datetime);
-}
-*/
+
 std::vector<std::string>EventExpert::getAllDates(std::string user){
     return data->getAllDates(user);
 }

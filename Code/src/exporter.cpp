@@ -59,3 +59,7 @@ Exporter* Exporter::getInstance(CommunityData* data){
     }
     return instance;
 }
+
+Exporter::~Exporter(){
+    instance = NULL;
+}

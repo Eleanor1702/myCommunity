@@ -13,6 +13,9 @@ TaskExpert::TaskExpert(CommunityData* data){
     this->data = data;
 }
 
+TaskExpert::~TaskExpert() {
+    instance = NULL;
+}
 
 //**************************************Tasks
 //create a new cleaning task

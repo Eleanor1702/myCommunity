@@ -95,6 +95,8 @@ public:
         int getCurrentCW();
 
         static Controller* getInstance(CommunityData* data);
+
+        ~Controller();
 };
 
 

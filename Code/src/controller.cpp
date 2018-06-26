@@ -11,7 +11,9 @@ Controller::Controller(CommunityData* data){
    expo = expo->getInstance(data);
 }
 
-
+Controller::~Controller() {
+    instance = NULL;
+}
 
 
 //  RoomExpert
@@ -33,7 +35,6 @@ std::vector<std::string> Controller::getRoomArts() {
 int Controller::getRoomlistSize() {
   return roExpert->getRooms().size();
 }
-
 
 
 
