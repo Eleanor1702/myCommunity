@@ -11,6 +11,7 @@ private:
     int cw; //Calendarweek
 public:
     ConcreteTask();
+    ~ConcreteTask();
     void setTask(Task newTask);
     void setResident(std::string newResident);
     void setCalendarweek(int newCw);

@@ -13,7 +13,9 @@ ResidentExpert::ResidentExpert(CommunityData* data){
     this->data = data;
 }
 
-ResidentExpert::~ResidentExpert() {}
+ResidentExpert::~ResidentExpert() {
+    instance = NULL;
+}
 
 void ResidentExpert::createResident(std::string name, int password){
     Resident re;

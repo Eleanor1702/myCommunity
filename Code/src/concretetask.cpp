@@ -1,9 +1,8 @@
 #include "lib/concretetask.h"
 
-ConcreteTask::ConcreteTask()
-{
+ConcreteTask::ConcreteTask() {}
 
-}
+ConcreteTask::~ConcreteTask() {}
 //set Task
 void ConcreteTask::setTask(Task newTask){
     this->task = newTask;

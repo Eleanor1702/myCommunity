@@ -52,3 +52,7 @@ std::vector<std::string> ShoppingExpert::itemNumberGetter() {
 std::vector<Shoppingitem> ShoppingExpert::getItems() {
     return data->getAllItems();
 }
+
+ShoppingExpert::~ShoppingExpert(){
+    instance = NULL;
+}

@@ -24,6 +24,8 @@ public:
     std::vector<Shoppingitem> getItems();
 
     static ShoppingExpert* getInstance(CommunityData* data);
+
+    ~ShoppingExpert();
 };
 
 #endif // SHOPPINGEXPERT_H

@@ -24,6 +24,8 @@ public:
     void exportCalendar();
 
     static Exporter* getInstance(CommunityData* data);
+
+    ~Exporter();
 };
 
 #endif // EXPORTER_H

@@ -14,7 +14,9 @@ RoomExpert::RoomExpert(CommunityData* data){
     this->data = data;
 }
 
-RoomExpert::~RoomExpert() {}
+RoomExpert::~RoomExpert() {
+    instance = NULL;
+}
 
 //create a new room
 void RoomExpert::createRoom(std::string name, std::string typ){

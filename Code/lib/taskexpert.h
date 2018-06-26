@@ -26,7 +26,6 @@ public:
     std::vector<std::string> taskRoomGetter();
     std::vector<std::string> taskFrequencyGetter();
     std::vector<Task> getTasks();
-    static TaskExpert* getInstance(CommunityData* data);
 
 
     //Concrete Task methods
@@ -40,6 +39,9 @@ public:
 
     //current CW methods
     int getCurrentCW();
+
+    static TaskExpert* getInstance(CommunityData* data);
+    ~TaskExpert();
 };
 
 #endif // TASKEXPERT_H
