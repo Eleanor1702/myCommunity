@@ -38,7 +38,6 @@ CommunityData::CommunityData(std::string user, std::string password, std::string
     createRoomTable();
     createResidentTable();
     createCalendarTable();
-    //createEventCommunityView();
     createCleaningTable();
     createTaskTable();
     createShoppinglistTable();
@@ -71,7 +70,7 @@ void CommunityData::deleteRoom(std::string name) {
     stmt->setString(1, name);
     stmt->execute();
     deleteAllTaskOfRoom(name); //delete tasks
-    //deleteRoomCleaningplan(name); //and update cleaningplan
+    deleteRoomCleaningplan(name); //and update cleaningplan
 
 
     delete stmt;
@@ -262,28 +261,7 @@ void CommunityData::deleteCalendar(std::string user) {
     stmt->execute();
     delete stmt;
 }
-/*
-//get all events from calendar of a user
-std::vector<Event> CommunityData::getAllEventsOfUser(std::string user, std::string datetime) {
-    std::vector<Event> list;
-    PreparedStatement* stmt;
-    ResultSet* resultSet = NULL;
-    stmt = con->prepareStatement("SELECT * FROM Calendar WHERE Username = ? AND WHERE DATE(Datetime) = ?");
-    stmt->setString(1, user);
-    stmt->setString(2, datetime);
-    resultSet = stmt->executeQuery();
-    while(resultSet->next()) {
-        Event ev;
-        ev.setDescription(resultSet->getString("Event"));
-        ev.setUser(user);
-        ev.setDatetime(resultSet->getString("Datetime"));
-        list.push_back(ev);
-    }
-    delete stmt;
-    delete resultSet;
-    return list;
-}
-*/
+
 //get all Events
 std::vector<Event> CommunityData::getAllEvents(std::string user, std::string date){
     std::vector<Event> list;
@@ -383,13 +361,13 @@ void CommunityData::deleteResidentCleaningplan(std::string resident){
     delete stmt;
 }
 //update cleaningplan by room
-/*void CommunityData::deleteRoomCleaningplan(std::string room){
+void CommunityData::deleteRoomCleaningplan(std::string room){
     PreparedStatement* stmt;
-    stmt = con->prepareStatement("DELETE FROM Cleaning WHERE Room = ?");
+    stmt = con->prepareStatement("DELETE FROM Cleaning WHERE CRoom = ?");
     stmt->setString(1, room);
     stmt->execute();
     delete stmt;
-}*/
+}
 
 //update cleaningplan by task
 void CommunityData::deleteTaskCleaningplan(std::string name, std::string room) {
@@ -480,9 +458,6 @@ void CommunityData::deleteAllTaskOfRoom(std::string room){
     stmt = con->prepareStatement("DELETE FROM Tasks WHERE Room = ?");
     stmt->setString(1, room);
     stmt->execute();
-    //update cleaning plan
-    //deleteTaskCleaningplan();
-
     delete stmt;
 }
 //get all tasks
