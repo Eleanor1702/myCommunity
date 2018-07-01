@@ -54,11 +54,11 @@ private:
    void validate();
 
 private slots:
-   void startPageCalled();
+   void mainScreenCalled();
    void saveClicked();
 
 signals:
-   void startPageCallSignal();
+   void mainScreenCallSignal();
    void newUserSignUpSignal(std::string name, int password);
 
 public:

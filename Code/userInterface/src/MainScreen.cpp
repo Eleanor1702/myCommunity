@@ -1,8 +1,8 @@
-#include "userInterface/lib/StartPage.h"
+#include "userInterface/lib/MainScreen.h"
 
 //calling the constructor, calls the parent constructor too
 //in this case QWidget
-StartPage::StartPage(QWidget *parent) : QWidget(parent) {
+MainScreen::MainScreen(QWidget *parent) : QWidget(parent) {
 
   //declarations of window contents
   mainLayout = new QBoxLayout(QBoxLayout::TopToBottom, this);
@@ -28,7 +28,7 @@ StartPage::StartPage(QWidget *parent) : QWidget(parent) {
   QObject::connect(signInButton,SIGNAL(clicked()),this,SLOT(signInCalled()));
 }
 
-void StartPage::setMainWindowDesign() {
+void MainScreen::setMainWindowDesign() {
   this->setFixedSize(700, 500);
   this->setStyleSheet("background-color: white;");
   this->setWindowTitle(QString::fromUtf8("myCommunity"));
@@ -38,7 +38,7 @@ void StartPage::setMainWindowDesign() {
   this->setLayout(mainLayout);
 }
 
-void StartPage::setMainLayoutDesign() {
+void MainScreen::setMainLayoutDesign() {
 
   this->mainLabelRow->addWidget(this->mainLabel, 0, Qt::AlignCenter);
   this->mainLabel->setStyleSheet("font-family: Arial; font-size: 50px;"
@@ -59,10 +59,10 @@ void StartPage::setMainLayoutDesign() {
 
 }
 
-void StartPage::signUpCalled() {
+void MainScreen::signUpCalled() {
   emit signUpCallSignal();
 }
 
-void StartPage::signInCalled() {
+void MainScreen::signInCalled() {
   emit signInCallSignal();
 }

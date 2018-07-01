@@ -1,5 +1,5 @@
-#ifndef STARTPAGE_H
-#define STARTPAGE_H
+#ifndef MAINSCREEN_H
+#define MAINSCREEN_H
 
 #include <QApplication>
 #include <QBoxLayout>
@@ -9,7 +9,7 @@
 #include <QStyle>
 #include <QDesktopWidget>
 
-class StartPage : public QWidget {
+class MainScreen : public QWidget {
   //enable creation of slots and signals
   Q_OBJECT
 private:
@@ -29,7 +29,7 @@ private:
 public:
     //the constructor build the window
     //the parameter *parent is here to nest widgets in widgets
-    explicit StartPage(QWidget *parent = NULL);
+    explicit MainScreen(QWidget *parent = NULL);
 
 private slots:
    void signUpCalled();
@@ -40,4 +40,4 @@ signals:
    void signInCallSignal();
 };
 
-#endif // STARTPAGE_H
+#endif // MAINSCREEN_H
