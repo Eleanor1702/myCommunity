@@ -541,8 +541,3 @@ std::vector<std::string> CommunityData::getAllItemsString(){
      }
     return stringlist;
 }
-
-
-
-
-
