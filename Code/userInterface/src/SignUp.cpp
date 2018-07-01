@@ -41,10 +41,10 @@ SignUp::SignUp(QWidget *parent) : QWidget(parent) {
         )
     );
 
-    QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(startPageCalled()));
+    QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(mainScreenCalled()));
     QObject::connect(saveButton, SIGNAL(clicked()), this, SLOT(saveClicked()));
-    QObject::connect(giveNameEdit, SIGNAL(returnPressed()), this, SLOT(startPageCalled()));         //Enter as conformation
-    QObject::connect(givePasswordEdit, SIGNAL(returnPressed()), this, SLOT(startPageCalled()));         //Enter as conformation
+    QObject::connect(giveNameEdit, SIGNAL(returnPressed()), this, SLOT(mainScreenCalled()));         //Enter as conformation
+    QObject::connect(givePasswordEdit, SIGNAL(returnPressed()), this, SLOT(mainScreenCalled()));         //Enter as conformation
 
 }
 
@@ -139,8 +139,8 @@ void SignUp::validate() {
     }
 }
 
-void SignUp::startPageCalled() {
-    emit startPageCallSignal();
+void SignUp::mainScreenCalled() {
+    emit mainScreenCallSignal();
     clearContent();
 }
 

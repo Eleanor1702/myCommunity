@@ -36,7 +36,7 @@ SignIn::SignIn(QWidget *parent) : QWidget (parent){
         )
     );
 
-    QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(startPageCalled()));
+    QObject::connect(backButton, SIGNAL(clicked()), this, SLOT(mainScreenCalled()));
     QObject::connect(logInButton, SIGNAL(clicked()), this, SLOT(userLogedIn()));
     QObject::connect(givePasswordEdit, SIGNAL(returnPressed()), this, SLOT(userLogedIn()));     //Enter as confirmation
     QObject::connect(giveNameEdit, SIGNAL(returnPressed()), this, SLOT(userLogedIn()));         //Enter as conformation
@@ -157,8 +157,8 @@ int SignIn::getUserPassword() {
     return intPassword;
 }
 
-void SignIn::startPageCalled() {
-    emit startPageCallSignal();
+void SignIn::mainScreenCalled() {
+    emit mainScreenCallSignal();
     clearContent();
 }
 

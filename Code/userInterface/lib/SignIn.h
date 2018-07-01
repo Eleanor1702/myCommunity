@@ -57,11 +57,11 @@ public:
     int getUserPassword();
 
 private slots:
-    void startPageCalled();
+    void mainScreenCalled();
     void userLogedIn();
 
 signals:
-    void startPageCallSignal();
+    void mainScreenCallSignal();
     void userLogInSignal(std::string name, int password);
 };
 

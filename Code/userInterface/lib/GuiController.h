@@ -5,7 +5,7 @@
 #include <QWidget>
 
 
-#include "userInterface/lib/StartPage.h"
+#include "userInterface/lib/MainScreen.h"
 #include "userInterface/lib/SignUp.h"
 #include "userInterface/lib/SignIn.h"
 #include "userInterface/lib/HomePage.h"
@@ -27,7 +27,7 @@ class GuiController : public QWidget{
   Q_OBJECT
 
 private:
-  StartPage *main;
+  MainScreen *main;
   SignUp *up;
   SignIn *in;
 
@@ -54,7 +54,7 @@ private:
 public slots:
   //class need to be QWidget to be able to call the actions
 
-  //StartPage Slots
+  //MainScreen Slots
   void callSignUp();
   void callSignIn();
 
@@ -65,7 +65,7 @@ public slots:
   void logInUser(std::string name, int password);
 
   //SignUp & SignIn Slots
-  void callStartPage();
+  void callMainScreen();
 
   //HomePage Slots
   void callRoomSettings();

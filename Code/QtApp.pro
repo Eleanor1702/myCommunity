@@ -9,20 +9,19 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 unix:!macx {
     LIBS += -lGL
-    LIBS += -L/usr/lib -L/usr/lib -lmysqlcppconn
-    INCLUDEPATH += -I/usr/include -I/usr/local/include -I/usr/local/include/cppconn
+    LIBS += /usr/lib/x86_64-linux-gnu/libmysqlclient.so
+    INCLUDEPATH += /usr/include/mysql
 }
 
 macx: {
-    LIBS += -framework OpenGL -L/usr/local/opt/mysql-connector-c++/lib -lmysqlcppconn
-    INCLUDEPATH += /usr/local/opt/mysql-connector-c++/lib
-    INCLUDEPATH += /usr/local/opt/mysql-connector-c++/include/cppconn /usr/local/opt/boost/include /usr/local/opt/mysql-connector-c++/include
+    LIBS += -framework OpenGL -L/usr/local/opt/mysql/lib -lmysqlclient
+    INCLUDEPATH += /usr/local/opt/mysql/include/mysql
 }
 
-#windows: {
-    #LIBS += C:\Program Files\MySQL\Connector C++ 1.1\lib\opt -lmysqlcppconn.lib
-    #INCLUDEPATH += C:\Program Files\MySQL\Connector C++ 1.1\include
-#}
+win32: {
+    INCLUDEPATH += 'C:\Program Files\MySQL\MySQL Connector C 6.1\include'
+    LIBS += -L'C:\Program Files\MySQL\MySQL Connector C 6.1\lib' -llibmysql
+}
 
 SOURCES += \
     main.cpp \
@@ -41,7 +40,6 @@ SOURCES += \
     userInterface/src/SetUpUsers.cpp \
     userInterface/src/SignIn.cpp \
     userInterface/src/SignUp.cpp \
-    userInterface/src/StartPage.cpp \
     userInterface/src/RoomListItem.cpp \
     userInterface/src/cleaningpage.cpp \
     userInterface/src/SetUpTasks.cpp \
@@ -65,7 +63,8 @@ SOURCES += \
     src/Event.cpp \
     src/exporter.cpp \
     userInterface/src/exportpage.cpp \
-    userInterface/src/cleaningpageitem.cpp
+    userInterface/src/cleaningpageitem.cpp \
+    userInterface/src/MainScreen.cpp
 
 
 HEADERS += \
@@ -84,7 +83,6 @@ HEADERS += \
     userInterface/lib/SetUpUsers.h \
     userInterface/lib/SignIn.h \
     userInterface/lib/SignUp.h \
-    userInterface/lib/StartPage.h \
     userInterface/lib/RoomListItem.h \
     userInterface/lib/cleaningpage.h \
     userInterface/lib/SetUpTasks.h \
@@ -108,7 +106,8 @@ HEADERS += \
     lib/Event.h \
     lib/exporter.h \
     userInterface/lib/exportpage.h \
-    userInterface/lib/cleaningpageitem.h
+    userInterface/lib/cleaningpageitem.h \
+    userInterface/lib/MainScreen.h
 
 
 RESOURCES = \

@@ -1,16 +1,7 @@
 #ifndef COMMUNITYDATA_H
 #define COMMUNITYDATA_H
 
-#include <vector>
-
-
-#include <cppconn/prepared_statement.h>
-#include <cppconn/driver.h>
-#include <cppconn/exception.h>
-#include <cppconn/resultset.h>
-#include <cppconn/statement.h>
-#include <mysql_driver.h>
-#include <mysql_connection.h>
+#include <mysql.h>
 
 #include "lib/Resident.h"
 #include "lib/Room.h"
@@ -20,13 +11,12 @@
 #include "lib/concretetask.h"
 
 #include <string>
-
+#include <vector>
 
 class CommunityData {
 private:
-    sql::mysql::MySQL_Driver *driver;
-    sql::Connection* con;
-    sql::ConnectOptionsMap connection_properties;
+    MYSQL* mysql;
+
     static CommunityData* instance;
 
 protected:
@@ -38,6 +28,7 @@ public:
     ~CommunityData();
 
     bool connect(std::string user, std::string password, std::string host, std::string database);
+
     //Rooms
     void createRoomTable();
     void addRoom(Room ro);
@@ -52,6 +43,7 @@ public:
     std::vector<std::string> getAllResidents();
     bool verifyLogInData(std::string, int);
     bool verifyName(std::string);
+
     //CurrentUser
     std::string getDbUser(std::string user);
 
@@ -64,7 +56,6 @@ public:
     std::vector<Event> getAllEvents(std::string user, std::string date);
     std::vector<std::string> getAllEventsString(std::string cuser, std::string datetime);
     std::vector<std::string> getAllDates(std::string user);
-
 
     //Cleaning plan
     void createCleaningTable();

@@ -76,8 +76,7 @@ void changePwPage::setMainLayoutDesign(){
     mainButtonsRow->addWidget(saveButton);
     saveButton->setFixedSize(180, 50);
     saveButton->setStyleSheet("border: 1px solid #3399ff; border-radius: 5px; "
-                              "background-color: #3399ff; color: white; font-weight: bold; "
-                              "margin-bottom: 5px;");
+                              "background-color: #3399ff; color: white; font-weight: bold;");
 
     mainButtonsRow->addWidget(backButton);
     backButton->setFixedSize(180, 50);

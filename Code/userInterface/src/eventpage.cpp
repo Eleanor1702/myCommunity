@@ -175,7 +175,6 @@ void EventPage::setMainLayoutDesign(){
                                     "color: white; font-weight: bold;}");
 }
 
-
 //get Input -> turn to std::string
 std::string EventPage::getEventTimeInput(){
     std::string hour_str = this->chooseHourCombo->currentText().toStdString();
@@ -202,7 +201,7 @@ std::string EventPage::getEventDescriptionInput(){
 std::string EventPage::getEventUserInput(){
     if(this->checkPub->isChecked()){
         return "gemeinschaftlich";              //Alle User??
-    } else {
+    }else{
         return "privat";                        //current UserName
     }
 }
@@ -289,6 +288,9 @@ void EventPage::setNewEventCalled(){
 
 void EventPage::homePageCalled(){
     emit homePageCallSignal();
+    QDate date;
+    this->dateNot_fmt.setFontUnderline(false);
+    this->calendar->setDateTextFormat(date, dateNot_fmt);
 }
 
 void EventPage::deleteEventCalled(QString time , QString date, QString description, QString user){
