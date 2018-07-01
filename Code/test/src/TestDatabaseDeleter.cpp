@@ -1,26 +1,26 @@
 #include "../lib/TestDatabaseDeleter.h"
 
 TestDatabaseDeleter::TestDatabaseDeleter(std::string user, std::string password, std::string host, std::string database) {
-    driver = sql::mysql::get_mysql_driver_instance();
-    connection_properties["hostName"] = host;
-    connection_properties["userName"] = user;
-    connection_properties["password"] = password;
-    connection_properties["schema"] = database;
-    connection_properties["port"] = 3306;
+    mysql = mysql_init(NULL);
 
-    con = driver->connect(connection_properties);
+    if(mysql_errno(mysql) != 0){
+        return;
+    }
+
+    //Encoding from Mac to unix and windows
+    mysql_options(mysql, MYSQL_SET_CHARSET_NAME, "utf8");
+
+    mysql_real_connect(mysql, host.c_str(), user.c_str(), password.c_str(), database.c_str(), 3306, NULL, 0);
 }
 
 void TestDatabaseDeleter::cleanRooms() {
-    sql::Statement* stmt;
-    stmt = con->createStatement();
-    stmt->execute("DELETE FROM Rooms");
-    delete stmt;
+    std::string stmt = "DELETE FROM Rooms";
+
+    mysql_real_query(mysql, stmt.c_str(), strlen(stmt.c_str()));
 }
 
 void TestDatabaseDeleter::cleanResidents() {
-    sql::Statement* stmt;
-    stmt = con->createStatement();
-    stmt->execute("DELETE FROM Residents");
-    delete stmt;
+    std::string stmt = "DELETE FROM Residents";
+
+    mysql_real_query(mysql, stmt.c_str(), strlen(stmt.c_str()));
 }
