@@ -54,6 +54,7 @@ unsigned int EventExpert::eventSizeGetter(std::string user, std::string date){
 std::vector<std::string>EventExpert::eventTimeGetter(std::string user, std::string date){
     std::vector<std::string> timeVec;
     std::vector<Event> Eventlist = data->getAllEvents(user, date);
+
     for(unsigned int i=0; i<Eventlist.size(); i++){
         timeVec.push_back(Eventlist[i].getTime());
     }

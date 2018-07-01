@@ -264,17 +264,20 @@ void GuiController::newEventSet(){
     if(events->getEventDescriptionInput() == "Error"){
         //Exception
         return;
-    } else {
+    }else{
         //database connection
         con->addEvent(events->getEventTimeInput(), events->getEventDateInput(),
                       events->getEventDescriptionInput(), events->getEventUserInput());
     }
-    //udate eventlist in Gui
+
+    //update eventlist in Gui
     std::string user;
+
     if(events->getEventUserInput() == "privat") {
         user = con->getCurrentUser();
+    }else{
+        user = "gemeinschaftlich";
     }
-    else user = "gemeinschaftlich";
 
     events->appear(con->getEventTime(user, events->getEventDateInput()),
                    con->getEventDate(user, events->getEventDateInput()),
@@ -298,8 +301,6 @@ void GuiController::eventAppeared(){
                    con->getEventDescription(user, events->getEventDateInput()),
                    user,
                    con->getSizeEvent(user, events->getEventDateInput()));
-
-
 }
 
 void GuiController::eventDeleted(QString time, QString date, QString description, QString username){

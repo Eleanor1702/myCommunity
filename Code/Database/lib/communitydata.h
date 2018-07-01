@@ -1,14 +1,6 @@
 #ifndef COMMUNITYDATA_H
 #define COMMUNITYDATA_H
 
-/*#include <cppconn/prepared_statement.h>
-#include <cppconn/driver.h>
-#include <cppconn/exception.h>
-#include <cppconn/resultset.h>
-#include <cppconn/statement.h>
-#include <mysql_driver.h>
-#include <mysql_connection.h>*/
-
 #include <mysql.h>
 
 #include "lib/Resident.h"
@@ -24,10 +16,6 @@
 class CommunityData {
 private:
     MYSQL* mysql;
-
-    /*sql::mysql::MySQL_Driver *driver;
-    sql::Connection* con;
-    sql::ConnectOptionsMap connection_properties;*/
 
     static CommunityData* instance;
 
@@ -68,7 +56,6 @@ public:
     std::vector<Event> getAllEvents(std::string user, std::string date);
     std::vector<std::string> getAllEventsString(std::string cuser, std::string datetime);
     std::vector<std::string> getAllDates(std::string user);
-
 
     //Cleaning plan
     void createCleaningTable();
