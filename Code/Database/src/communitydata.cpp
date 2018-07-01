@@ -19,6 +19,9 @@ bool CommunityData::connect(std::string user, std::string password, std::string 
         return false;
     }
 
+    //Encoding from Mac to unix and windows
+    mysql_options(mysql, MYSQL_SET_CHARSET_NAME, "utf8");
+
     mysql_real_connect(mysql, host.c_str(), user.c_str(), password.c_str(), database.c_str(), 3306, NULL, 0);
 
     if(mysql_errno(mysql) != 0){
