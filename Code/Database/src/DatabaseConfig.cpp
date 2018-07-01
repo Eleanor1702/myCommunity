@@ -3,7 +3,13 @@
 
 DatabaseConfig::DatabaseConfig() {
     //create config File path
-    const char* home = std::getenv("HOME");
+    const char* home;
+    const char* unix = std::getenv("HOME");
+    if(unix == NULL){
+        home = std::getenv("USERPROFILE");
+    }else{
+        home = unix;
+    }
     this->path = (std::string(home) + "/.myCommunity");
 }
 

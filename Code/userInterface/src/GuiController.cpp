@@ -14,7 +14,7 @@ GuiController* GuiController::getInstance(Controller* con){
 }
 
 GuiController::GuiController(Controller* con) : QWidget() {
-    this->main = new StartPage();
+    this->main = new MainScreen();
     this->up = new SignUp();
     this->in = new SignIn();
 
@@ -31,16 +31,16 @@ GuiController::GuiController(Controller* con) : QWidget() {
 
     this->con = con;
 
-    //StartPage Events
+    //MainScreen Events
     connect(main, SIGNAL(signUpCallSignal()), this, SLOT(callSignUp()));
     connect(main, SIGNAL(signInCallSignal()), this, SLOT(callSignIn()));
 
     //SignUp Events
-    connect(up, SIGNAL(startPageCallSignal()), this, SLOT(callStartPage()));
+    connect(up, SIGNAL(mainScreenCallSignal()), this, SLOT(callMainScreen()));
     connect(up, SIGNAL(newUserSignUpSignal(std::string,int)),this, SLOT(signUpNewUser(std::string,int)));
 
     //SignIn Events
-    connect(in, SIGNAL(startPageCallSignal()), this, SLOT(callStartPage()));
+    connect(in, SIGNAL(mainScreenCallSignal()), this, SLOT(callMainScreen()));
     connect(in, SIGNAL(userLogInSignal(std::string,int)), this, SLOT(logInUser(std::string, int)));
 
     //HomePage Events
@@ -101,7 +101,7 @@ GuiController::GuiController(Controller* con) : QWidget() {
     this->main->show();
 }
 
-//StartPage Events
+//MainScreen Events
 void GuiController::callSignUp(){
     up->appear();
     main->hide();
@@ -136,7 +136,7 @@ void GuiController::logInUser(std::string name, int password) {
 }
 
 //SignUp & SignIn Event
-void GuiController::callStartPage() {
+void GuiController::callMainScreen() {
     main->show();
     in->hide();
     up->hide();
@@ -180,7 +180,7 @@ void GuiController::callShoppingList() {
 }
 
 void GuiController::callLogOut() {
-    //close homepage and show startpage
+    //close homepage and show MainScreen
     main->show();
     home->hide();
 }

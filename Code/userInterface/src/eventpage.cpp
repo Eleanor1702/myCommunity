@@ -289,6 +289,9 @@ void EventPage::setNewEventCalled(){
 
 void EventPage::homePageCalled(){
     emit homePageCallSignal();
+    QDate date;
+    this->dateNot_fmt.setFontUnderline(false);
+    this->calendar->setDateTextFormat(date, dateNot_fmt);
 }
 
 void EventPage::deleteEventCalled(QString time , QString date, QString description, QString user){
