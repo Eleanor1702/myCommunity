@@ -9,8 +9,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 unix:!macx {
     LIBS += -lGL
-    LIBS += -L/usr/lib -L/usr/lib -lmysqlcppconn
-    INCLUDEPATH += -I/usr/include -I/usr/local/include -I/usr/local/include/cppconn
+    LIBS += /usr/lib/x86_64-linux-gnu/libmysqlclient.so
+    INCLUDEPATH += /usr/include/mysql
 }
 
 macx: {
