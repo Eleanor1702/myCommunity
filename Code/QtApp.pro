@@ -20,7 +20,7 @@ macx: {
 
 win32: {
     INCLUDEPATH += 'C:\Program Files\MySQL\MySQL Connector C 6.1\include'
-    LIBS += 'C:\Program Files\MySQL\MySQL Connector C 6.1\lib' -llibmysql
+    LIBS += -L'C:\Program Files\MySQL\MySQL Connector C 6.1\lib' -llibmysql
 }
 
 SOURCES += \
