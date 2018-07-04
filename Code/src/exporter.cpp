@@ -39,20 +39,6 @@ void Exporter::exportCleaningplan(int week){
 
 }
 
-void Exporter::exportCalendar(){
-    exportFile.open("calendar.csv");
-    exportFile << "Kalender \n";
-    exportFile <<"Datum, Beschreibung, Gemeinschaftlich";
-
-
-
-
-
-
-    exportFile.close();
-
-}
-
 Exporter* Exporter::getInstance(CommunityData* data){
     if(instance == NULL){
         instance = new Exporter(data);
