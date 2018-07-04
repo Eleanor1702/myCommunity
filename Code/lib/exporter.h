@@ -21,7 +21,6 @@ protected:
 public:
     void exportShopinglist();
     void exportCleaningplan(int week);
-    void exportCalendar();
 
     static Exporter* getInstance(CommunityData* data);
 
