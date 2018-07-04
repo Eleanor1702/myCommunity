@@ -110,6 +110,7 @@ void changePwPage::falseData() {
 }
 
 void changePwPage::validate() {
+    QString oldpassword = giveOldpwEdit->text();
     QString password = giveNewpwEdit->text();
 
     bool shortpasswordError = password.size() < 4 || password[0] == ' ';
@@ -117,7 +118,11 @@ void changePwPage::validate() {
     if(shortpasswordError) {
         throw std::string("Password does not meet password policy requirements");
     }
+    if(oldpassword.isEmpty()){
+        throw std::string("Please enter old password!");
+    }
 }
+
 
 void changePwPage::clearContent() {
     giveNewpwEdit->clear();
