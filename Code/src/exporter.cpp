@@ -16,7 +16,7 @@ void Exporter::exportShopinglist(){
         home = unix_os;
     }
 
-    std::string path = std::string(home) + "/shoppinglist.csv";
+    std::string path = std::string(home) + "/Desktop/shoppinglist.csv";
     exportFile.open(path);
     exportFile << "Einkaufsliste\n\n";
     exportFile << "Anzahl, Produktname \n";
@@ -38,7 +38,7 @@ void Exporter::exportCleaningplan(int week){
         home = unix_os;
     }
 
-    std::string path = std::string(home) + "/cleaningplan.csv";
+    std::string path = std::string(home) + "/Desktop/cleaningplan.csv";
     exportFile.open(path);
     exportFile << "Putzplan \n" ;
     exportFile << "Taskname, Bewohner, Kalenderwoche\n\n";
