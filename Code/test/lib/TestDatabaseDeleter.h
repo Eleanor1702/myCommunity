@@ -15,6 +15,10 @@ public:
 
     void cleanRooms();
     void cleanResidents();
+    void cleanEvents();
+    void cleanShoppingList();
+    void cleanTasks();
+    void cleanConcreteTasks();
 };
 
 #endif // TESTDATABASEDELETER_H

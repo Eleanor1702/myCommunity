@@ -64,8 +64,7 @@ SOURCES += \
     src/exporter.cpp \
     userInterface/src/exportpage.cpp \
     userInterface/src/cleaningpageitem.cpp \
-    userInterface/src/MainScreen.cpp
-
+    userInterface/src/MainScreen.cpp \
 
 HEADERS += \
     lib/controller.h \
@@ -107,8 +106,7 @@ HEADERS += \
     lib/exporter.h \
     userInterface/lib/exportpage.h \
     userInterface/lib/cleaningpageitem.h \
-    userInterface/lib/MainScreen.h
-
+    userInterface/lib/MainScreen.h \
 
 RESOURCES = \
     media/application.qrc \
@@ -132,6 +130,12 @@ test {
         test/lib/TestRoomExpert.h \
         test/lib/TestResidentExpert.h \
         test/lib/TestEvent.h \
+        test/lib/TestConcreteTask.h \
+        test/lib/TestEventExpert.h \
+        test/lib/TestShoppingExpert.h \
+        test/lib/TestShoppingItem.h \
+        test/lib/TestTaskExpert.h \
+        test/lib/TestController.h \
 
     SOURCES += \
         test/src/TestDatabaseDeleter.cpp \
@@ -142,5 +146,12 @@ test {
         test/src/TestRoomExpert.cpp \
         test/src/TestResidentExpert.cpp \
         test/src/TestEvent.cpp \
+        test/src/TestConcreteTask.cpp \
+        test/src/TestEventExpert.cpp \
+        test/src/TestShoppingExpert.cpp \
+        test/src/TestShoppingItem.cpp \
+        test/src/TestTaskExpert.cpp \
+        test/src/TestController.cpp \
+
 }
 

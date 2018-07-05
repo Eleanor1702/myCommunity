@@ -20,7 +20,6 @@ public:
     //Task methods
     void createTask(std::string name, std::string room, std::string frequency);
     void deleteTask(std::string name, std::string room);
-    void editTask(std::string name, std::string frequency, std::string room);
 
     std::vector<std::string> taskNameGetter();
     std::vector<std::string> taskRoomGetter();
