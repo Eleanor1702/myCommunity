@@ -8,7 +8,13 @@ Exporter::Exporter(CommunityData* data){
 
 void Exporter::exportShopinglist(){
     std::vector<std::string> list = data->getAllItemsString();
-    const char* home = std::getenv("HOME");
+    const char* home;
+    const char* unix_os = std::getenv("HOME");
+    if(unix_os == NULL){
+        home = std::getenv("USERPROFILE");
+    }else{
+        home = unix_os;
+    }
 
     std::string path = std::string(home) + "/shoppinglist.csv";
     exportFile.open(path);
