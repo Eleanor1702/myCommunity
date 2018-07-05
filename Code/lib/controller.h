@@ -6,7 +6,7 @@
 #include "EventExpert.h"
 #include "taskexpert.h"
 #include "shoppingexpert.h"
-#include "exporter.h"
+#include "Database/lib/exporter.h"
 
 //Connector between GUI and Logic
 class Controller{

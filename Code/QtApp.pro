@@ -52,6 +52,7 @@ SOURCES += \
     userInterface/src/setupshoppinglist.cpp \
     Database/src/DatabaseConfig.cpp \
     Database/src/communitydata.cpp \
+    Database/src/exporter.cpp \
     userInterface/src/LocalHostConfig.cpp \
     userInterface/src/OwnServerConfig.cpp \
     userInterface/src/PopUpWindow.cpp \
@@ -61,7 +62,6 @@ SOURCES += \
     src/Room.cpp \
     userInterface/src/concretetasklistitem.cpp \
     src/Event.cpp \
-    src/exporter.cpp \
     userInterface/src/exportpage.cpp \
     userInterface/src/cleaningpageitem.cpp \
     userInterface/src/MainScreen.cpp \
@@ -94,6 +94,7 @@ HEADERS += \
     userInterface/lib/setupshoppinglist.h \
     Database/lib/DatabaseConfig.h \
     Database/lib/communitydata.h \
+    Database/lib/exporter.h \
     userInterface/lib/LocalHostConfig.h \
     userInterface/lib/OwnServerConfig.h \
     userInterface/lib/PopUpWindow.h \
@@ -103,7 +104,6 @@ HEADERS += \
     lib/Room.h \
     userInterface/lib/concretetasklistitem.h \
     lib/Event.h \
-    lib/exporter.h \
     userInterface/lib/exportpage.h \
     userInterface/lib/cleaningpageitem.h \
     userInterface/lib/MainScreen.h \
