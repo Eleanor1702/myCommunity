@@ -30,7 +30,14 @@ void Exporter::exportShopinglist(){
 
 void Exporter::exportCleaningplan(int week){
     std::vector<std::string> list = data->getAllConcreteTasksString(week);
-    const char* home = std::getenv("HOME");
+    const char* home;
+    const char* unix_os = std::getenv("HOME");
+    if(unix_os == NULL){
+        home = std::getenv("USERPROFILE");
+    }else{
+        home = unix_os;
+    }
+
     std::string path = std::string(home) + "/cleaningplan.csv";
     exportFile.open(path);
     exportFile << "Putzplan \n" ;
@@ -39,10 +46,7 @@ void Exporter::exportCleaningplan(int week){
         exportFile << list[i] ;
     }
 
-
-
     exportFile.close();
-
 }
 
 Exporter* Exporter::getInstance(CommunityData* data){
