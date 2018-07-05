@@ -258,11 +258,11 @@ void CommunityData::addEvent(Event ev) {
 void CommunityData::updateEvent(Event ev, std::string newtimedate, std::string newdescription) {
     std::string stmt = "UPDATE Calendar SET Datetime = '";
     stmt.append(newtimedate);
-    stmt.append("', SET Description ='");
+    stmt.append("', Event ='");
     stmt.append(newdescription);
     stmt.append("' WHERE Datetime = '");
-    stmt.append(ev.getTime());
-    stmt.append("' AND EVENT = '");
+    stmt.append(ev.getDatetime());
+    stmt.append("' AND Event = '");
     stmt.append(ev.getDescription());
     stmt.append("' AND User = '");
     stmt.append(ev.getUser());
@@ -436,6 +436,7 @@ std::vector<ConcreteTask> CommunityData::getAllConcreteTasks(int week) {
     stmt.append(" AND Tasks.Name = Cleaning.Task AND Tasks.Room = Cleaning.CRoom ORDER BY Resident");
 
     MYSQL_RES* result;
+    MYSQL_FIELD *field;
     MYSQL_ROW row;
     mysql_real_query(mysql, stmt.c_str(), strlen(stmt.c_str()));
 
@@ -445,11 +446,29 @@ std::vector<ConcreteTask> CommunityData::getAllConcreteTasks(int week) {
         ConcreteTask cNewTask;
         Task newTask;
         mysql_field_seek(result, 0);
-        newTask.setName(std::string(row[0]));
-        newTask.setRoom(std::string(row[3]));
-        newTask.setFrequency(std::string(row[5]));
-        cNewTask.setResident(std::string(row[1]));
-        cNewTask.setCalendarweek(std::stoi(std::string(row[2])));
+
+        for (unsigned int i = 0; i < mysql_num_fields(result); i++) {
+            field = mysql_fetch_field(result);
+
+            std::string field_name(field->name);
+
+            if (field_name.compare("Task") == 0) {
+                newTask.setName(row[i]);
+            }
+            else if (field_name.compare("Room") == 0) {
+                newTask.setRoom(row[i]);
+            }
+            else if (field_name.compare("Resident") == 0) {
+                cNewTask.setResident(row[i]);
+            }
+            else if (field_name.compare("Week") == 0) {
+                cNewTask.setCalendarweek(std::stoi(row[i]));
+            }
+            else if (field_name.compare("Frequency") == 0) {
+                newTask.setFrequency(row[i]);
+            }
+        }
+
         cNewTask.setTask(newTask);
         list.push_back(cNewTask);
     }
@@ -530,6 +549,7 @@ std::vector<Task> CommunityData::getAllTasks(){
     std::string stmt = "SELECT * FROM Tasks";
 
     MYSQL_RES* result;
+    MYSQL_FIELD* field;
     MYSQL_ROW row;
     mysql_real_query(mysql, stmt.c_str(), strlen(stmt.c_str()));
 
@@ -538,9 +558,23 @@ std::vector<Task> CommunityData::getAllTasks(){
     while((row = mysql_fetch_row(result)) != NULL){
         Task newTask;
         mysql_field_seek(result, 0);
-        newTask.setRoom(row[0]);
-        newTask.setFrequency(row[1]);
-        newTask.setName(row[2]);
+
+        for (unsigned int i = 0; i < mysql_num_fields(result); i++) {
+            field = mysql_fetch_field(result);
+
+            std::string field_name(field->name);
+
+            if (field_name.compare("Name") == 0) {
+                newTask.setName(row[i]);
+            }
+            else if (field_name.compare("Room") == 0) {
+                newTask.setRoom(row[i]);
+            }
+            else if (field_name.compare("Frequency") == 0) {
+                newTask.setFrequency(row[i]);
+            }
+        }
+
         list.push_back(newTask);
     }
 

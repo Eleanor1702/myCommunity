@@ -24,3 +24,27 @@ void TestDatabaseDeleter::cleanResidents() {
 
     mysql_real_query(mysql, stmt.c_str(), strlen(stmt.c_str()));
 }
+
+void TestDatabaseDeleter::cleanEvents() {
+    std::string stmt = "DELETE FROM Calendar";
+
+    mysql_real_query(mysql, stmt.c_str(), strlen(stmt.c_str()));
+}
+
+void TestDatabaseDeleter::cleanShoppingList() {
+    std::string stmt = "DELETE FROM ShoppingList";
+
+    mysql_real_query(mysql, stmt.c_str(), strlen(stmt.c_str()));
+}
+
+void TestDatabaseDeleter::cleanTasks() {
+    std::string stmt = "DELETE FROM Tasks";
+
+    mysql_real_query(mysql, stmt.c_str(), strlen(stmt.c_str()));
+}
+
+void TestDatabaseDeleter::cleanConcreteTasks() {
+    std::string stmt = "DELETE FROM Cleaning";
+
+    mysql_real_query(mysql, stmt.c_str(), strlen(stmt.c_str()));
+}
