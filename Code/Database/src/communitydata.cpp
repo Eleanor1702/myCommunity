@@ -269,6 +269,10 @@ void CommunityData::updateEvent(Event ev, std::string newtimedate, std::string n
     stmt.append("'");
 
     mysql_real_query(mysql, stmt.c_str(), strlen(stmt.c_str()));
+
+    if(mysql_errno(mysql) != 0) {
+        qDebug() << mysql_error(mysql);
+    }
 }
 
 //delete a calendar event

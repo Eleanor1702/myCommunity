@@ -105,9 +105,6 @@ public:
                 std::string user, int size);
 
     void appearDate(std::vector<std::string> dateVec);
-
-
 };
-
 
 #endif // EVENTPAGE_H
