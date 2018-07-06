@@ -223,25 +223,24 @@ void EventPage::deepDeleteLayout(QLayout *layout) {
     }
 }
 
-void EventPage::appear(std::vector<std::string> timeVec,
-                       std::vector<std::string> dateVec,
-                       std::vector<std::string> descrVec,
-                       std::string user, int size){
+void EventPage::appear(std::vector<std::string> timeVec, std::vector<std::string> dateVec,
+                       std::vector<std::string> descrVec, std::string user, int size){
 
     this->date_fmt.setFontUnderline(true);
+
     if(user == "gemeinschaftlich"){
         deepDeleteLayout(scrollLayoutPub);
 
         EventListItemPubList.clear();
         for(int i = 0; i < size; i++){
-           newPubEvent = new EventListItem(QString::fromStdString(timeVec[i]),
-                                                 QString::fromStdString(dateVec[i]),
-                                                 QString::fromStdString(descrVec[i]),
-                                                 QString::fromStdString(user));
+           newPubEvent = new EventListItem(QString::fromStdString(timeVec[i]), QString::fromStdString(dateVec[i]),
+                                           QString::fromStdString(descrVec[i]), QString::fromStdString(user));
 
             connect(newPubEvent, SIGNAL(deleteEventSignal(QString, QString, QString, QString)),this,
                     SLOT(deleteEventCalled(QString, QString, QString, QString)));
-            connect(newPubEvent, SIGNAL(editEventSignal(QString,QString,QString,QString)),this, SLOT(editEventCalled(QString,QString,QString,QString)));
+
+            connect(newPubEvent, SIGNAL(editEventSignal(QString,QString,QString,QString)),this,
+                    SLOT(editEventCalled(QString,QString,QString,QString)));
 
             EventListItemPubList.push_back(newPubEvent);
 
@@ -260,7 +259,8 @@ void EventPage::appear(std::vector<std::string> timeVec,
                                                  QString::fromStdString(user));
             connect(newPrivEvent, SIGNAL(deleteEventSignal(QString, QString, QString, QString)),this,
                     SLOT(deleteEventCalled(QString, QString, QString, QString)));
-            connect(newPrivEvent, SIGNAL(editEventSignal(QString,QString,QString,QString)),this, SLOT(editEventCalled(QString,QString,QString,QString)));
+            connect(newPrivEvent, SIGNAL(editEventSignal(QString,QString,QString,QString)),this,
+                    SLOT(editEventCalled(QString,QString,QString,QString)));
 
             EventListItemPrivList.push_back(newPrivEvent);
             scrollLayout->addWidget(newPrivEvent);
@@ -305,9 +305,9 @@ void EventPage::appearCalled(){
 
 void EventPage::editEventCalled(QString time , QString date, QString description, QString user) {
     emit deleteEventSignal(time, date, description, user);
-
+    qDebug() << "Start Edit, Delete Done";
     std::string stime = time.toStdString();
-    char min[2];
+    char min[3];
     char hour[3];
     std::size_t length = stime.copy(hour, 2, 1);
     hour[length] = '\0';
@@ -318,7 +318,6 @@ void EventPage::editEventCalled(QString time , QString date, QString description
     min[length] = '\0';
     index = chooseMinuteCombo->findText(min);
     chooseMinuteCombo->setCurrentIndex(index);
-
 
     giveNameEdit->setText(description);
     if(user == "gemeinschaftlich") {
