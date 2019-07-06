@@ -10,33 +10,6 @@ then:<br>
 then:<br>
 <code>./myCommunity</code>
 
---------------------------------------------------
-
-<h3>Um Datein in GitLab zu pushen:</h3>
-
-Immer zuerst pullen:<br>
-<code>git pull</code>
-
-Status überprüfen:<br>
-<code>git status<code>
-
-Gewünschte Datein hinzufügen:<br>
-
-all Files:<br>
-<code>git add .</code>
-
-oder bestimmtes file:<br>
-<code>git add test.pdf</code>
-
-Überprüfen ob die gewünschten Datein bereit zum pushen:<br>
-<code>git status</code>
-
-ein kleine message über Aufgabe hinterlassen:<br>
-<code>git commit -m "message"</code>
-
-Endlich: pushen :)<br>
-<code>git push</code>
-
 ---------------------------------------------------
 
 <h3> To allow Test compilation, please do the following steps: </h3>
@@ -56,11 +29,3 @@ Endlich: pushen :)<br>
 Results listed in "Applications Output".
 
 ----------------------------------------------------
-
-<h3> To manually connect with database in terminal:</h3>
-
-<code>mysql -u user -h 172.104.230.99 -p</code><br>
-
-you will be asked for password. Our password is:<br>
-
-<code>bmns2018!!</code>
